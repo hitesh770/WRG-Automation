@@ -1,9 +1,0 @@
-$username=$CmdLine[1]
-$password=$CmdLine[2]
-WinSetOnTop("https:","","")
-WinWaitActive("https:","",60)
-WinActivate("https:")
-Send($username)
-Send("{TAB}")
-Send($password)
-Send("{ENTER}")
