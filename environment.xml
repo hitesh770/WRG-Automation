@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<environments>
+<environment id="t2">
+<PCbaseurl>https://t2pc.wrg-ins.net:8543/PolicyCenter.do</PCbaseurl>
+<baseurl>https://t2agency.wrg-ins.com/portal/html/#!/home/</baseurl>
+<BCbaseurl>https://t2bc.wrg-ins.net:8943/BillingCenter.do</BCbaseurl>
+<!-- <dbCon>jdbc:mysql://kasback.chrp5tjafhuc.ap-south-1.rds.amazonaws.com/kasback</dbCon>
+<dbuser>agam</dbuser>
+<dbpwd>uioue832jksj</dbpwd> -->	 -->	
+</environment>
+
+<environment id="e2e02">
+<PCbaseurl>https://e2pc.wrg-ins.net:8543/PolicyCenter.do</PCbaseurl>
+<baseurl>https://e2agency.wrg-ins.com/portal/html/#!/home/</baseurl>
+<BCbaseurl>https://e2bc.wrg-ins.net:8943/BillingCenter.do</BCbaseurl>
+<!-- <dbCon>jdbc:mysql://kasback.chrp5tjafhuc.ap-south-1.rds.amazonaws.com/kasback</dbCon>
+<dbuser>agam</dbuser>
+<dbpwd>uioue832jksj</dbpwd> -->	 -->	
+</environment>
+
+<environment id="r1">
+<PCbaseurl>https://r1pc.wrg-ins.net:8543/PolicyCenter.do</PCbaseurl>
+<baseurl>https://r1agency.wrg-ins.com/portal/html/#!/home/</baseurl>
+<BCbaseurl>https://r1bc.wrg-ins.net:8943/BillingCenter.do</BCbaseurl>
+<!-- <dbCon>jdbc:mysql://kasback.chrp5tjafhuc.ap-south-1.rds.amazonaws.com/kasback</dbCon>
+<dbuser>agam</dbuser>
+<dbpwd>uioue832jksj</dbpwd> -->	 -->	
+</environment>
+	
+<environment id="t3">
+<PCbaseurl>https://t3pc.wrg-ins.net:8543/PolicyCenter.do</PCbaseurl>
+<baseurl>https://t3agency.wrg-ins.com/portal/html/#!/home/</baseurl>
+<BCbaseurl>https://t3bc.wrg-ins.net:8943/BillingCenter.do</BCbaseurl>
+<!-- <dbCon>jdbc:mysql://kasback.chrp5tjafhuc.ap-south-1.rds.amazonaws.com/kasback</dbCon>
+<dbuser>agam</dbuser>
+<dbpwd>uioue832jksj</dbpwd>	 --> -->	
+</environment>
+
+<environment id="r2">
+<PCbaseurl>https://r2pc.wrg-ins.net:8543/PolicyCenter.do</PCbaseurl>
+<baseurl>https://r2agency.wrg-ins.com/portal/html/#!/home/</baseurl>
+<BCbaseurl>https://r2bc.wrg-ins.net:8943/BillingCenter.do</BCbaseurl>
+<!-- <dbCon>jdbc:mysql://kasback.chrp5tjafhuc.ap-south-1.rds.amazonaws.com/kasback</dbCon>
+<dbuser>agam</dbuser>
+<dbpwd>uioue832jksj</dbpwd>	 --> -->	
+</environment>
+
+<environment id="t1">
+<PCbaseurl>https://t1pc.wrg-ins.net:8543/PolicyCenter.do</PCbaseurl>
+<baseurl>https://t1agency.wrg-ins.com/portal/html/#!/home/</baseurl>
+<BCbaseurl>https://t1bc.wrg-ins.net:8943/BillingCenter.do</BCbaseurl>
+<!-- <dbCon>jdbc:mysql://kasback.chrp5tjafhuc.ap-south-1.rds.amazonaws.com/kasback</dbCon>
+<dbuser>agam</dbuser>
+<dbpwd>uioue832jksj</dbpwd>	 --> -->	
+</environment>
+
+<environment id="t4">
+<PCbaseurl>https://t4pc.wrg-ins.net:8543/PolicyCenter.do</PCbaseurl>
+<baseurl>https://t4agency.wrg-ins.com/portal/html/#!/home/</baseurl>
+<BCbaseurl>https://t4bc.wrg-ins.net:8943/BillingCenter.do</BCbaseurl>
+</environment>
+
+</environments>
+		
