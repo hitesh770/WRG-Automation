@@ -195,13 +195,6 @@ public abstract class AbstractTest extends AbstractTestBase {
 		cap = webcap.getDesiredCapabilities(targetOS);
 		if (browser.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
-//			if (os.equalsIgnoreCase("linux")) {
-//				System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver_linux");
-//			} else if (os.startsWith("Windows")) {
-//				System.setProperty("webdriver.gecko.driver", "./src/test/resources/drivers/geckodriver.exe");
-//			} else if (os.startsWith("mac")) {
-//				System.setProperty("webdriver.gecko.driver", "./src/test/resources/drivers/geckodriver_mac");
-//			}
 			if (isrunOnRemote == true) {
 				log.info("starting gecko driver on server");
 				driver = new RemoteWebDriver(remoteHubUrl, cap);
@@ -212,13 +205,6 @@ public abstract class AbstractTest extends AbstractTestBase {
 
 		} else if (browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
-//			if (os.equalsIgnoreCase("linux")) {
-//				System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver_linux");
-//			} else if (os.startsWith("Windows")) {
-//				System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chromedriver.exe");
-//			} else if (os.startsWith("mac")) {
-//				System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chromedriver_mac");
-//			}
 			if (isrunOnRemote == true) {
 				log.info("starting chrome driver on server");
 				log.info(remoteHubUrl.toString());
@@ -230,7 +216,6 @@ public abstract class AbstractTest extends AbstractTestBase {
 			}
 
 		} else if (browser.equalsIgnoreCase("ie")) {
-			// WebDriverManager.iedriver().setup();
 			System.setProperty("webdriver.ie.driver", "./src/test/resources/drivers/IEDriverServer32.exe");
 			if (isrunOnRemote == true) {
 				log.info("starting ie driver on server");
@@ -243,7 +228,6 @@ public abstract class AbstractTest extends AbstractTestBase {
 			log.info("starting safari driver on local");
 			driver = new SafariDriver();
 		} else if (browser.equalsIgnoreCase("edge")) {
-			// WebDriverManager.edgedriver().setup();
 			System.setProperty("webdriver.edge.driver", "./src/test/resources/drivers/msedgedriver64.exe");
 			if (isrunOnRemote == true) {
 				log.info("starting chrome driver on server");
