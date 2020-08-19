@@ -1,0 +1,11 @@
+2020-08-19 01:24:23 INFO  com.wrg.abstest.SuiteListener.onExecutionStart(SuiteListener.java:89) - start time for logs ->2020-08-19 10:54
+2020-08-19 01:24:23 INFO  com.wrg.abstestbase.AbstractTest.printBanner(AbstractTest.java:470) - ========================================= TEST SUITE STARTED ================================
+2020-08-19 01:24:23 INFO  com.wrg.abstestbase.AbstractTest.beforesuite(AbstractTest.java:140) - before env->t3
+2020-08-19 01:24:23 INFO  com.wrg.abstestbase.AbstractTest.beforesuite(AbstractTest.java:141) - before browser->firefox
+2020-08-19 01:24:23 INFO  com.wrg.abstestbase.AbstractTestBase.reportLog(AbstractTestBase.java:99) - Test Case verifyNewPolicyIsCreatedViaPolicyCenter started on 1597814663620
+2020-08-19 01:24:23 INFO  com.wrg.abstestbase.AbstractTestBase.reportLog(AbstractTestBase.java:89) - URI: https://t3pc.wrg-ins.net:8543/PolicyCenter.do
+2020-08-19 01:24:23 INFO  com.wrg.abstestbase.AbstractTest.getDriver(AbstractTest.java:173) - false
+2020-08-19 01:24:23 INFO  com.wrg.abstestbase.AbstractTest.getDriver(AbstractTest.java:190) - running on browser firefox
+2020-08-19 01:24:23 INFO  com.wrg.abstestbase.AbstractTest.getDriver(AbstractTest.java:192) - firefox
+2020-08-19 01:24:23 INFO  com.wrg.abstestbase.WebDriverCapabilities.getDesiredCapabilities(WebDriverCapabilities.java:93) - operating systemmac
+2020-08-19 01:24:24 INFO  com.wrg.abstestbase.AbstractTest.getDriver(AbstractTest.java:209) - starting gecko driver on local
