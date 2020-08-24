@@ -96,57 +96,18 @@ public class BOP_AgencyPortalTests extends AbstractTest {
 		String applicantName = null;
 		String quoteNumber = null;
 
-		glTests.agentPortalLogin(organizationCode,password);
-		buildNumber_AP=getAgentPortalBuild();
+		glTests.agentPortalLogin(organizationCode, password);
+		buildNumber_AP = getAgentPortalBuild();
 		if (buildNumber_AP.contains("R3")) {
 			applicantName = glTests.searchQuote(insuredName);
 			quoteNumber = glTests.newQuote(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber,
 					formType, percentageOwnerOccupiedValue);
 		} else if (buildNumber_AP.contains("R2")) {
 			applicantName = searchQuote(insuredName, organizationCode, password);
-			quoteNumber = newQuote(state, businessEntity, classCodeNumber, formType, percentageOwnerOccupiedValue);
+			quoteNumber = newQuote(state, businessEntity, classCodeNumber, formType, percentageOwnerOccupiedValue,
+					numberOfLocations);
 		}
 
-		underwritingQuestionsPage_AP.clickBeginSubmissionBtn();
-		underwritingQuestionsPage_AP.beginSubmission();
-		policySearchPage_AP.searchViaQuoteNumberUnderViewEditQuote(quoteNumber, applicantName, "Under UW Review");
-	}
-
-	/* Create New Submission with Multiple Locations */
-	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
-			"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
-	@Test
-	public void verifyNewSubmissionIsCreatedWithMultipleLocationsViaAgentPortal(String insuredName, String state,
-			String numberOfLocations, String organizationCode, String password, String insuranceType,
-			String businessEntity, String classCodeNumber, String formType, String percentageOwnerOccupiedValue)
-			throws IOException {
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ExtentTestManager.getTest().log(Status.INFO,
-				MarkupHelper.createLabel(
-						"Parameters are-> Insured Name: " + insuredName + ", State: " + state
-								+ ", Number of Locations: " + numberOfLocations + ", Organization Code: "
-								+ organizationCode + ", Password: " + password + ", Insurance Type: " + insuranceType
-								+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
-								+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
-						ExtentColor.PURPLE));
-		String applicantName = null;
-		String quoteNumber = null;
-		glTests.agentPortalLogin(organizationCode,password);
-		buildNumber_AP=getAgentPortalBuild();
-		if (buildNumber_AP.contains("R3")) {
-			applicantName = glTests.searchQuote(insuredName);
-			quoteNumber = glTests.newQuote(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber,
-					formType, percentageOwnerOccupiedValue);
-		} else if (buildNumber_AP.contains("R2")) {
-			applicantName = searchQuote(insuredName, organizationCode, password);
-			quoteNumber = newQuoteWithMultipleLocations(state, businessEntity, classCodeNumber, formType,
-					percentageOwnerOccupiedValue, numberOfLocations);
-		}
 		underwritingQuestionsPage_AP.clickBeginSubmissionBtn();
 		underwritingQuestionsPage_AP.beginSubmission();
 		policySearchPage_AP.searchViaQuoteNumberUnderViewEditQuote(quoteNumber, applicantName, "Under UW Review");
@@ -161,29 +122,7 @@ public class BOP_AgencyPortalTests extends AbstractTest {
 	}
 
 	public String newQuote(String state, String businessEntity, String classCodeNumber, String formType,
-			String percentageOwnerOccupiedValue) {
-		applicantInfoPage_AP = new ApplicantInformationPage_AP();
-		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
-		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();
-		policywideCoveragesPage_AP = new PolicywideCoveragesPage_AP();
-		optionalCoveragesPage_AP = new OptionalCoveragesPage_AP();
-		locationsAndBuildingsPage_AP = new LocationsAndBuildingsPage_AP();
-		quotePage_AP = new QuotePage_AP();
-		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
-		applicantInfoPage_AP.fillApplicantDetails(state, businessEntity, classCodeNumber);
-		String quoteNumber = underwritingGuidelinesPage.goToPolicyFormSelectionPage();
-		policyFormSelectionPage_AP.policyForm(formType);
-		policywideCoveragesPage_AP.coverages();
-		optionalCoveragesPage_AP.optionalCoverages();
-		locationsAndBuildingsPage_AP.addBuilding(percentageOwnerOccupiedValue, classCodeNumber);
-
-		quotePage_AP.quote();
-		underwritingQuestionsPage_AP.answerQuestions();
-		return quoteNumber;
-	}
-
-	public String newQuoteWithMultipleLocations(String state, String businessEntity, String classCodeNumber,
-			String formType, String percentageOwnerOccupiedValue, String numberOfLocations) {
+			String percentageOwnerOccupiedValue, String numberOfLocations) {
 		applicantInfoPage_AP = new ApplicantInformationPage_AP();
 		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
 		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();

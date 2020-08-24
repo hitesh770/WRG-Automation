@@ -134,7 +134,7 @@ public class BOP_RegressionTests extends AbstractTest {
 		} else if (buildNumber_AP.contains("R2")) {
 			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
 			quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
-					percentageOwnerOccupiedValue);
+					percentageOwnerOccupiedValue,numberOfLocations);
 			underwritingQuestionsPage_AP.isSeatingAbove75YES();
 			underwritingQuestionsPage_AP.clickBeginSubmissionBtn();
 			underwritingQuestionsPage_AP.beginSubmission();
@@ -175,7 +175,7 @@ public class BOP_RegressionTests extends AbstractTest {
 		} else if (buildNumber_AP.contains("R2")) {
 			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
 			quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
-					percentageOwnerOccupiedValue);
+					percentageOwnerOccupiedValue,numberOfLocations);
 			underwritingQuestionsPage_AP.clickBeginSubmissionBtn();
 			underwritingQuestionsPage_AP.beginSubmission();
 		}
@@ -248,7 +248,7 @@ public class BOP_RegressionTests extends AbstractTest {
 		} else if (buildNumber_AP.contains("R2")) {
 			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
 			quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
-					percentageOwnerOccupiedValue);
+					percentageOwnerOccupiedValue,numberOfLocations);
 			underwritingQuestionsPage_AP.clickBeginSubmissionBtn();
 			underwritingQuestionsPage_AP.beginSubmission();
 		}
@@ -334,7 +334,7 @@ public class BOP_RegressionTests extends AbstractTest {
 		} else if (buildNumber_AP.contains("R2")) {
 			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
 			quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
-					percentageOwnerOccupiedValue);
+					percentageOwnerOccupiedValue,numberOfLocations);
 			underwritingQuestionsPage_AP.clickBeginSubmissionBtn();
 			underwritingQuestionsPage_AP.beginSubmission();
 		}
@@ -428,7 +428,7 @@ public class BOP_RegressionTests extends AbstractTest {
 		} else if (buildNumber_AP.contains("R2")) {
 			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
 			quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
-					percentageOwnerOccupiedValue);
+					percentageOwnerOccupiedValue,numberOfLocations);
 			underwritingQuestionsPage_AP.clickBeginSubmissionBtn();
 			underwritingQuestionsPage_AP.beginSubmission();
 		}
@@ -531,7 +531,7 @@ public class BOP_RegressionTests extends AbstractTest {
 		} else if (buildNumber_AP.contains("R2")) {
 			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
 			quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
-					percentageOwnerOccupiedValue);
+					percentageOwnerOccupiedValue,numberOfLocations);
 			underwritingQuestionsPage_AP.clickBeginSubmissionBtn();
 			underwritingQuestionsPage_AP.beginSubmission();
 		}
@@ -635,7 +635,7 @@ public class BOP_RegressionTests extends AbstractTest {
 		} else if (buildNumber_AP.contains("R2")) {
 			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
 			quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
-					percentageOwnerOccupiedValue);
+					percentageOwnerOccupiedValue,numberOfLocations);
 		}
 		underwritingQuestionsPage_AP.verifyApplicationPrint();
 		apTests.completePayment();

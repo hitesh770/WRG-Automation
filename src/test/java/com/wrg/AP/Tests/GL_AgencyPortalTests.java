@@ -57,6 +57,7 @@ public class GL_AgencyPortalTests extends AbstractTest {
 	LocationsPage_AP locationsPage_AP = null;
 	ClassificationsPage_AP classificationPage_AP = null;
 	BOP_AgencyPortalTests apTests = null;
+	String buildNumber_AP = null;
 
 	@BeforeMethod
 	public void beforeMethod() {
@@ -98,15 +99,16 @@ public class GL_AgencyPortalTests extends AbstractTest {
 						ExtentColor.PURPLE));
 		String quoteNumber = null;
 		String applicantName = null;
-		agentPortalLogin(organizationCode,password);
-		if (!env.equalsIgnoreCase("e2e02")) {
+		agentPortalLogin(organizationCode, password);
+		buildNumber_AP = getAgentPortalBuild();
+		if (buildNumber_AP.contains("R3")) {
 			applicantName = searchQuote(insuredName);
 			quoteNumber = newQuote(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
 					percentageOwnerOccupiedValue);
-		} else {
+		} else if (buildNumber_AP.contains("R2")) {
 			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
 			quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
-					percentageOwnerOccupiedValue);
+					percentageOwnerOccupiedValue, numberOfLocations);
 		}
 
 //		String applicantName = searchQuote(state);
@@ -115,8 +117,6 @@ public class GL_AgencyPortalTests extends AbstractTest {
 //		underwritingQuestionsPage_AP.beginSubmission();
 //		policySearchPage_AP.searchViaQuoteNumberUnderViewEditQuote(quoteNumber, applicantName, "Under UW Review");
 	}
-
-	
 
 	public String newQuote(String state, String numberOfLocations, String insuranceType, String businessEntity,
 			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
@@ -142,50 +142,51 @@ public class GL_AgencyPortalTests extends AbstractTest {
 			policyFormSelectionPage_AP.policyForm(formType);
 			policywideCoveragesPage_AP.coverages();
 			optionalCoveragesPage_AP.optionalCoverages();
-			locationsAndBuildingsPage_AP.addBuilding(percentageOwnerOccupiedValue, classCodeNumber);
+			locationsAndBuildingsPage_AP.addMultipleLocations(state, percentageOwnerOccupiedValue, numberOfLocations,
+					classCodeNumber);
 			quotePage_AP.quote();
 			underwritingQuestionsPage_AP.answerQuestions();
 		} else if (insuranceType.equalsIgnoreCase("General Liability")) {
 			quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
 			policywideCoveragesPage_AP.coverages();
-			locationsPage_AP.goToClassificationsPage(state,numberOfLocations);
-			classificationPage_AP.addClassifications(classCodeNumber, "10000",numberOfLocations);
-			//optionalCoveragesPage_AP.quote();
+			locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
+			classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
+			optionalCoveragesPage_AP.quote();
 
-//			List<String> codes = new ArrayList<String>();
-//			if (classCodeNumber.contains(",")) {
-//				String[] codesArray = classCodeNumber.split(",");
-//				for (String code : codesArray) {
-//					codes.add(code);
-//				}
-//				int arraySize = elpClassCodeArray.length;
-//				for (int i = 0; i < arraySize; i++) {
-//					for (String classCode : codes) {
-//						if (elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
-//							break;
-//						} else if (!elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
-//							try {
-//								quotePage_AP.quote();
-//								underwritingQuestionsPage_AP.glNonEplQuestions();
-//								break;
-//							} catch (Exception e) {
-//								break;
-//							}
-//						}
-//					}
-//					break;
-//
-//				}
-//			} else {
-//				for (int i = 0; i < elpClassCodeArray.length; i++) {
-//					if (elpClassCodeArray[i].equalsIgnoreCase(classCodeNumber)) {
-//						break;
-//					} else {
-//						quotePage_AP.quote();
-//						underwritingQuestionsPage_AP.glNonEplQuestions();
-//					}
-//				}
-//			}
+			List<String> codes = new ArrayList<String>();
+			if (classCodeNumber.contains(",")) {
+				String[] codesArray = classCodeNumber.split(",");
+				for (String code : codesArray) {
+					codes.add(code);
+				}
+				int arraySize = elpClassCodeArray.length;
+				for (int i = 0; i < arraySize; i++) {
+					for (String classCode : codes) {
+						if (elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
+							break;
+						} else if (!elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
+							try {
+								quotePage_AP.quote();
+								underwritingQuestionsPage_AP.glNonEplQuestions();
+								break;
+							} catch (Exception e) {
+								break;
+							}
+						}
+					}
+					break;
+
+				}
+			} else {
+				for (int i = 0; i < elpClassCodeArray.length; i++) {
+					if (elpClassCodeArray[i].equalsIgnoreCase(classCodeNumber)) {
+						break;
+					} else {
+						quotePage_AP.quote();
+						underwritingQuestionsPage_AP.glNonEplQuestions();
+					}
+				}
+			}
 		}
 		return quoteNumber;
 	}

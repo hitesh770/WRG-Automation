@@ -249,8 +249,8 @@ public class BOP_PolicyCenterTests extends AbstractTest {
 		supplementalPage.goToRiskAnalysisPage();
 		riskAnalysispage.goToPolicyReviewPage();
 		policyReviewPage.quotePolicy();
-		String quoteNumber = quotePage.getQuoteNumber();
 		quotePage.releaseLockWithoutActivity();
+		String quoteNumber = quotePage.getQuoteNumber();
 		return quoteNumber;
 	}
 

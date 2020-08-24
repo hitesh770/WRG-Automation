@@ -18,85 +18,7 @@ import com.wrg.abstestbase.AbstractTest;
 public class LocationsAndBuildingsPage_AP extends AbstractTest {
 	WebDriverWait wait = null;
 
-	public LocationsAndBuildingsPage_AP addBuilding(String percentageOwnerOccupiedValue, String classCodeNumber) {
-		Actions action = new Actions(driver);
-
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		wait = new WebDriverWait(driver, 200);
-		wait.until(ExpectedConditions.visibilityOf(getWebElement("locationsAndBuildingsHeading")));
-		sleep(2000);
-		clickUsingJS("continueToBuildingButton");
-		type(("yearBuilt"), getData("year"));
-		selectByOption(getWebElement("constructionTypeDropdown"), "Frame");
-		wait.until(ExpectedConditions.invisibilityOf(getWebElement("loader")));
-		clickUsingJS("automaticSprinklerSystemYES");
-		if (isWebElementPresent("buildingCheckBox") == true) {
-			wait.until(ExpectedConditions.elementToBeClickable(getWebElement("buildingCheckBox")));
-			wait.until(ExpectedConditions.visibilityOf(getWebElement("buildingCheckBox")));
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
-					getWebElement("buildingCheckBox"));
-			clickUsingJS("buildingCheckBox");
-		}
-		wait.until(ExpectedConditions.invisibilityOf(getWebElement("loader")));
-		sleep(2000);
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getWebElement("limit"));
-		type(("limit"), getData("limitValue"));
-		getWebElement("limit").sendKeys(Keys.TAB);
-		wait.until(ExpectedConditions.invisibilityOf(getWebElement("loader")));
-		selectByOption(getWebElement("automaticIncreasePercentageDropdown"), "2%");
-		wait.until(ExpectedConditions.invisibilityOf(getWebElement("loader")));
-		selectByOption(getWebElement("percentageOwnerOccupiedDropdown"), percentageOwnerOccupiedValue);
-		wait.until(ExpectedConditions.invisibilityOf(getWebElement("loader")));
-		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("continueToClassificationButton")));
-		clickUsingJS("continueToClassificationButton");
-		if (classCodeNumber.contains(",")) {
-			String spiltClassCodes[] = classCodeNumber.split(",");
-			List<String> classCodes = new ArrayList<String>();
-			for (String classCode : spiltClassCodes) {
-				classCodes.add(classCode);
-				Select select = new Select(getWebElement("descriptionDropdown"));
-				String expectedDescription = classCode;
-				List<WebElement> allClassCodes = select.getOptions();
-				for (WebElement option : allClassCodes) {
-					String currentClassCode = option.getText();
-					if (currentClassCode.contains(expectedDescription)) {
-						select.selectByVisibleText(currentClassCode);
-					}
-				}
-				type(getWebElement("classificationSquareFootage"), getData("squareFootageValue"));
-				getWebElement("classificationSquareFootage").sendKeys(Keys.TAB);
-				wait.until(ExpectedConditions.elementToBeClickable(getWebElement("addNewClassificationButton")));
-				clickUsingJS("addNewClassificationButton");
-			}
-			clickUsingJS("deleteNewClassificationButton");
-			clickUsingJS("deleteButton");
-			click("quoteButton1");
-		} else {
-			type(getWebElement("classificationSquareFootage"), getData("squareFootageValue"));
-			getWebElement("classificationSquareFootage").sendKeys(Keys.TAB);
-			sleep(8000);
-			wait.until(ExpectedConditions.elementToBeClickable(getWebElement("quoteButton")));
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
-					getWebElement("quoteButton"));
-			sleep(3000);
-			action.moveToElement(getWebElement("quoteButton")).click().build().perform();
-			sleep(3000);
-		}
-//		if (isWebElementPresent("liabilityExposure") == true && isWebElementEnabled("liabilityExposure") == true) {
-//			wait.until(ExpectedConditions.elementToBeClickable(getWebElement("liabilityExposure")));
-//			sleep(3000);
-//			clickUsingJS("liabilityExposure");
-//			sleep(3000);
-//			type(getWebElement("liabilityExposure"), "10000");
-//		}
-
-		if (isWebElementPresent("calculatingQuoteLoader") == true) {
-			wait.until(ExpectedConditions.invisibilityOf(getWebElement("calculatingQuoteLoader")));
-		}
-
-		return new LocationsAndBuildingsPage_AP();
-	}
-
+	
 	public void clickQuoteButton() {
 		Actions action = new Actions(driver);
 		wait = new WebDriverWait(driver, 200);
@@ -112,7 +34,7 @@ public class LocationsAndBuildingsPage_AP extends AbstractTest {
 		}
 	}
 
-	public void addMultipleLocations(String state, String percentageOwnerOccupiedValue, String numberOfLocations,
+	public LocationsAndBuildingsPage_AP addMultipleLocations(String state, String percentageOwnerOccupiedValue, String numberOfLocations,
 			String classCodeNumber) {
 		Actions action = new Actions(driver);
 		for (int i = 1; i <= Integer.parseInt(numberOfLocations); i++) {
@@ -241,5 +163,6 @@ public class LocationsAndBuildingsPage_AP extends AbstractTest {
 		if (isWebElementPresent("calculatingQuoteLoader") == true) {
 			wait.until(ExpectedConditions.invisibilityOf(getWebElement("calculatingQuoteLoader")));
 		}
+		return new LocationsAndBuildingsPage_AP();
 	}
 }

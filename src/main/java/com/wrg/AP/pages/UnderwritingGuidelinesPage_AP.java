@@ -106,6 +106,7 @@ public class UnderwritingGuidelinesPage_AP extends AbstractTest {
 				MarkupHelper.createLabel("Quote Number: " + quoteNumber, ExtentColor.BLUE));
 		clickUsingJS("businessOwnedFor3YearsOrMoreYES");
 		clickUsingJS("anyLossesInPastYearsNO");
+		clickUsingJS("lossRunsProvidedNO");
 		List<String> codes = new ArrayList<String>();
 		if (classCodes.contains(",")) {
 			String[] codesArray = classCodes.split(",");
