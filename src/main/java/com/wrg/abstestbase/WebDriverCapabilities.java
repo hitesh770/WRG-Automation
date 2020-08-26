@@ -23,6 +23,7 @@ public class WebDriverCapabilities {
 	String browser = null;
 	String proxy = null;
 	DesiredCapabilities cap = null;
+	ChromeOptions options=null;
 	protected static String os = System.getProperty("os.name");
 	public static Logger log = MasterLogger.getInstance();
 
@@ -49,7 +50,8 @@ public class WebDriverCapabilities {
 			//cap.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
 			cap.setCapability(FirefoxDriver.PROFILE, profile);
 		} else if (browser.equalsIgnoreCase("chrome")) {
-			ChromeOptions options = new ChromeOptions();
+			 options = new ChromeOptions();
+			options.addArguments("--incognito");
 			options.setExperimentalOption("useAutomationExtension", false);
 			options.setExperimentalOption("excludeSwitches", new String[] {"enable-automation"});
 			cap = DesiredCapabilities.chrome();

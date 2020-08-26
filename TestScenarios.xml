@@ -2,49 +2,48 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="WRG">
   <parameter name="testng.metrics.report.name" value="RegressionTest.html"/>
-  <parameter name="testng.metrics.report.logo" value="C:\Users\aabro\Downloads\WRG-Automation\src\test\resources\wrg_logo.jpg"/>
+  <parameter name="testng.metrics.report.logo" value="C:\Users\pverm\git\WRG-Automation\src\test\resources\wrg_logo.jpg"/>
   <parameter name="testng.metrics.report.appendTimestamp" value="True"/>
   <listeners>
     <listener class-name="com.wrg.abstestbase.EventListener"/>
     <listener class-name="com.wrg.abstestbase.TestListener"/>
     <listener class-name="com.wrg.abstest.SuiteListener"/>
-    <listener class-name="com.wrg.utils.AnnotationTransformer"/>
   </listeners>
-  <test thread-count="1" name="verifyNewEndToEndPolicyIsCreated1">
-  </test> <!-- verifyNewEndToEndPolicyIsCreated1 -->
-  <test thread-count="1" name="verifyNewQuoteIsCreated2">
-  </test> <!-- verifyNewQuoteIsCreated2 -->
-  <test thread-count="1" name="verifyNewEndToEndPolicyIsCreatedHavingMultipleLocations3">
-  </test> <!-- verifyNewEndToEndPolicyIsCreatedHavingMultipleLocations3 -->
-  <test thread-count="1" name="verifyNewPolicyIsCreatedViaPolicyCenter4">
+  <test thread-count="1" name="createNewQuoteViaAgentPortalForGL1">
+  </test> <!-- createNewQuoteViaAgentPortalForGL1 -->
+  <test thread-count="1" name="createNewQuoteViaAgentPortalForGL2">
+  </test> <!-- createNewQuoteViaAgentPortalForGL2 -->
+  <test thread-count="1" name="createNewQuoteViaAgentPortalForGL3">
+  </test> <!-- createNewQuoteViaAgentPortalForGL3 -->
+  <test thread-count="1" name="createNewQuoteViaAgentPortalForGL4">
+  </test> <!-- createNewQuoteViaAgentPortalForGL4 -->
+  <test thread-count="1" name="createNewQuoteViaAgentPortalForGL5">
+  </test> <!-- createNewQuoteViaAgentPortalForGL5 -->
+  <test thread-count="1" name="createNewQuoteViaAgentPortalForGL6">
+  </test> <!-- createNewQuoteViaAgentPortalForGL6 -->
+  <test thread-count="1" name="createNewQuoteViaAgentPortalForGL7">
+  </test> <!-- createNewQuoteViaAgentPortalForGL7 -->
+  <test thread-count="1" name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL8">
     <parameter name="formType" value="Broadening"/>
-    <parameter name="Description" value=" * Begin New Submission via Policy Center with any term and approve Underwriter Issues (If Any)
-  * Go to Agent Portal and Make the Payment
-  * Go to Policy Center and Issue the Policy"/>
-    <parameter name="numberOfBuildings" value="2"/>
-    <parameter name="accountType" value="Commercial"/>
-    <parameter name="classCodeNumber" value="09011"/>
-    <parameter name="insuranceType" value="Businessowners"/>
+    <parameter name="classCodeNumber" value="40005"/>
+    <parameter name="numberOfLocations" value="1"/>
+    <parameter name="insuranceType" value="General Liability"/>
     <parameter name="businessEntity" value="Limited Liability Company (LLC)"/>
-    <parameter name="numberOfLocations" value="2"/>
     <parameter name="IsExecutable" value="Yes"/>
-    <parameter name="FunctionalityName" value="verifyNewPolicyIsCreatedViaPolicyCenter"/>
+    <parameter name="FunctionalityName" value="validateFirstThreeOptionalCoveragesViaAgentPortalForGL"/>
     <parameter name="password" value="Murry9"/>
-    <parameter name="organizationCode" value="349111"/>
-    <parameter name="pcUsers" value="QA1_UW"/>
-    <parameter name="term" value="365"/>
-    <parameter name="Package" value="com.wrg.E2E.Tests"/>
-    <parameter name="state" value="Ohio"/>
-    <parameter name="insuredName" value="BOP"/>
+    <parameter name="organizationCode" value="139111"/>
+    <parameter name="Package" value="com.wrg.AP.Tests"/>
+    <parameter name="state" value="Indiana"/>
+    <parameter name="insuredName" value="test"/>
     <parameter name="percentageOwnerOccupiedValue" value="10% or less"/>
-    <parameter name="effectiveDate" value="NA"/>
-    <parameter name="testCaseID" value=""/>
+    <parameter name="testCaseID" value="TC1"/>
     <classes>
-      <class name="com.wrg.E2E.Tests.BOP_End2EndTests">
+      <class name="com.wrg.AP.Tests.GL_AgencyPortalTests">
         <methods>
-          <include name="verifyNewPolicyIsCreatedViaPolicyCenter"/>
+          <include name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL"/>
         </methods>
-      </class> <!-- com.wrg.E2E.Tests.BOP_End2EndTests -->
+      </class> <!-- com.wrg.AP.Tests.GL_AgencyPortalTests -->
     </classes>
-  </test> <!-- verifyNewPolicyIsCreatedViaPolicyCenter4 -->
+  </test> <!-- validateFirstThreeOptionalCoveragesViaAgentPortalForGL8 -->
 </suite> <!-- WRG -->

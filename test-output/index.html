@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button class="button" id="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -40,7 +40,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-WRG">
-              <span class="suite-name border-failed">WRG</span>
+              <span class="suite-name border-skipped">WRG</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -51,12 +51,12 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-WRG">
-                    <span>C:\Users\aabro\Downloads\kasback\TestScenarios.xml</span>
+                    <span>C:\Users\pverm\git\WRG-Automation\TestScenarios.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
                   <a href="#" class="navigator-link " panel-name="testlist-WRG">
-                    <span class="test-stats">4 tests</span>
+                    <span class="test-stats">8 tests</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -93,21 +93,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method, 1 failed,   </span>
+                    <span class="method-stats">1 method,  1 skipped,  </span>
                   </li>
                   <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-WRG" class="hide-methods failed suite-WRG"> (hide)</a> <!-- hide-methods failed suite-WRG -->
-                      <a href="#" panel-name="suite-WRG" class="show-methods failed suite-WRG"> (show)</a> <!-- show-methods failed suite-WRG -->
+                    <span class="method-list-title skipped">Skipped methods</span>
+                    <span class="show-or-hide-methods skipped">
+                      <a href="#" panel-name="suite-WRG" class="hide-methods skipped suite-WRG"> (hide)</a> <!-- hide-methods skipped suite-WRG -->
+                      <a href="#" panel-name="suite-WRG" class="show-methods skipped suite-WRG"> (show)</a> <!-- show-methods skipped suite-WRG -->
                     </span>
-                    <div class="method-list-content failed suite-WRG">
+                    <div class="method-list-content skipped suite-WRG">
                       <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-WRG" title="com.wrg.E2E.Tests.BOP_End2EndTests" hash-for-method="verifyNewPolicyIsCreatedViaPolicyCenter(QA1_UW, BOP, Ohio, Limited Liability Company (LLC), 349111, Murry9, 09011, 2, 2, 365, Commercial, NA...)">verifyNewPolicyIsCreatedViaPolicyCenter(QA1_UW, BOP, Ohio, Limited Liability Company (LLC), 349111, Murry9, 09011, 2, 2, 365, Commercial, NA...)</a> <!-- method navigator-link -->
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-WRG" title="com.wrg.AP.Tests.GL_AgencyPortalTests" hash-for-method="validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Indiana, 1, 139111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broaden...)">validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Indiana, 1, 139111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broaden...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content failed suite-WRG -->
+                    </div> <!-- method-list-content skipped suite-WRG -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -119,36 +119,32 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-WRG" class="panel WRG">
-          <div class="suite-WRG-class-failed">
+          <div class="suite-WRG-class-skipped">
             <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">com.wrg.E2E.Tests.BOP_End2EndTests</span>
+              <img src="skipped.png"/>
+              <span class="class-name">com.wrg.AP.Tests.GL_AgencyPortalTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="verifyNewPolicyIsCreatedViaPolicyCenter(QA1_UW, BOP, Ohio, Limited Liability Company (LLC), 349111, Murry9, 09011, 2, 2, 365, Commercial, NA...)">
-                  </a> <!-- verifyNewPolicyIsCreatedViaPolicyCenter(QA1_UW, BOP, Ohio, Limited Liability Company (LLC), 349111, Murry9, 09011, 2, 2, 365, Commercial, NA...) -->
-                  <span class="method-name">verifyNewPolicyIsCreatedViaPolicyCenter</span>
-                  <span class="parameters">(QA1_UW, BOP, Ohio, Limited Liability Company (LLC), 349111, Murry9, 09011, 2, 2, 365, Commercial, NA, Broadening, 10% or less)</span>
-                  <div class="stack-trace">java.lang.ArrayIndexOutOfBoundsException: 0
-	at com.wrg.abstestbase.AbstractTest.getWebElement(AbstractTest.java:735)
-	at com.wrg.AP.pages.PaymentDetailsPage_AP.downPayment(PaymentDetailsPage_AP.java:18)
-	at com.wrg.AP.Tests.BOP_AgencyPortalTests.completePayment(BOP_AgencyPortalTests.java:240)
-	at com.wrg.E2E.Tests.BOP_End2EndTests.verifyNewPolicyIsCreatedViaPolicyCenter(BOP_End2EndTests.java:398)
-	at java.util.ArrayList.forEach(ArrayList.java:1257)
-	at com.wrg.PC.Tests.MyMainClass.testNGRun(MyMainClass.java:42)
-	at com.wrg.PC.Tests.MyMainClass.main(MyMainClass.java:30)
-... Removed 24 stack frames
+                  <a name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Indiana, 1, 139111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broaden...)">
+                  </a> <!-- validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Indiana, 1, 139111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broaden...) -->
+                  <span class="method-name">validateFirstThreeOptionalCoveragesViaAgentPortalForGL</span>
+                  <span class="parameters">(test, Indiana, 1, 139111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening, 10% or less)</span>
+                  <div class="stack-trace">java.io.IOException: File .\recordings\validateFirstThreeOptionalCoveragesViaAgentPortalForGL-2020-08-26 10.13.28.avi unable to be deleted.
+	at com.wrg.abstestbase.AbstractTest.beforesuite(AbstractTest.java:118)
+	at com.wrg.main.Tests.MyMainClass.testNGRun(MyMainClass.java:43)
+	at com.wrg.main.Tests.MyMainClass.main(MyMainClass.java:31)
+... Removed 18 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-WRG-class-failed -->
+          </div> <!-- suite-WRG-class-skipped -->
         </div> <!-- panel WRG -->
         <div panel-name="test-xml-WRG" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\aabro\Downloads\kasback\TestScenarios.xml</span>
+            <span class="header-content">C:\Users\pverm\git\WRG-Automation\TestScenarios.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -156,48 +152,50 @@
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;WRG&quot;&gt;
   &lt;parameter name=&quot;testng.metrics.report.name&quot; value=&quot;RegressionTest.html&quot;/&gt;
-  &lt;parameter name=&quot;testng.metrics.report.logo&quot; value=&quot;C:\Users\aabro\Downloads\kasback\src\test\resources\wrg_logo.jpg&quot;/&gt;
+  &lt;parameter name=&quot;testng.metrics.report.logo&quot; value=&quot;C:\Users\pverm\git\WRG-Automation\src\test\resources\wrg_logo.jpg&quot;/&gt;
   &lt;parameter name=&quot;testng.metrics.report.appendTimestamp&quot; value=&quot;True&quot;/&gt;
   &lt;listeners&gt;
     &lt;listener class-name=&quot;com.wrg.abstestbase.EventListener&quot;/&gt;
     &lt;listener class-name=&quot;com.wrg.abstestbase.TestListener&quot;/&gt;
     &lt;listener class-name=&quot;com.wrg.abstest.SuiteListener&quot;/&gt;
   &lt;/listeners&gt;
-  &lt;test thread-count=&quot;1&quot; name=&quot;verifyNewEndToEndPolicyIsCreated1&quot;&gt;
-  &lt;/test&gt; &lt;!-- verifyNewEndToEndPolicyIsCreated1 --&gt;
-  &lt;test thread-count=&quot;1&quot; name=&quot;verifyNewQuoteIsCreated2&quot;&gt;
-  &lt;/test&gt; &lt;!-- verifyNewQuoteIsCreated2 --&gt;
-  &lt;test thread-count=&quot;1&quot; name=&quot;verifyNewEndToEndPolicyIsCreatedHavingMultipleLocations3&quot;&gt;
-  &lt;/test&gt; &lt;!-- verifyNewEndToEndPolicyIsCreatedHavingMultipleLocations3 --&gt;
-  &lt;test thread-count=&quot;1&quot; name=&quot;verifyNewPolicyIsCreatedViaPolicyCenter4&quot;&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;createNewQuoteViaAgentPortalForGL1&quot;&gt;
+  &lt;/test&gt; &lt;!-- createNewQuoteViaAgentPortalForGL1 --&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;createNewQuoteViaAgentPortalForGL2&quot;&gt;
+  &lt;/test&gt; &lt;!-- createNewQuoteViaAgentPortalForGL2 --&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;createNewQuoteViaAgentPortalForGL3&quot;&gt;
+  &lt;/test&gt; &lt;!-- createNewQuoteViaAgentPortalForGL3 --&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;createNewQuoteViaAgentPortalForGL4&quot;&gt;
+  &lt;/test&gt; &lt;!-- createNewQuoteViaAgentPortalForGL4 --&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;createNewQuoteViaAgentPortalForGL5&quot;&gt;
+  &lt;/test&gt; &lt;!-- createNewQuoteViaAgentPortalForGL5 --&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;createNewQuoteViaAgentPortalForGL6&quot;&gt;
+  &lt;/test&gt; &lt;!-- createNewQuoteViaAgentPortalForGL6 --&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;createNewQuoteViaAgentPortalForGL7&quot;&gt;
+  &lt;/test&gt; &lt;!-- createNewQuoteViaAgentPortalForGL7 --&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;validateFirstThreeOptionalCoveragesViaAgentPortalForGL8&quot;&gt;
     &lt;parameter name=&quot;formType&quot; value=&quot;Broadening&quot;/&gt;
-    &lt;parameter name=&quot;Description&quot; value=&quot; * Begin New Submission via Policy Center with any term and approve Underwriter Issues (If Any)   * Go to Agent Portal and Make the Payment   * Go to Policy Center and Issue the Policy&quot;/&gt;
-    &lt;parameter name=&quot;numberOfBuildings&quot; value=&quot;2&quot;/&gt;
-    &lt;parameter name=&quot;accountType&quot; value=&quot;Commercial&quot;/&gt;
-    &lt;parameter name=&quot;classCodeNumber&quot; value=&quot;09011&quot;/&gt;
-    &lt;parameter name=&quot;insuranceType&quot; value=&quot;Businessowners&quot;/&gt;
+    &lt;parameter name=&quot;classCodeNumber&quot; value=&quot;40005&quot;/&gt;
+    &lt;parameter name=&quot;numberOfLocations&quot; value=&quot;1&quot;/&gt;
+    &lt;parameter name=&quot;insuranceType&quot; value=&quot;General Liability&quot;/&gt;
     &lt;parameter name=&quot;businessEntity&quot; value=&quot;Limited Liability Company (LLC)&quot;/&gt;
-    &lt;parameter name=&quot;numberOfLocations&quot; value=&quot;2&quot;/&gt;
     &lt;parameter name=&quot;IsExecutable&quot; value=&quot;Yes&quot;/&gt;
-    &lt;parameter name=&quot;FunctionalityName&quot; value=&quot;verifyNewPolicyIsCreatedViaPolicyCenter&quot;/&gt;
+    &lt;parameter name=&quot;FunctionalityName&quot; value=&quot;validateFirstThreeOptionalCoveragesViaAgentPortalForGL&quot;/&gt;
     &lt;parameter name=&quot;password&quot; value=&quot;Murry9&quot;/&gt;
-    &lt;parameter name=&quot;organizationCode&quot; value=&quot;349111&quot;/&gt;
-    &lt;parameter name=&quot;pcUsers&quot; value=&quot;QA1_UW&quot;/&gt;
-    &lt;parameter name=&quot;term&quot; value=&quot;365&quot;/&gt;
-    &lt;parameter name=&quot;Package&quot; value=&quot;com.wrg.E2E.Tests&quot;/&gt;
-    &lt;parameter name=&quot;state&quot; value=&quot;Ohio&quot;/&gt;
-    &lt;parameter name=&quot;insuredName&quot; value=&quot;BOP&quot;/&gt;
+    &lt;parameter name=&quot;organizationCode&quot; value=&quot;139111&quot;/&gt;
+    &lt;parameter name=&quot;Package&quot; value=&quot;com.wrg.AP.Tests&quot;/&gt;
+    &lt;parameter name=&quot;state&quot; value=&quot;Indiana&quot;/&gt;
+    &lt;parameter name=&quot;insuredName&quot; value=&quot;test&quot;/&gt;
     &lt;parameter name=&quot;percentageOwnerOccupiedValue&quot; value=&quot;10% or less&quot;/&gt;
-    &lt;parameter name=&quot;effectiveDate&quot; value=&quot;NA&quot;/&gt;
-    &lt;parameter name=&quot;testCaseID&quot; value=&quot;&quot;/&gt;
+    &lt;parameter name=&quot;testCaseID&quot; value=&quot;TC1&quot;/&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.wrg.E2E.Tests.BOP_End2EndTests&quot;&gt;
+      &lt;class name=&quot;com.wrg.AP.Tests.GL_AgencyPortalTests&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;verifyNewPolicyIsCreatedViaPolicyCenter&quot;/&gt;
+          &lt;include name=&quot;validateFirstThreeOptionalCoveragesViaAgentPortalForGL&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- com.wrg.E2E.Tests.BOP_End2EndTests --&gt;
+      &lt;/class&gt; &lt;!-- com.wrg.AP.Tests.GL_AgencyPortalTests --&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- verifyNewPolicyIsCreatedViaPolicyCenter4 --&gt;
+  &lt;/test&gt; &lt;!-- validateFirstThreeOptionalCoveragesViaAgentPortalForGL8 --&gt;
 &lt;/suite&gt; &lt;!-- WRG --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -209,16 +207,28 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">verifyNewEndToEndPolicyIsCreated1 (0 classes)</span>
+                <span class="test-name">createNewQuoteViaAgentPortalForGL1 (0 classes)</span>
               </li>
               <li>
-                <span class="test-name">verifyNewQuoteIsCreated2 (0 classes)</span>
+                <span class="test-name">createNewQuoteViaAgentPortalForGL2 (0 classes)</span>
               </li>
               <li>
-                <span class="test-name">verifyNewEndToEndPolicyIsCreatedHavingMultipleLocations3 (0 classes)</span>
+                <span class="test-name">createNewQuoteViaAgentPortalForGL3 (0 classes)</span>
               </li>
               <li>
-                <span class="test-name">verifyNewPolicyIsCreatedViaPolicyCenter4 (1 class)</span>
+                <span class="test-name">createNewQuoteViaAgentPortalForGL4 (0 classes)</span>
+              </li>
+              <li>
+                <span class="test-name">createNewQuoteViaAgentPortalForGL5 (0 classes)</span>
+              </li>
+              <li>
+                <span class="test-name">createNewQuoteViaAgentPortalForGL6 (0 classes)</span>
+              </li>
+              <li>
+                <span class="test-name">createNewQuoteViaAgentPortalForGL7 (0 classes)</span>
+              </li>
+              <li>
+                <span class="test-name">validateFirstThreeOptionalCoveragesViaAgentPortalForGL8 (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -246,14 +256,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'verifyNewPolicyIsCreatedViaPolicyCenter')
-data.setCell(0, 2, 'com.wrg.E2E.Tests.BOP_End2EndTests')
-data.setCell(0, 3, 339177);
+data.setCell(0, 1, 'validateFirstThreeOptionalCoveragesViaAgentPortalForGL')
+data.setCell(0, 2, 'com.wrg.AP.Tests.GL_AgencyPortalTests')
+data.setCell(0, 3, 0);
 window.suiteTableData['WRG']= { tableData: data, tableDiv: 'times-div-WRG'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 5 minutes</span>
+              <span class="suite-total-time">Total running time: 0 ms</span>
               <div id="times-div-WRG">
               </div> <!-- times-div-WRG -->
             </div> <!-- times-div -->
@@ -265,121 +275,22 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="reporter-method-div">
-              <span class="reporter-method-name">verifyNewPolicyIsCreatedViaPolicyCenter(QA1_UW, BOP, Ohio, Limited Liability Company (LLC), 349111, Murry9, 09011, 2, 2, 365, Commercial, NA...)</span>
+              <span class="reporter-method-name">validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Indiana, 1, 139111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broaden...)</span>
               <div class="reporter-method-output-div">
-                <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test Case verifyNewPolicyIsCreatedViaPolicyCenter started on 1597783396043</b></font></td></span>
-                <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>URI: https://t3pc.wrg-ins.net:8543/PolicyCenter.do</b></font></td></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type Blue_Agency in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type BOP_2020_08_18_16_43_16 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 377 West, Liberty Street in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type Wooster in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type test in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 44691 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type FORWARD AGENCIES in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 349111 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 09011 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 123 Main Street in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type Cleveland in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 44101 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 2015 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 20000 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 1500 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type BOP_2020_08_18_16_43_46 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 377 West, Liberty Street in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type Wooster in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 44691 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type test_2020_08_18_16_43_46 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 377 West, Liberty Street in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type Wooster in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 44691 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 2015 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 20000 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 1500 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type BOP_2020_08_18_16_43_46 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 123 Main Street in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type Cleveland in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 44101 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type test_2020_08_18_16_43_46 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 123 Main Street in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type Cleveland in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 44101 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>URI: https://t3agency.wrg-ins.com/portal/html/#!/home/</b></font></td></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>select (by option)Quote Number from the dropdown</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 0000002322 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 201-787-8786 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test verifyNewPolicyIsCreatedViaPolicyCenter2</b></font></td></span>
+                <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test validateFirstThreeOptionalCoveragesViaAgentPortalForGL Skipped</b></font></td></span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="ignored-methods-WRG" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">3 ignored methods</span>
+            <span class="header-content">1 ignored method</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">com.wrg.E2E.Tests.BOP_End2EndTests</span>
+              <span class="ignored-class-name">com.wrg.AP.Tests.GL_AgencyPortalTests</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">verifyNewQuoteIsCreated</span>
-                <br/>
-                <span class="ignored-method-name">verifyNewEndToEndPolicyIsCreatedHavingMultipleLocations</span>
-                <br/>
-                <span class="ignored-method-name">verifyNewEndToEndPolicyIsCreated</span>
+                <span class="ignored-method-name">createNewQuoteViaAgentPortalForGL</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -391,20 +302,20 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.wrg.E2E.Tests.BOP_End2EndTests</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.wrg.AP.Tests.GL_AgencyPortalTests</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
+                <img src="failed.png">
+                </img>
                 <span class="method-name">beforesuite</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
                 <span class="method-name">beforeMethod</span>
-                <span class="method-start">192 ms</span>
+                <span class="method-start">273 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">verifyNewPolicyIsCreatedViaPolicyCenter(QA1_UW, BOP, Ohio, Limited Liability Company (LLC), 349111, Murry9, 09011, 2, 2, 365, Commercial, NA...)</span>
-                <span class="method-start">221 ms</span>
+                <span class="method-name">validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Indiana, 1, 139111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broaden...)</span>
+                <span class="method-start">274 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

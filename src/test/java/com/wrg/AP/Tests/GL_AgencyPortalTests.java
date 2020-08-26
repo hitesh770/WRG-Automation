@@ -117,6 +117,47 @@ public class GL_AgencyPortalTests extends AbstractTest {
 //		underwritingQuestionsPage_AP.beginSubmission();
 //		policySearchPage_AP.searchViaQuoteNumberUnderViewEditQuote(quoteNumber, applicantName, "Under UW Review");
 	}
+	
+	
+	
+	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+@Test
+public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
+		String organizationCode, String password, String insuranceType, String businessEntity,
+		String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+							+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+					ExtentColor.PURPLE));
+	String quoteNumber = null;
+	String applicantName = null;
+	agentPortalLogin(organizationCode, password);
+	buildNumber_AP = getAgentPortalBuild();
+	if (buildNumber_AP.contains("R3")) {
+		applicantName = searchQuote(insuredName);
+		quoteNumber = newQuote(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+				percentageOwnerOccupiedValue);
+	} else if (buildNumber_AP.contains("R2")) {
+		applicantName = apTests.searchQuote(insuredName, organizationCode, password);
+		quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
+				percentageOwnerOccupiedValue, numberOfLocations);
+	}
+
+
+}
+
+	
+	
 
 	public String newQuote(String state, String numberOfLocations, String insuranceType, String businessEntity,
 			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
@@ -151,6 +192,7 @@ public class GL_AgencyPortalTests extends AbstractTest {
 			policywideCoveragesPage_AP.coverages();
 			locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
 			classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
+			optionalCoveragesPage_AP.chooseFirstThreeOptionalCoverages();
 			optionalCoveragesPage_AP.quote();
 
 			List<String> codes = new ArrayList<String>();
@@ -212,7 +254,7 @@ public class GL_AgencyPortalTests extends AbstractTest {
 			}
 		}
 		waitForPageLoaded();
-	}
+	} 
 
 	public String searchQuote(String applicantName) {
 		homepage = new WrgHomePage_AP();
