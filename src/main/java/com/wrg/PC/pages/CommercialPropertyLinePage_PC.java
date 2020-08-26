@@ -87,7 +87,27 @@ public class CommercialPropertyLinePage_PC extends AbstractTest {
 				&& isWebElementPresent("commercialPropertyEnhancementEndorsementCheckbox") == true
 				&& isWebElementPresent("wil60Title") == true
 				&& isWebElementPresent("wil60Checkbox") == true) {
+			Assert.assertEquals(getWebElementText("policyLevelCoveragesHeading"), "Policy Level Coverages");
+			Assert.assertEquals(getWebElementText("commercialPropertyEnhancementEndorsementTitle"), "Commercial Property Enhancement Endorsement");
+			Assert.assertEquals(getWebElementText("wil60Title"), "WIL 60 - Cyber - Data Compromise Coverage");
 			result = true;
+		}
+		return result;
+	}
+	
+	public boolean validatePolicyDefaults() {
+		boolean result = false;
+		if(isWebElementPresent("policyDefaultsLabel")==true
+				&& isWebElementPresent("deductibleDefaultsLabel")
+				&& isWebElementPresent("deductibleLabel")
+				&& isWebElementPresent("theftDeductibleLabel")
+				&& isWebElementPresent("windstormOrHailDeductibleLabel")) {
+			Assert.assertEquals(getWebElementText("policyDefaultsLabel"), "Policy Defaults");
+			Assert.assertEquals(getWebElementText("deductibleDefaultsLabel"), "Deductible Defaults");
+			Assert.assertEquals(getWebElementText("deductibleLabel"), "Deductible");
+			Assert.assertEquals(getWebElementText("theftDeductibleLabel"), "Theft Deductible (if COL is Special)");
+			Assert.assertEquals(getWebElementText("windstormOrHailDeductibleLabel"), "Windstorm or Hail Deductible");
+			result=true;
 		}
 		return result;
 	}
@@ -109,10 +129,14 @@ public class CommercialPropertyLinePage_PC extends AbstractTest {
 	public boolean validateWIL60CoverageLabelsAndFields() {
 		wait = new WebDriverWait(driver, 10);
 		boolean result = false;
+		//sleep(1000);
+		waitForPageLoaded();
 		click("wil60Checkbox");
 		click("retentionDropdown");
 		driver.findElement(By.xpath("//li[contains(text(),'Other')]")).click();
 		wait.until(ExpectedConditions.visibilityOf(getWebElement("otherRetentionLabel")));
+		click("limitLabel");
+		driver.findElement(By.xpath("//li[contains(text(),'"+getData("limitValue")+"')]")).click();
 		if (isWebElementPresent("limitLabel") == true
 				&& isWebElementPresent("limitDropdown") == true
 				&& isWebElementPresent("retentionLabel") == true
@@ -121,6 +145,10 @@ public class CommercialPropertyLinePage_PC extends AbstractTest {
 				&& isWebElementPresent("retroactiveDateValue") == true
 				&& isWebElementPresent("otherRetentionLabel") == true
 				&& isWebElementPresent("otherRetentionTextBox") == true) {
+			Assert.assertEquals(getWebElementText("limitLabel"), "Limit");
+			Assert.assertEquals(getWebElementText("retentionLabel"), "Retention");
+			Assert.assertEquals(getWebElementText("retroactiveDateLabel"), "Retroactive Date");
+			Assert.assertEquals(getWebElementText("otherRetentionLabel"), "Other Retention");
 			result = true;
 		}
 		return result;
