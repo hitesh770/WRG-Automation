@@ -1140,7 +1140,8 @@ public abstract class AbstractTest extends AbstractTestBase {
 		try {
 			// highlightElement(element);
 			JavascriptExecutor js = (JavascriptExecutor)driver;
-			js.executeScript("arguments[0].value="+data+";",getWebElement(locator));
+			js.executeScript("arguments[0].value='"+data+"';", getWebElement(locator));
+			//js.executeScript("arguments[0].value="+data+";",getWebElement(locator));
 			ExtentTestManager.getTest().log(Status.INFO, "Typed value " + data + " in " + locator);
 			log("type " + data + " in input field.");
 		} catch (Exception e) {

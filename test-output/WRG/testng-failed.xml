@@ -27,7 +27,7 @@
     <classes>
       <class name="com.wrg.AP.Tests.GL_AgencyPortalTests">
         <methods>
-          <include name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL"/>
+          <include name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL" invocation-numbers="0"/>
           <include name="beforesuite"/>
           <include name="beforeMethod"/>
         </methods>

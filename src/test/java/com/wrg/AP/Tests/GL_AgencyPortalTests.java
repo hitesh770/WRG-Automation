@@ -145,7 +145,7 @@ public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insure
 	buildNumber_AP = getAgentPortalBuild();
 	if (buildNumber_AP.contains("R3")) {
 		applicantName = searchQuote(insuredName);
-		quoteNumber = newQuote(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+		quoteNumber = addFirstThreeCoverages(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
 				percentageOwnerOccupiedValue);
 	} else if (buildNumber_AP.contains("R2")) {
 		applicantName = apTests.searchQuote(insuredName, organizationCode, password);
@@ -156,6 +156,83 @@ public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insure
 
 }
 
+	
+	
+	public String addFirstThreeCoverages(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
+		applicantInfoPage_AP = new ApplicantInformationPage_AP();
+		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
+		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();
+		policywideCoveragesPage_AP = new PolicywideCoveragesPage_AP();
+		optionalCoveragesPage_AP = new OptionalCoveragesPage_AP();
+		locationsAndBuildingsPage_AP = new LocationsAndBuildingsPage_AP();
+		quotePage_AP = new QuotePage_AP();
+		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
+		startQuotePage_AP = new StartQuotePage_AP();
+		locationsPage_AP = new LocationsPage_AP();
+		classificationPage_AP = new ClassificationsPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		String quoteNumber = null;
+		if (insuranceType.equalsIgnoreCase("Businessowners")) {
+			quoteNumber = underwritingGuidelinesPage.goToPolicyFormSelectionPage();
+			policyFormSelectionPage_AP.policyForm(formType);
+			policywideCoveragesPage_AP.coverages();
+			optionalCoveragesPage_AP.optionalCoverages();
+			locationsAndBuildingsPage_AP.addMultipleLocations(state, percentageOwnerOccupiedValue, numberOfLocations,
+					classCodeNumber);
+			quotePage_AP.quote();
+			underwritingQuestionsPage_AP.answerQuestions();
+		} else if (insuranceType.equalsIgnoreCase("General Liability")) {
+			quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
+			policywideCoveragesPage_AP.coverages();
+			locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
+			classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
+			optionalCoveragesPage_AP.chooseFirstThreeOptionalCoverages();
+			optionalCoveragesPage_AP.quote();
+
+			List<String> codes = new ArrayList<String>();
+			if (classCodeNumber.contains(",")) {
+				String[] codesArray = classCodeNumber.split(",");
+				for (String code : codesArray) {
+					codes.add(code);
+				}
+				int arraySize = elpClassCodeArray.length;
+				for (int i = 0; i < arraySize; i++) {
+					for (String classCode : codes) {
+						if (elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
+							break;
+						} else if (!elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
+							try {
+								quotePage_AP.quote();
+								underwritingQuestionsPage_AP.glNonEplQuestions();
+								break;
+							} catch (Exception e) {
+								break;
+							}
+						}
+					}
+					break;
+
+				}
+			} else {
+				for (int i = 0; i < elpClassCodeArray.length; i++) {
+					if (elpClassCodeArray[i].equalsIgnoreCase(classCodeNumber)) {
+						break;
+					} else {
+						quotePage_AP.quote();
+						underwritingQuestionsPage_AP.glNonEplQuestions();
+					}
+				}
+			}
+		}
+		return quoteNumber;
+		
+		
+	} 
 	
 	
 
@@ -192,7 +269,6 @@ public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insure
 			policywideCoveragesPage_AP.coverages();
 			locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
 			classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
-			optionalCoveragesPage_AP.chooseFirstThreeOptionalCoverages();
 			optionalCoveragesPage_AP.quote();
 
 			List<String> codes = new ArrayList<String>();

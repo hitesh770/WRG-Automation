@@ -25,15 +25,17 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 	
 	public void chooseFirstThreeOptionalCoverages() {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		wait = new WebDriverWait(driver, 20);
+		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage1")));
 		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("coverage1")));
 		clickUsingJS("coverage1");
-		sleep(2000);
+	    sleep(2000);
 		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage1dropdown")));
 		selectByOption(getWebElement("coverage1dropdown"),"100,000/300,000");
+		sleep(2000);
 		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage1textfield")));
 		type(getWebElement("coverage1textfield"),"1000");
+		sleep(2000);
 		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage2")));
 		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("coverage2")));
 		clickUsingJS("coverage2");
@@ -43,12 +45,14 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		sleep(2000);
 		clickUsingJS("coverage2addbuton");
 		scrollToElement("coverage2textfield");
-//		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage2textfield")));
-		type(getWebElement("coverage2textfield"),"test789");
+	    wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage2textfield")));
+		sleep(2000);
+		typeUsingJS("coverage2textfield","test789");
+		sleep(2000);
 		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage2savebutton")));
 		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("coverage2savebutton")));
 		clickUsingJS("coverage2savebutton");
-		sleep(4000);
+		sleep(2000);
 		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage3")));
 		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("coverage3")));
 		clickUsingJS("coverage3");
