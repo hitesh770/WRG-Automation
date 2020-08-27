@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button class="button" id="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -40,7 +40,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-WRG">
-              <span class="suite-name border-passed">WRG</span>
+              <span class="suite-name border-failed">WRG</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -93,21 +93,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">1 method, 1 failed,   </span>
                   </li>
                   <li>
-                    <span class="method-list-title passed">Passed methods</span>
-                    <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-WRG" class="hide-methods passed suite-WRG"> (hide)</a> <!-- hide-methods passed suite-WRG -->
-                      <a href="#" panel-name="suite-WRG" class="show-methods passed suite-WRG"> (show)</a> <!-- show-methods passed suite-WRG -->
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-WRG" class="hide-methods failed suite-WRG"> (hide)</a> <!-- hide-methods failed suite-WRG -->
+                      <a href="#" panel-name="suite-WRG" class="show-methods failed suite-WRG"> (show)</a> <!-- show-methods failed suite-WRG -->
                     </span>
-                    <div class="method-list-content passed suite-WRG">
+                    <div class="method-list-content failed suite-WRG">
                       <span>
-                        <img width="3%" src="passed.png"/>
+                        <img width="3%" src="failed.png"/>
                         <a href="#" class="method navigator-link" panel-name="suite-WRG" title="com.wrg.AP.Tests.GL_AgencyPortalTests" hash-for-method="validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Indiana, 1, 139111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broaden...)">validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Indiana, 1, 139111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broaden...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-WRG -->
+                    </div> <!-- method-list-content failed suite-WRG -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -119,9 +119,9 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-WRG" class="panel WRG">
-          <div class="suite-WRG-class-passed">
+          <div class="suite-WRG-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
+              <img src="failed.png"/>
               <span class="class-name">com.wrg.AP.Tests.GL_AgencyPortalTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
@@ -131,10 +131,21 @@
                   </a> <!-- validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Indiana, 1, 139111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broaden...) -->
                   <span class="method-name">validateFirstThreeOptionalCoveragesViaAgentPortalForGL</span>
                   <span class="parameters">(test, Indiana, 1, 139111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening, 10% or less)</span>
+                  <div class="stack-trace">java.lang.ArrayIndexOutOfBoundsException: 0
+	at com.wrg.abstestbase.AbstractTest.getWebElements(AbstractTest.java:780)
+	at com.wrg.abstestbase.AbstractTest.isWebElementPresent(AbstractTest.java:1020)
+	at com.wrg.AP.pages.OptionalCoveragesPage_AP.getQuotePageText(OptionalCoveragesPage_AP.java:80)
+	at com.wrg.AP.Tests.GL_AgencyPortalTests.addFirstThreeCoverages(GL_AgencyPortalTests.java:197)
+	at com.wrg.AP.Tests.GL_AgencyPortalTests.validateFirstThreeOptionalCoveragesViaAgentPortalForGL(GL_AgencyPortalTests.java:151)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at com.wrg.main.Tests.MyMainClass.testNGRun(MyMainClass.java:43)
+	at com.wrg.main.Tests.MyMainClass.main(MyMainClass.java:31)
+... Removed 24 stack frames
+</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-WRG-class-passed -->
+          </div> <!-- suite-WRG-class-failed -->
         </div> <!-- panel WRG -->
         <div panel-name="test-xml-WRG" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -252,7 +263,7 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'validateFirstThreeOptionalCoveragesViaAgentPortalForGL')
 data.setCell(0, 2, 'com.wrg.AP.Tests.GL_AgencyPortalTests')
-data.setCell(0, 3, 122324);
+data.setCell(0, 3, 128450);
 window.suiteTableData['WRG']= { tableData: data, tableDiv: 'times-div-WRG'}
 return data;
 }
@@ -271,10 +282,10 @@ return data;
             <div class="reporter-method-div">
               <span class="reporter-method-name">validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Indiana, 1, 139111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broaden...)</span>
               <div class="reporter-method-output-div">
-                <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test Case validateFirstThreeOptionalCoveragesViaAgentPortalForGL started on 1598468254038</b></font></td></span>
+                <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test Case validateFirstThreeOptionalCoveragesViaAgentPortalForGL started on 1598508390925</b></font></td></span>
                 <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>URI: https://t4agency.wrg-ins.com/portal/html/#!/home/</b></font></td></span>
                 <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type test_2020_08_26_14_57_56 in input field.</b></font></td></tr></span>
+                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type test_2020_08_27_02_06_58 in input field.</b></font></td></tr></span>
                 <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
                 <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>select (by option)FORWARD AGENCIES INC (000) from the dropdown</b></font></td></tr></span>
                 <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 251 Pennylvania Pkwy in input field.</b></font></td></tr></span>
@@ -289,7 +300,7 @@ return data;
                 <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>select (by option)100,000/300,000 from the dropdown</b></font></td></tr></span>
                 <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 1000 in input field.</b></font></td></tr></span>
                 <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type test789 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test validateFirstThreeOptionalCoveragesViaAgentPortalForGL1</b></font></td></span>
+                <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test validateFirstThreeOptionalCoveragesViaAgentPortalForGL2</b></font></td></span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -321,11 +332,13 @@ return data;
               </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
                 <span class="method-name">beforeMethod</span>
-                <span class="method-start">236 ms</span>
+                <span class="method-start">482 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
+                <img src="failed.png">
+                </img>
                 <span class="method-name">validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Indiana, 1, 139111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broaden...)</span>
-                <span class="method-start">246 ms</span>
+                <span class="method-start">504 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

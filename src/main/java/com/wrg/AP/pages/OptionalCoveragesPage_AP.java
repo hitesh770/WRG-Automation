@@ -2,7 +2,11 @@ package com.wrg.AP.pages;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.print.DocFlavor.STRING;
+
+import org.apache.poi.poifs.crypt.dsig.KeyInfoKeySelector;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -35,6 +39,7 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		sleep(2000);
 		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage1textfield")));
 		type(getWebElement("coverage1textfield"),"1000");
+		getWebElement("coverage1textfield").sendKeys(Keys.TAB); 
 		sleep(2000);
 		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage2")));
 		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("coverage2")));
@@ -48,6 +53,7 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 	    wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage2textfield")));
 		sleep(2000);
 		typeUsingJS("coverage2textfield","test789");
+		getWebElement("coverage2textfield").sendKeys(Keys.TAB); 
 		sleep(2000);
 		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage2savebutton")));
 		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("coverage2savebutton")));
@@ -57,6 +63,35 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("coverage3")));
 		clickUsingJS("coverage3");
 	}
+	
+	
+	
+	
+	public String getQuotePageText() {
+		String quotepagelabel="";
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOf(getWebElement("optionalCoveragesHeading")));
+		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("optionalCoveragesHeading")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getWebElement("quoteButton"));
+		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("quoteButton")));
+		clickUsingJS("quoteButton");
+		sleep(1000);
+		if (isWebElementPresent("creatingQuoteLoader") == true) {
+			wait.until(ExpectedConditions.invisibilityOf(getWebElement("creatingQuoteLoader")));
+		}
+		
+		if (isWebElementPresent("creatingQuoteLoader") == true) {
+			quotepagelabel=getWebElementText("quotepagelabel");
+		}else {
+			
+			quotepagelabel="quote page not available";
+		}
+		
+		
+		
+		return quotepagelabel;
+	} 
 	
 
 	public void quote() {

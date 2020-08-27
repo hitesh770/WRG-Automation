@@ -12,6 +12,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
@@ -58,6 +59,7 @@ public class GL_AgencyPortalTests extends AbstractTest {
 	ClassificationsPage_AP classificationPage_AP = null;
 	BOP_AgencyPortalTests apTests = null;
 	String buildNumber_AP = null;
+	SoftAssert asst=null;
 
 	@BeforeMethod
 	public void beforeMethod() {
@@ -76,6 +78,7 @@ public class GL_AgencyPortalTests extends AbstractTest {
 		startQuotePage_AP = new StartQuotePage_AP();
 		locationsPage_AP = new LocationsPage_AP();
 		apTests = new BOP_AgencyPortalTests();
+		asst=new SoftAssert();
 	}
 
 	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
@@ -139,19 +142,18 @@ public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insure
 							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
 							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
 					ExtentColor.PURPLE));
-	String quoteNumber = null;
+	String actualquotepageheading = null;
 	String applicantName = null;
 	agentPortalLogin(organizationCode, password);
 	buildNumber_AP = getAgentPortalBuild();
 	if (buildNumber_AP.contains("R3")) {
 		applicantName = searchQuote(insuredName);
-		quoteNumber = addFirstThreeCoverages(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+		actualquotepageheading = addFirstThreeCoverages(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
 				percentageOwnerOccupiedValue);
-	} else if (buildNumber_AP.contains("R2")) {
-		applicantName = apTests.searchQuote(insuredName, organizationCode, password);
-		quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
-				percentageOwnerOccupiedValue, numberOfLocations);
-	}
+		asst.assertEquals(actualquotepageheading, "Date Quoted"); 
+		asst.assertAll();
+		//need to handle for r2 code base
+	} 
 
 
 }
@@ -177,6 +179,7 @@ public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insure
 		sleep(2000);
 		startQuotePage_AP.addClassification(classCodeNumber);
 		String quoteNumber = null;
+		String actualquotepageheading = null;
 		if (insuranceType.equalsIgnoreCase("Businessowners")) {
 			quoteNumber = underwritingGuidelinesPage.goToPolicyFormSelectionPage();
 			policyFormSelectionPage_AP.policyForm(formType);
@@ -192,45 +195,11 @@ public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insure
 			locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
 			classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
 			optionalCoveragesPage_AP.chooseFirstThreeOptionalCoverages();
-			optionalCoveragesPage_AP.quote();
-
-			List<String> codes = new ArrayList<String>();
-			if (classCodeNumber.contains(",")) {
-				String[] codesArray = classCodeNumber.split(",");
-				for (String code : codesArray) {
-					codes.add(code);
-				}
-				int arraySize = elpClassCodeArray.length;
-				for (int i = 0; i < arraySize; i++) {
-					for (String classCode : codes) {
-						if (elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
-							break;
-						} else if (!elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
-							try {
-								quotePage_AP.quote();
-								underwritingQuestionsPage_AP.glNonEplQuestions();
-								break;
-							} catch (Exception e) {
-								break;
-							}
-						}
+			actualquotepageheading=optionalCoveragesPage_AP.getQuotePageText();
+			
 					}
-					break;
-
-				}
-			} else {
-				for (int i = 0; i < elpClassCodeArray.length; i++) {
-					if (elpClassCodeArray[i].equalsIgnoreCase(classCodeNumber)) {
-						break;
-					} else {
-						quotePage_AP.quote();
-						underwritingQuestionsPage_AP.glNonEplQuestions();
-					}
-				}
-			}
-		}
-		return quoteNumber;
 		
+		return actualquotepageheading;
 		
 	} 
 	

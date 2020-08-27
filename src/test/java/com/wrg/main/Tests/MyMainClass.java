@@ -142,7 +142,7 @@ public class MyMainClass extends AbstractTest {
 
 		suite.addListener("com.wrg.abstest.SuiteListener");
 		
-	//	suite.addListener("com.wrg.utils.AnnotationTransformer");
+		suite.addListener("com.wrg.utils.AnnotationTransformer");
 
 		System.out.println(suite.toXml());
 
