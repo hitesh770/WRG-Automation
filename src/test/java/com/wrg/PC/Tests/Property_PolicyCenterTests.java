@@ -217,6 +217,7 @@ public class Property_PolicyCenterTests extends AbstractTest {
 		policyInfoPage_PC.goToNextPage();
 		commercialPropertyLinePage_PC.validatePolicyLevelCoveragesPresence();
 		commercialPropertyLinePage_PC.validateWIL60CoverageLabelsAndFields();
+		commercialPropertyLinePage_PC.validatePolicyDefaults();
 		commercialPropertyLinePage_PC.goToAdditionalCoveragesTab();
 		commercialPropertyLinePage_PC.verifyAdditionalCoverages();
 	}
