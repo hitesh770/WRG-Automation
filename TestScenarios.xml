@@ -32,9 +32,9 @@
     <parameter name="IsExecutable" value="Yes"/>
     <parameter name="FunctionalityName" value="validateFirstThreeOptionalCoveragesViaAgentPortalForGL"/>
     <parameter name="password" value="Murry9"/>
-    <parameter name="organizationCode" value="139111"/>
+    <parameter name="organizationCode" value="349111"/>
     <parameter name="Package" value="com.wrg.AP.Tests"/>
-    <parameter name="state" value="Indiana"/>
+    <parameter name="state" value="Ohio"/>
     <parameter name="insuredName" value="test"/>
     <parameter name="percentageOwnerOccupiedValue" value="10% or less"/>
     <parameter name="testCaseID" value="TC1"/>

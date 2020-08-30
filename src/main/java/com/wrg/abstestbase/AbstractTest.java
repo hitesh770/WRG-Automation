@@ -48,6 +48,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -90,6 +91,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 	public static PostgresqlUtil pgutil = null;
 	public static String highLightPropertyName = "outline";
 	int elementWaitTime = 10;
+	static int explicitWaitTime = 20;  
 	public static String highlightColor = "#00ff00 solid 3px";
 	WebElement we = null;
 	public static String browser = null;
@@ -1036,7 +1038,30 @@ public abstract class AbstractTest extends AbstractTestBase {
 		}
 
 	}
+	
+	public static void explicitwaitForElement(WebElement element) {
+		new WebDriverWait(driver,explicitWaitTime).until(ExpectedConditions.visibilityOf(element));
+		new WebDriverWait(driver,explicitWaitTime).until(ExpectedConditions.elementToBeClickable(element));
+	}
+	
+	public static void explicitwaitForInvisibilityofElement(WebElement element) {
+		new WebDriverWait(driver,explicitWaitTime).until(ExpectedConditions.invisibilityOf(element));
+	}
+	
+	
 
+      public void waitforrunningLoadingicon() {
+		int count=0;
+		List<WebElement> runningiconlist=getWebElements("runningloadingicon");
+		while(runningiconlist.size()!=0 && count<5) {
+			sleep(1000); 
+			count++;
+		}
+		  
+	         }
+	
+	
+	
 	public boolean isWebElementDisplayed(String element) {
 		return getWebElement(element).isDisplayed();
 

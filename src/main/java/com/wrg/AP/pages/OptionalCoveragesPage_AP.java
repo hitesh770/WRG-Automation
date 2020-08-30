@@ -29,38 +29,32 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 	
 	public void chooseFirstThreeOptionalCoverages() {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage1")));
-		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("coverage1")));
+		waitForPageLoaded();
+		explicitwaitForElement(getWebElement("coverage1")); 
 		clickUsingJS("coverage1");
-	    sleep(2000);
-		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage1dropdown")));
-		selectByOption(getWebElement("coverage1dropdown"),"100,000/300,000");
-		sleep(2000);
-		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage1textfield")));
-		type(getWebElement("coverage1textfield"),"1000");
+		explicitwaitForElement(getWebElement("coverage1dropdown")); 
+		selectByOption(getWebElement("coverage1dropdown"),getData("coverage1dropdownvalue"));  
+		waitforrunningLoadingicon();
+		explicitwaitForElement(getWebElement("coverage1textfield"));
+		type(getWebElement("coverage1textfield"),getData("coverage1textfieldvalue"));
 		getWebElement("coverage1textfield").sendKeys(Keys.TAB); 
-		sleep(2000);
-		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage2")));
-		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("coverage2")));
+		waitforrunningLoadingicon();
+		explicitwaitForElement(getWebElement("coverage2"));
 		clickUsingJS("coverage2");
-		sleep(2000);
-		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage2addbuton")));
-		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("coverage2addbuton")));
-		sleep(2000);
+		waitforrunningLoadingicon();
+		explicitwaitForElement(getWebElement("coverage2addbuton"));
+		scrollToElement("coverage2addbuton");
 		clickUsingJS("coverage2addbuton");
-		scrollToElement("coverage2textfield");
-	    wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage2textfield")));
-		sleep(2000);
-		typeUsingJS("coverage2textfield","test789");
+		waitforrunningLoadingicon();
+		explicitwaitForElement(getWebElement("coverage2textfield"));
+		typeUsingJS("coverage2textfield",getData("coverage2textfieldvalue"));
 		getWebElement("coverage2textfield").sendKeys(Keys.TAB); 
-		sleep(2000);
-		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage2savebutton")));
-		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("coverage2savebutton")));
+		//waitforrunningLoadingicon();
+		waitForPageLoaded();
+		//explicitwaitForElement(getWebElement("coverage2savebutton"));
 		clickUsingJS("coverage2savebutton");
-		sleep(2000);
-		wait.until(ExpectedConditions.visibilityOf(getWebElement("coverage3")));
-		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("coverage3")));
+		waitforrunningLoadingicon();
+		//explicitwaitForElement(getWebElement("coverage3"));
 		clickUsingJS("coverage3");
 	}
 	
@@ -68,29 +62,40 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 	
 	
 	public String getQuotePageText() {
-		String quotepagelabel="";
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.visibilityOf(getWebElement("optionalCoveragesHeading")));
-		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("optionalCoveragesHeading")));
+		String quotesubmitmessage="";
+		explicitwaitForElement(getWebElement("optionalCoveragesHeading")); 
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getWebElement("quoteButton"));
-		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("quoteButton")));
+		explicitwaitForElement(getWebElement("quoteButton")); 
 		clickUsingJS("quoteButton");
-		sleep(1000);
+		waitForPageLoaded();
 		if (isWebElementPresent("creatingQuoteLoader") == true) {
-			wait.until(ExpectedConditions.invisibilityOf(getWebElement("creatingQuoteLoader")));
+			explicitwaitForInvisibilityofElement(getWebElement("creatingQuoteLoader")); 
+		}
+
+		if (isWebElementPresentAfterWait("notesToUnderwriter")) { 
+			String mainwindow = driver.getWindowHandle(); // get parent(current) window name
+			for (String popup : driver.getWindowHandles()) // iterating on child windows
+			{
+				driver.switchTo().window(popup);
+				type(getWebElement("notesToUnderwriter"), "testing");
+				click("sendForUnderwritingReviewButton");
+				explicitwaitForElement(getWebElement("okButton"));
+				clickUsingJS("okButton");
+				waitForPageLoaded();
+				explicitwaitForElement(getWebElement("quotesubmissionconfirmationmessage"));
+				quotesubmitmessage=getWebElementText("quotesubmissionconfirmationmessage");  
+			}
+			driver.switchTo().window(mainwindow);
 		}
 		
-		if (isWebElementPresent("creatingQuoteLoader") == true) {
-			quotepagelabel=getWebElementText("quotepagelabel");
-		}else {
-			
-			quotepagelabel="quote page not available";
-		}
+
+			//quotepagelabel=getWebElementText("quotepagelabel");
+			//quotepagelabel="quote page not available";
 		
+
 		
-		
-		return quotepagelabel;
+		return quotesubmitmessage;
 	} 
 	
 

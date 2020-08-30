@@ -152,9 +152,9 @@ public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insure
 				percentageOwnerOccupiedValue);
 		asst.assertEquals(actualquotepageheading, "Date Quoted"); 
 		asst.assertAll();
-		//need to handle for r2 code base
-	} 
-
+	}else if (buildNumber_AP.contains("R2")) {
+			//need to handle for r2 code base
+		}
 
 }
 
