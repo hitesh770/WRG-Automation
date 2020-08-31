@@ -91,7 +91,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 	public static PostgresqlUtil pgutil = null;
 	public static String highLightPropertyName = "outline";
 	int elementWaitTime = 10;
-	static int explicitWaitTime = 20;  
+	static int explicitWaitTime = 15;  
 	public static String highlightColor = "#00ff00 solid 3px";
 	WebElement we = null;
 	public static String browser = null;
@@ -1051,13 +1051,21 @@ public abstract class AbstractTest extends AbstractTestBase {
 	
 
       public void waitforrunningLoadingicon() {
-		int count=0;
-		List<WebElement> runningiconlist=getWebElements("runningloadingicon");
-		while(runningiconlist.size()!=0 && count<5) {
-			sleep(1000); 
-			count++;
-		}
-		  
+		
+    	/*  if (isWebElementPresent("runningloadingicon") == true) {
+  			explicitwaitForInvisibilityofElement(getWebElement("runningloadingicon"));
+  		}  */
+    	  int count=0;
+    	  if (isWebElementPresent("runningloadingicon") == true) { 
+    		  List<WebElement> runningiconlist=getWebElements("runningloadingicon");
+    			while(runningiconlist.size()!=0 && count<4) {
+    				sleep(1000); 
+    				count++;
+    			}  
+    			  
+    	  }
+    	 
+		
 	         }
 	
 	

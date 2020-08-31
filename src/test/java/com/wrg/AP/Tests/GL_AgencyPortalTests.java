@@ -142,15 +142,15 @@ public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insure
 							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
 							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
 					ExtentColor.PURPLE));
-	String actualquotepageheading = null;
+	String quotepageconfirmmsg = null;
 	String applicantName = null;
 	agentPortalLogin(organizationCode, password);
 	buildNumber_AP = getAgentPortalBuild();
 	if (buildNumber_AP.contains("R3")) {
 		applicantName = searchQuote(insuredName);
-		actualquotepageheading = addFirstThreeCoverages(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+		quotepageconfirmmsg = addFirstThreeCoverages(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
 				percentageOwnerOccupiedValue);
-		asst.assertEquals(actualquotepageheading, "Date Quoted"); 
+		asst.assertEquals(quotepageconfirmmsg, "Your quote has been submitted for underwriting review. Your underwriting team will contact you once their review is final."); 
 		asst.assertAll();
 	}else if (buildNumber_AP.contains("R2")) {
 			//need to handle for r2 code base
@@ -179,7 +179,7 @@ public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insure
 		sleep(2000);
 		startQuotePage_AP.addClassification(classCodeNumber);
 		String quoteNumber = null;
-		String actualquotepageheading = null;
+		String quotepageconfirmmsg = null;
 		if (insuranceType.equalsIgnoreCase("Businessowners")) {
 			quoteNumber = underwritingGuidelinesPage.goToPolicyFormSelectionPage();
 			policyFormSelectionPage_AP.policyForm(formType);
@@ -195,11 +195,11 @@ public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insure
 			locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
 			classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
 			optionalCoveragesPage_AP.chooseFirstThreeOptionalCoverages();
-			actualquotepageheading=optionalCoveragesPage_AP.getQuotePageText();
+			quotepageconfirmmsg=optionalCoveragesPage_AP.getQuotePageText();
 			
 					}
 		
-		return actualquotepageheading;
+		return quotepageconfirmmsg;
 		
 	} 
 	
@@ -309,15 +309,15 @@ public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insure
 		return applicantName;
 	}
 
-//	@AfterTest
-//	public void afterTest() throws IOException {
-//		if (browser.equalsIgnoreCase("firefox")) {
-//			Runtime.getRuntime().exec("taskkill /IM geckodriver.exe /T");
-//		} else if (browser.equalsIgnoreCase("ie")) {
-//			Runtime.getRuntime().exec("taskkill /IM IEDriverServer32.exe /T");
-//		} else if (browser.equalsIgnoreCase("chrome")) {
-//			Runtime.getRuntime().exec("taskkill /IM chromedriver.exe /T");
-//		}
-//	}
+	@AfterTest
+public void afterTest() throws IOException {
+		if (browser.equalsIgnoreCase("firefox")) {
+		Runtime.getRuntime().exec("taskkill /IM geckodriver.exe /T");
+	} else if (browser.equalsIgnoreCase("ie")) {
+		Runtime.getRuntime().exec("taskkill /IM IEDriverServer32.exe /T");
+		} else if (browser.equalsIgnoreCase("chrome")) {
+			Runtime.getRuntime().exec("taskkill /IM chromedriver.exe /T");
+		}
+	}
 
 }

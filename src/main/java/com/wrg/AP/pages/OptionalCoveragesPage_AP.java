@@ -45,16 +45,12 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		explicitwaitForElement(getWebElement("coverage2addbuton"));
 		scrollToElement("coverage2addbuton");
 		clickUsingJS("coverage2addbuton");
-		waitforrunningLoadingicon();
-		explicitwaitForElement(getWebElement("coverage2textfield"));
+		waitForPageLoaded();
 		typeUsingJS("coverage2textfield",getData("coverage2textfieldvalue"));
 		getWebElement("coverage2textfield").sendKeys(Keys.TAB); 
-		//waitforrunningLoadingicon();
 		waitForPageLoaded();
-		//explicitwaitForElement(getWebElement("coverage2savebutton"));
-		clickUsingJS("coverage2savebutton");
-		waitforrunningLoadingicon();
-		//explicitwaitForElement(getWebElement("coverage3"));
+		clickUsingJS("coverage2savebutton"); 
+		waitForPageLoaded();
 		clickUsingJS("coverage3");
 	}
 	
@@ -74,17 +70,19 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		}
 
 		if (isWebElementPresentAfterWait("notesToUnderwriter")) { 
+			//check this thing on monday
 			String mainwindow = driver.getWindowHandle(); // get parent(current) window name
 			for (String popup : driver.getWindowHandles()) // iterating on child windows
 			{
 				driver.switchTo().window(popup);
 				type(getWebElement("notesToUnderwriter"), "testing");
 				click("sendForUnderwritingReviewButton");
-				explicitwaitForElement(getWebElement("okButton"));
-				clickUsingJS("okButton");
 				waitForPageLoaded();
 				explicitwaitForElement(getWebElement("quotesubmissionconfirmationmessage"));
 				quotesubmitmessage=getWebElementText("quotesubmissionconfirmationmessage");  
+				explicitwaitForElement(getWebElement("okButton"));
+				clickUsingJS("okButton");
+		
 			}
 			driver.switchTo().window(mainwindow);
 		}
