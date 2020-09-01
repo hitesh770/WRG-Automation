@@ -55,6 +55,70 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 	}
 	
 	
+	public void chooseThreetoSixOptionalCoverages() {
+		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		waitForPageLoaded();
+		explicitwaitForElement(getWebElement("coverage4")); 
+		clickUsingJS("coverage4");
+		waitforrunningLoadingicon();
+		if(getData("scheduleinformationnow").equalsIgnoreCase("Yes")) {
+			explicitwaitForElement(getWebElement("coverage4yesradiobtn")); 
+			scrollToElement("coverage4yesradiobtn");
+			clickUsingJS("coverage4yesradiobtn");
+			waitforrunningLoadingicon();
+			explicitwaitForElement(getWebElement("coverage4addbtn")); 
+			clickUsingJS("coverage4addbtn"); 
+			explicitwaitForElement(getWebElement("coverage4Yesoptiontextfield")); 
+			type(getWebElement("coverage4Yesoptiontextfield"),getData("coverage4Yesoptiontextfieldvalue"));
+			getWebElement("coverage4Yesoptiontextfield").sendKeys(Keys.TAB); 
+			explicitwaitForElement(getWebElement("coverage4savebutton")); 
+			clickUsingJS("coverage4savebutton");
+		}else {
+			explicitwaitForElement(getWebElement("coverage4Nooptiontextfield")); 
+			scrollToElement("coverage4Nooptiontextfield");
+			type(getWebElement("coverage4Nooptiontextfield"),getData("coverage4Nooptiontextfieldvalue"));
+			getWebElement("coverage4Nooptiontextfield").sendKeys(Keys.TAB); 
+			waitforrunningLoadingicon();
+		}
+		
+		explicitwaitForElement(getWebElement("coverage5"));
+		clickUsingJS("coverage5");
+		waitforrunningLoadingicon();
+		explicitwaitForElement(getWebElement("coverage5dropdown"));
+		scrollToElement("coverage5dropdown");
+		selectByOption(getWebElement("coverage5dropdown"),getData("coverage5dropdownvalue")); 
+		waitforrunningLoadingicon();
+		explicitwaitForElement(getWebElement("coverage5textfield")); 
+		type(getWebElement("coverage5textfield"),getData("coverage5textfieldvalue"));
+		getWebElement("coverage5textfield").sendKeys(Keys.TAB); 
+		waitforrunningLoadingicon();
+		explicitwaitForElement(getWebElement("coverage6"));
+		clickUsingJS("coverage6");
+		waitforrunningLoadingicon();
+		explicitwaitForElement(getWebElement("coverage6dropdown"));
+		scrollToElement("coverage6dropdown");
+		selectByOption(getWebElement("coverage6dropdown"),getData("coverage6dropdownvalue")); 
+		waitforrunningLoadingicon();
+		
+		if(getData("riskpayroll").equalsIgnoreCase("Yes")) {
+			explicitwaitForElement(getWebElement("coverage6textfield1")); 
+			type(getWebElement("coverage6textfield1"),getData("coverage6textfield1value"));
+			getWebElement("coverage6textfield1").sendKeys(Keys.TAB); 
+			waitforrunningLoadingicon();
+			
+		}else {
+			
+			explicitwaitForElement(getWebElement("coverage6textfield2")); 
+			type(getWebElement("coverage6textfield2"),getData("coverage6textfield2value"));
+			getWebElement("coverage6textfield2").sendKeys(Keys.TAB); 
+			waitforrunningLoadingicon();
+		}
+		
+		
+	}
+	
+	
+	
 	
 	
 	public String getQuotePageText() {

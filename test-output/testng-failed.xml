@@ -9,14 +9,14 @@
     <listener class-name="com.wrg.abstestbase.TestListener"/>
     <listener class-name="com.wrg.abstest.SuiteListener"/>
   </listeners>
-  <test thread-count="5" name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL8(failed)">
+  <test thread-count="5" name="validateThreetoSixOptionalCoveragesViaAgentPortalForGL9(failed)">
     <parameter name="formType" value="Broadening"/>
     <parameter name="classCodeNumber" value="40005"/>
     <parameter name="numberOfLocations" value="1"/>
     <parameter name="insuranceType" value="General Liability"/>
     <parameter name="businessEntity" value="Limited Liability Company (LLC)"/>
     <parameter name="IsExecutable" value="Yes"/>
-    <parameter name="FunctionalityName" value="validateFirstThreeOptionalCoveragesViaAgentPortalForGL"/>
+    <parameter name="FunctionalityName" value="validateThreetoSixOptionalCoveragesViaAgentPortalForGL"/>
     <parameter name="password" value="Murry9"/>
     <parameter name="organizationCode" value="349111"/>
     <parameter name="Package" value="com.wrg.AP.Tests"/>
@@ -27,11 +27,12 @@
     <classes>
       <class name="com.wrg.AP.Tests.GL_AgencyPortalTests">
         <methods>
-          <include name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL" invocation-numbers="0"/>
+          <include name="afterTest"/>
           <include name="beforesuite"/>
           <include name="beforeMethod"/>
+          <include name="validateThreetoSixOptionalCoveragesViaAgentPortalForGL" invocation-numbers="0"/>
         </methods>
       </class> <!-- com.wrg.AP.Tests.GL_AgencyPortalTests -->
     </classes>
-  </test> <!-- validateFirstThreeOptionalCoveragesViaAgentPortalForGL8(failed) -->
+  </test> <!-- validateThreetoSixOptionalCoveragesViaAgentPortalForGL9(failed) -->
 </suite> <!-- Failed suite [WRG] -->

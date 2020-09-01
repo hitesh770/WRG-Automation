@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="1" total="2" passed="1">
+<testng-results skipped="0" failed="0" ignored="2" total="3" passed="1">
   <reporter-output>
     <line>
-      <![CDATA[<tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test Case validateFirstThreeOptionalCoveragesViaAgentPortalForGL started on 1598868111805</b></font></td>]]>
+      <![CDATA[<tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test Case validateThreetoSixOptionalCoveragesViaAgentPortalForGL started on 1598965500265</b></font></td>]]>
     </line>
     <line>
       <![CDATA[<tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>URI: https://t4agency.wrg-ins.com/portal/html/#!/home/</b></font></td>]]>
@@ -11,7 +11,7 @@
       <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr>]]>
     </line>
     <line>
-      <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type test_2020_08_31_06_02_16 in input field.</b></font></td></tr>]]>
+      <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type test_2020_09_01_09_05_29 in input field.</b></font></td></tr>]]>
     </line>
     <line>
       <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr>]]>
@@ -47,13 +47,19 @@
       <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type 10000 in input field.</b></font></td></tr>]]>
     </line>
     <line>
-      <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>select (by option)100,000/300,000 from the dropdown</b></font></td></tr>]]>
+      <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type test in input field.</b></font></td></tr>]]>
+    </line>
+    <line>
+      <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>select (by option)5,000 from the dropdown</b></font></td></tr>]]>
     </line>
     <line>
       <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type 1000 in input field.</b></font></td></tr>]]>
     </line>
     <line>
-      <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type test in input field.</b></font></td></tr>]]>
+      <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>select (by option)100,000/500,000/100,000 from the dropdown</b></font></td></tr>]]>
+    </line>
+    <line>
+      <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type 2000 in input field.</b></font></td></tr>]]>
     </line>
     <line>
       <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type testing in input field.</b></font></td></tr>]]>
@@ -62,37 +68,39 @@
       <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr>]]>
     </line>
     <line>
-      <![CDATA[<tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test validateFirstThreeOptionalCoveragesViaAgentPortalForGL1</b></font></td>]]>
+      <![CDATA[<tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test validateThreetoSixOptionalCoveragesViaAgentPortalForGL1</b></font></td>]]>
     </line>
   </reporter-output>
-  <suite name="WRG" duration-ms="135000" started-at="2020-08-31T06:01:51 EDT" finished-at="2020-08-31T06:04:06 EDT">
+  <suite name="WRG" duration-ms="158989" started-at="2020-09-01T09:04:59 EDT" finished-at="2020-09-01T09:07:38 EDT">
     <groups>
     </groups>
-    <test name="createNewQuoteViaAgentPortalForGL1" duration-ms="12" started-at="2020-08-31T06:01:51 EDT" finished-at="2020-08-31T06:01:51 EDT">
+    <test name="createNewQuoteViaAgentPortalForGL1" duration-ms="11" started-at="2020-09-01T09:04:59 EDT" finished-at="2020-09-01T09:04:59 EDT">
     </test> <!-- createNewQuoteViaAgentPortalForGL1 -->
-    <test name="createNewQuoteViaAgentPortalForGL2" duration-ms="1" started-at="2020-08-31T06:01:51 EDT" finished-at="2020-08-31T06:01:51 EDT">
+    <test name="createNewQuoteViaAgentPortalForGL2" duration-ms="0" started-at="2020-09-01T09:05:00 EDT" finished-at="2020-09-01T09:05:00 EDT">
     </test> <!-- createNewQuoteViaAgentPortalForGL2 -->
-    <test name="createNewQuoteViaAgentPortalForGL3" duration-ms="0" started-at="2020-08-31T06:01:51 EDT" finished-at="2020-08-31T06:01:51 EDT">
+    <test name="createNewQuoteViaAgentPortalForGL3" duration-ms="0" started-at="2020-09-01T09:05:00 EDT" finished-at="2020-09-01T09:05:00 EDT">
     </test> <!-- createNewQuoteViaAgentPortalForGL3 -->
-    <test name="createNewQuoteViaAgentPortalForGL4" duration-ms="0" started-at="2020-08-31T06:01:51 EDT" finished-at="2020-08-31T06:01:51 EDT">
+    <test name="createNewQuoteViaAgentPortalForGL4" duration-ms="0" started-at="2020-09-01T09:05:00 EDT" finished-at="2020-09-01T09:05:00 EDT">
     </test> <!-- createNewQuoteViaAgentPortalForGL4 -->
-    <test name="createNewQuoteViaAgentPortalForGL5" duration-ms="0" started-at="2020-08-31T06:01:51 EDT" finished-at="2020-08-31T06:01:51 EDT">
+    <test name="createNewQuoteViaAgentPortalForGL5" duration-ms="0" started-at="2020-09-01T09:05:00 EDT" finished-at="2020-09-01T09:05:00 EDT">
     </test> <!-- createNewQuoteViaAgentPortalForGL5 -->
-    <test name="createNewQuoteViaAgentPortalForGL6" duration-ms="0" started-at="2020-08-31T06:01:51 EDT" finished-at="2020-08-31T06:01:51 EDT">
+    <test name="createNewQuoteViaAgentPortalForGL6" duration-ms="0" started-at="2020-09-01T09:05:00 EDT" finished-at="2020-09-01T09:05:00 EDT">
     </test> <!-- createNewQuoteViaAgentPortalForGL6 -->
-    <test name="createNewQuoteViaAgentPortalForGL7" duration-ms="0" started-at="2020-08-31T06:01:51 EDT" finished-at="2020-08-31T06:01:51 EDT">
+    <test name="createNewQuoteViaAgentPortalForGL7" duration-ms="1" started-at="2020-09-01T09:05:00 EDT" finished-at="2020-09-01T09:05:00 EDT">
     </test> <!-- createNewQuoteViaAgentPortalForGL7 -->
-    <test name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL8" duration-ms="134694" started-at="2020-08-31T06:01:51 EDT" finished-at="2020-08-31T06:04:06 EDT">
+    <test name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL8" duration-ms="0" started-at="2020-09-01T09:05:00 EDT" finished-at="2020-09-01T09:05:00 EDT">
+    </test> <!-- validateFirstThreeOptionalCoveragesViaAgentPortalForGL8 -->
+    <test name="validateThreetoSixOptionalCoveragesViaAgentPortalForGL9" duration-ms="158659" started-at="2020-09-01T09:05:00 EDT" finished-at="2020-09-01T09:07:38 EDT">
       <class name="com.wrg.AP.Tests.GL_AgencyPortalTests">
-        <test-method status="PASS" signature="beforesuite()[pri:0, instance:com.wrg.AP.Tests.GL_AgencyPortalTests@6c64cb25]" name="beforesuite" is-config="true" duration-ms="107" started-at="2020-08-31T06:01:51 EDT" finished-at="2020-08-31T06:01:51 EDT">
+        <test-method status="PASS" signature="beforesuite()[pri:0, instance:com.wrg.AP.Tests.GL_AgencyPortalTests@5158b42f]" name="beforesuite" is-config="true" duration-ms="100" started-at="2020-09-01T09:04:59 EDT" finished-at="2020-09-01T09:04:59 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforesuite -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.wrg.AP.Tests.GL_AgencyPortalTests@6c64cb25]" name="beforeMethod" is-config="true" duration-ms="20" started-at="2020-08-31T06:01:51 EDT" finished-at="2020-08-31T06:01:51 EDT">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.wrg.AP.Tests.GL_AgencyPortalTests@5158b42f]" name="beforeMethod" is-config="true" duration-ms="28" started-at="2020-09-01T09:05:00 EDT" finished-at="2020-09-01T09:05:00 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="validateFirstThreeOptionalCoveragesViaAgentPortalForGL(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.wrg.AP.Tests.GL_AgencyPortalTests@6c64cb25]" name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL" duration-ms="134383" started-at="2020-08-31T06:01:51 EDT" finished-at="2020-08-31T06:04:06 EDT">
+        <test-method status="PASS" signature="validateThreetoSixOptionalCoveragesViaAgentPortalForGL(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.wrg.AP.Tests.GL_AgencyPortalTests@5158b42f]" name="validateThreetoSixOptionalCoveragesViaAgentPortalForGL" duration-ms="158280" started-at="2020-09-01T09:05:00 EDT" finished-at="2020-09-01T09:07:38 EDT">
           <params>
             <param index="0">
               <value>
@@ -147,7 +155,7 @@
           </params>
           <reporter-output>
             <line>
-              <![CDATA[<tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test Case validateFirstThreeOptionalCoveragesViaAgentPortalForGL started on 1598868111805</b></font></td>]]>
+              <![CDATA[<tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test Case validateThreetoSixOptionalCoveragesViaAgentPortalForGL started on 1598965500265</b></font></td>]]>
             </line>
             <line>
               <![CDATA[<tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>URI: https://t4agency.wrg-ins.com/portal/html/#!/home/</b></font></td>]]>
@@ -156,7 +164,7 @@
               <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr>]]>
             </line>
             <line>
-              <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type test_2020_08_31_06_02_16 in input field.</b></font></td></tr>]]>
+              <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type test_2020_09_01_09_05_29 in input field.</b></font></td></tr>]]>
             </line>
             <line>
               <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr>]]>
@@ -192,13 +200,19 @@
               <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type 10000 in input field.</b></font></td></tr>]]>
             </line>
             <line>
-              <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>select (by option)100,000/300,000 from the dropdown</b></font></td></tr>]]>
+              <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type test in input field.</b></font></td></tr>]]>
+            </line>
+            <line>
+              <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>select (by option)5,000 from the dropdown</b></font></td></tr>]]>
             </line>
             <line>
               <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type 1000 in input field.</b></font></td></tr>]]>
             </line>
             <line>
-              <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type test in input field.</b></font></td></tr>]]>
+              <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>select (by option)100,000/500,000/100,000 from the dropdown</b></font></td></tr>]]>
+            </line>
+            <line>
+              <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type 2000 in input field.</b></font></td></tr>]]>
             </line>
             <line>
               <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>type testing in input field.</b></font></td></tr>]]>
@@ -207,15 +221,15 @@
               <![CDATA[<td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr>]]>
             </line>
             <line>
-              <![CDATA[<tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test validateFirstThreeOptionalCoveragesViaAgentPortalForGL1</b></font></td>]]>
+              <![CDATA[<tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test validateThreetoSixOptionalCoveragesViaAgentPortalForGL1</b></font></td>]]>
             </line>
           </reporter-output>
-        </test-method> <!-- validateFirstThreeOptionalCoveragesViaAgentPortalForGL -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.wrg.AP.Tests.GL_AgencyPortalTests@6c64cb25]" name="afterTest" is-config="true" duration-ms="16" started-at="2020-08-31T06:04:06 EDT" finished-at="2020-08-31T06:04:06 EDT">
+        </test-method> <!-- validateThreetoSixOptionalCoveragesViaAgentPortalForGL -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.wrg.AP.Tests.GL_AgencyPortalTests@5158b42f]" name="afterTest" is-config="true" duration-ms="7" started-at="2020-09-01T09:07:38 EDT" finished-at="2020-09-01T09:07:38 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
       </class> <!-- com.wrg.AP.Tests.GL_AgencyPortalTests -->
-    </test> <!-- validateFirstThreeOptionalCoveragesViaAgentPortalForGL8 -->
+    </test> <!-- validateThreetoSixOptionalCoveragesViaAgentPortalForGL9 -->
   </suite> <!-- WRG -->
 </testng-results>
