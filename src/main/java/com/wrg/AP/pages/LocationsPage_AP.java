@@ -35,8 +35,7 @@ public class LocationsPage_AP extends AbstractTest {
 					type("zipCode", getData("ohioPincodeValue" + i));
 				}
 				clickUsingJS("saveButton");
-				try { 
-					sleep(4000);
+				try {
 					clickUsingJS("useVerifiedButton");
 				} catch (Exception e) {
 					clickUsingJS("useOriginalButton");

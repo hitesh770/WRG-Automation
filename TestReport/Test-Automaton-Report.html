@@ -46,7 +46,7 @@
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<li>
                 <a href='#!'>
-                    <span class='label suite-start-time blue darken-3'>Sep 1, 2020 09:04:59 AM</span>
+                    <span class='label suite-start-time blue darken-3'>Aug 18, 2020 04:43:15 PM</span>
 				</a>
 			</li>
 			<li>
@@ -72,6 +72,7 @@
 				</a>
 				<ul id='tests-toggle' class='dropdown-content'>
 											<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
+						<li status='fail'><a href='#!'>Fail <i class='material-icons red-text'>cancel</i></a></li>
 					<li class='divider'></li>
 					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
 				</ul>
@@ -122,10 +123,10 @@
 					<canvas id='parent-analysis' width='100' height='80'></canvas>
 				</div>
 				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>1</span> test(s) passed</span>
+					<span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> test(s) passed</span>
 				</div>
 				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
+					<span class='strong tooltipped' data-position='top' data-tooltip='100%'>1</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
 				</div>
 			</div>
 		</div>
@@ -137,10 +138,10 @@
 					<canvas id='child-analysis' width='100' height='80'></canvas>
 				</div>
 				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='1.695%'><span class='strong'>1</span> step(s) passed</span>
+					<span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> step(s) passed</span>
 				</div>
 				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='98.305%'>58</span> others
+					<span class='strong tooltipped' data-position='top' data-tooltip='0.541%'>1</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='99.459%'>184</span> others
 				</div>
 			</div>
 		</div>
@@ -155,17 +156,17 @@
 			<ul id='test-collection' class='test-collection'>
 				
 				
-				<li class='test displayed active  pass' status='pass' bdd='false' test-id='1'>
+				<li class='test displayed active  fail' status='fail' bdd='false' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>validateThreetoSixOptionalCoveragesViaAgentPortalForGL</span>
-						<span class='test-time'>Sep 1, 2020 09:05:00 AM</span>
-						<span class='test-status right pass'>pass</span>
+						<span class='test-name'>verifyNewPolicyIsCreatedViaPolicyCenter</span>
+						<span class='test-time'>Aug 18, 2020 04:43:16 PM</span>
+						<span class='test-status right fail'>fail</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Sep 1, 2020 09:05:00 AM</span>
-	<span class='label end-time'>Sep 1, 2020 09:07:38 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 2m 38s+277ms</span>
+	<span class='label start-time'>Aug 18, 2020 04:43:16 PM</span>
+	<span class='label end-time'>Aug 18, 2020 04:48:55 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 5m 39s+276ms</span>
 </div>
 	<div class='test-steps'>
 		<table class='bordered table-results'>
@@ -179,302 +180,940 @@
 			<tbody>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:10 AM</td>
-					<td class='step-details'><span class='label white-text purple'>Parameters are-> Insured Name: test, State: Ohio, Organization Code: 349111, Password: Murry9, Insurance type: General Liability, Business Entity: Limited Liability Company (LLC), Class Codes: 40005, FormType: Broadening, Percentage Owner: 10% or less</span></td>
+					<td class='timestamp'>4:43:16 PM</td>
+					<td class='step-details'><span class='label white-text purple'>Parameters are-> PC USers: QA1_UW, Insured Name: BOP, State: Ohio, Business Entity: Limited Liability Company (LLC), Organization Code: 349111, Password: Murry9, Class Codes: 09011, Number Of Locations: 2, Number of Buildings: 2, Term: 365, Account Type: Commercial, Effective Date: NA, FormType: Broadening, Percentage Owner Occupied Value: 10% or less</span></td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:29 AM</td>
-					<td class='step-details'><span class='label white-text blue'>Build Number for Agency Portal is R3.0.1532</span></td>
+					<td class='timestamp'>4:43:21 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Logged In as QA1_UW in PC</span></td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:30 AM</td>
-					<td class='step-details'>clicked on createNewQuoteButton</td>
+					<td class='timestamp'>4:43:26 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Build Number for Policy Center is R2.7.47 8</span></td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:33 AM</td>
-					<td class='step-details'>Typed value test_2020_09_01_09_05_29 in applicantNameTextBox</td>
+					<td class='timestamp'>4:43:26 PM</td>
+					<td class='step-details'>clicked on actionsButton</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:33 AM</td>
-					<td class='step-details'><span class='label white-text blue'>Insured Name is: test_2020_09_01_09_05_29</span></td>
+					<td class='timestamp'>4:43:26 PM</td>
+					<td class='step-details'>clicked on newAccountButton</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:35 AM</td>
-					<td class='step-details'>clicked on nextButton</td>
+					<td class='timestamp'>4:43:26 PM</td>
+					<td class='step-details'>Typed value Blue_Agency in companyName</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:46 AM</td>
-					<td class='step-details'>effectiveDate not present on page</td>
+					<td class='timestamp'>4:43:26 PM</td>
+					<td class='step-details'>clicked on searchButton</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:47 AM</td>
+					<td class='timestamp'>4:43:26 PM</td>
+					<td class='step-details'>clicked on createNewAccountButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:26 PM</td>
+					<td class='step-details'>clicked on companyLink</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:27 PM</td>
+					<td class='step-details'>clicked on accountTypeDropdown</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:32 PM</td>
+					<td class='step-details'>Typed value BOP_2020_08_18_16_43_16 in insuredNameTextBox</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:32 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Insured Name is: BOP_2020_08_18_16_43_16</span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:32 PM</td>
 					<td class='step-details'>Typed value 377 West, Liberty Street in addressLine1</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:47 AM</td>
+					<td class='timestamp'>4:43:34 PM</td>
+					<td class='step-details'>clicked on stateDropdown</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:35 PM</td>
 					<td class='step-details'>Typed value Wooster in city</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:49 AM</td>
-					<td class='step-details'>Typed value 44691 in zipCode</td>
-				</tr>
-				<tr class='log' status='info'>
-					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:50 AM</td>
+					<td class='timestamp'>4:43:37 PM</td>
 					<td class='step-details'>Typed value test in description</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:50 AM</td>
+					<td class='timestamp'>4:43:37 PM</td>
+					<td class='step-details'>Typed value 44691 in pincode</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:38 PM</td>
+					<td class='step-details'>clicked on businessEntityTypeDropdown</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:39 PM</td>
+					<td class='step-details'>Typed value FORWARD AGENCIES in organizationName</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:39 PM</td>
+					<td class='step-details'>clicked on searchOrganization</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:39 PM</td>
+					<td class='step-details'>clicked on organizationCodeTextBox</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:40 PM</td>
+					<td class='step-details'>Typed value 349111 in organizationCodeTextBox</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:40 PM</td>
+					<td class='step-details'>clicked on searchButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:41 PM</td>
+					<td class='step-details'>clicked on producerCodeDropDown</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:41 PM</td>
+					<td class='step-details'>clicked on producerCodeDropdownValue</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:41 PM</td>
+					<td class='step-details'>clicked on addHazardGuideButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:41 PM</td>
+					<td class='step-details'>Typed value 09011 in classCodeTextBox</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:41 PM</td>
+					<td class='step-details'>clicked on searchButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:44 PM</td>
+					<td class='step-details'>clicked on firstResult</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:44 PM</td>
+					<td class='step-details'>clicked on updateButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:46 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Account Number is : 0070000020</span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:43:58 PM</td>
+					<td class='step-details'>okButton not present on page</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:10 PM</td>
+					<td class='step-details'>okButton not present on page</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:13 PM</td>
+					<td class='step-details'>clicked on termTypeDropdown</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:14 PM</td>
 					<td class='step-details'>clicked on nextButton</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:51 AM</td>
-					<td class='step-details'>clicked on useverifiedButton</td>
+					<td class='timestamp'>4:44:23 PM</td>
+					<td class='step-details'>clicked on newLocationButton</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:54 AM</td>
+					<td class='timestamp'>4:44:24 PM</td>
+					<td class='step-details'>Typed value 123 Main Street in address1</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:24 PM</td>
+					<td class='step-details'>Typed value Cleveland in city</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:26 PM</td>
+					<td class='step-details'>Typed value 44101 in zipCode</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:26 PM</td>
+					<td class='step-details'>clicked on updateButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:27 PM</td>
+					<td class='step-details'>clicked on verifyAddressButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:30 PM</td>
+					<td class='step-details'>nextButton is Present</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:34 PM</td>
+					<td class='step-details'>clicked on detailsTab</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:36 PM</td>
+					<td class='step-details'>clicked on constructionTypeDropdown</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:37 PM</td>
+					<td class='step-details'>Typed value 2015 in yearBuiltTextBox</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:41 PM</td>
+					<td class='step-details'>clicked on buildingCoverageCheckbox</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:44 PM</td>
+					<td class='step-details'>Typed value 20000 in limitTextBox</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:44 PM</td>
 					<td class='step-details'>clicked on addClassificationButton</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:54 AM</td>
-					<td class='step-details'>Typed value 40005 in classCodeNumber</td>
+					<td class='timestamp'>4:44:49 PM</td>
+					<td class='step-details'>Typed value 1500 in classificationSquareFootageTextBox</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:55 AM</td>
-					<td class='step-details'>clicked on classCode</td>
+					<td class='timestamp'>4:44:51 PM</td>
+					<td class='step-details'>clicked on additionalInsuredsTab</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:05:55 AM</td>
+					<td class='timestamp'>4:44:52 PM</td>
+					<td class='step-details'>clicked on addCoveragesButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:54 PM</td>
+					<td class='step-details'>clicked on firstCoverageCheckbox</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:54 PM</td>
+					<td class='step-details'>clicked on addSelectedCoverageButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:55 PM</td>
+					<td class='step-details'>clicked on addBuildingOwnerButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:55 PM</td>
+					<td class='step-details'>clicked on addContactButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:55 PM</td>
+					<td class='step-details'>clicked on newCompanyLink_AdditionlInsured</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:58 PM</td>
+					<td class='step-details'>Typed value BOP_2020_08_18_16_43_46 in name_AdditionlInsured</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:58 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Additional Insured Name is: BOP_2020_08_18_16_43_46</span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:59 PM</td>
+					<td class='step-details'>Typed value 377 West, Liberty Street in address1_AdditionlInsured</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:44:59 PM</td>
+					<td class='step-details'>Typed value Wooster in city_AdditionlInsured</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:01 PM</td>
+					<td class='step-details'>Typed value 44691 in zipCode_AdditionlInsured</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:02 PM</td>
+					<td class='step-details'>clicked on state_AdditionlInsured</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:02 PM</td>
+					<td class='step-details'>clicked on okButton_AdditionalInsured</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:04 PM</td>
+					<td class='step-details'>clicked on updateButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:04 PM</td>
+					<td class='step-details'>clicked on okButton_BuildingOwner</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:05 PM</td>
+					<td class='step-details'>clicked on mortgageHoldersTab</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:06 PM</td>
+					<td class='step-details'>clicked on mortgageHoldersCheckbox</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:07 PM</td>
+					<td class='step-details'>clicked on addMortgageHoldersButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:07 PM</td>
+					<td class='step-details'>clicked on addAdditionalInterestButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:07 PM</td>
+					<td class='step-details'>clicked on newCompanyLink</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:09 PM</td>
+					<td class='step-details'>Typed value test_2020_08_18_16_43_46 in name</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:09 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Additional Insured Name is: test_2020_08_18_16_43_46</span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:10 PM</td>
+					<td class='step-details'>Typed value 377 West, Liberty Street in address1</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:10 PM</td>
+					<td class='step-details'>Typed value Wooster in city</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:13 PM</td>
+					<td class='step-details'>Typed value 44691 in zipCode</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:14 PM</td>
+					<td class='step-details'>clicked on state</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:14 PM</td>
 					<td class='step-details'>clicked on okButton</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:05 AM</td>
-					<td class='step-details'>hazardCode not present on page</td>
+					<td class='timestamp'>4:45:15 PM</td>
+					<td class='step-details'>clicked on updateButton</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:07 AM</td>
-					<td class='step-details'>clicked on nextButton</td>
+					<td class='timestamp'>4:45:15 PM</td>
+					<td class='step-details'>clicked on okButtonMortgageHolder</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:07 AM</td>
-					<td class='step-details'>okButtonForUnderwritingReferralRequired is Present</td>
+					<td class='timestamp'>4:45:18 PM</td>
+					<td class='step-details'>clicked on detailsTab</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:07 AM</td>
-					<td class='step-details'>clicked on okButtonForUnderwritingReferralRequired</td>
+					<td class='timestamp'>4:45:21 PM</td>
+					<td class='step-details'>clicked on constructionTypeDropdown</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:07 AM</td>
-					<td class='step-details'>savingQuoteDetailsLoader not present on page</td>
+					<td class='timestamp'>4:45:21 PM</td>
+					<td class='step-details'>Typed value 2015 in yearBuiltTextBox</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:13 AM</td>
-					<td class='step-details'><span class='label white-text blue'>Quote Number: 0000007249</span></td>
+					<td class='timestamp'>4:45:25 PM</td>
+					<td class='step-details'>clicked on buildingCoverageCheckbox</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:13 AM</td>
-					<td class='step-details'>clicked on businessOwnedFor3YearsOrMoreYES</td>
+					<td class='timestamp'>4:45:29 PM</td>
+					<td class='step-details'>Typed value 20000 in limitTextBox</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:13 AM</td>
-					<td class='step-details'>clicked on anyLossesInPastYearsNO</td>
+					<td class='timestamp'>4:45:29 PM</td>
+					<td class='step-details'>clicked on addClassificationButton</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:14 AM</td>
-					<td class='step-details'>clicked on lossRunsProvidedNO</td>
+					<td class='timestamp'>4:45:34 PM</td>
+					<td class='step-details'>Typed value 1500 in classificationSquareFootageTextBox</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:14 AM</td>
-					<td class='step-details'>clicked on businessConductOperationsNO</td>
+					<td class='timestamp'>4:45:36 PM</td>
+					<td class='step-details'>clicked on additionalInsuredsTab</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:14 AM</td>
-					<td class='step-details'>clicked on bankruptcyInPastNO</td>
+					<td class='timestamp'>4:45:37 PM</td>
+					<td class='step-details'>clicked on addCoveragesButton</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:14 AM</td>
+					<td class='timestamp'>4:45:38 PM</td>
+					<td class='step-details'>clicked on firstCoverageCheckbox</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:38 PM</td>
+					<td class='step-details'>clicked on addSelectedCoverageButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:40 PM</td>
+					<td class='step-details'>clicked on addBuildingOwnerButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:40 PM</td>
+					<td class='step-details'>clicked on addContactButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:40 PM</td>
+					<td class='step-details'>clicked on newCompanyLink_AdditionlInsured</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:42 PM</td>
+					<td class='step-details'>Typed value BOP_2020_08_18_16_43_46 in name_AdditionlInsured</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:42 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Additional Insured Name is: BOP_2020_08_18_16_43_46</span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:43 PM</td>
+					<td class='step-details'>Typed value 123 Main Street in address1_AdditionlInsured</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:43 PM</td>
+					<td class='step-details'>Typed value Cleveland in city_AdditionlInsured</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:45 PM</td>
+					<td class='step-details'>Typed value 44101 in zipCode_AdditionlInsured</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:47 PM</td>
+					<td class='step-details'>clicked on state_AdditionlInsured</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:47 PM</td>
+					<td class='step-details'>clicked on okButton_AdditionalInsured</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:48 PM</td>
+					<td class='step-details'>clicked on updateButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:48 PM</td>
+					<td class='step-details'>clicked on okButton_BuildingOwner</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:50 PM</td>
+					<td class='step-details'>clicked on mortgageHoldersTab</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:50 PM</td>
+					<td class='step-details'>clicked on mortgageHoldersCheckbox</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:52 PM</td>
+					<td class='step-details'>clicked on addMortgageHoldersButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:52 PM</td>
+					<td class='step-details'>clicked on addAdditionalInterestButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:52 PM</td>
+					<td class='step-details'>clicked on newCompanyLink</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:54 PM</td>
+					<td class='step-details'>Typed value test_2020_08_18_16_43_46 in name</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:54 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Additional Insured Name is: test_2020_08_18_16_43_46</span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:55 PM</td>
+					<td class='step-details'>Typed value 123 Main Street in address1</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:55 PM</td>
+					<td class='step-details'>Typed value Cleveland in city</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:57 PM</td>
+					<td class='step-details'>Typed value 44101 in zipCode</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:59 PM</td>
+					<td class='step-details'>clicked on state</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:45:59 PM</td>
+					<td class='step-details'>clicked on okButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:46:00 PM</td>
+					<td class='step-details'>clicked on updateButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:46:00 PM</td>
+					<td class='step-details'>clicked on okButtonMortgageHolder</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:46:07 PM</td>
+					<td class='step-details'>clicked on bankruptcyNO</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:46:07 PM</td>
 					<td class='step-details'>clicked on policyDeclinedNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:15 AM</td>
-					<td class='step-details'>clicked on businessConductOperationsNO</td>
+					<td class='timestamp'>4:46:07 PM</td>
+					<td class='step-details'>clicked on controllingInterestNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:15 AM</td>
-					<td class='step-details'>clicked on bankruptcyInPastNO</td>
+					<td class='timestamp'>4:46:09 PM</td>
+					<td class='step-details'>clicked on allegationsNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:15 AM</td>
-					<td class='step-details'>clicked on policyDeclinedNO</td>
+					<td class='timestamp'>4:46:11 PM</td>
+					<td class='step-details'>clicked on continuousInsuranceYES</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:16 AM</td>
-					<td class='step-details'>clicked on nextButton</td>
+					<td class='timestamp'>4:46:14 PM</td>
+					<td class='step-details'>clicked on mostRecentCarrierDropdown</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:18 AM</td>
-					<td class='step-details'>coverage not present on page</td>
+					<td class='timestamp'>4:46:16 PM</td>
+					<td class='step-details'>clicked on lossesNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:20 AM</td>
-					<td class='step-details'>clicked on nextButton</td>
+					<td class='timestamp'>4:46:18 PM</td>
+					<td class='step-details'>clicked on operationsInOtherStatesNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:22 AM</td>
-					<td class='step-details'>clicked on nextButtonBottom</td>
+					<td class='timestamp'>4:46:18 PM</td>
+					<td class='step-details'>clicked on singleFamilyDwellingNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:24 AM</td>
-					<td class='step-details'>clicked on addNewClassificationButton</td>
+					<td class='timestamp'>4:46:18 PM</td>
+					<td class='step-details'>clicked on areaOccupiedYES</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:33 AM</td>
-					<td class='step-details'>clicked on saveClassificationButton</td>
+					<td class='timestamp'>4:46:18 PM</td>
+					<td class='step-details'>clicked on otherOperationsNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:35 AM</td>
-					<td class='step-details'>loader is Present</td>
+					<td class='timestamp'>4:46:18 PM</td>
+					<td class='step-details'>clicked on heatingDevicesNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:36 AM</td>
-					<td class='step-details'>clicked on nextButtonBottom</td>
+					<td class='timestamp'>4:46:18 PM</td>
+					<td class='step-details'>clicked on annualGrossSalesNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:38 AM</td>
-					<td class='step-details'>clicked on coverage4</td>
+					<td class='timestamp'>4:46:19 PM</td>
+					<td class='step-details'>seatingCapacityOver150NO not present on page</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:38 AM</td>
-					<td class='step-details'>runningloadingicon is Present</td>
+					<td class='timestamp'>4:46:19 PM</td>
+					<td class='step-details'>clicked on seatingCapacityGreaterThan75NO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:42 AM</td>
-					<td class='step-details'>clicked on coverage4yesradiobtn</td>
+					<td class='timestamp'>4:46:19 PM</td>
+					<td class='step-details'>clicked on businessClosedMoreThan30DaysNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:42 AM</td>
-					<td class='step-details'>runningloadingicon is Present</td>
+					<td class='timestamp'>4:46:19 PM</td>
+					<td class='step-details'>clicked on businessCloseMoreThan30DaysNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:47 AM</td>
-					<td class='step-details'>clicked on coverage4addbtn</td>
+					<td class='timestamp'>4:46:19 PM</td>
+					<td class='step-details'>clicked on cateringServiceYES</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:47 AM</td>
-					<td class='step-details'>clicked on coverage4savebutton</td>
+					<td class='timestamp'>4:46:19 PM</td>
+					<td class='step-details'>clicked on cateringExceed10%SalesYES</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:47 AM</td>
-					<td class='step-details'>clicked on coverage5</td>
+					<td class='timestamp'>4:46:19 PM</td>
+					<td class='step-details'>clicked on anySolidFuelCookingNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:47 AM</td>
-					<td class='step-details'>runningloadingicon is Present</td>
+					<td class='timestamp'>4:46:19 PM</td>
+					<td class='step-details'>clicked on anyOtherLiquorSalesNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:52 AM</td>
-					<td class='step-details'>runningloadingicon is Present</td>
+					<td class='timestamp'>4:46:19 PM</td>
+					<td class='step-details'>clicked on alcoholServedAfterKitchenClosedNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:06:57 AM</td>
-					<td class='step-details'>runningloadingicon is Present</td>
+					<td class='timestamp'>4:46:19 PM</td>
+					<td class='step-details'>dancingPermittedNO not present on page</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:07:01 AM</td>
-					<td class='step-details'>clicked on coverage6</td>
+					<td class='timestamp'>4:46:19 PM</td>
+					<td class='step-details'>clicked on playAreaNO</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:07:01 AM</td>
-					<td class='step-details'>runningloadingicon is Present</td>
+					<td class='timestamp'>4:46:20 PM</td>
+					<td class='step-details'>liveEntertainmentaNO not present on page</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:07:06 AM</td>
-					<td class='step-details'>runningloadingicon is Present</td>
+					<td class='timestamp'>4:46:21 PM</td>
+					<td class='step-details'>compliantWithUL300NO not present on page</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:07:10 AM</td>
-					<td class='step-details'>runningloadingicon is Present</td>
+					<td class='timestamp'>4:46:21 PM</td>
+					<td class='step-details'>cleaningContractActiveNO not present on page</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:07:15 AM</td>
+					<td class='timestamp'>4:46:22 PM</td>
+					<td class='step-details'>fireSupressionsSystemInspectedNO not present on page</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:46:22 PM</td>
+					<td class='step-details'>clicked on liquorSalesNO</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:46:35 PM</td>
 					<td class='step-details'>clicked on quoteButton</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:07:36 AM</td>
+					<td class='timestamp'>4:46:48 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Quote Number: 0000002322</span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:46:57 PM</td>
+					<td class='step-details'>releaseLockDropdown is Present</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:46:57 PM</td>
+					<td class='step-details'>clicked on releaseLockDropdown</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:46:59 PM</td>
+					<td class='step-details'>clicked on releaseLockWithoutActivityButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:46:59 PM</td>
+					<td class='step-details'>clicked on policyInfoPageButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:46:59 PM</td>
+					<td class='step-details'>riskAnalysisButton is Present</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:46:59 PM</td>
+					<td class='step-details'>clicked on riskAnalysisButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:47:06 PM</td>
+					<td class='step-details'>okButton is Present</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:47:16 PM</td>
+					<td class='step-details'>okButtonOnPopup not present on page</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:47:19 PM</td>
+					<td class='step-details'>nextButton is Present</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:47:19 PM</td>
+					<td class='step-details'>clicked on nextButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:47:38 PM</td>
+					<td class='step-details'>releaseLockDropdown not present on page</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:00 PM</td>
+					<td class='step-details'>okButton not present on page</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:00 PM</td>
+					<td class='step-details'>clicked on viewOrEditQuoteButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:00 PM</td>
+					<td class='step-details'>clicked on allOtherPoliciesLink</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:01 PM</td>
+					<td class='step-details'>Typed value 0000002322 in quoteNumberInput</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:01 PM</td>
+					<td class='step-details'>clicked on searchButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:04 PM</td>
+					<td class='step-details'>beginSubmissionButton is Present</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:04 PM</td>
+					<td class='step-details'>clicked on beginSubmissionButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:05 PM</td>
 					<td class='step-details'>creatingQuoteLoader not present on page</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:07:36 AM</td>
-					<td class='step-details'>clicked on sendForUnderwritingReviewButton</td>
+					<td class='timestamp'>4:48:05 PM</td>
+					<td class='step-details'>savingQuoteDetailsLoader not present on page</td>
 				</tr>
 				<tr class='log' status='info'>
 					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
-					<td class='timestamp'>9:07:38 AM</td>
-					<td class='step-details'>clicked on okButton</td>
+					<td class='timestamp'>4:48:09 PM</td>
+					<td class='step-details'>clicked on businessOwnedFor3YearsOrMoreYES</td>
 				</tr>
-				<tr class='log' status='pass'>
-					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-					<td class='timestamp'>9:07:38 AM</td>
-					<td class='step-details'>validateThreetoSixOptionalCoveragesViaAgentPortalForGL Test passed</td>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:09 PM</td>
+					<td class='step-details'>clicked on moreThan3LossesNO</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:10 PM</td>
+					<td class='step-details'>clicked on nextButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:11 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Quote Number: 0000002322</span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:12 PM</td>
+					<td class='step-details'>clicked on broadedningRadioButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:12 PM</td>
+					<td class='step-details'>clicked on nextButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:12 PM</td>
+					<td class='step-details'>coverage not present on page</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:14 PM</td>
+					<td class='step-details'>clicked on nextButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:17 PM</td>
+					<td class='step-details'>clicked on coverage1</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:17 PM</td>
+					<td class='step-details'>clicked on nextButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:31 PM</td>
+					<td class='step-details'>calculatingQuoteLoader is Present</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:42 PM</td>
+					<td class='step-details'>continueButton not present on page</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:42 PM</td>
+					<td class='step-details'>clicked on startApplicationButton</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:46 PM</td>
+					<td class='step-details'>phoneNumber is Present</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:46 PM</td>
+					<td class='step-details'>Typed value 201-787-8786 in phoneNumber</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:46 PM</td>
+					<td class='step-details'>clicked on beginSubmissionButton</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>4:48:55 PM</td>
+					<td class='step-details'>Test Case Failed is verifyNewPolicyIsCreatedViaPolicyCenter</td>
+				</tr>
+				<tr class='log' status='debug'>
+					<td class='status debug' title='debug' alt='debug'><i class='material-icons'>low_priority</i></td>
+					<td class='timestamp'>4:48:55 PM</td>
+					<td class='step-details'>Error is java.lang.ArrayIndexOutOfBoundsException: 0</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>4:48:55 PM</td>
+					<td class='step-details'>com.aventstack.extentreports.ExtentTest@130a0f66</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\aabro\Downloads\kasback/FailedTestsScreenshots/2020-08-18 16.48.55.png' width='10%' src='C:\Users\aabro\Downloads\kasback/FailedTestsScreenshots/2020-08-18 16.48.55.png' data-src='C:\Users\aabro\Downloads\kasback/FailedTestsScreenshots/2020-08-18 16.48.55.png'></li>
+							</ul>
 					</div>
 				</li>
 			</ul>
@@ -518,25 +1157,25 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>59</div>
+					<div class='panel-lead'>185</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Sep 1, 2020 09:04:59 AM</div>
+					<div class='panel-lead'>Aug 18, 2020 04:43:15 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Sep 1, 2020 09:07:39 AM</div>
+			 		<div class='panel-lead'>Aug 18, 2020 04:48:55 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>0h 2m 39s+440ms</div>
+					<div class='panel-lead'>0h 5m 39s+970ms</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -554,7 +1193,7 @@
 							</tr>
 							<tr>
 								<td>Environment</td>
-								<td>t4</td>
+								<td>t3</td>
 							</tr>
 							<tr>
 								<td>Browser</td>
@@ -562,11 +1201,11 @@
 							</tr>
 							<tr>
 								<td>Video Recordings Folder</td>
-								<td>C:\Users\pverm\git\WRG-Automation\recordings</td>
+								<td>C:\Users\aabro\Downloads\kasback\recordings</td>
 							</tr>
 							<tr>
 								<td>Failed Screenshots Folder</td>
-								<td>C:\Users\pverm\git\WRG-Automation\FailedTestsScreenshots</td>
+								<td>C:\Users\aabro\Downloads\kasback\FailedTestsScreenshots</td>
 							</tr>
 					</table>
 				</div>
@@ -581,22 +1220,22 @@
 
 		<script>
 			var statusGroup = {
-				passParent: 1,
-				failParent: 0,
+				passParent: 0,
+				failParent: 1,
 				fatalParent: 0,
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
-				exceptionsParent: 0,
+				exceptionsParent: 1,
 				
-				passChild: 1,
-				failChild: 0,
+				passChild: 0,
+				failChild: 1,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
 				skipChild: 0,
-				infoChild: 58,
-				exceptionsChild: 0,
+				infoChild: 184,
+				exceptionsChild: 2,
 				
 				passGrandChild: 0,
 				failGrandChild: 0,

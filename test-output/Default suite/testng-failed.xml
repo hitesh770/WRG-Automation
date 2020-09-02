@@ -3,14 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.wrg.AP.Tests.GL_AgencyPortalTests">
+      <class name="com.wrg.Regression.Tests.BC_RegressionTests">
         <methods>
-          <include name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL"/>
-          <include name="beforesuite"/>
           <include name="beforeMethod"/>
-          <include name="createNewQuoteViaAgentPortalForGL"/>
+          <include name="beforesuite"/>
+          <include name="issuePolicyAndPerformSearch"/>
         </methods>
-      </class> <!-- com.wrg.AP.Tests.GL_AgencyPortalTests -->
+      </class> <!-- com.wrg.Regression.Tests.BC_RegressionTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
