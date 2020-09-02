@@ -24,15 +24,13 @@
   <test thread-count="1" name="createNewQuoteViaAgentPortalForGL7">
   </test> <!-- createNewQuoteViaAgentPortalForGL7 -->
   <test thread-count="1" name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL8">
-  </test> <!-- validateFirstThreeOptionalCoveragesViaAgentPortalForGL8 -->
-  <test thread-count="1" name="validateThreetoSixOptionalCoveragesViaAgentPortalForGL9">
     <parameter name="formType" value="Broadening"/>
     <parameter name="classCodeNumber" value="40005"/>
     <parameter name="numberOfLocations" value="1"/>
     <parameter name="insuranceType" value="General Liability"/>
     <parameter name="businessEntity" value="Limited Liability Company (LLC)"/>
     <parameter name="IsExecutable" value="Yes"/>
-    <parameter name="FunctionalityName" value="validateThreetoSixOptionalCoveragesViaAgentPortalForGL"/>
+    <parameter name="FunctionalityName" value="validateFirstThreeOptionalCoveragesViaAgentPortalForGL"/>
     <parameter name="password" value="Murry9"/>
     <parameter name="organizationCode" value="349111"/>
     <parameter name="Package" value="com.wrg.AP.Tests"/>
@@ -43,9 +41,11 @@
     <classes>
       <class name="com.wrg.AP.Tests.GL_AgencyPortalTests">
         <methods>
-          <include name="validateThreetoSixOptionalCoveragesViaAgentPortalForGL"/>
+          <include name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL"/>
         </methods>
       </class> <!-- com.wrg.AP.Tests.GL_AgencyPortalTests -->
     </classes>
+  </test> <!-- validateFirstThreeOptionalCoveragesViaAgentPortalForGL8 -->
+  <test thread-count="1" name="validateThreetoSixOptionalCoveragesViaAgentPortalForGL9">
   </test> <!-- validateThreetoSixOptionalCoveragesViaAgentPortalForGL9 -->
 </suite> <!-- WRG -->

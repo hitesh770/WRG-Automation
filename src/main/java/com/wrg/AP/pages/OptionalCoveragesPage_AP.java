@@ -47,7 +47,9 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		clickUsingJS("coverage2addbuton");
 		waitForPageLoaded();
 		typeUsingJS("coverage2textfield",getData("coverage2textfieldvalue"));
+		sleep(3000);
 		getWebElement("coverage2textfield").sendKeys(Keys.TAB); 
+		sleep(3000);
 		waitForPageLoaded();
 		clickUsingJS("coverage2savebutton"); 
 		waitForPageLoaded();
