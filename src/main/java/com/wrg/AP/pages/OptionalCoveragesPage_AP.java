@@ -45,7 +45,7 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		explicitwaitForElement(getWebElement("coverage2addbuton"));
 		scrollToElement("coverage2addbuton");
 		clickUsingJS("coverage2addbuton");
-		type("coverage2textfield", "test");
+		type("coverage2textfield", getData("coverage2textfieldvalue")); 
 		getWebElement("coverage2textfield").sendKeys(Keys.TAB); 
 		waitForPageLoaded();
 		clickUsingJS("coverage2savebutton"); 
@@ -72,25 +72,40 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 			getWebElement("coverage4Yesoptiontextfield").sendKeys(Keys.TAB); 
 			explicitwaitForElement(getWebElement("coverage4savebutton")); 
 			clickUsingJS("coverage4savebutton");
+			waitforrunningLoadingicon();
+			explicitwaitForElement(getWebElement("coverage5"));
+			clickUsingJS("coverage5");
+			waitforrunningLoadingicon();
+			explicitwaitForElement(getWebElement("coverage5dropdown"));
+			scrollToElement("coverage5dropdown");
+			selectByOption(getWebElement("coverage5dropdown"),getData("coverage5dropdownvalue")); 
+			waitforrunningLoadingicon();
+			//waitForPageLoaded();
+			explicitwaitForElement(getWebElement("coverage5textfieldinyescase")); 
+			type(getWebElement("coverage5textfieldinyescase"),getData("coverage5textfieldinyescasevalue"));
+			getWebElement("coverage5textfieldinyescase").sendKeys(Keys.TAB); 
+			waitforrunningLoadingicon();
 		}else {
 			explicitwaitForElement(getWebElement("coverage4Nooptiontextfield")); 
 			scrollToElement("coverage4Nooptiontextfield");
 			type(getWebElement("coverage4Nooptiontextfield"),getData("coverage4Nooptiontextfieldvalue"));
 			getWebElement("coverage4Nooptiontextfield").sendKeys(Keys.TAB); 
 			waitforrunningLoadingicon();
+			explicitwaitForElement(getWebElement("coverage5"));
+			clickUsingJS("coverage5");
+			waitforrunningLoadingicon();
+			explicitwaitForElement(getWebElement("coverage5dropdown"));
+			scrollToElement("coverage5dropdown");
+			selectByOption(getWebElement("coverage5dropdown"),getData("coverage5dropdownvalue")); 
+			waitforrunningLoadingicon();
+			//waitForPageLoaded();
+			explicitwaitForElement(getWebElement("coverage5textfield")); 
+			type(getWebElement("coverage5textfield"),getData("coverage5textfieldvalue"));
+			getWebElement("coverage5textfield").sendKeys(Keys.TAB); 
+			waitforrunningLoadingicon();
 		}
-		
-		explicitwaitForElement(getWebElement("coverage5"));
-		clickUsingJS("coverage5");
-		waitforrunningLoadingicon();
-		explicitwaitForElement(getWebElement("coverage5dropdown"));
-		scrollToElement("coverage5dropdown");
-		selectByOption(getWebElement("coverage5dropdown"),getData("coverage5dropdownvalue")); 
-		waitforrunningLoadingicon();
-		explicitwaitForElement(getWebElement("coverage5textfield")); 
-		type(getWebElement("coverage5textfield"),getData("coverage5textfieldvalue"));
-		getWebElement("coverage5textfield").sendKeys(Keys.TAB); 
-		waitforrunningLoadingicon();
+
+		//waitForPageLoaded();
 		explicitwaitForElement(getWebElement("coverage6"));
 		clickUsingJS("coverage6");
 		waitforrunningLoadingicon();
@@ -98,20 +113,13 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		scrollToElement("coverage6dropdown");
 		selectByOption(getWebElement("coverage6dropdown"),getData("coverage6dropdownvalue")); 
 		waitforrunningLoadingicon();
+		waitForPageLoaded();
+			explicitwaitForElement(getWebElement("coverage6textfield")); 
+			type(getWebElement("coverage6textfield"),getData("coverage6textfieldvalue"));
+			getWebElement("coverage6textfield").sendKeys(Keys.TAB); 
+			waitforrunningLoadingicon();
+			//will handle later for coverage 6 field validation
 		
-		if(getData("riskpayroll").equalsIgnoreCase("Yes")) {
-			explicitwaitForElement(getWebElement("coverage6textfield1")); 
-			type(getWebElement("coverage6textfield1"),getData("coverage6textfield1value"));
-			getWebElement("coverage6textfield1").sendKeys(Keys.TAB); 
-			waitforrunningLoadingicon();
-			
-		}else {
-			
-			explicitwaitForElement(getWebElement("coverage6textfield2")); 
-			type(getWebElement("coverage6textfield2"),getData("coverage6textfield2value"));
-			getWebElement("coverage6textfield2").sendKeys(Keys.TAB); 
-			waitforrunningLoadingicon();
-		}
 		
 		
 	}
@@ -133,7 +141,6 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		}
 
 		if (isWebElementPresentAfterWait("notesToUnderwriter")) { 
-			//check this thing on monday
 			String mainwindow = driver.getWindowHandle(); // get parent(current) window name
 			for (String popup : driver.getWindowHandles()) // iterating on child windows
 			{
@@ -149,13 +156,7 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 			}
 			driver.switchTo().window(mainwindow);
 		}
-		
-
-			//quotepagelabel=getWebElementText("quotepagelabel");
-			//quotepagelabel="quote page not available";
-		
-
-		
+	
 		return quotesubmitmessage;
 	} 
 	

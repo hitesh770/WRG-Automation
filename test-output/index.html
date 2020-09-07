@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button class="button" id="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -40,7 +40,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-WRG">
-              <span class="suite-name border-passed">WRG</span>
+              <span class="suite-name border-failed">WRG</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -56,7 +56,7 @@
                 </li>
                 <li>
                   <a href="#" class="navigator-link " panel-name="testlist-WRG">
-                    <span class="test-stats">9 tests</span>
+                    <span class="test-stats">10 tests</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -93,21 +93,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">1 method, 1 failed,   </span>
                   </li>
                   <li>
-                    <span class="method-list-title passed">Passed methods</span>
-                    <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-WRG" class="hide-methods passed suite-WRG"> (hide)</a> <!-- hide-methods passed suite-WRG -->
-                      <a href="#" panel-name="suite-WRG" class="show-methods passed suite-WRG"> (show)</a> <!-- show-methods passed suite-WRG -->
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-WRG" class="hide-methods failed suite-WRG"> (hide)</a> <!-- hide-methods failed suite-WRG -->
+                      <a href="#" panel-name="suite-WRG" class="show-methods failed suite-WRG"> (show)</a> <!-- show-methods failed suite-WRG -->
                     </span>
-                    <div class="method-list-content passed suite-WRG">
+                    <div class="method-list-content failed suite-WRG">
                       <span>
-                        <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-WRG" title="com.wrg.AP.Tests.GL_AgencyPortalTests" hash-for-method="validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Ohio, 1, 349111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening...)">validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Ohio, 1, 349111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening...)</a> <!-- method navigator-link -->
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-WRG" title="com.wrg.AP.Tests.GL_AgencyPortalTests" hash-for-method="validateApplicantInformationPageElementsviaAgentPortalForGL(test, Ohio, 1, 349111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening...)">validateApplicantInformationPageElementsviaAgentPortalForGL(test, Ohio, 1, 349111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-WRG -->
+                    </div> <!-- method-list-content failed suite-WRG -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -119,22 +119,30 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-WRG" class="panel WRG">
-          <div class="suite-WRG-class-passed">
+          <div class="suite-WRG-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
+              <img src="failed.png"/>
               <span class="class-name">com.wrg.AP.Tests.GL_AgencyPortalTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Ohio, 1, 349111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening...)">
-                  </a> <!-- validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Ohio, 1, 349111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening...) -->
-                  <span class="method-name">validateFirstThreeOptionalCoveragesViaAgentPortalForGL</span>
+                  <a name="validateApplicantInformationPageElementsviaAgentPortalForGL(test, Ohio, 1, 349111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening...)">
+                  </a> <!-- validateApplicantInformationPageElementsviaAgentPortalForGL(test, Ohio, 1, 349111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening...) -->
+                  <span class="method-name">validateApplicantInformationPageElementsviaAgentPortalForGL</span>
                   <span class="parameters">(test, Ohio, 1, 349111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening, 10% or less)</span>
+                  <div class="stack-trace">java.lang.AssertionError: The following asserts failed:
+	Missing number of elements  on the applicant UI page are: 1 expected [34] but found [33]
+	at com.wrg.AP.Tests.GL_AgencyPortalTests.validateApplicantInformationPageElementsviaAgentPortalForGL(GL_AgencyPortalTests.java:229)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at com.wrg.main.Tests.MyMainClass.testNGRun(MyMainClass.java:43)
+	at com.wrg.main.Tests.MyMainClass.main(MyMainClass.java:31)
+... Removed 26 stack frames
+</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-WRG-class-passed -->
+          </div> <!-- suite-WRG-class-failed -->
         </div> <!-- panel WRG -->
         <div panel-name="test-xml-WRG" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -168,13 +176,17 @@
   &lt;test thread-count=&quot;1&quot; name=&quot;createNewQuoteViaAgentPortalForGL7&quot;&gt;
   &lt;/test&gt; &lt;!-- createNewQuoteViaAgentPortalForGL7 --&gt;
   &lt;test thread-count=&quot;1&quot; name=&quot;validateFirstThreeOptionalCoveragesViaAgentPortalForGL8&quot;&gt;
+  &lt;/test&gt; &lt;!-- validateFirstThreeOptionalCoveragesViaAgentPortalForGL8 --&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;validateThreetoSixOptionalCoveragesViaAgentPortalForGL9&quot;&gt;
+  &lt;/test&gt; &lt;!-- validateThreetoSixOptionalCoveragesViaAgentPortalForGL9 --&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;validateApplicantInformationPageElementsviaAgentPortalForGL10&quot;&gt;
     &lt;parameter name=&quot;formType&quot; value=&quot;Broadening&quot;/&gt;
     &lt;parameter name=&quot;classCodeNumber&quot; value=&quot;40005&quot;/&gt;
     &lt;parameter name=&quot;numberOfLocations&quot; value=&quot;1&quot;/&gt;
     &lt;parameter name=&quot;insuranceType&quot; value=&quot;General Liability&quot;/&gt;
     &lt;parameter name=&quot;businessEntity&quot; value=&quot;Limited Liability Company (LLC)&quot;/&gt;
     &lt;parameter name=&quot;IsExecutable&quot; value=&quot;Yes&quot;/&gt;
-    &lt;parameter name=&quot;FunctionalityName&quot; value=&quot;validateFirstThreeOptionalCoveragesViaAgentPortalForGL&quot;/&gt;
+    &lt;parameter name=&quot;FunctionalityName&quot; value=&quot;validateApplicantInformationPageElementsviaAgentPortalForGL&quot;/&gt;
     &lt;parameter name=&quot;password&quot; value=&quot;Murry9&quot;/&gt;
     &lt;parameter name=&quot;organizationCode&quot; value=&quot;349111&quot;/&gt;
     &lt;parameter name=&quot;Package&quot; value=&quot;com.wrg.AP.Tests&quot;/&gt;
@@ -185,13 +197,11 @@
     &lt;classes&gt;
       &lt;class name=&quot;com.wrg.AP.Tests.GL_AgencyPortalTests&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;validateFirstThreeOptionalCoveragesViaAgentPortalForGL&quot;/&gt;
+          &lt;include name=&quot;validateApplicantInformationPageElementsviaAgentPortalForGL&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- com.wrg.AP.Tests.GL_AgencyPortalTests --&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- validateFirstThreeOptionalCoveragesViaAgentPortalForGL8 --&gt;
-  &lt;test thread-count=&quot;1&quot; name=&quot;validateThreetoSixOptionalCoveragesViaAgentPortalForGL9&quot;&gt;
-  &lt;/test&gt; &lt;!-- validateThreetoSixOptionalCoveragesViaAgentPortalForGL9 --&gt;
+  &lt;/test&gt; &lt;!-- validateApplicantInformationPageElementsviaAgentPortalForGL10 --&gt;
 &lt;/suite&gt; &lt;!-- WRG --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -224,10 +234,13 @@
                 <span class="test-name">createNewQuoteViaAgentPortalForGL7 (0 classes)</span>
               </li>
               <li>
-                <span class="test-name">validateFirstThreeOptionalCoveragesViaAgentPortalForGL8 (1 class)</span>
+                <span class="test-name">validateFirstThreeOptionalCoveragesViaAgentPortalForGL8 (0 classes)</span>
               </li>
               <li>
                 <span class="test-name">validateThreetoSixOptionalCoveragesViaAgentPortalForGL9 (0 classes)</span>
+              </li>
+              <li>
+                <span class="test-name">validateApplicantInformationPageElementsviaAgentPortalForGL10 (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -255,14 +268,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'validateFirstThreeOptionalCoveragesViaAgentPortalForGL')
+data.setCell(0, 1, 'validateApplicantInformationPageElementsviaAgentPortalForGL')
 data.setCell(0, 2, 'com.wrg.AP.Tests.GL_AgencyPortalTests')
-data.setCell(0, 3, 132388);
+data.setCell(0, 3, 34149);
 window.suiteTableData['WRG']= { tableData: data, tableDiv: 'times-div-WRG'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <span class="suite-total-time">Total running time: 34 seconds</span>
               <div id="times-div-WRG">
               </div> <!-- times-div-WRG -->
             </div> <!-- times-div -->
@@ -274,41 +287,28 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="reporter-method-div">
-              <span class="reporter-method-name">validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Ohio, 1, 349111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening...)</span>
+              <span class="reporter-method-name">validateApplicantInformationPageElementsviaAgentPortalForGL(test, Ohio, 1, 349111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening...)</span>
               <div class="reporter-method-output-div">
-                <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test Case validateFirstThreeOptionalCoveragesViaAgentPortalForGL started on 1599051621188</b></font></td></span>
+                <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test Case validateApplicantInformationPageElementsviaAgentPortalForGL started on 1599290705021</b></font></td></span>
                 <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>URI: https://t4agency.wrg-ins.com/portal/html/#!/home/</b></font></td></span>
                 <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type test_2020_09_02_09_00_44 in input field.</b></font></td></tr></span>
+                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type test_2020_09_05_03_25_30 in input field.</b></font></td></tr></span>
                 <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>select (by option)FORWARD AGENCIES INC (000) from the dropdown</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 377 West, Liberty Street in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type Wooster in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>select (by option)Ohio from the dropdown</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 44691 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>select (by option)Limited Liability Company (LLC) from the dropdown</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type test in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 40005 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 10000 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>select (by option)100,000/300,000 from the dropdown</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type 1000 in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type test in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>type testing in input field.</b></font></td></tr></span>
-                <span class="reporter-method-output"><td><font size="2" face="Comic sans MS" color="green"><b>clicked on webelement</b></font></td></tr></span>
-                <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test validateFirstThreeOptionalCoveragesViaAgentPortalForGL1</b></font></td></span>
+                <span class="reporter-method-output"><tr><td></td><td></td><td></td><td><font size="2" face="Comic sans MS" color="green"><b>Test validateApplicantInformationPageElementsviaAgentPortalForGL2</b></font></td></span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="ignored-methods-WRG" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">2 ignored methods</span>
+            <span class="header-content">3 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
               <span class="ignored-class-name">com.wrg.AP.Tests.GL_AgencyPortalTests</span>
               <div class="ignored-methods-div">
+                <span class="ignored-method-name">validateFirstThreeOptionalCoveragesViaAgentPortalForGL</span>
+                <br/>
                 <span class="ignored-method-name">createNewQuoteViaAgentPortalForGL</span>
                 <br/>
                 <span class="ignored-method-name">validateThreetoSixOptionalCoveragesViaAgentPortalForGL</span>
@@ -330,15 +330,17 @@ return data;
               </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
                 <span class="method-name">beforeMethod</span>
-                <span class="method-start">245 ms</span>
+                <span class="method-start">380 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">validateFirstThreeOptionalCoveragesViaAgentPortalForGL(test, Ohio, 1, 349111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening...)</span>
-                <span class="method-start">266 ms</span>
+                <img src="failed.png">
+                </img>
+                <span class="method-name">validateApplicantInformationPageElementsviaAgentPortalForGL(test, Ohio, 1, 349111, Murry9, General Liability, Limited Liability Company (LLC), 40005, Broadening...)</span>
+                <span class="method-start">401 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">afterTest</span>
-                <span class="method-start">132866 ms</span>
+                <span class="method-start">35222 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

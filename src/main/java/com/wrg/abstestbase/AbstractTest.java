@@ -727,6 +727,24 @@ public abstract class AbstractTest extends AbstractTestBase {
 
 		return we;
 	}
+	
+	
+	//getting web element by data
+	
+	public WebElement getWebElementBydata(String data, boolean... optional) {
+		try {
+			we = driver.findElement(By.xpath(data));
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (optional != null && optional[0] != true) {
+				log.info("Locator not found " + data);
+			} else {
+				throwElementNotPresentException(e, data, optional[0]);
+			}
+		}
+
+		return we;
+	}
 
 	public String getData(String data) {
 		try {
@@ -786,6 +804,26 @@ public abstract class AbstractTest extends AbstractTestBase {
 
 		return we;
 	}
+	
+	
+	
+	// getting list of elements based on getdata
+	
+	public List<WebElement> getWebElementsBydata(String data, boolean... optional) {
+		List<WebElement> we = null;
+		try {
+			we = driver.findElements(By.xpath(data));
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (optional[0] != true) {
+				throwElementNotPresentException(e, data, optional[0]);
+			}
+		}
+
+		return we;
+	}
+	
+	
 
 	public void clear(WebElement element) {
 
@@ -1027,6 +1065,18 @@ public abstract class AbstractTest extends AbstractTestBase {
 			return false;
 		}
 	}
+	
+	// created small function for verifying the web element presence 
+	public boolean isElementDisplayed(WebElement element) {
+		if (element.isDisplayed()==true) {
+			ExtentTestManager.getTest().log(Status.INFO, element + " is Present");
+			return true;
+		} else {
+			ExtentTestManager.getTest().log(Status.INFO, element + " not present on page");
+			return false;
+		}
+	}
+	
 
 	public boolean isWebElementPresentAfterWait(String element) {
 		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);

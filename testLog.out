@@ -1,13 +1,13 @@
-2020-09-02 09:00:20 INFO  com.wrg.abstest.SuiteListener.onExecutionStart(SuiteListener.java:89) - start time for logs ->2020-09-02 18:30
-2020-09-02 09:00:20 INFO  com.wrg.abstestbase.AbstractTest.printBanner(AbstractTest.java:456) - ========================================= TEST SUITE STARTED ================================
-2020-09-02 09:00:20 INFO  com.wrg.abstestbase.AbstractTest.beforesuite(AbstractTest.java:142) - before env->t4
-2020-09-02 09:00:20 INFO  com.wrg.abstestbase.AbstractTest.beforesuite(AbstractTest.java:143) - before browser->firefox
-2020-09-02 09:00:21 INFO  com.wrg.abstestbase.AbstractTestBase.reportLog(AbstractTestBase.java:99) - Test Case validateFirstThreeOptionalCoveragesViaAgentPortalForGL started on 1599051621188
-2020-09-02 09:00:31 INFO  com.wrg.abstestbase.AbstractTestBase.reportLog(AbstractTestBase.java:89) - URI: https://t4agency.wrg-ins.com/portal/html/#!/home/
-2020-09-02 09:00:31 INFO  com.wrg.abstestbase.AbstractTest.getDriver(AbstractTest.java:175) - false
-2020-09-02 09:00:31 INFO  com.wrg.abstestbase.AbstractTest.getDriver(AbstractTest.java:192) - running on browser firefox
-2020-09-02 09:00:31 INFO  com.wrg.abstestbase.AbstractTest.getDriver(AbstractTest.java:194) - firefox
-2020-09-02 09:00:31 INFO  com.wrg.abstestbase.WebDriverCapabilities.getDesiredCapabilities(WebDriverCapabilities.java:95) - operating systemmac
-2020-09-02 09:00:32 INFO  com.wrg.abstestbase.AbstractTest.getDriver(AbstractTest.java:204) - starting gecko driver on local
-2020-09-02 09:02:33 INFO  com.wrg.abstestbase.AbstractTestBase.reportLog(AbstractTestBase.java:99) - Test validateFirstThreeOptionalCoveragesViaAgentPortalForGL1
-2020-09-02 09:02:34 INFO  com.wrg.abstest.SuiteListener.onExecutionFinish(SuiteListener.java:82) - end time for logs ->2020-09-02 18:32
+2020-09-05 03:25:04 INFO  com.wrg.abstest.SuiteListener.onExecutionStart(SuiteListener.java:89) - start time for logs ->2020-09-05 12:55
+2020-09-05 03:25:04 INFO  com.wrg.abstestbase.AbstractTest.printBanner(AbstractTest.java:456) - ========================================= TEST SUITE STARTED ================================
+2020-09-05 03:25:04 INFO  com.wrg.abstestbase.AbstractTest.beforesuite(AbstractTest.java:142) - before env->t4
+2020-09-05 03:25:04 INFO  com.wrg.abstestbase.AbstractTest.beforesuite(AbstractTest.java:143) - before browser->firefox
+2020-09-05 03:25:05 INFO  com.wrg.abstestbase.AbstractTestBase.reportLog(AbstractTestBase.java:99) - Test Case validateApplicantInformationPageElementsviaAgentPortalForGL started on 1599290705021
+2020-09-05 03:25:15 INFO  com.wrg.abstestbase.AbstractTestBase.reportLog(AbstractTestBase.java:89) - URI: https://t4agency.wrg-ins.com/portal/html/#!/home/
+2020-09-05 03:25:15 INFO  com.wrg.abstestbase.AbstractTest.getDriver(AbstractTest.java:175) - false
+2020-09-05 03:25:15 INFO  com.wrg.abstestbase.AbstractTest.getDriver(AbstractTest.java:192) - running on browser firefox
+2020-09-05 03:25:15 INFO  com.wrg.abstestbase.AbstractTest.getDriver(AbstractTest.java:194) - firefox
+2020-09-05 03:25:15 INFO  com.wrg.abstestbase.WebDriverCapabilities.getDesiredCapabilities(WebDriverCapabilities.java:95) - operating systemmac
+2020-09-05 03:25:16 INFO  com.wrg.abstestbase.AbstractTest.getDriver(AbstractTest.java:204) - starting gecko driver on local
+2020-09-05 03:25:39 INFO  com.wrg.abstestbase.AbstractTestBase.reportLog(AbstractTestBase.java:99) - Test validateApplicantInformationPageElementsviaAgentPortalForGL2
+2020-09-05 03:25:40 INFO  com.wrg.abstest.SuiteListener.onExecutionFinish(SuiteListener.java:82) - end time for logs ->2020-09-05 12:55

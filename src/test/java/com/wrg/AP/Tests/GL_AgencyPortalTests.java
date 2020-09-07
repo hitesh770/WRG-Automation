@@ -196,8 +196,52 @@ public void validateThreetoSixOptionalCoveragesViaAgentPortalForGL(String insure
 }
 
 	
+	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+@Test
+public void validateApplicantInformationPageElementsviaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
+		String organizationCode, String password, String insuranceType, String businessEntity,
+		String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+							+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+					ExtentColor.PURPLE));
+	int elementavailabe = 0;
+	String applicantName = null;
+	agentPortalLogin(organizationCode, password);
+	buildNumber_AP = getAgentPortalBuild();
+	if (buildNumber_AP.contains("R3")) {
+		applicantName = searchQuote(insuredName);
+		 elementavailabe= verifyApplicationInformationPageElements(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,percentageOwnerOccupiedValue);
+		 System.out.println(elementavailabe);    
+		 int missingelements=33-elementavailabe;
+			asst.assertEquals(elementavailabe, 33, "Missing number of elements  on the applicant UI page are: " +missingelements);   
+		 
+		 asst.assertAll();
+	}else if (buildNumber_AP.contains("R2")) {
+			//need to handle for r2 code base
+		}
+
+}
+
 	
-	
+	public int verifyApplicationInformationPageElements(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
+		int totalelements=0;
+		applicantInfoPage_AP = new ApplicantInformationPage_AP();
+		quotePage_AP = new QuotePage_AP();
+		 totalelements=applicantInfoPage_AP.verifyApplicationInformationPageElementsPresence();
+		return totalelements;
+	} 
 	
 	
 	public String addFirstThreeCoverages(String state, String numberOfLocations, String insuranceType, String businessEntity,

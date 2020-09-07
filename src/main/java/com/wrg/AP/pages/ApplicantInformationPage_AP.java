@@ -1,11 +1,14 @@
 package com.wrg.AP.pages;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.checkerframework.common.value.qual.IntRange;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -101,6 +104,49 @@ public class ApplicantInformationPage_AP extends AbstractTest {
 		type(("description"), getData("descriptionValue"));
 
 	}
+	
+	
+	public int verifyApplicationInformationPageElementsPresence() {
+	int totalcount=0;
+	 int currentelementcount=0;
+		List<String> totalPageElements=getTotal();
+		System.out.println(totalPageElements.size());
+	      
+	      outer:for(int i=0;i<totalPageElements.size();i++) {
+	    	  currentelementcount=0;
+	    	  String curlocater=totalPageElements.get(i);
+	    	  List<WebElement> curloclist=getWebElementsBydata(totalPageElements.get(i));
+	    	  inner:for(int j=1;j<=curloclist.size();j++) {
+		    		 WebElement curElement=getWebElementBydata(curlocater+"["+j+"]"); 
+		    		if(isElementDisplayed(curElement)==true) {
+		    			currentelementcount++;
+		    			continue inner;
+		    		}
+		    		 
+		    	 } //inner for loop close here
+	    	  totalcount=totalcount+currentelementcount;
+	    	  
+	      } //outer  for loop close here
+	      
+	    
+		
+System.out.println(totalcount); 
+		
+		return totalcount;
+	}
+	
+	public  List<String> getTotal() {
+		waitForPageLoaded();
+		List<String> totalelements=new ArrayList<String>();
+		totalelements.add(getData("applicantuilabels"));
+		totalelements.add(getData("applicantuidropdown"));
+		totalelements.add(getData("applicantuiinputfields"));
+		totalelements.add(getData("applicantuibuttons"));
+		return totalelements;
+	}
+	
+	
+	
 	
 	public void selectInsuranceType(String insuranceType) {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getWebElement("nextButton"));
