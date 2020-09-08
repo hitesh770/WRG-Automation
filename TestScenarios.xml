@@ -50,4 +50,142 @@
       </class> <!-- com.wrg.AP.Tests.GL_AgencyPortalTests -->
     </classes>
   </test> <!-- validateApplicantInformationPageElementsviaAgentPortalForGL10 -->
+  <test thread-count="1" name="validateStartQuotePageElementsviaAgentPortalForGL11">
+    <parameter name="formType" value="Broadening"/>
+    <parameter name="classCodeNumber" value="40005"/>
+    <parameter name="numberOfLocations" value="1"/>
+    <parameter name="insuranceType" value="General Liability"/>
+    <parameter name="businessEntity" value="Limited Liability Company (LLC)"/>
+    <parameter name="IsExecutable" value="Yes"/>
+    <parameter name="FunctionalityName" value="validateStartQuotePageElementsviaAgentPortalForGL"/>
+    <parameter name="password" value="Murry9"/>
+    <parameter name="organizationCode" value="349111"/>
+    <parameter name="Package" value="com.wrg.AP.Tests"/>
+    <parameter name="state" value="Ohio"/>
+    <parameter name="insuredName" value="test"/>
+    <parameter name="percentageOwnerOccupiedValue" value="10% or less"/>
+    <parameter name="testCaseID" value="TC1"/>
+    <classes>
+      <class name="com.wrg.AP.Tests.GL_AgencyPortalTests">
+        <methods>
+          <include name="validateStartQuotePageElementsviaAgentPortalForGL"/>
+        </methods>
+      </class> <!-- com.wrg.AP.Tests.GL_AgencyPortalTests -->
+    </classes>
+  </test> <!-- validateStartQuotePageElementsviaAgentPortalForGL11 -->
+  <test thread-count="1" name="validateUnderwritingInfoPageElementsviaAgentPortalForGL12">
+    <parameter name="formType" value="Broadening"/>
+    <parameter name="classCodeNumber" value="40005"/>
+    <parameter name="numberOfLocations" value="1"/>
+    <parameter name="insuranceType" value="General Liability"/>
+    <parameter name="businessEntity" value="Limited Liability Company (LLC)"/>
+    <parameter name="IsExecutable" value="Yes"/>
+    <parameter name="FunctionalityName" value="validateUnderwritingInfoPageElementsviaAgentPortalForGL"/>
+    <parameter name="password" value="Murry9"/>
+    <parameter name="organizationCode" value="349111"/>
+    <parameter name="Package" value="com.wrg.AP.Tests"/>
+    <parameter name="state" value="Ohio"/>
+    <parameter name="insuredName" value="test"/>
+    <parameter name="percentageOwnerOccupiedValue" value="10% or less"/>
+    <parameter name="testCaseID" value="TC1"/>
+    <classes>
+      <class name="com.wrg.AP.Tests.GL_AgencyPortalTests">
+        <methods>
+          <include name="validateUnderwritingInfoPageElementsviaAgentPortalForGL"/>
+        </methods>
+      </class> <!-- com.wrg.AP.Tests.GL_AgencyPortalTests -->
+    </classes>
+  </test> <!-- validateUnderwritingInfoPageElementsviaAgentPortalForGL12 -->
+  <test thread-count="1" name="validatePolicywideCoveragePageElementsviaAgentPortalForGL13">
+    <parameter name="formType" value="Broadening"/>
+    <parameter name="classCodeNumber" value="40005"/>
+    <parameter name="numberOfLocations" value="1"/>
+    <parameter name="insuranceType" value="General Liability"/>
+    <parameter name="businessEntity" value="Limited Liability Company (LLC)"/>
+    <parameter name="IsExecutable" value="Yes"/>
+    <parameter name="FunctionalityName" value="validatePolicywideCoveragePageElementsviaAgentPortalForGL"/>
+    <parameter name="password" value="Murry9"/>
+    <parameter name="organizationCode" value="349111"/>
+    <parameter name="Package" value="com.wrg.AP.Tests"/>
+    <parameter name="state" value="Ohio"/>
+    <parameter name="insuredName" value="test"/>
+    <parameter name="percentageOwnerOccupiedValue" value="10% or less"/>
+    <parameter name="testCaseID" value="TC1"/>
+    <classes>
+      <class name="com.wrg.AP.Tests.GL_AgencyPortalTests">
+        <methods>
+          <include name="validatePolicywideCoveragePageElementsviaAgentPortalForGL"/>
+        </methods>
+      </class> <!-- com.wrg.AP.Tests.GL_AgencyPortalTests -->
+    </classes>
+  </test> <!-- validatePolicywideCoveragePageElementsviaAgentPortalForGL13 -->
+  <test thread-count="1" name="validateLocationPageElementsviaAgentPortalForGL14">
+    <parameter name="formType" value="Broadening"/>
+    <parameter name="classCodeNumber" value="40005"/>
+    <parameter name="numberOfLocations" value="1"/>
+    <parameter name="insuranceType" value="General Liability"/>
+    <parameter name="businessEntity" value="Limited Liability Company (LLC)"/>
+    <parameter name="IsExecutable" value="Yes"/>
+    <parameter name="FunctionalityName" value="validateLocationPageElementsviaAgentPortalForGL"/>
+    <parameter name="password" value="Murry9"/>
+    <parameter name="organizationCode" value="349111"/>
+    <parameter name="Package" value="com.wrg.AP.Tests"/>
+    <parameter name="state" value="Ohio"/>
+    <parameter name="insuredName" value="test"/>
+    <parameter name="percentageOwnerOccupiedValue" value="10% or less"/>
+    <parameter name="testCaseID" value="TC1"/>
+    <classes>
+      <class name="com.wrg.AP.Tests.GL_AgencyPortalTests">
+        <methods>
+          <include name="validateLocationPageElementsviaAgentPortalForGL"/>
+        </methods>
+      </class> <!-- com.wrg.AP.Tests.GL_AgencyPortalTests -->
+    </classes>
+  </test> <!-- validateLocationPageElementsviaAgentPortalForGL14 -->
+  <test thread-count="1" name="validateClassificationPageElementsviaAgentPortalForGL15">
+    <parameter name="formType" value="Broadening"/>
+    <parameter name="classCodeNumber" value="40005"/>
+    <parameter name="numberOfLocations" value="1"/>
+    <parameter name="insuranceType" value="General Liability"/>
+    <parameter name="businessEntity" value="Limited Liability Company (LLC)"/>
+    <parameter name="IsExecutable" value="Yes"/>
+    <parameter name="FunctionalityName" value="validateClassificationPageElementsviaAgentPortalForGL"/>
+    <parameter name="password" value="Murry9"/>
+    <parameter name="organizationCode" value="349111"/>
+    <parameter name="Package" value="com.wrg.AP.Tests"/>
+    <parameter name="state" value="Ohio"/>
+    <parameter name="insuredName" value="test"/>
+    <parameter name="percentageOwnerOccupiedValue" value="10% or less"/>
+    <parameter name="testCaseID" value="TC1"/>
+    <classes>
+      <class name="com.wrg.AP.Tests.GL_AgencyPortalTests">
+        <methods>
+          <include name="validateClassificationPageElementsviaAgentPortalForGL"/>
+        </methods>
+      </class> <!-- com.wrg.AP.Tests.GL_AgencyPortalTests -->
+    </classes>
+  </test> <!-- validateClassificationPageElementsviaAgentPortalForGL15 -->
+  <test thread-count="1" name="validateOptionalCoveragePageElementsviaAgentPortalForGL16">
+    <parameter name="formType" value="Broadening"/>
+    <parameter name="classCodeNumber" value="40005"/>
+    <parameter name="numberOfLocations" value="1"/>
+    <parameter name="insuranceType" value="General Liability"/>
+    <parameter name="businessEntity" value="Limited Liability Company (LLC)"/>
+    <parameter name="IsExecutable" value="Yes"/>
+    <parameter name="FunctionalityName" value="validateOptionalCoveragePageElementsviaAgentPortalForGL"/>
+    <parameter name="password" value="Murry9"/>
+    <parameter name="organizationCode" value="349111"/>
+    <parameter name="Package" value="com.wrg.AP.Tests"/>
+    <parameter name="state" value="Ohio"/>
+    <parameter name="insuredName" value="test"/>
+    <parameter name="percentageOwnerOccupiedValue" value="10% or less"/>
+    <parameter name="testCaseID" value="TC1"/>
+    <classes>
+      <class name="com.wrg.AP.Tests.GL_AgencyPortalTests">
+        <methods>
+          <include name="validateOptionalCoveragePageElementsviaAgentPortalForGL"/>
+        </methods>
+      </class> <!-- com.wrg.AP.Tests.GL_AgencyPortalTests -->
+    </classes>
+  </test> <!-- validateOptionalCoveragePageElementsviaAgentPortalForGL16 -->
 </suite> <!-- WRG -->

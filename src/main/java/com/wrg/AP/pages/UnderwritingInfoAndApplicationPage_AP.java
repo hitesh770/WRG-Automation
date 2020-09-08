@@ -1,18 +1,76 @@
 package com.wrg.AP.pages;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.aventstack.extentreports.Status;
 import com.wrg.abstestbase.AbstractTest;
+import com.wrg.utils.ExtentTestManager;
 
 public class UnderwritingInfoAndApplicationPage_AP extends AbstractTest {
 	WebDriverWait wait = null;
 
+	
+	public int verifyUnderwritingInfoPageElementsPresence() {
+		int totalcount=0;
+		 int currentelementcount=0;
+			List<String> totalPageElements=getUnderwritingInfoUIElementList();
+			System.out.println(totalPageElements.size());
+		      
+		     for(int i=0;i<totalPageElements.size();i++) {
+		    	  currentelementcount=0;
+		    	  String curlocater=totalPageElements.get(i);
+		    	 
+		    	  List<WebElement> curloclist=getWebElementsBydata(totalPageElements.get(i));
+		    	  inner:for(int j=1;j<=curloclist.size();j++) {
+		    		  WebElement curElement=null;
+		    		  try { 
+		    		   curElement=getWebElementBydata(curlocater+"["+j+"]"); 
+		    	          }catch(Exception e) {
+		    	        	  continue inner;
+			              }
+		    		  if(curElement.isDisplayed()==true) { 
+			    			 ExtentTestManager.getTest().log(Status.INFO, curElement.getText() + " Page Element is Present");
+			    			currentelementcount++;
+			    			continue inner;
+			    		}
+			    		 
+			    	 } //inner for loop close here
+		    	  totalcount=totalcount+currentelementcount;
+		    	  
+		      } //outer  for loop close here
+		      
+		     
+			
+	System.out.println(totalcount); 
+			
+			return totalcount;
+		}
+		
+		public  List<String> getUnderwritingInfoUIElementList() {
+			waitForPageLoaded();
+			List<String> totalelements=new ArrayList<String>();
+			totalelements.add(getData("underwritingeuilabels"));
+			totalelements.add(getData("underwritinguiinputfields"));
+			totalelements.add(getData("underwritinguibuttons"));
+			return totalelements;
+		}
+		
+		
+		public int getUnderwritingInfoUIElementTotalCount() {
+			return Integer.parseInt(getData("underwritinguielements"));	
+		}
+		
+	
+	
+	
 	public boolean isWebElementPresentInSupplemental(String element) {
 		driver.manage().timeouts().implicitlyWait(400, TimeUnit.MILLISECONDS);
 		if (getWebElements(element).size() > 0) {

@@ -1,5 +1,7 @@
 package com.wrg.AP.pages;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.print.DocFlavor.STRING;
@@ -7,14 +9,69 @@ import javax.print.DocFlavor.STRING;
 import org.apache.poi.poifs.crypt.dsig.KeyInfoKeySelector;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.aventstack.extentreports.Status;
 import com.wrg.abstestbase.AbstractTest;
+import com.wrg.utils.ExtentTestManager;
 
 public class OptionalCoveragesPage_AP extends AbstractTest {
 	WebDriverWait wait = null;
 
+
+	public int verifyOptionalCoveragePageElementsPresence() {
+		int totalcount=0;
+		 int currentelementcount=0;
+			List<String> totalPageElements=getOptionalCoverageUIElementList();
+			System.out.println(totalPageElements.size());
+		      
+		     for(int i=0;i<totalPageElements.size();i++) {
+		    	  currentelementcount=0;
+		    	  String curlocater=totalPageElements.get(i);
+		    	 
+		    	  List<WebElement> curloclist=getWebElementsBydata(totalPageElements.get(i));
+		    	  inner:for(int j=1;j<=curloclist.size();j++) {
+		    		  WebElement curElement=null;
+		    		  try { 
+		    		   curElement=getWebElementBydata(curlocater+"["+j+"]"); 
+		    	          }catch(Exception e) {
+		    	        	  continue inner;
+			              }
+		    		  if(curElement.isDisplayed()==true) { 
+			    			 ExtentTestManager.getTest().log(Status.INFO, curElement.getText() + " Page Element is Present");
+			    			currentelementcount++;
+			    			continue inner;
+			    		}
+			    		 
+			    	 } //inner for loop close here
+		    	  totalcount=totalcount+currentelementcount;
+		    	  
+		      } //outer  for loop close here
+		      
+		     
+			
+	System.out.println(totalcount); 
+			
+			return totalcount;
+		}
+		
+		public  List<String> getOptionalCoverageUIElementList() {
+			waitForPageLoaded();
+			List<String> totalelements=new ArrayList<String>();
+			totalelements.add(getData("optionalcoverageuilabels"));
+			totalelements.add(getData("optionalcoverageuibuttons"));
+			return totalelements;
+		}
+		
+		
+		public int getOptionalCoverageUIElementTotalCount() {
+			return Integer.parseInt(getData("optionalcoverageuielements"));	
+		}
+	
+	
+	
 	public void optionalCoverages() {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 20);
@@ -52,6 +109,9 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		waitforrunningLoadingicon();
 		clickUsingJS("coverage3");
 	}
+	
+	
+	
 	
 	
 	public void chooseThreetoSixOptionalCoverages() {
@@ -125,6 +185,33 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 	}
 	
 	
+	
+	
+	public void chooseSeventoNineOptionalCoverages() {
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		waitForPageLoaded();
+		explicitwaitForElement(getWebElement("coverage1")); 
+		clickUsingJS("coverage1");
+		explicitwaitForElement(getWebElement("coverage1dropdown")); 
+		selectByOption(getWebElement("coverage1dropdown"),getData("coverage1dropdownvalue"));  
+		waitforrunningLoadingicon();
+		explicitwaitForElement(getWebElement("coverage1textfield"));
+		type(getWebElement("coverage1textfield"),getData("coverage1textfieldvalue"));
+		getWebElement("coverage1textfield").sendKeys(Keys.TAB); 
+		waitforrunningLoadingicon();
+		explicitwaitForElement(getWebElement("coverage2"));
+		clickUsingJS("coverage2");
+		waitforrunningLoadingicon();
+		explicitwaitForElement(getWebElement("coverage2addbuton"));
+		scrollToElement("coverage2addbuton");
+		clickUsingJS("coverage2addbuton");
+		type("coverage2textfield", getData("coverage2textfieldvalue")); 
+		getWebElement("coverage2textfield").sendKeys(Keys.TAB); 
+		waitForPageLoaded();
+		clickUsingJS("coverage2savebutton"); 
+		waitforrunningLoadingicon();
+		clickUsingJS("coverage3");
+	}
 	
 	
 	

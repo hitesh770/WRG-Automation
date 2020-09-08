@@ -6,9 +6,15 @@
       <class name="com.wrg.AP.Tests.GL_AgencyPortalTests">
         <methods>
           <include name="afterTest"/>
-          <include name="validateApplicantInformationPageElementsviaAgentPortalForGL"/>
           <include name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL"/>
+          <include name="validateLocationPageElementsviaAgentPortalForGL"/>
           <include name="beforesuite"/>
+          <include name="validatePolicywideCoveragePageElementsviaAgentPortalForGL"/>
+          <include name="validateOptionalCoveragePageElementsviaAgentPortalForGL"/>
+          <include name="validateUnderwritingInfoPageElementsviaAgentPortalForGL"/>
+          <include name="validateClassificationPageElementsviaAgentPortalForGL"/>
+          <include name="validateApplicantInformationPageElementsviaAgentPortalForGL"/>
+          <include name="validateStartQuotePageElementsviaAgentPortalForGL"/>
           <include name="beforeMethod"/>
           <include name="createNewQuoteViaAgentPortalForGL"/>
           <include name="validateThreetoSixOptionalCoveragesViaAgentPortalForGL"/>

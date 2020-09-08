@@ -1068,13 +1068,14 @@ public abstract class AbstractTest extends AbstractTestBase {
 	
 	// created small function for verifying the web element presence 
 	public boolean isElementDisplayed(WebElement element) {
-		if (element.isDisplayed()==true) {
+		if (element.isEnabled()==true) {
 			ExtentTestManager.getTest().log(Status.INFO, element + " is Present");
 			return true;
-		} else {
+	}
+		else {
 			ExtentTestManager.getTest().log(Status.INFO, element + " not present on page");
 			return false;
-		}
+		} 
 	}
 	
 

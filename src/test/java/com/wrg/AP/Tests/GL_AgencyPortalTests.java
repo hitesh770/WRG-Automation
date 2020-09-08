@@ -199,6 +199,45 @@ public void validateThreetoSixOptionalCoveragesViaAgentPortalForGL(String insure
 	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
 		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
 @Test
+public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
+		String organizationCode, String password, String insuranceType, String businessEntity,
+		String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+							+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+					ExtentColor.PURPLE));
+	String quotepageconfirmmsg = null;
+	String applicantName = null;
+	agentPortalLogin(organizationCode, password);
+	buildNumber_AP = getAgentPortalBuild();
+	if (buildNumber_AP.contains("R3")) {
+		applicantName = searchQuote(insuredName);
+		quotepageconfirmmsg = addThreetwosixCoverages(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+				percentageOwnerOccupiedValue);
+		asst.assertEquals(quotepageconfirmmsg, "Your quote has been submitted for underwriting review. Your underwriting team will contact you once their review is final."); 
+		asst.assertAll();
+	}else if (buildNumber_AP.contains("R2")) {
+			//need to handle for r2 code base
+		}
+
+}
+	
+	
+	
+	
+	
+	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+@Test
 public void validateApplicantInformationPageElementsviaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
 		String organizationCode, String password, String insuranceType, String businessEntity,
 		String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
@@ -215,7 +254,7 @@ public void validateApplicantInformationPageElementsviaAgentPortalForGL(String i
 							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
 							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
 					ExtentColor.PURPLE));
-	int elementavailabe = 0;
+	int elementavailabe = 0; 
 	String applicantName = null;
 	agentPortalLogin(organizationCode, password);
 	buildNumber_AP = getAgentPortalBuild();
@@ -223,8 +262,8 @@ public void validateApplicantInformationPageElementsviaAgentPortalForGL(String i
 		applicantName = searchQuote(insuredName);
 		 elementavailabe= verifyApplicationInformationPageElements(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,percentageOwnerOccupiedValue);
 		 System.out.println(elementavailabe);    
-		 int missingelements=33-elementavailabe;
-			asst.assertEquals(elementavailabe, 33, "Missing number of elements  on the applicant UI page are: " +missingelements);   
+		 int missingelements=applicantInfoPage_AP.getApplicantUIElementTotalCount()-elementavailabe;
+			asst.assertEquals(elementavailabe, applicantInfoPage_AP.getApplicantUIElementTotalCount(), "Missing number of elements  on the applicant UI page are: " +missingelements);   
 		 
 		 asst.assertAll();
 	}else if (buildNumber_AP.contains("R2")) {
@@ -233,6 +272,364 @@ public void validateApplicantInformationPageElementsviaAgentPortalForGL(String i
 
 }
 
+	
+	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+@Test
+public void validateStartQuotePageElementsviaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
+		String organizationCode, String password, String insuranceType, String businessEntity,
+		String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+							+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+					ExtentColor.PURPLE));
+	int elementavailabe = 0; 
+	String applicantName = null;
+	agentPortalLogin(organizationCode, password);
+	buildNumber_AP = getAgentPortalBuild();
+	if (buildNumber_AP.contains("R3")) {
+		applicantName = searchQuote(insuredName);
+		 elementavailabe= verifyStartQuotePageElements(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,percentageOwnerOccupiedValue);
+		 System.out.println(elementavailabe);    
+		 int missingelements=startQuotePage_AP.getStartQuoteUIElementTotalCount()-elementavailabe;
+			asst.assertEquals(elementavailabe, startQuotePage_AP.getStartQuoteUIElementTotalCount(), "Missing number of elements  on the start quote UI page are: " +missingelements);   
+		 
+		 asst.assertAll();
+	}else if (buildNumber_AP.contains("R2")) {
+			//need to handle for r2 code base
+		}
+
+}
+	
+	
+	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+@Test
+public void validateUnderwritingInfoPageElementsviaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
+		String organizationCode, String password, String insuranceType, String businessEntity,
+		String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+							+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+					ExtentColor.PURPLE));
+	int elementavailabe = 0; 
+	String applicantName = null;
+	agentPortalLogin(organizationCode, password);
+	buildNumber_AP = getAgentPortalBuild();
+	if (buildNumber_AP.contains("R3")) {
+		applicantName = searchQuote(insuredName);
+		 elementavailabe= verifyUnderwritingInfoPageElements(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,percentageOwnerOccupiedValue);
+		 System.out.println(elementavailabe);    
+		 int missingelements=underwritingQuestionsPage_AP.getUnderwritingInfoUIElementTotalCount()-elementavailabe;
+			asst.assertEquals(elementavailabe, underwritingQuestionsPage_AP.getUnderwritingInfoUIElementTotalCount(), "Missing number of elements  on the underwrting info  page are: " +missingelements);   
+		 
+		 asst.assertAll();
+	}else if (buildNumber_AP.contains("R2")) {
+			//need to handle for r2 code base
+		}
+
+}
+	
+	
+	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+@Test
+public void validatePolicywideCoveragePageElementsviaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
+		String organizationCode, String password, String insuranceType, String businessEntity,
+		String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+							+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+					ExtentColor.PURPLE));
+	int elementavailabe = 0; 
+	String applicantName = null;
+	agentPortalLogin(organizationCode, password);
+	buildNumber_AP = getAgentPortalBuild();
+	if (buildNumber_AP.contains("R3")) {
+		applicantName = searchQuote(insuredName);
+		 elementavailabe= verifyPolicywideCoveragePageElements(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,percentageOwnerOccupiedValue);
+		 System.out.println(elementavailabe);    
+		 int missingelements=policywideCoveragesPage_AP.getPolicywideCoverageUIElementTotalCount()-elementavailabe;
+			asst.assertEquals(elementavailabe,policywideCoveragesPage_AP.getPolicywideCoverageUIElementTotalCount(), "Missing number of elements  on the policywide coverage page are: " +missingelements);   
+		 
+		 asst.assertAll();
+	}else if (buildNumber_AP.contains("R2")) {
+			//need to handle for r2 code base
+		}
+
+}
+	
+	
+
+	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+@Test
+public void validateLocationPageElementsviaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
+		String organizationCode, String password, String insuranceType, String businessEntity,
+		String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+							+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+					ExtentColor.PURPLE));
+	int elementavailabe = 0; 
+	String applicantName = null;
+	agentPortalLogin(organizationCode, password);
+	buildNumber_AP = getAgentPortalBuild();
+	if (buildNumber_AP.contains("R3")) {
+		applicantName = searchQuote(insuredName);
+		 elementavailabe= verifyLocationPageElements(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,percentageOwnerOccupiedValue);
+		 System.out.println(elementavailabe);    
+		 int missingelements=locationsPage_AP.getLocationUIElementTotalCount()-elementavailabe;
+			asst.assertEquals(elementavailabe,locationsPage_AP.getLocationUIElementTotalCount(), "Missing number of elements  on the location page are: " +missingelements);   
+		 asst.assertAll();
+	}else if (buildNumber_AP.contains("R2")) {
+			//need to handle for r2 code base
+		}
+
+}
+	
+	
+	
+	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+@Test
+public void validateClassificationPageElementsviaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
+		String organizationCode, String password, String insuranceType, String businessEntity,
+		String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+							+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+					ExtentColor.PURPLE));
+	int elementavailabe = 0; 
+	String applicantName = null;
+	agentPortalLogin(organizationCode, password);
+	buildNumber_AP = getAgentPortalBuild();
+	if (buildNumber_AP.contains("R3")) {
+		applicantName = searchQuote(insuredName);
+		 elementavailabe= verifyClassificationPageElements(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,percentageOwnerOccupiedValue);
+		 System.out.println(elementavailabe);    
+		 int missingelements=classificationPage_AP.getClassificationUIElementTotalCount()-elementavailabe;
+			asst.assertEquals(elementavailabe,classificationPage_AP.getClassificationUIElementTotalCount(), "Missing number of elements  on the classification page are: " +missingelements);   
+		 asst.assertAll();
+	}else if (buildNumber_AP.contains("R2")) {
+			//need to handle for r2 code base
+		}
+
+}
+	
+	
+	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+@Test
+public void validateOptionalCoveragePageElementsviaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
+		String organizationCode, String password, String insuranceType, String businessEntity,
+		String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+							+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+					ExtentColor.PURPLE));
+	int elementavailabe = 0; 
+	String applicantName = null;
+	agentPortalLogin(organizationCode, password);
+	buildNumber_AP = getAgentPortalBuild();
+	if (buildNumber_AP.contains("R3")) {
+		applicantName = searchQuote(insuredName);
+		 elementavailabe= verifyOptionalCoveragePageElements(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,percentageOwnerOccupiedValue);
+		 System.out.println(elementavailabe);    
+		 int missingelements=optionalCoveragesPage_AP.getOptionalCoverageUIElementTotalCount()-elementavailabe;
+			asst.assertEquals(elementavailabe,optionalCoveragesPage_AP.getOptionalCoverageUIElementTotalCount(), "Missing number of elements  on the optional coverages page are: " +missingelements);   
+		 asst.assertAll();
+	}else if (buildNumber_AP.contains("R2")) {
+			//need to handle for r2 code base
+		}
+
+}
+	
+	
+	public int verifyOptionalCoveragePageElements(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
+		int totalelements=0;
+		applicantInfoPage_AP=new ApplicantInformationPage_AP();
+		startQuotePage_AP=new StartQuotePage_AP();
+		underwritingQuestionsPage_AP=new UnderwritingInfoAndApplicationPage_AP();
+		policywideCoveragesPage_AP=new PolicywideCoveragesPage_AP();
+		locationsPage_AP=new LocationsPage_AP();
+		classificationPage_AP=new ClassificationsPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		String quoteNumber = null;
+	    quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
+	    policywideCoveragesPage_AP.coverages();
+	    locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
+	    classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
+		optionalCoveragesPage_AP=new OptionalCoveragesPage_AP();
+		 totalelements=optionalCoveragesPage_AP.verifyOptionalCoveragePageElementsPresence();
+		return totalelements;
+	} 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public int verifyClassificationPageElements(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
+		int totalelements=0;
+		applicantInfoPage_AP=new ApplicantInformationPage_AP();
+		startQuotePage_AP=new StartQuotePage_AP();
+		underwritingQuestionsPage_AP=new UnderwritingInfoAndApplicationPage_AP();
+		policywideCoveragesPage_AP=new PolicywideCoveragesPage_AP();
+		locationsPage_AP=new LocationsPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		String quoteNumber = null;
+	    quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
+	    policywideCoveragesPage_AP.coverages();
+	    locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
+		classificationPage_AP=new ClassificationsPage_AP();
+		 totalelements=classificationPage_AP.verifyClassificationPageElementsPresence();
+		return totalelements;
+	} 
+	
+	
+	
+	
+	public int verifyLocationPageElements(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
+		int totalelements=0;
+		applicantInfoPage_AP=new ApplicantInformationPage_AP();
+		startQuotePage_AP=new StartQuotePage_AP();
+		underwritingQuestionsPage_AP=new UnderwritingInfoAndApplicationPage_AP();
+		policywideCoveragesPage_AP=new PolicywideCoveragesPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		String quoteNumber = null;
+	    quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
+	    policywideCoveragesPage_AP.coverages();
+		locationsPage_AP=new LocationsPage_AP();
+		 totalelements=locationsPage_AP.verifyLocationPageElementsPresence();
+		return totalelements;
+	} 
+	
+	
+	
+	public int verifyPolicywideCoveragePageElements(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
+		int totalelements=0;
+		applicantInfoPage_AP=new ApplicantInformationPage_AP();
+		startQuotePage_AP=new StartQuotePage_AP();
+		underwritingQuestionsPage_AP=new UnderwritingInfoAndApplicationPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		String quoteNumber = null;
+	    quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
+		policywideCoveragesPage_AP=new PolicywideCoveragesPage_AP();
+		 totalelements=policywideCoveragesPage_AP.verifyPolicywideCoveragePageElementsPresence();
+		return totalelements;
+	} 
+	
+
+	public int verifyUnderwritingInfoPageElements(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
+		int totalelements=0;
+		applicantInfoPage_AP=new ApplicantInformationPage_AP();
+		startQuotePage_AP=new StartQuotePage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		underwritingQuestionsPage_AP=new UnderwritingInfoAndApplicationPage_AP();
+		 totalelements=underwritingQuestionsPage_AP.verifyUnderwritingInfoPageElementsPresence();
+		return totalelements;
+	} 
+	
+	
+
+	public int verifyStartQuotePageElements(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
+		int totalelements=0;
+		applicantInfoPage_AP=new ApplicantInformationPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP=new StartQuotePage_AP();
+		 totalelements=startQuotePage_AP.verifyStartQuotePageElementsPresence();  
+		return totalelements;
+	} 
+	
+	
+	
 	
 	public int verifyApplicationInformationPageElements(String state, String numberOfLocations, String insuranceType, String businessEntity,
 			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
