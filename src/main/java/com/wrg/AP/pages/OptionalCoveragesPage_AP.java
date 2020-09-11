@@ -317,12 +317,13 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		explicitwaitForElementVisibility(getWebElement("coverage12yesbtn")); 
 		clickUsingJS("coverage12yesbtn");
 		waitforrunningLoadingicon();
+		sleep(4000); 
 		explicitwaitForElementVisibility(getWebElement("coverage12addbtn")); 
 		clickUsingJS("coverage12addbtn");
 		waitforrunningLoadingicon();
 		enteraddtionalInsuredDetails(insuredName,addressLine1,city,zipcode);
 		explicitwaitForElementVisibility(getWebElement("coverage12statefield"));
-		selectByOption(getWebElement("coverage12statefield"),state); 
+		selectByOption(getWebElement("coverage12statefield"),state);   
 		submitaddtionalInsuredDetails();
 	
 	
@@ -377,7 +378,12 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		enteraddtionalInsuredDetails(insuredName,addressLine1,city,zipcode);
 		explicitwaitForElementVisibility(getWebElement("coverage15statefield"));
 		selectByOption(getWebElement("coverage15statefield"),state); 
-		submitaddtionalInsuredDetails();
+		explicitwaitForElementVisibility(getWebElement("additonalinsuredokbtn")); 
+		click("additonalinsuredokbtn");
+		waitForPageLoaded();
+		explicitwaitForElementVisibility(getWebElement("additonalinsureduseverifiedbtn")); 
+		click("additonalinsureduseverifiedbtn");
+		waitForPageLoaded();
 	
 	}
 	
