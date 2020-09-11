@@ -729,22 +729,8 @@ public abstract class AbstractTest extends AbstractTestBase {
 	}
 	
 	
-	//getting web element by data
 	
-	public WebElement getWebElementBydata(String data, boolean... optional) {
-		try {
-			we = driver.findElement(By.xpath(data));
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (optional != null && optional[0] != true) {
-				log.info("Locator not found " + data);
-			} else {
-				throwElementNotPresentException(e, data, optional[0]);
-			}
-		}
-
-		return we;
-	}
+	
 
 	public String getData(String data) {
 		try {
@@ -807,21 +793,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 	
 	
 	
-	// getting list of elements based on getdata
 	
-	public List<WebElement> getWebElementsBydata(String data, boolean... optional) {
-		List<WebElement> we = null;
-		try {
-			we = driver.findElements(By.xpath(data));
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (optional[0] != true) {
-				throwElementNotPresentException(e, data, optional[0]);
-			}
-		}
-
-		return we;
-	}
 	
 	
 
@@ -1066,17 +1038,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 		}
 	}
 	
-	// created small function for verifying the web element presence 
-	public boolean isElementDisplayed(WebElement element) {
-		if (element.isEnabled()==true) {
-			ExtentTestManager.getTest().log(Status.INFO, element + " is Present");
-			return true;
-	}
-		else {
-			ExtentTestManager.getTest().log(Status.INFO, element + " not present on page");
-			return false;
-		} 
-	}
+	
 	
 
 	public boolean isWebElementPresentAfterWait(String element) {
@@ -1090,10 +1052,12 @@ public abstract class AbstractTest extends AbstractTestBase {
 
 	}
 	
-	public static void explicitwaitForElement(WebElement element) {
+	public static void explicitwaitForElementVisibility(WebElement element) {
 		new WebDriverWait(driver,explicitWaitTime).until(ExpectedConditions.visibilityOf(element));
-		new WebDriverWait(driver,explicitWaitTime).until(ExpectedConditions.elementToBeClickable(element));
+		//new WebDriverWait(driver,explicitWaitTime).until(ExpectedConditions.elementToBeClickable(element));
 	}
+	
+
 	
 	public static void explicitwaitForInvisibilityofElement(WebElement element) {
 		new WebDriverWait(driver,explicitWaitTime).until(ExpectedConditions.invisibilityOf(element));
@@ -1101,23 +1065,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 	
 	
 
-      public void waitforrunningLoadingicon() {
-		
-    	/*  if (isWebElementPresent("runningloadingicon") == true) {
-  			explicitwaitForInvisibilityofElement(getWebElement("runningloadingicon"));
-  		}  */
-    	  int count=0;
-    	  if (isWebElementPresent("runningloadingicon") == true) { 
-    		  List<WebElement> runningiconlist=getWebElements("runningloadingicon");
-    			while(runningiconlist.size()!=0 && count<4) {
-    				sleep(1000); 
-    				count++;
-    			}  
-    			  
-    	  }
-    	 
-		
-	         }
+     
 	
 	
 	
@@ -1234,6 +1182,25 @@ public abstract class AbstractTest extends AbstractTestBase {
 			reportFail("error while type in text field " + e.getMessage());
 		}
 	}
+	
+	public void typeUsingscript(String locator, String data) {
+
+		try {
+			// highlightElement(element);
+			String scpt = "arguments[0].setAttribute('value','"+data+"')";
+			//String abc="arguments[0].st‌​yle.display='block'";
+			JavascriptExecutor js = (JavascriptExecutor)driver;
+			js.executeScript(scpt, getWebElement(locator));
+			//js.executeScript("arguments[0].value="+data+";",getWebElement(locator));
+			ExtentTestManager.getTest().log(Status.INFO, "Typed value " + data + " in " + locator);
+			log("type " + data + " in input field.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(Status.FAIL, "Error while Typing value " + data + " in " + locator);
+			reportFail("error while type in text field " + e.getMessage());
+		}
+	}
+	
 	
 	public void typeUsingJS(String locator, int data) {
 

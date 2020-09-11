@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.wrg.abstestbase.AbstractTest;
 import com.wrg.utils.ExtentTestManager;
 
@@ -18,57 +20,25 @@ public class UnderwritingInfoAndApplicationPage_AP extends AbstractTest {
 	WebDriverWait wait = null;
 
 	
-	public int verifyUnderwritingInfoPageElementsPresence() {
-		int totalcount=0;
-		 int currentelementcount=0;
-			List<String> totalPageElements=getUnderwritingInfoUIElementList();
-			System.out.println(totalPageElements.size());
-		      
-		     for(int i=0;i<totalPageElements.size();i++) {
-		    	  currentelementcount=0;
-		    	  String curlocater=totalPageElements.get(i);
-		    	 
-		    	  List<WebElement> curloclist=getWebElementsBydata(totalPageElements.get(i));
-		    	  inner:for(int j=1;j<=curloclist.size();j++) {
-		    		  WebElement curElement=null;
-		    		  try { 
-		    		   curElement=getWebElementBydata(curlocater+"["+j+"]"); 
-		    	          }catch(Exception e) {
-		    	        	  continue inner;
-			              }
-		    		  if(curElement.isDisplayed()==true) { 
-			    			 ExtentTestManager.getTest().log(Status.INFO, curElement.getText() + " Page Element is Present");
-			    			currentelementcount++;
-			    			continue inner;
-			    		}
-			    		 
-			    	 } //inner for loop close here
-		    	  totalcount=totalcount+currentelementcount;
-		    	  
-		      } //outer  for loop close here
-		      
-		     
-			
-	System.out.println(totalcount); 
-			
-			return totalcount;
-		}
+	public boolean verifyUnderwritingInfoPageElementsPresence() {
+	   if(isWebElementPresent("underwritingeuilabel1") && isWebElementPresent("underwritingeuilabel2") && isWebElementPresent("underwritingeuilabel3") && isWebElementPresent("underwritingeuilabel4") && isWebElementPresent("underwritingeuilabel5")
+			   && isWebElementPresent("underwritingeuilabel6") && isWebElementPresent("underwritingeuilabel7") && isWebElementPresent("underwritingeuilabel8") && isWebElementPresent("underwritingeuilabel9") && isWebElementPresent("underwritingeuilabel10")
+			   && isWebElementPresent("underwritingeuilabel11") && isWebElementPresent("underwritingeuilabel12") && isWebElementPresent("underwritingeuilabel13") && isWebElementPresent("underwritingeuilabel14") && isWebElementPresent("underwritingeuilabel15") && isWebElementPresent("underwritingeuilabel16")
+			   && isWebElementPresent("underwritingeuilabel17")&& isWebElementPresent("underwritingeuilabel18") && isWebElementPresent("underwritinguiinputfield1") && isWebElementPresent("underwritinguiinputfield2") && isWebElementPresent("underwritinguiinputfield3") && isWebElementPresent("underwritinguiinputfield4")
+			   && isWebElementPresent("underwritinguiinputfield5") && isWebElementPresent("underwritinguiinputfield6") && isWebElementPresent("underwritinguiinputfield7") && isWebElementPresent("underwritinguiinputfield8") && isWebElementPresent("underwritinguiinputfield9") && isWebElementPresent("underwritinguiinputfield10")
+			   && isWebElementPresent("underwritinguiinputfield11") && isWebElementPresent("underwritinguiinputfield12") && isWebElementPresent("underwritinguibuttons1") && isWebElementPresent("underwritinguibuttons2")
+			   && isWebElementPresent("underwritinguibuttons3") && isWebElementPresent("underwritinguibuttons4") && isWebElementPresent("underwritinguibuttons5") && isWebElementPresent("underwritinguibuttons6")) 
+	   {
+		   return true; 
+		   
+	   } 
 		
-		public  List<String> getUnderwritingInfoUIElementList() {
-			waitForPageLoaded();
-			List<String> totalelements=new ArrayList<String>();
-			totalelements.add(getData("underwritingeuilabels"));
-			totalelements.add(getData("underwritinguiinputfields"));
-			totalelements.add(getData("underwritinguibuttons"));
-			return totalelements;
+		
+	return false;
+		
 		}
 		
 		
-		public int getUnderwritingInfoUIElementTotalCount() {
-			return Integer.parseInt(getData("underwritinguielements"));	
-		}
-		
-	
 	
 	
 	public boolean isWebElementPresentInSupplemental(String element) {

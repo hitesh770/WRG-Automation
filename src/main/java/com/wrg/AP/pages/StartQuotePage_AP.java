@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -11,6 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.wrg.abstestbase.AbstractTest;
 import com.wrg.utils.ExtentTestManager;
 
@@ -22,22 +25,21 @@ public class StartQuotePage_AP extends AbstractTest {
 		int totalcount=0;
 		 int currentelementcount=0;
 			List<String> totalPageElements=getStartQuoteUIElementList();
-			System.out.println(totalPageElements.size());
 		      
 		     for(int i=0;i<totalPageElements.size();i++) {
 		    	  currentelementcount=0;
 		    	  String curlocater=totalPageElements.get(i);
 		    	 
-		    	  List<WebElement> curloclist=getWebElementsBydata(totalPageElements.get(i));
+		    	  List<WebElement> curloclist=getCurrentList(totalPageElements.get(i));
 		    	  inner:for(int j=1;j<=curloclist.size();j++) {
 		    		  WebElement curElement=null;
 		    		  try { 
-		    		   curElement=getWebElementBydata(curlocater+"["+j+"]"); 
+		    		   curElement=getCurrentElement(curlocater+"["+j+"]"); 
 		    	          }catch(Exception e) {
 		    	        	  continue inner;
 			              }
 		    		  if(curElement.isDisplayed()==true) { 
-			    			 ExtentTestManager.getTest().log(Status.INFO, curElement.getText() + " Page Element is Present");
+		    			  ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel(curElement.getText() + " Page Element is Present",ExtentColor.BLUE));
 			    			currentelementcount++;
 			    			continue inner;
 			    		}
@@ -47,9 +49,6 @@ public class StartQuotePage_AP extends AbstractTest {
 		    	  
 		      } //outer  for loop close here
 		      
-		     
-			
-	System.out.println(totalcount); 
 			
 			return totalcount;
 		}
@@ -69,7 +68,35 @@ public class StartQuotePage_AP extends AbstractTest {
 		}
 		
 	
-	
+		public List<WebElement> getCurrentList(String data, boolean... optional) {
+			List<WebElement> we = null;
+			try {
+				we = driver.findElements(By.xpath(data));
+			} catch (Exception e) {
+				e.printStackTrace();
+				if (optional[0] != true) {
+					throwElementNotPresentException(e, data, optional[0]);
+				}
+			}
+
+			return we;
+		}
+		
+		
+		
+		
+		public WebElement getCurrentElement(String data) {
+			WebElement we = null; 
+			try {
+				 we = driver.findElement(By.xpath(data));
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+
+			return we;
+		}
+		
 	
 	
 	
