@@ -439,9 +439,9 @@ public void validateUnderwritingInfoPageElementsviaAgentPortalForGL(String insur
 	buildNumber_AP = getAgentPortalBuild();
 	if (buildNumber_AP.contains("R3")) {
 		applicantName = searchQuote(insuredName);
-		elementdisplayed=verifyUnderwritingInfoPageElements(state, insuranceType, businessEntity, classCodeNumber);
-		asst.assertEquals(elementdisplayed, true);   	 
-		 asst.assertAll();
+		elementdisplayed=verifyUnderwritingInfoPageElements(state, insuranceType, businessEntity, classCodeNumber);	 
+		asst.assertEquals(elementdisplayed, true, "There are missing elements on the underwriting info page");
+		asst.assertAll();
 	}else if (buildNumber_AP.contains("R2")) {
 			//need to handle for r2 code base
 		}

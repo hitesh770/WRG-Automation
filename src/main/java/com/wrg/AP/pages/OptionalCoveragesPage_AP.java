@@ -15,6 +15,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.aventstack.extentreports.Status;
@@ -458,12 +459,37 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		explicitwaitForElementVisibility(getWebElement("additonalinsuredokbtn")); 
 		clickUsingJS("additonalinsuredokbtn");
 		waitForPageLoaded();
-		explicitwaitForElementVisibility(getWebElement("additonalinsureduseverifiedbtn")); 
-		clickUsingJS("additonalinsureduseverifiedbtn");
+		
+		if(isWebElementPresent("additonalinsureduseverifiedbtn")) {
+			explicitwaitForElementVisibility(getWebElement("additonalinsureduseverifiedbtn")); 
+			clickUsingJS("additonalinsureduseverifiedbtn");
+			
+		}else {
+			explicitwaitForElementVisibility(getWebElement("additonalinsureduseorginalbtn")); 
+			clickUsingJS("additonalinsureduseorginalbtn");
+		}
+		
 		waitForPageLoaded();
 		waitforrunningLoadingicon();
 	 
 	}
+	
+	/*
+	public String chooseState(String state) {
+	String selectstate="";
+		List<String> stateList=new ArrayList<String>();
+	stateList.add("Indiana");
+	stateList.add("Ohio");  
+	for(String statename:stateList) {
+		if(statename.equalsIgnoreCase(state)) {
+			selectstate=statename;
+			break;
+		}
+		
+	}
+		return selectstate;
+	}
+	*/
 	
 	
 	public String getQuotePageText() {
