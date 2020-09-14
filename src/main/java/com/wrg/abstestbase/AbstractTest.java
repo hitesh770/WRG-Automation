@@ -1173,7 +1173,6 @@ public abstract class AbstractTest extends AbstractTestBase {
 			// highlightElement(element);
 			JavascriptExecutor js = (JavascriptExecutor)driver;
 			js.executeScript("arguments[0].value='"+data+"';", getWebElement(locator));
-			//js.executeScript("arguments[0].value="+data+";",getWebElement(locator));
 			ExtentTestManager.getTest().log(Status.INFO, "Typed value " + data + " in " + locator);
 			log("type " + data + " in input field.");
 		} catch (Exception e) {
@@ -1183,23 +1182,6 @@ public abstract class AbstractTest extends AbstractTestBase {
 		}
 	}
 	
-	public void typeUsingscript(String locator, String data) {
-
-		try {
-			// highlightElement(element);
-			String scpt = "arguments[0].setAttribute('value','"+data+"')";
-			//String abc="arguments[0].st‌​yle.display='block'";
-			JavascriptExecutor js = (JavascriptExecutor)driver;
-			js.executeScript(scpt, getWebElement(locator));
-			//js.executeScript("arguments[0].value="+data+";",getWebElement(locator));
-			ExtentTestManager.getTest().log(Status.INFO, "Typed value " + data + " in " + locator);
-			log("type " + data + " in input field.");
-		} catch (Exception e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(Status.FAIL, "Error while Typing value " + data + " in " + locator);
-			reportFail("error while type in text field " + e.getMessage());
-		}
-	}
 	
 	
 	public void typeUsingJS(String locator, int data) {
