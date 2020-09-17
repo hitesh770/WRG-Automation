@@ -178,6 +178,42 @@ public class UnderwritingInfoAndApplicationPage_AP extends AbstractTest {
 		clickIfElementIsDisplayed("productsMarketedToYouthYES");
 		clickIfElementIsDisplayed("productDesignNo");
 		clickIfElementIsDisplayed("visitorsAllowedNO");
+		clickIfElementIsDisplayed("fallMitigationProgramYES");
+		clickIfElementIsDisplayed("applicantSubcontractYES");
+		clickIfElementIsDisplayed("formalSubcontractorAgreementYES");
+		clickIfElementIsDisplayed("certificatesOfInsuranceYES");
+		clickIfElementIsDisplayed("applicantNameAsAdditionalInsuredYES");
+		if(isWebElementPresent("workThatIsSubcontracted")==true) {
+			type("workThatIsSubcontracted",getData("listOfSubcontractedWork"));
+		}
+		clickIfElementIsDisplayed("totalCostOfSubcontractedWorkMoreThan50%NO");
+		clickIfElementIsDisplayed("equipmentRentedNO");
+		if(isWebElementPresent("listJobsPerformedByApplicant")==true){
+			type("listJobsPerformedByApplicant",getData("jobsPerformedByApplicantIfPremiumOver$5000"));
+		}
+		clickIfElementIsDisplayed("applicantPlantTourOfferedNO");
+		clickIfElementIsDisplayed("toursEscortedByEmployeeYES");
+		clickIfElementIsDisplayed("productRecallNO");
+		if(isWebElementPresent("typeOfProducts")==true){
+			type("typeOfProducts",getData("typeOfProductsManufactured"));
+		}
+		clickIfElementIsDisplayed("walkingSurfaceInGoodConditionYES");
+		clickIfElementIsDisplayed("swimmingPoolFencedYES");
+		clickIfElementIsDisplayed("swimmingPoolHaveDivingBoardYES");
+		clickIfElementIsDisplayed("loanOrRentEquipmentToOthersNO");
+		clickIfElementIsDisplayed("annualSalesDerivedFromRetailOperationsNO");
+		clickIfElementIsDisplayed("floorAreaOpenToPublicNO");
+		clickIfElementIsDisplayed("allSupplierBasedInUnitedStatesYES");
+		clickIfElementIsDisplayed("applicantAlterManufactureAssembleMixOrBlendProductsOrGoodsNO");
+		clickIfElementIsDisplayed("brandingUnderOwnLabelNO");
+		clickIfElementIsDisplayed("buildingExceed2.5StoriesYES");
+		clickIfElementIsDisplayed("swimmingPoolOnPremisesNO");
+		clickIfElementIsDisplayed("anyRentalPropertiesOccupiedNO");
+		clickIfElementIsDisplayed("recreationalFacilitiesNO");
+		clickIfElementIsDisplayed("businessOpenAfter11NO");
+		clickIfElementIsDisplayed("childrenPlayAreaNO");
+		clickIfElementIsDisplayed("anyAlcoholSalesNO");
+		clickIfElementIsDisplayed("applicantHaveBarWhereAlcoholIsServedNO");
 	}
 
 	public void clickBeginSubmissionBtn() {
