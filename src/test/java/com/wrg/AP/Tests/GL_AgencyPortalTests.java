@@ -8,8 +8,12 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
+import org.testng.IAnnotationTransformer;
+import org.testng.IRetryAnalyzer;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.CustomAttribute;
+import org.testng.annotations.ITestAnnotation;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -36,9 +40,10 @@ import com.wrg.PC.Tests.BOP_PolicyCenterTests;
 import com.wrg.PC.pages.LocationsPage_PC;
 import com.wrg.PC.pages.SummaryPage_PC;
 import com.wrg.abstestbase.AbstractTest;
+import com.wrg.utils.AnnotationTransformer;
 import com.wrg.utils.ExtentTestManager;
 
-public class GL_AgencyPortalTests extends AbstractTest {
+public class GL_AgencyPortalTests extends AbstractTest{
 
 	WrgHomePage_AP homepage = null;
 	QuoteSearchPage_AP quoteSearchPage = null;
@@ -197,7 +202,7 @@ public void validateThreetoSixOptionalCoveragesViaAgentPortalForGL(String insure
 
 	
 	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
-		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue","addressLine1","city","zipcode" })
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue","addressLine1","city","zipcode" })  
 @Test
 public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
 		String organizationCode, String password, String insuranceType, String businessEntity,

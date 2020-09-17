@@ -2,6 +2,7 @@ package com.wrg.AP.pages;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -26,7 +27,7 @@ import com.wrg.utils.ExtentTestManager;
 
 public class OptionalCoveragesPage_AP extends AbstractTest {
 	WebDriverWait wait = null;
-
+   
 
 	public int verifyOptionalCoveragePageElementsPresence() {
 		int totalcount=0;
@@ -459,7 +460,25 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		explicitwaitForElementVisibility(getWebElement("additonalinsuredokbtn")); 
 		clickUsingJS("additonalinsuredokbtn");
 		waitForPageLoaded();
+		if(isWebElementPresent("additionalinsuredfieldmessages")) {
+			
+			Iterator<WebElement> fieldmsgIterator=getaddtionalInsuredFieldMessages().iterator();
+			while(fieldmsgIterator.hasNext()) {
+				WebElement message=fieldmsgIterator.next();
+				String msgtext=message.getText();
+				if(msgtext.equalsIgnoreCase("This is a required field") || msgtext.contains("ZIP Code must be five or nine digits")) {
+					 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel("Following validations appear for the given input, exiting from the system " +msgtext,ExtentColor.RED));
+					
+				}
+				
+				
+			}// while end
+			
+			
+		} // outer if end
 		
+		
+		try {
 		if(isWebElementPresent("additonalinsureduseverifiedbtn")) {
 			explicitwaitForElementVisibility(getWebElement("additonalinsureduseverifiedbtn")); 
 			clickUsingJS("additonalinsureduseverifiedbtn");
@@ -468,10 +487,31 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 			explicitwaitForElementVisibility(getWebElement("additonalinsureduseorginalbtn")); 
 			clickUsingJS("additonalinsureduseorginalbtn");
 		}
+		}catch(Exception e) {
+			String mainwindow = driver.getWindowHandle(); // get parent(current) window name
+			for (String popup : driver.getWindowHandles()) // iterating on child windows
+			{
+				driver.switchTo().window(popup);
+				String text=getWebElementText("additionalinsuredinvalidstatemessage");
+				 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel("Following validations appear for the given input " +text,ExtentColor.RED));
+				 explicitwaitForElementVisibility(getWebElement("mailverficationclosebtn")); 
+				 clickUsingJS("mailverficationclosebtn");
+			}
+			driver.switchTo().window(mainwindow);
+			
+			
+		}
 		
 		waitForPageLoaded();
 		waitforrunningLoadingicon();
 	 
+	}
+	
+	
+	
+	public List<WebElement> getaddtionalInsuredFieldMessages() {
+		List<WebElement> fieldmessages=getWebElements("additionalinsuredfieldmessages");
+		return fieldmessages;
 	}
 	
 	/*
@@ -492,6 +532,8 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 	*/
 	
 	
+	
+	
 	public String getQuotePageText() {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		String quotesubmitmessage="";
@@ -500,6 +542,26 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		explicitwaitForElementVisibility(getWebElement("quoteButton")); 
 		clickUsingJS("quoteButton");
 		waitForPageLoaded();
+        if(isWebElementPresent("creatingQuoteLoader")==false) {
+			Iterator<WebElement> fieldmsgIterator=getaddtionalInsuredFieldMessages().iterator();
+			while(fieldmsgIterator.hasNext()) {
+				WebElement message=fieldmsgIterator.next();
+				String msgtext=message.getText();
+				if(msgtext.equalsIgnoreCase("This is a required field") || msgtext.contains("ZIP Code must be five or nine digits") || msgtext.equalsIgnoreCase("Must be a Number")) {			
+					ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel("Following validations appear for the given input: " +msgtext,ExtentColor.RED));
+					return  quotesubmitmessage="Test failed due to validation errors";
+				}
+				
+				
+			}// while end
+			
+			
+		} // outer if end
+		
+		
+		
+		
+		
 		if (isWebElementPresent("creatingQuoteLoader") == true) {
 			explicitwaitForInvisibilityofElement(getWebElement("creatingQuoteLoader")); 
 		}
