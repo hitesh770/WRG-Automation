@@ -48,6 +48,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -90,6 +91,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 	public static PostgresqlUtil pgutil = null;
 	public static String highLightPropertyName = "outline";
 	int elementWaitTime = 10;
+	static int explicitWaitTime = 15;  
 	public static String highlightColor = "#00ff00 solid 3px";
 	WebElement we = null;
 	public static String browser = null;
@@ -725,6 +727,10 @@ public abstract class AbstractTest extends AbstractTestBase {
 
 		return we;
 	}
+	
+	
+	
+	
 
 	public String getData(String data) {
 		try {
@@ -784,6 +790,12 @@ public abstract class AbstractTest extends AbstractTestBase {
 
 		return we;
 	}
+	
+	
+	
+	
+	
+	
 
 	public void clear(WebElement element) {
 
@@ -1025,6 +1037,9 @@ public abstract class AbstractTest extends AbstractTestBase {
 			return false;
 		}
 	}
+	
+	
+	
 
 	public boolean isWebElementPresentAfterWait(String element) {
 		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
@@ -1036,7 +1051,24 @@ public abstract class AbstractTest extends AbstractTestBase {
 		}
 
 	}
+	
+	public static void explicitwaitForElementVisibility(WebElement element) {
+		new WebDriverWait(driver,explicitWaitTime).until(ExpectedConditions.visibilityOf(element));
+		//new WebDriverWait(driver,explicitWaitTime).until(ExpectedConditions.elementToBeClickable(element));
+	}
+	
 
+	
+	public static void explicitwaitForInvisibilityofElement(WebElement element) {
+		new WebDriverWait(driver,explicitWaitTime).until(ExpectedConditions.invisibilityOf(element));
+	}
+	
+	
+
+     
+	
+	
+	
 	public boolean isWebElementDisplayed(String element) {
 		return getWebElement(element).isDisplayed();
 
@@ -1140,7 +1172,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 		try {
 			// highlightElement(element);
 			JavascriptExecutor js = (JavascriptExecutor)driver;
-			js.executeScript("arguments[0].value="+data+";",getWebElement(locator));
+			js.executeScript("arguments[0].value='"+data+"';", getWebElement(locator));
 			ExtentTestManager.getTest().log(Status.INFO, "Typed value " + data + " in " + locator);
 			log("type " + data + " in input field.");
 		} catch (Exception e) {
@@ -1149,6 +1181,8 @@ public abstract class AbstractTest extends AbstractTestBase {
 			reportFail("error while type in text field " + e.getMessage());
 		}
 	}
+	
+	
 	
 	public void typeUsingJS(String locator, int data) {
 
