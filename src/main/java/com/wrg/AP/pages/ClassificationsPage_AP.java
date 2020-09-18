@@ -15,7 +15,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.wrg.abstestbase.AbstractTest;
+import com.wrg.utils.ExtentTestManager;
 
 public class ClassificationsPage_AP extends AbstractTest {
 
@@ -132,5 +136,130 @@ public class ClassificationsPage_AP extends AbstractTest {
 		}
 		clickUsingJS("nextButtonBottom");
 	}
-
+	public void addClassificationsToolTipValidation(String classCodeNumber, String coverageNumber,String tooltipText) {
+		waitForPageLoaded();
+		wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOf(getWebElement("classificationPageHeading")));
+		sleep(1000);
+		wait.until(ExpectedConditions.visibilityOf(getWebElement("addNewClassificationButton")));
+		clickUsingJS("addNewClassificationButton");
+		String tooltip = null;
+		String mainwindow = driver.getWindowHandle();
+		for (String popup : driver.getWindowHandles()) // iterating on child windows
+		{
+			driver.switchTo().window(popup);
+			wait.until(ExpectedConditions.visibilityOf(getWebElement("addNewClassificationButton")));
+			if (coverageNumber =="CG2293"){
+				//sleep(8000);
+				//typeUsingJS("Exposure", "10");
+				if (isWebElementPresentAfterWait("IfAnyBasis")) {
+					clickUsingJS("IfAnyBasis");
+				}			
+				//sleep(8000);
+				if (isWebElementPresentAfterWait("PesticideLicenceYes")) {
+					clickUsingJS("PesticideLicenceYes");
+				}							
+				sleep(8000);				
+				scrollToElement("CG2293HelpIcon");
+				actionClick("CG2293HelpIcon");
+				sleep(4000);
+							
+				tooltip = getWebElementText("CG2293Tooltip");
+				if (tooltipText.contains(tooltip)) {					
+					ExtentTestManager.getTest().log(Status.INFO,
+							MarkupHelper.createLabel(
+									"CG 22 93 Tooltip -> " + tooltip,
+									ExtentColor.GREEN));
+				}
+				else {
+					ExtentTestManager.getTest().log(Status.FAIL,
+							MarkupHelper.createLabel(
+									"CG 22 93 Tooltip -> "+ tooltip,
+									ExtentColor.RED));
+				}
+				actionClick("CG2293Coverages");
+				if (isWebElementPresentAfterWait("CG2293HelpIcon")) {
+					ExtentTestManager.getTest().log(Status.INFO,
+							MarkupHelper.createLabel(
+									"CG 22 93 Help Icon -> is present" ,
+									ExtentColor.GREEN));
+				}
+				else {
+					ExtentTestManager.getTest().log(Status.FAIL,
+							MarkupHelper.createLabel(
+									"CG 22 93 Help Icon -> is not present" ,
+									ExtentColor.RED));
+				}
+				sleep(2000);
+				clickUsingJS("CG2293Coverages");
+				if (isWebElementPresentAfterWait("CG2293HelpIcon")) {
+					ExtentTestManager.getTest().log(Status.INFO,
+							MarkupHelper.createLabel(
+									"CG 22 93 Help Icon -> is present" ,
+									ExtentColor.GREEN));
+				}
+				else {
+					ExtentTestManager.getTest().log(Status.FAIL,
+							MarkupHelper.createLabel(
+									"CG 22 93 Help Icon -> is not present" ,
+									ExtentColor.RED));
+				}
+			}
+			else if(coverageNumber =="WCG2687") {
+				if (isWebElementPresentAfterWait("IfAnyBasis")) {
+					clickUsingJS("IfAnyBasis");
+				}			
+				//sleep(8000);
+				if (isWebElementPresentAfterWait("PesticideLicenceYes")) {
+					clickUsingJS("PesticideLicenceYes");
+				}							
+				sleep(8000);
+				scrollToElement("WCG2687HelpIcon");
+				actionClick("WCG2687HelpIcon");
+				sleep(4000);
+				tooltip = getWebElementText("CG2293Tooltip");
+				//System.out.print(tooltip);
+				if (tooltipText.contains(tooltip)) {					
+					ExtentTestManager.getTest().log(Status.INFO,
+							MarkupHelper.createLabel(
+									"WCG 26 87 Tooltip -> " + tooltip,
+									ExtentColor.GREEN));
+				}
+				else {
+					ExtentTestManager.getTest().log(Status.FAIL,
+							MarkupHelper.createLabel(
+									"WCG 26 87 Tooltip -> "+ tooltip,
+									ExtentColor.RED));
+				}
+				actionClick("WCG2687Coverages");
+				if (isWebElementPresentAfterWait("WCG2687HelpIcon")) {
+					ExtentTestManager.getTest().log(Status.INFO,
+							MarkupHelper.createLabel(
+									"WCG 26 87 Help Icon -> is present" ,
+									ExtentColor.GREEN));
+				}
+				else {
+					ExtentTestManager.getTest().log(Status.FAIL,
+							MarkupHelper.createLabel(
+									"WCG 26 87 Help Icon -> is not present" ,
+									ExtentColor.RED));
+				}
+				sleep(2000);
+				clickUsingJS("WCG2687Coverages");
+				if (isWebElementPresentAfterWait("WCG2687HelpIcon")) {
+					ExtentTestManager.getTest().log(Status.INFO,
+							MarkupHelper.createLabel(
+									"WCG 26 87 Help Icon -> is present" ,
+									ExtentColor.GREEN));
+				}
+				else {
+					ExtentTestManager.getTest().log(Status.FAIL,
+							MarkupHelper.createLabel(
+									"WCG 26 87 Help Icon -> is not present" ,
+									ExtentColor.RED));
+				}
+			}
+			
+		}
+	}
 }
