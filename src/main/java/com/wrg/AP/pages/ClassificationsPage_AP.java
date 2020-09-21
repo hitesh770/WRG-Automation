@@ -233,11 +233,11 @@ public class ClassificationsPage_AP extends AbstractTest {
 				if (isWebElementPresentAfterWait("PesticideLicenceYes")) {
 					clickUsingJS("PesticideLicenceYes");
 				}							
-				sleep(8000);				
+				sleep(8000);			
 				scrollToElement("CG2293HelpIcon");
 				actionClick("CG2293HelpIcon");
-				sleep(4000);
-							
+				//sleep(4000);
+				wait.until(ExpectedConditions.visibilityOf(getWebElement("CG2293Tooltip")));		
 				tooltip = getWebElementText("CG2293Tooltip");
 				if (tooltipText.contains(tooltip)) {					
 					ExtentTestManager.getTest().log(Status.INFO,
@@ -290,7 +290,8 @@ public class ClassificationsPage_AP extends AbstractTest {
 				sleep(8000);
 				scrollToElement("WCG2687HelpIcon");
 				actionClick("WCG2687HelpIcon");
-				sleep(4000);
+				//sleep(4000);
+				wait.until(ExpectedConditions.visibilityOf(getWebElement("CG2293Tooltip")));
 				tooltip = getWebElementText("CG2293Tooltip");
 				//System.out.print(tooltip);
 				if (tooltipText.contains(tooltip)) {					
@@ -333,6 +334,7 @@ public class ClassificationsPage_AP extends AbstractTest {
 									ExtentColor.RED));
 				}
 			}
+			quitDriver(driver);
 			
 		}
 	}

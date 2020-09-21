@@ -578,7 +578,8 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 			sleep(2000);
 			scrollToElement("CG2033HelpIcon");
 			actionClick("CG2033HelpIcon");
-			sleep(4000);
+			//sleep(4000);
+			wait.until(ExpectedConditions.visibilityOf(getWebElement("CG2293Tooltip")));
 			tooltip = getWebElementText("CG2293Tooltip");
 			System.out.print(tooltip);
 			if (tooltipText.contains(tooltip)) {					
@@ -620,7 +621,7 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 								"CG 20 33 Help Icon -> is not present" ,
 								ExtentColor.RED));
 			}
-			closeDriver(driver);
+			quitDriver(driver);
 		}
 		else if(coverageNumber =="CG2034") {
 			clickUsingJS("AdditionalInsured");
@@ -628,7 +629,8 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 			sleep(2000);
 			scrollToElement("CG2034HelpIcon");
 			actionClick("CG2034HelpIcon");
-			sleep(4000);
+			//sleep(4000);
+			wait.until(ExpectedConditions.visibilityOf(getWebElement("CG2293Tooltip")));		
 			tooltip = getWebElementText("CG2293Tooltip");
 			System.out.print(tooltip);
 			if (tooltipText.contains(tooltip)) {					
@@ -670,7 +672,7 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 								"CG 20 34 Help Icon -> is not present" ,
 								ExtentColor.RED));
 			}
-			closeDriver(driver);
+			quitDriver(driver);
 		}
 	}
 }

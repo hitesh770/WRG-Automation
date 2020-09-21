@@ -123,7 +123,8 @@ public class PolicywideCoveragesPage_AP extends AbstractTest {
 		if(coverageNumber =="WGL12") {
 			scrollToElement("WGL12HelpIcon");
 			actionClick("WGL12HelpIcon");
-			sleep(4000);
+			//sleep(4000);
+			wait.until(ExpectedConditions.visibilityOf(getWebElement("CG2293Tooltip")));
 			tooltip = getWebElementText("CG2293Tooltip");
 			System.out.print(tooltip);
 			if (tooltipText.contains(tooltip)) {					

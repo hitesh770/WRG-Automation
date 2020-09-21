@@ -1280,7 +1280,7 @@ public class GL_AgencyPortalTests extends AbstractTest {
 					percentageOwnerOccupiedValue, numberOfLocations);*/
 			//ClassificationsTooltipValidation(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
 
-<<<<<<< HEAD
+
 		}
 		ExtentTestManager.getTest().log(Status.INFO,
 				MarkupHelper.createLabel(
@@ -1455,7 +1455,7 @@ public class GL_AgencyPortalTests extends AbstractTest {
 			//optionalCoveragesPage_AP.optionalCoveragesToolTipValidation(classCodeNumber,coverageNumber, tooltipText);
 	}
 }
-||||||| merged common ancestors
+
 //	@AfterTest
 //	public void afterTest() throws IOException {
 //		if (browser.equalsIgnoreCase("firefox")) {
@@ -1467,7 +1467,7 @@ public class GL_AgencyPortalTests extends AbstractTest {
 //		}
 //	}
 
-=======
+
 	@AfterTest
 	public void afterTest() throws IOException {
 		if (browser.equalsIgnoreCase("firefox")) {
@@ -1479,5 +1479,5 @@ public class GL_AgencyPortalTests extends AbstractTest {
 		}
 	}
 
->>>>>>> f3b926d36d2bcabefa9fb67a38da1b3a97aa1eed
+
 }
