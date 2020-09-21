@@ -98,10 +98,24 @@ public class ClassificationsPage_AP extends AbstractTest {
 
 			return we;
 		}
+		
+		public void waitforrunningLoadingicon() {  
+
+			  int count=0;
+		    	 if (isWebElementPresent("runningloadingicon") == true) { 
+		    		  List<WebElement> runningiconlist=getWebElements("runningloadingicon");
+		    			while(runningiconlist.size()!=0 && count<4) {
+		    				sleep(1000); 
+		    				count++;
+		    			}  
+		    			  
+		    	 }
+		}
 
 	public void addClassifications(String classCodeNumber, String exposureAmount, String numberOfLocations) {
 		waitForPageLoaded();
 		wait = new WebDriverWait(driver, 30);
+		waitforrunningLoadingicon();
 		wait.until(ExpectedConditions.visibilityOf(getWebElement("classificationPageHeading")));
 //		if(Integer.parseInt(numberOfLocations>1) {
 //			wait.until(ExpectedConditions.visibilityOf(getWebElement("addNewClassificationButton")));

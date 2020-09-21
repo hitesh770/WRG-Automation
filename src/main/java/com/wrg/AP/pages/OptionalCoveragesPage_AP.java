@@ -474,7 +474,7 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 				
 			}// while end
 			
-			
+			getaddtionalInsuredFieldNames();
 		} // outer if end
 		
 		
@@ -494,6 +494,7 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 				driver.switchTo().window(popup);
 				String text=getWebElementText("additionalinsuredinvalidstatemessage");
 				 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel("Following validations appear for the given input " +text,ExtentColor.RED));
+				 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel("Test case failed due to validation error ",ExtentColor.RED));
 				 explicitwaitForElementVisibility(getWebElement("mailverficationclosebtn")); 
 				 clickUsingJS("mailverficationclosebtn");
 			}
@@ -507,7 +508,17 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 	 
 	}
 	
-	
+	public void getaddtionalInsuredFieldNames() {
+		List<WebElement> fieldnames=getWebElements("additionalinsuredfieldnames");
+		 for(WebElement field:fieldnames) {
+			  String name=field.getText();
+			  ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel("Field name is: '" +name+  "' ",ExtentColor.RED));
+			 // System.out.print(" || ");
+			  
+		  }
+		
+		
+	}
 	
 	public List<WebElement> getaddtionalInsuredFieldMessages() {
 		List<WebElement> fieldmessages=getWebElements("additionalinsuredfieldmessages");
@@ -549,12 +560,13 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 				String msgtext=message.getText();
 				if(msgtext.equalsIgnoreCase("This is a required field") || msgtext.contains("ZIP Code must be five or nine digits") || msgtext.equalsIgnoreCase("Must be a Number")) {			
 					ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel("Following validations appear for the given input: " +msgtext,ExtentColor.RED));
-					return  quotesubmitmessage="Test failed due to validation errors";
+					
 				}
 				
 				
 			}// while end
-			
+			getaddtionalInsuredFieldNames();
+			return  quotesubmitmessage="Test failed due to validation errors";
 			
 		} // outer if end
 		
