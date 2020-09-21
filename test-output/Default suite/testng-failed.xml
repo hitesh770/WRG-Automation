@@ -3,13 +3,23 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.wrg.Regression.Tests.BC_RegressionTests">
+      <class name="com.wrg.AP.Tests.GL_AgencyPortalTests">
         <methods>
-          <include name="beforeMethod"/>
+          <include name="afterTest"/>
+          <include name="validateFirstThreeOptionalCoveragesViaAgentPortalForGL"/>
+          <include name="validateLocationPageElementsviaAgentPortalForGL"/>
           <include name="beforesuite"/>
-          <include name="issuePolicyAndPerformSearch"/>
+          <include name="validatePolicywideCoveragePageElementsviaAgentPortalForGL"/>
+          <include name="validateOptionalCoveragePageElementsviaAgentPortalForGL"/>
+          <include name="validateUnderwritingInfoPageElementsviaAgentPortalForGL"/>
+          <include name="validateClassificationPageElementsviaAgentPortalForGL"/>
+          <include name="validateApplicantInformationPageElementsviaAgentPortalForGL"/>
+          <include name="validateStartQuotePageElementsviaAgentPortalForGL"/>
+          <include name="beforeMethod"/>
+          <include name="createNewQuoteViaAgentPortalForGL"/>
+          <include name="validateThreetoSixOptionalCoveragesViaAgentPortalForGL"/>
         </methods>
-      </class> <!-- com.wrg.Regression.Tests.BC_RegressionTests -->
+      </class> <!-- com.wrg.AP.Tests.GL_AgencyPortalTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

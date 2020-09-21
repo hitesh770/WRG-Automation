@@ -1,18 +1,46 @@
 package com.wrg.AP.pages;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.wrg.abstestbase.AbstractTest;
+import com.wrg.utils.ExtentTestManager;
 
 public class UnderwritingInfoAndApplicationPage_AP extends AbstractTest {
 	WebDriverWait wait = null;
 
+	
+	public boolean verifyUnderwritingInfoPageElementsPresence() {
+	   if(isWebElementPresent("underwritingeuilabel1") && isWebElementPresent("underwritingeuilabel2") && isWebElementPresent("underwritingeuilabel3") && isWebElementPresent("underwritingeuilabel4") && isWebElementPresent("underwritingeuilabel5")
+			   && isWebElementPresent("underwritingeuilabel6") && isWebElementPresent("underwritingeuilabel7") && isWebElementPresent("underwritingeuilabel8") && isWebElementPresent("underwritingeuilabel9") && isWebElementPresent("underwritingeuilabel10")
+			   && isWebElementPresent("underwritingeuilabel11") && isWebElementPresent("underwritingeuilabel12") && isWebElementPresent("underwritingeuilabel13") && isWebElementPresent("underwritingeuilabel14") && isWebElementPresent("underwritingeuilabel15") && isWebElementPresent("underwritingeuilabel16")
+			   && isWebElementPresent("underwritingeuilabel17")&& isWebElementPresent("underwritingeuilabel18") && isWebElementPresent("underwritinguiinputfield1") && isWebElementPresent("underwritinguiinputfield2") && isWebElementPresent("underwritinguiinputfield3") && isWebElementPresent("underwritinguiinputfield4")
+			   && isWebElementPresent("underwritinguiinputfield5") && isWebElementPresent("underwritinguiinputfield6") && isWebElementPresent("underwritinguiinputfield7") && isWebElementPresent("underwritinguiinputfield8") && isWebElementPresent("underwritinguiinputfield9") && isWebElementPresent("underwritinguiinputfield10")
+			   && isWebElementPresent("underwritinguiinputfield11") && isWebElementPresent("underwritinguiinputfield12") && isWebElementPresent("underwritinguibuttons1") && isWebElementPresent("underwritinguibuttons2")
+			   && isWebElementPresent("underwritinguibuttons3") && isWebElementPresent("underwritinguibuttons4") && isWebElementPresent("underwritinguibuttons5") && isWebElementPresent("underwritinguibuttons6")) 
+	   {
+		   return true; 
+		   
+	   } 
+		
+		
+	return false;
+		
+		}
+		
+		
+	
+	
 	public boolean isWebElementPresentInSupplemental(String element) {
 		driver.manage().timeouts().implicitlyWait(400, TimeUnit.MILLISECONDS);
 		if (getWebElements(element).size() > 0) {
@@ -150,6 +178,42 @@ public class UnderwritingInfoAndApplicationPage_AP extends AbstractTest {
 		clickIfElementIsDisplayed("productsMarketedToYouthYES");
 		clickIfElementIsDisplayed("productDesignNo");
 		clickIfElementIsDisplayed("visitorsAllowedNO");
+		clickIfElementIsDisplayed("fallMitigationProgramYES");
+		clickIfElementIsDisplayed("applicantSubcontractYES");
+		clickIfElementIsDisplayed("formalSubcontractorAgreementYES");
+		clickIfElementIsDisplayed("certificatesOfInsuranceYES");
+		clickIfElementIsDisplayed("applicantNameAsAdditionalInsuredYES");
+		if(isWebElementPresent("workThatIsSubcontracted")==true) {
+			type("workThatIsSubcontracted",getData("listOfSubcontractedWork"));
+		}
+		clickIfElementIsDisplayed("totalCostOfSubcontractedWorkMoreThan50%NO");
+		clickIfElementIsDisplayed("equipmentRentedNO");
+		if(isWebElementPresent("listJobsPerformedByApplicant")==true){
+			type("listJobsPerformedByApplicant",getData("jobsPerformedByApplicantIfPremiumOver$5000"));
+		}
+		clickIfElementIsDisplayed("applicantPlantTourOfferedNO");
+		clickIfElementIsDisplayed("toursEscortedByEmployeeYES");
+		clickIfElementIsDisplayed("productRecallNO");
+		if(isWebElementPresent("typeOfProducts")==true){
+			type("typeOfProducts",getData("typeOfProductsManufactured"));
+		}
+		clickIfElementIsDisplayed("walkingSurfaceInGoodConditionYES");
+		clickIfElementIsDisplayed("swimmingPoolFencedYES");
+		clickIfElementIsDisplayed("swimmingPoolHaveDivingBoardYES");
+		clickIfElementIsDisplayed("loanOrRentEquipmentToOthersNO");
+		clickIfElementIsDisplayed("annualSalesDerivedFromRetailOperationsNO");
+		clickIfElementIsDisplayed("floorAreaOpenToPublicNO");
+		clickIfElementIsDisplayed("allSupplierBasedInUnitedStatesYES");
+		clickIfElementIsDisplayed("applicantAlterManufactureAssembleMixOrBlendProductsOrGoodsNO");
+		clickIfElementIsDisplayed("brandingUnderOwnLabelNO");
+		clickIfElementIsDisplayed("buildingExceed2.5StoriesYES");
+		clickIfElementIsDisplayed("swimmingPoolOnPremisesNO");
+		clickIfElementIsDisplayed("anyRentalPropertiesOccupiedNO");
+		clickIfElementIsDisplayed("recreationalFacilitiesNO");
+		clickIfElementIsDisplayed("businessOpenAfter11NO");
+		clickIfElementIsDisplayed("childrenPlayAreaNO");
+		clickIfElementIsDisplayed("anyAlcoholSalesNO");
+		clickIfElementIsDisplayed("applicantHaveBarWhereAlcoholIsServedNO");
 	}
 
 	public void clickBeginSubmissionBtn() {
