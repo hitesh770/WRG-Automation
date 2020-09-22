@@ -553,29 +553,26 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		explicitwaitForElementVisibility(getWebElement("quoteButton")); 
 		clickUsingJS("quoteButton");
 		waitForPageLoaded();
-        if(isWebElementPresent("creatingQuoteLoader")==false) {
-			Iterator<WebElement> fieldmsgIterator=getaddtionalInsuredFieldMessages().iterator();
-			while(fieldmsgIterator.hasNext()) {
-				WebElement message=fieldmsgIterator.next();
-				String msgtext=message.getText();
-				if(msgtext.equalsIgnoreCase("This is a required field") || msgtext.contains("ZIP Code must be five or nine digits") || msgtext.equalsIgnoreCase("Must be a Number")) {			
-					ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel("Following validations appear for the given input: " +msgtext,ExtentColor.RED));
-					
-				}
-				
-				
-			}// while end
-			getaddtionalInsuredFieldNames();
-			return  quotesubmitmessage="Test failed due to validation errors";
-			
-		} // outer if end
 		
 		
-		
-		
-		
-		if (isWebElementPresent("creatingQuoteLoader") == true) {
-			explicitwaitForInvisibilityofElement(getWebElement("creatingQuoteLoader")); 
+		 if (isWebElementPresent("creatingQuoteLoader1") == false) {
+			 Iterator<WebElement> fieldmsgIterator=getaddtionalInsuredFieldMessages().iterator();
+				while(fieldmsgIterator.hasNext()) {
+					WebElement message=fieldmsgIterator.next();
+					String msgtext=message.getText();
+					if(msgtext.equalsIgnoreCase("This is a required field") || msgtext.contains("ZIP Code must be five or nine digits") || msgtext.equalsIgnoreCase("Must be a Number")) {			
+						ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel("Following validations appear for the given input: " +msgtext,ExtentColor.RED));
+						
+					}
+	
+				}// while end
+				getaddtionalInsuredFieldNames();
+				return  quotesubmitmessage="Test failed due to validation errors";		  
+ }
+		 
+
+		if (isWebElementPresent("creatingQuoteLoader1") == true) {
+			sleep(9000); 
 		}
 
 		if (isWebElementPresentAfterWait("notesToUnderwriter")) { 
@@ -593,10 +590,27 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 		
 			}
 			driver.switchTo().window(mainwindow);
+		}else {		
+			Iterator<WebElement> fieldmsgIterator=getaddtionalInsuredFieldMessages().iterator();
+			while(fieldmsgIterator.hasNext()) {
+				WebElement message=fieldmsgIterator.next();
+				String msgtext=message.getText();
+				if(msgtext.equalsIgnoreCase("This is a required field") || msgtext.contains("ZIP Code must be five or nine digits") || msgtext.equalsIgnoreCase("Must be a Number")) {			
+					ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel("Following validations appear for the given input: " +msgtext,ExtentColor.RED));
+					
+				}
+
+			}// while end
+			getaddtionalInsuredFieldNames();
+			return  quotesubmitmessage="Test failed due to validation errors";
+	
+			
 		}
 	
 		return quotesubmitmessage;
 	} 
+	
+
 	
 
 	 public void waitforrunningLoadingicon() {  
