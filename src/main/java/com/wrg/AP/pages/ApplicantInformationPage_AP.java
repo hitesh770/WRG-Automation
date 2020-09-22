@@ -110,6 +110,40 @@ public class ApplicantInformationPage_AP extends AbstractTest {
 		type(("description"), getData("descriptionValue"));
 
 	}
+	public void enterAddress(String state) {
+		wait = new WebDriverWait(driver, 20);
+		waitForPageLoaded();
+		wait.until(ExpectedConditions.urlContains("qnb-flow"));
+		wait.until(ExpectedConditions.visibilityOf(getWebElement("producerCodeDropdown")));
+		/*if (isWebElementPresent("effectiveDate") == true) {
+			String effectveDateValue = getWebElementText("effectiveDate");
+			type(("effectiveDate"), effectveDateValue);
+		}
+		selectByOption(getWebElement("producerCodeDropdown"), "FORWARD AGENCIES INC (000)");*/
+		if (state.equalsIgnoreCase("Indiana")) {
+			
+			type(("isaddressLine1"), getData("indianaAddress"));
+			type(("iscity"), getData("indianaCityName"));
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getWebElement("state"));
+			//selectByOption(getWebElement("state"), state);
+			type(("iszipCode"), getData("indianaPincodeValue"));
+		} else if (state.equalsIgnoreCase("Ohio")) {
+			type(("isaddressLine1"), getData("ohioAddress"));
+			type(("iscity"), getData("ohioCityName"));
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getWebElement("state"));
+			//selectByOption(getWebElement("state"), state);
+			type(("iszipCode"), getData("ohioPincodeValue"));
+		}
+		//selectByOption(getWebElement("businessEntityType"), businessEntity);
+		//type(("description"), getData("descriptionValue"));
+
+	}
+	public void mailingAddress(String isMailingAddress, String state) {
+		if (isMailingAddress=="No") {
+			clickUsingJS("isMailingAddressSameNo");
+			enterAddress(state);
+		}
+	}
 	
 	
 	public int verifyApplicationInformationPageElementsPresence() {
@@ -194,12 +228,17 @@ public class ApplicantInformationPage_AP extends AbstractTest {
 	}
 	
 	public void clickNextButton() {
-		clickUsingJS("nextButton");
+		
+		actionClick("nextButton");
+		//sleep(1000);
 		for (String popup : driver.getWindowHandles()) // iterating on child windows
 		{
 			driver.switchTo().window(popup);
 			try {
-			clickUsingJS("useverifiedButton");
+				clickUsingJS("useverifiedButton");
+				if (isWebElementDisplayed("useverifiedButton")) {
+					actionClick("useverifiedButton");
+				}
 			}catch(Exception e) {
 				clickUsingJS("useOriginalButton");
 			}

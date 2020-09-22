@@ -870,6 +870,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 
 	public void clickUsingJS(WebElement element) {
 		try {
+			highlightElement(element);
 			((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 		} catch (Exception e) {
 			e.printStackTrace();
