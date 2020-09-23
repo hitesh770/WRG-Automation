@@ -379,5 +379,24 @@ public class ClassificationsPage_AP extends AbstractTest {
 		driver.switchTo().window(mainwindow);
 		
 	}
-
+	public void deleteClassifications(String classCodeNumber, String exposureAmount, String classficationsNumber,String numberOfLocations) {
+		waitForPageLoaded();
+		clickUsingJS("classificationNavigation");
+		waitForPageLoaded();
+		wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOf(getWebElement("classificationPageHeading")));
+		clickUsingJS("deleteClassification");
+		if (isWebElementPresentAfterWait("deleteText")) {
+			ExtentTestManager.getTest().log(Status.INFO,
+					MarkupHelper.createLabel(
+							"Delete Confirmation Text -> is present" ,
+							ExtentColor.GREEN));
+		}else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Delete Confirmation Text -> is present" ,
+							ExtentColor.RED));
+		}
+		clickUsingJS("delete");
+	}
 }
