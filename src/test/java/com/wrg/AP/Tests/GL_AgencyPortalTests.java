@@ -1573,6 +1573,44 @@ public class GL_AgencyPortalTests extends AbstractTest {
 
 		}
 	}
+	
+	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+	@Test
+	public void US20621PortalLocationTC37628(String insuredName, String state, String numberOfLocations, String organizationCode, String password, String insuranceType, 
+			String businessEntity, String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+								+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+								+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+								+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+						ExtentColor.PURPLE));
+		String quoteNumber = null;
+		String applicantName = null;
+		agencyPortalLogin(organizationCode, password);
+		sleep(8000);
+		buildNumber_AP = getAgentPortalBuild();
+		
+		if (buildNumber_AP.contains("R3")) {
+			applicantName = searchQuote(insuredName);
+			DeleteLocationValidation(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,"Yes");
+		} else if (buildNumber_AP.contains("R2")) {
+			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
+			/*quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
+					percentageOwnerOccupiedValue, numberOfLocations);*/
+			//ClassificationsTooltipValidation(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+
+		}
+		
+	}
 	public void LocationValidation(String state, String numberOfLocations, String insuranceType, String businessEntity, String classCodeNumber, String formType, String isMailingAddress) {
 		applicantInfoPage_AP = new ApplicantInformationPage_AP();
 		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
@@ -1619,6 +1657,35 @@ public class GL_AgencyPortalTests extends AbstractTest {
 			quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
 			policywideCoveragesPage_AP.coverages();
 			locationsPage_AP.editLocationScreenValidation(state, numberOfLocations);
+		}
+	}
+	
+	public void DeleteLocationValidation(String state, String numberOfLocations, String insuranceType, String businessEntity, String classCodeNumber, String formType, String isMailingAddress) {
+		applicantInfoPage_AP = new ApplicantInformationPage_AP();
+		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
+		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();
+		policywideCoveragesPage_AP = new PolicywideCoveragesPage_AP();
+		optionalCoveragesPage_AP = new OptionalCoveragesPage_AP();
+		locationsAndBuildingsPage_AP = new LocationsAndBuildingsPage_AP();
+		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
+		startQuotePage_AP = new StartQuotePage_AP();
+		locationsPage_AP = new LocationsPage_AP();
+		classificationPage_AP = new ClassificationsPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.mailingAddress(isMailingAddress,state);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		String quoteNumber = null;
+		if (insuranceType.equalsIgnoreCase("General Liability")) {
+			quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
+			policywideCoveragesPage_AP.coverages();
+			locationsPage_AP.addLocation(state, numberOfLocations);
+			locationsPage_AP.deleteLocation(state, numberOfLocations);
+			
+			//classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
+			//optionalCoveragesPage_AP.quote();
 		}
 	}
 //	@AfterTest

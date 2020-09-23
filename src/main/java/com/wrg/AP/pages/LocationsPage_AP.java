@@ -457,4 +457,35 @@ public class LocationsPage_AP extends AbstractTest {
 			
 		}
 	}
+	
+	public void deleteLocation(String state, String numberOfLocations) {
+		waitForPageLoaded();
+		clickUsingJS("secondLocationDeleteIcon");
+		if (isWebElementPresentAfterWait("deletionMessage")) {
+			ExtentTestManager.getTest().log(Status.INFO,
+					MarkupHelper.createLabel(
+							"Deletion Message is present" ,
+							ExtentColor.GREEN));
+		}else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Deletion Message is not present" ,
+							ExtentColor.RED));
+		}
+		clickUsingJS("delete");
+		sleep(2000);
+		if (isWebElementPresentAfterWait("secondLocationText")) {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Location is not deleted successfully" ,
+							ExtentColor.RED));
+		}else {
+			ExtentTestManager.getTest().log(Status.INFO,
+					MarkupHelper.createLabel(
+							"Location is deleted successfully" ,
+							ExtentColor.GREEN));
+		}
+		quitDriver(driver);
+		
+	}
 }
