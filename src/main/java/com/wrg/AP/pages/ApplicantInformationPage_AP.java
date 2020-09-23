@@ -236,9 +236,15 @@ public class ApplicantInformationPage_AP extends AbstractTest {
 			driver.switchTo().window(popup);
 			try {
 				clickUsingJS("useverifiedButton");
-				if (isWebElementDisplayed("useverifiedButton")) {
-					actionClick("useverifiedButton");
+				try {
+					if (isWebElementPresentAfterWait("useverifiedButton")) {
+						actionClick("useverifiedButton");
+					}
+				}catch(Exception e) {
+					System.out.print("Next page");
 				}
+				
+				
 			}catch(Exception e) {
 				clickUsingJS("useOriginalButton");
 			}

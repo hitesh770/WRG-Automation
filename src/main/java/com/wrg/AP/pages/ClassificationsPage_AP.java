@@ -338,4 +338,46 @@ public class ClassificationsPage_AP extends AbstractTest {
 			
 		}
 	}
+	public void editClassifications(String classCodeNumber, String exposureAmount, String classficationsNumber,String numberOfLocations) {
+		waitForPageLoaded();
+		clickUsingJS("classificationNavigation");
+		waitForPageLoaded();
+		wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOf(getWebElement("classificationPageHeading")));
+		clickUsingJS(classficationsNumber);
+		String mainwindow = driver.getWindowHandle();
+		for (String popup : driver.getWindowHandles()) // iterating on child windows
+		{
+			driver.switchTo().window(popup);
+			/*Select selectLocation = new Select(getWebElement("locationDropdown"));
+			if (Integer.parseInt(numberOfLocations) > 1) {
+				selectLocation.selectByIndex(2);
+			} else {
+				selectLocation.selectByIndex(1);
+			}*/
+			clear("exposureTextBox");
+			type(getWebElement("exposureTextBox"), exposureAmount);
+			getWebElement("exposureTextBox").sendKeys(Keys.TAB);
+			wait.until(ExpectedConditions.invisibilityOf(getWebElement("loader")));
+			// clickUsingJS("addNewClassificationButton");
+			wait.until(ExpectedConditions.visibilityOf(getWebElement("saveClassificationButton")));
+			try {
+				sleep(8000);
+				clickUsingJS("saveClassificationButton");
+				sleep(2000);
+			} catch (Exception e) {
+				try {
+					clickUsingJS("closeButton");
+				} catch (NoAlertPresentException f) {
+					f.printStackTrace();
+				}
+			}
+			if (isWebElementPresent("loader")) {
+				wait.until(ExpectedConditions.invisibilityOf(getWebElement("loader")));
+			}
+		}
+		driver.switchTo().window(mainwindow);
+		
+	}
+
 }
