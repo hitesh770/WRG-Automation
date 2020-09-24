@@ -214,7 +214,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 				driver = new RemoteWebDriver(remoteHubUrl, cap);
 			} else {
 				log.info("starting chrome driver on local");
-				driver = new ChromeDriver(webcap.options);
+				driver = new ChromeDriver();
 			}
 
 		} else if (browser.equalsIgnoreCase("ie")) {

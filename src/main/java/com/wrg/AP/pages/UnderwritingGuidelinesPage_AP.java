@@ -88,6 +88,18 @@ public class UnderwritingGuidelinesPage_AP extends AbstractTest {
 		clickIfElementIsDisplayed("manufacturingOperationsOrBusinessYES");
 		clickIfElementIsDisplayed("qualityConrolYES");
 		clickIfElementIsDisplayed("warningsAndLabelsCompliantWithRegulationsYES");
+		clickIfElementIsDisplayed("applicantEngagedInExplosivesSalesNO");
+		clickIfElementIsDisplayed("complianceUSDAandFDAstandardsYES");
+		clickIfElementIsDisplayed("formalQualityConrolProgramYES");
+		clickIfElementIsDisplayed("smokeDetectorsTestingProgramYES");
+		clickIfElementIsDisplayed("hardwiredSmokeDetectorsPresentYES");
+		clickIfElementIsDisplayed("leaseAgreementWithAllTenantsYES");
+		clickIfElementIsDisplayed("insuranceCertificateWithMinimum$500000LiabilityLimitsYES");
+		clickIfElementIsDisplayed("leaseProhibitUseOfGrillsYES");
+		clickIfElementIsDisplayed("isDancingPremittedNO");
+		clickIfElementIsDisplayed("isAlcoholServedAfterKitchenClosedNO");
+		clickIfElementIsDisplayed("ownAcoholInPremisesNO");
+		clickIfElementIsDisplayed("liveEntertainmentProvidedNO");
 	}
 
 	public String goToPolicyWideCoveragesPage(String classCodes) {
