@@ -128,5 +128,364 @@ public class LocationsPage_AP extends AbstractTest {
 
 		}
 	}
+	public void addLocationScreenValidation(String state, String numberOfLocations) {
+		waitForPageLoaded();
+		clickUsingJS("addNewLocationButton");
+		String mainwindow = driver.getWindowHandle();
+		for (String popup : driver.getWindowHandles()) {
+			driver.switchTo().window(popup);
+			//wait.until(ExpectedConditions.visibilityOf(getWebElement("addressLine1")));
+			String addressLineText;
+			addressLineText = getWebElementText("addressLine1");
+			
+			if (isWebElementPresentAfterWait("addressLine1")) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Address Line 1 -> is present" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Address Line 1 -> is not present" ,
+								ExtentColor.RED));
+			}
+			if (addressLineText.isEmpty()) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Address Line 1 -> is blank by default" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Address Line 1 -> is not blank by default" ,
+								ExtentColor.RED));
+			}
+			
+			if (isWebElementPresentAfterWait("addressLine2")) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Address Line 2 -> is present" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Address Line 2 -> is not present" ,
+								ExtentColor.RED));
+			}
+			addressLineText = getWebElementText("addressLine2");
+			if (addressLineText.isEmpty()) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Address Line 2 -> is blank by default" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Address Line 2 -> is not blank by default" ,
+								ExtentColor.RED));
+			}
+			if (isWebElementPresentAfterWait("city")) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"City -> is present" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"City -> is not present" ,
+								ExtentColor.RED));
+			}
+			addressLineText = getWebElementText("city");
+			if (addressLineText.isEmpty()) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"City -> is blank by default" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"City -> is not blank by default" ,
+								ExtentColor.RED));
+			}
+			if (isWebElementPresentAfterWait("zipCode")) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Zip Code -> is present" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Zip Code -> is not present" ,
+								ExtentColor.RED));
+			}
+			addressLineText = getWebElementText("zipCode");
+			if (addressLineText.isEmpty()) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Zip Code -> is blank by default" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Zip Code -> is not blank by default" ,
+								ExtentColor.RED));
+			}
+			actionClick("saveButton");
+			if (getWebElements("requiredFieldCount").size()>0) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Required Field Label -> is present" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Required Field Label -> is not present" ,
+								ExtentColor.RED));
+			}
+			
+			type("addressLine1", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm123456789");
+			actionClick("saveButton");
+			if (isWebElementPresentAfterWait("addressLine1ErrorText")) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Value must be between 0 and 60 characters -> address line 1 error text is present" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Value must be between 0 and 60 characters -> address line 1 error text is not present" ,
+								ExtentColor.RED));
+			}
+			actionClick("cancel");
+			driver.switchTo().window(mainwindow);
+			clickUsingJS("addNewLocationButton");
+			driver.switchTo().window(popup);
+			type("addressLine1", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm12345678");
+			//actionClick("saveButton");
+			//actionClick("addressLine1");
+			//typeUsingJS("addressLine2", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm12345678");
+			//actionClick("saveButton");
+		
+			type("addressLine2", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm123456789");
+			sleep(3000);
+			actionClick("saveButton");
+			if (isWebElementPresentAfterWait("addressLine1ErrorText")) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Value must be between 0 and 60 characters -> address line 2 error text is present" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Value must be between 0 and 60 characters -> address line 2 error text is not present" ,
+								ExtentColor.RED));
+			}
+			type("addressLine2", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm12345678");
+			actionClick("addressLine2");
+			type("city", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm123456789");
+			actionClick("addressLine2");
+			actionClick("saveButton");
+			actionClick("addressLine2");
+			if (isWebElementPresentAfterWait("addressLine1ErrorText")) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Value must be between 0 and 60 characters -> city error text is present" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Value must be between 0 and 60 characters -> city error text is not present" ,
+								ExtentColor.RED));
+			}
+			type("city", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm12345678");
+			actionClick("saveButton");
+			type("zipCode", "44281&1234");
+			clickUsingJS("saveButton");
+			actionClick("city");
+			if (isWebElementPresentAfterWait("zipCodeErrorText")) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Zip code is not formatted -> zip code error text is present" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Zip code is not formatted -> zip code error text is not present" ,
+								ExtentColor.RED));
+			}
+			actionClick("cancel");
+			driver.switchTo().window(mainwindow);
+			clickUsingJS("addNewLocationButton");
+			driver.switchTo().window(popup);
+			type("addressLine1", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm12345678");
+			type("addressLine2", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm12345678");
+			type("city", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm12345678");
+			type("zipCode", "1");
+			actionClick("saveButton");
+		
+			if (isWebElementPresentAfterWait("zipCodeErrorText")) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Zip code is not formatted -> zip code error text is present" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Zip code is not formatted -> zip code error text is not present" ,
+								ExtentColor.RED));
+			}
+			//typeUsingJS("zipCode", "");
+			//actionClick("zipCode");
+			type("zipCode", "1234567890");
+			actionClick("saveButton");
+		
+			if (isWebElementPresentAfterWait("zipCodeErrorText")) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Zip code is not formatted -> zip code error text is present" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Zip code is not formatted -> zip code error text is not present" ,
+								ExtentColor.RED));
+			}
+			actionClick("cancel");
+			driver.switchTo().window(mainwindow);
+			clickUsingJS("addNewLocationButton");
+			driver.switchTo().window(popup);
+			type("addressLine1", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm12345678");
+			type("addressLine2", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm12345678");
+			type("city", "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm12345678");
+			type("zipCode", "44692");
+			actionClick("saveButton");
+			if (isWebElementPresentAfterWait("invalidZipCodeErrorText")) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Zip code is not valid for state -> zip code error text is present" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Zip code is not valid for state -> zip code error text is not present" ,
+								ExtentColor.RED));
+			}
+			actionClick("close");
+			actionClick("cancel");
+			if (isWebElementPresentAfterWait("locationsPageHeading")) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Location Page Heading -> is present" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Location Page Heading -> is not present" ,
+								ExtentColor.RED));
+			}
+			
+		}
+		driver.switchTo().window(mainwindow);
+		quitDriver(driver);
+		
+	}
+	public void editLocationScreenValidation(String state, String numberOfLocations) {
+		waitForPageLoaded(); 
+	
+		for (int i = 1; i < Integer.parseInt(numberOfLocations); i++) {
+			clickUsingJS("editLocationButton");
+			String mainwindow = driver.getWindowHandle();
+			for (String popup : driver.getWindowHandles()) // iterating on child windows
+			{
+				driver.switchTo().window(popup);
+				if (state.equalsIgnoreCase("Indiana")) {
+					clear("addressLine1");
+					clear("city");
+					clear("zipCode");
+					type("addressLine1", getData("indianaAddress" + i));
+					type("city", getData("indianaCityName" + i));
+					type("zipCode", getData("indianaPincodeValue" + i));
+				} else {
+					clear("addressLine1");
+					clear("city");
+					clear("zipCode");
+					type("addressLine1", getData("ohioAddress" + i));
+					type("city", getData("ohioCityName" + i));
+					type("zipCode", getData("ohioPincodeValue" + i));
+				}
+				actionClick("addressLine1");
+				actionClick("saveButton");
+		
+				try {
+					clickUsingJS("useVerifiedButton");
+				} catch (Exception e) {
+					clickUsingJS("useOriginalButton");
+				}
 
+			}
+			driver.switchTo().window(mainwindow);
+			if(isWebElementPresentAfterWait("verifyEditAddress")) {
+				ExtentTestManager.getTest().log(Status.INFO,
+						MarkupHelper.createLabel(
+								"Address is editted successfully" ,
+								ExtentColor.GREEN));
+			}
+			else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Address is not editted successfully" ,
+								ExtentColor.RED));
+			}
+			quitDriver(driver);
+			
+		}
+	}
+	
+	public void deleteLocation(String state, String numberOfLocations) {
+		waitForPageLoaded();
+		clickUsingJS("secondLocationDeleteIcon");
+		if (isWebElementPresentAfterWait("deletionMessage")) {
+			ExtentTestManager.getTest().log(Status.INFO,
+					MarkupHelper.createLabel(
+							"Deletion Message is present" ,
+							ExtentColor.GREEN));
+		}else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Deletion Message is not present" ,
+							ExtentColor.RED));
+		}
+		clickUsingJS("delete");
+		sleep(2000);
+		if (isWebElementPresentAfterWait("secondLocationText")) {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Location is not deleted successfully" ,
+							ExtentColor.RED));
+		}else {
+			ExtentTestManager.getTest().log(Status.INFO,
+					MarkupHelper.createLabel(
+							"Location is deleted successfully" ,
+							ExtentColor.GREEN));
+		}
+		quitDriver(driver);
+		
+	}
 }
