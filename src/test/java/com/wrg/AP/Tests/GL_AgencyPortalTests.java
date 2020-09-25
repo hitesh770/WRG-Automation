@@ -8,10 +8,14 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
+import org.testng.IAnnotationTransformer;
+import org.testng.IRetryAnalyzer;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.CustomAttribute;
+import org.testng.annotations.ITestAnnotation;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -43,9 +47,10 @@ import com.wrg.PC.pages.RiskAnalysisPage_PC;
 import com.wrg.PC.pages.SummaryPage_PC;
 import com.wrg.PC.pages.WrgHomePage_PC;
 import com.wrg.abstestbase.AbstractTest;
+import com.wrg.utils.AnnotationTransformer;
 import com.wrg.utils.ExtentTestManager;
 
-public class GL_AgencyPortalTests extends AbstractTest {
+public class GL_AgencyPortalTests extends AbstractTest{
 
 	WrgHomePage_AP homepage = null;
 	QuoteSearchPage_AP quoteSearchPage = null;
@@ -141,7 +146,45 @@ public class GL_AgencyPortalTests extends AbstractTest {
 	}
 
 	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
-			"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue","addressLine1","city","zipcode" })  
+@Test
+public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
+		String organizationCode, String password, String insuranceType, String businessEntity,
+		String classCodeNumber, String formType, String percentageOwnerOccupiedValue,String addressLine1,String city,String zipcode) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+							+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue + ", addressLine1: " + addressLine1
+							+ ", City: " + city + ", Zipcode: " + zipcode,
+					ExtentColor.PURPLE));
+	String quotepageconfirmmsg = null;
+	String applicantName = null;
+	agentPortalLogin(organizationCode, password);
+	buildNumber_AP = getAgentPortalBuild();
+	if (buildNumber_AP.contains("R3")) {
+		applicantName = searchQuote(insuredName);
+		quotepageconfirmmsg = addSeventoNineCoverages(insuredName,state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+				percentageOwnerOccupiedValue,addressLine1,city,zipcode);
+		asst.assertEquals(quotepageconfirmmsg, "Your quote has been submitted for underwriting review. Your underwriting team will contact you once their review is final."); 
+		asst.assertAll();
+	}else if (buildNumber_AP.contains("R2")) {
+			//need to handle for r2 code base
+		}
+
+}
+	
+	
+	
+		@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue","addressLine1","city","zipcode" })
 	@Test
 	public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insuredName, String state,
 			String numberOfLocations, String organizationCode, String password, String insuranceType,
@@ -214,46 +257,7 @@ public class GL_AgencyPortalTests extends AbstractTest {
 
 	}
 
-	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
-			"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue", "addressLine1", "city",
-			"zipcode" })
-	@Test
-	public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insuredName, String state,
-			String numberOfLocations, String organizationCode, String password, String insuranceType,
-			String businessEntity, String classCodeNumber, String formType, String percentageOwnerOccupiedValue,
-			String addressLine1, String city, String zipcode) throws IOException {
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ExtentTestManager.getTest().log(Status.INFO,
-				MarkupHelper.createLabel(
-						"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
-								+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
-								+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
-								+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue
-								+ ", addressLine1: " + addressLine1 + ", City: " + city + ", Zipcode: " + zipcode,
-						ExtentColor.PURPLE));
-		String quotepageconfirmmsg = null;
-		String applicantName = null;
-		agentPortalLogin(organizationCode, password);
-		buildNumber_AP = getAgentPortalBuild();
-		if (buildNumber_AP.contains("R3")) {
-			applicantName = searchQuote(insuredName);
-			quotepageconfirmmsg = addSeventoNineCoverages(insuredName, state, numberOfLocations, insuranceType,
-					businessEntity, classCodeNumber, formType, percentageOwnerOccupiedValue, addressLine1, city,
-					zipcode);
-			asst.assertEquals(quotepageconfirmmsg,
-					"Your quote has been submitted for underwriting review. Your underwriting team will contact you once their review is final.");
-			asst.assertAll();
-		} else if (buildNumber_AP.contains("R2")) {
-			// need to handle for r2 code base
-		}
-
-	}
-
+	
 	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
 			"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue", "addressLine1", "city",
 			"zipcode" })
