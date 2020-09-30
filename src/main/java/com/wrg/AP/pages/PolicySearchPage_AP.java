@@ -1,5 +1,7 @@
 package com.wrg.AP.pages;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -445,4 +447,25 @@ public class PolicySearchPage_AP extends AbstractTest {
 		wait.until(ExpectedConditions.urlContains("summary"));
 		clickUsingJS("continueQuoteButton");
 	}
+	
+	public HashMap<Integer, String> getCreateNewButtonOptions() {
+		HashMap<Integer, String> createquoteMap=new HashMap<Integer, String>();
+		wait = new WebDriverWait(driver, 20);
+		waitForPageLoaded();
+		wait.until(ExpectedConditions.visibilityOf(getWebElement("policiesOrQuoteLink")));
+		clickUsingJS("policiesOrQuoteLink");
+		wait.until(ExpectedConditions.visibilityOf(getWebElement("createNewQuoteButton")));
+		clickUsingJS("createNewQuoteButton");
+		waitForPageLoaded();
+		List<WebElement> quoteoptions=getWebElements("createnewquoteoptions");
+		
+		for(int i=0;i<quoteoptions.size();i++) { 
+			createquoteMap.put(i+1,quoteoptions.get(i).getText());  
+			ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel(quoteoptions.get(i).getText(),ExtentColor.BLUE));
+		}
+		
+		return createquoteMap;
+		
+	}
+	
 }

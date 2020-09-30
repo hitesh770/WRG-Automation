@@ -1,13 +1,17 @@
 package com.wrg.AP.Tests;
 
+import static org.testng.Assert.assertNotNull;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
+import org.openqa.selenium.WebElement;
 import org.testng.IAnnotationTransformer;
 import org.testng.IRetryAnalyzer;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -184,7 +188,7 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 	
 	
 		@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
-		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue","addressLine1","city","zipcode" })
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue"})
 	@Test
 	public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insuredName, String state,
 			String numberOfLocations, String organizationCode, String password, String insuranceType,
@@ -1396,17 +1400,18 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 			//classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
 			classificationPage_AP.addClassificationsToolTipValidation(classCodeNumber,coverageNumber, tooltipText);
 	}
-}
-//	@AfterTest
-//	public void afterTest() throws IOException {
-//		if (browser.equalsIgnoreCase("firefox")) {
-//			Runtime.getRuntime().exec("taskkill /IM geckodriver.exe /T");
-//		} else if (browser.equalsIgnoreCase("ie")) {
-//			Runtime.getRuntime().exec("taskkill /IM IEDriverServer32.exe /T");
-//		} else if (browser.equalsIgnoreCase("chrome")) {
-//			Runtime.getRuntime().exec("taskkill /IM chromedriver.exe /T");
-//		}
-//	}
+}	
+	/*
+	 * @AfterTest public void afterMethod() throws IOException { if
+	 * (browser.equalsIgnoreCase("firefox")) {
+	 * Runtime.getRuntime().exec("taskkill /IM geckodriver.exe /T"); } else if
+	 * (browser.equalsIgnoreCase("ie")) {
+	 * Runtime.getRuntime().exec("taskkill /IM IEDriverServer32.exe /T"); } else if
+	 * (browser.equalsIgnoreCase("chrome")) {
+	 * Runtime.getRuntime().exec("taskkill /IM chromedriver.exe /T"); } }
+	 */
+	
+	
 	public void OptionalCoveragesTooltipValidation(String state, String numberOfLocations, String insuranceType, String businessEntity, String classCodeNumber, String formType,
 			String coverageNumber, String tooltipText) {
 		applicantInfoPage_AP = new ApplicantInformationPage_AP();
@@ -1832,7 +1837,204 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 //			Runtime.getRuntime().exec("taskkill /IM chromedriver.exe /T");
 //		}
 //	}
+	
+	@Parameters({  "organizationCode", "password" ,"pageName"})
+@Test
+public void validateCreateNewQuoteOptionsViaAgentPortalForGL(String organizationCode, String password,String pageName) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Organization Code: "
+							+ organizationCode + ", Password: " + password + ", PageName: " +pageName,
+					ExtentColor.PURPLE));
+	
+	agentPortalLogin(organizationCode, password);
+	
+	if (pageName.equalsIgnoreCase("homepage")) { 
+		HashMap<Integer, String> actualmap=getCreateNewQuoteOptions(pageName);
+		asst.assertEquals(actualmap, getCreateNewButtonOptions());  
+		asst.assertAll();
+	} else if (pageName.equalsIgnoreCase("policies")) {
+		HashMap<Integer, String> actualmap=getCreateNewQuoteOptions(pageName);
+		asst.assertEquals(actualmap, getCreateNewButtonOptions());  
+		asst.assertAll();
+	}
+	
+}
+	
+	public HashMap<Integer, String> getCreateNewQuoteOptions(String pageName) {  
+		WrgHomePage_AP wrgHomePage_AP=new WrgHomePage_AP();
+		PolicySearchPage_AP policySeachPage_Ap=new PolicySearchPage_AP();
+		HashMap<Integer, String> optionsmap=null;
+		if(pageName.equalsIgnoreCase("homepage")) {
+		optionsmap=wrgHomePage_AP.getCreateNewButtonOptions();
+		}else if(pageName.equalsIgnoreCase("policies")) {
+			optionsmap=policySeachPage_Ap.getCreateNewButtonOptions();
+		}
+	
+	return optionsmap;
+	
+	}
+	
+	public HashMap<Integer, String> getCreateNewButtonOptions() {
+		HashMap<Integer, String> createquoteMap=new HashMap<Integer, String>();
+		createquoteMap.put(1, "Commercial Lines");
+		createquoteMap.put(2, "Commercial Auto");
+		createquoteMap.put(3, "Dwelling Fire");
+		createquoteMap.put(4, "Farm");
+		createquoteMap.put(5, "WRG Advantage® Auto");
+		createquoteMap.put(6, "WRG Advantage® Homeowners");
+		createquoteMap.put(7, "Farm Umbrella Worksheet (Rating Only - No Upload)");  
+		createquoteMap.put(8, "Personal Lines Umbrella Worksheet (Rating Only - No Upload)");
+		return createquoteMap;
+		  
+	}
+	
+	
+	
+	
+	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+@Test
+public void validateDisclaimerQuoteTextViaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
+		String organizationCode, String password, String insuranceType, String businessEntity,
+		String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+							+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+					ExtentColor.PURPLE));
+	String disclaimertext = null;
+	String applicantName = null;
+	agentPortalLogin(organizationCode, password);
+	buildNumber_AP = getAgentPortalBuild();
+	if (buildNumber_AP.contains("R3")) {
+		applicantName = searchQuote(insuredName);
+		disclaimertext = getQuoteText(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+				percentageOwnerOccupiedValue);
+		asst.assertEquals(disclaimertext, "Disclaimer: THIS IS NOT AN OFFER OF INSURANCE AND DOES NOT BIND COVERAGE.\n" + 
+				"Premium and coverages shown is an estimate based upon information provided to us and is subject to change. Further details regarding insurance values and exposures may be required or dependent on additional underwriting documentation and approval. A completed Application is necessary to bind and issue a policy.\n" + 
+				"Please carefully review the quote proposal for all coverage and exclusion forms included in this quote.");
+		asst.assertAll();
+	} else if (buildNumber_AP.contains("R2")) {
+		// need to handle for r2 code base
+	}
+	
+}
+	
+	public String getQuoteText(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
+		applicantInfoPage_AP = new ApplicantInformationPage_AP();
+		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
+		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();
+		policywideCoveragesPage_AP = new PolicywideCoveragesPage_AP();
+		optionalCoveragesPage_AP = new OptionalCoveragesPage_AP();
+		locationsAndBuildingsPage_AP = new LocationsAndBuildingsPage_AP();
+		quotePage_AP = new QuotePage_AP();
+		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
+		startQuotePage_AP = new StartQuotePage_AP();
+		locationsPage_AP = new LocationsPage_AP();
+		classificationPage_AP = new ClassificationsPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		String quoteNumber = null;
+		String disclaimertext=null;
+		if (insuranceType.equalsIgnoreCase("Businessowners")) {
+			quoteNumber = underwritingGuidelinesPage.goToPolicyFormSelectionPage();
+			policyFormSelectionPage_AP.policyForm(formType);
+			policywideCoveragesPage_AP.coverages();
+			optionalCoveragesPage_AP.optionalCoverages();
+			locationsAndBuildingsPage_AP.addMultipleLocations(state, percentageOwnerOccupiedValue, numberOfLocations,
+					classCodeNumber);
+			quotePage_AP.quote();
+			underwritingQuestionsPage_AP.answerQuestions();
+		} else if (insuranceType.equalsIgnoreCase("General Liability")) {
+			quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
+			policywideCoveragesPage_AP.coverages();
+			locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
+			classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
+			optionalCoveragesPage_AP.quote();
 
+			List<String> codes = new ArrayList<String>();
+			if (classCodeNumber.contains(",")) {
+				String[] codesArray = classCodeNumber.split(",");
+				for (String code : codesArray) {
+					codes.add(code);
+				}
+				
+				int arraySize = elpClassCodeArray.length;
+				for (int i = 0; i < arraySize; i++) {
+					for (String classCode : codes) {
+						if (elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
+							break;
+						} else if (!elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
+							try {
+								disclaimertext=quotePage_AP.getDisclaimerText();
+								asst.assertEquals(disclaimertext, "Disclaimer: THIS IS NOT AN OFFER OF INSURANCE AND DOES NOT BIND COVERAGE.\n" + 
+										"Premium and coverages shown is an estimate based upon information provided to us and is subject to change. Further details regarding insurance values and exposures may be required or dependent on additional underwriting documentation and approval. A completed Application is necessary to bind and issue a policy.\n" + 
+										"Please carefully review the quote proposal for all coverage and exclusion forms included in this quote.");
+								quotePage_AP.clickonpreviousbtn();
+								optionalCoveragesPage_AP.quote();
+								disclaimertext=quotePage_AP.getDisclaimerText();
+								asst.assertEquals(disclaimertext, "Disclaimer: THIS IS NOT AN OFFER OF INSURANCE AND DOES NOT BIND COVERAGE.\n" + 
+										"Premium and coverages shown is an estimate based upon information provided to us and is subject to change. Further details regarding insurance values and exposures may be required or dependent on additional underwriting documentation and approval. A completed Application is necessary to bind and issue a policy.\n" + 
+										"Please carefully review the quote proposal for all coverage and exclusion forms included in this quote.");
+								quotePage_AP.quote();
+								underwritingQuestionsPage_AP.navigatetoQuotePage();
+								disclaimertext=quotePage_AP.getDisclaimerText();
+								break;
+							} catch (Exception e) {
+								break;
+							}
+						}
+					}
+					break;
+
+				}
+			} else {
+				for (int i = 0; i < elpClassCodeArray.length; i++) {
+					if (elpClassCodeArray[i].equalsIgnoreCase(classCodeNumber)) {
+						break;
+					} else {
+						disclaimertext=quotePage_AP.getDisclaimerText();
+						asst.assertEquals(disclaimertext, "Disclaimer: THIS IS NOT AN OFFER OF INSURANCE AND DOES NOT BIND COVERAGE.\n" + 
+								"Premium and coverages shown is an estimate based upon information provided to us and is subject to change. Further details regarding insurance values and exposures may be required or dependent on additional underwriting documentation and approval. A completed Application is necessary to bind and issue a policy.\n" + 
+								"Please carefully review the quote proposal for all coverage and exclusion forms included in this quote.");
+						quotePage_AP.clickonpreviousbtn();
+						sleep(2000); 
+						optionalCoveragesPage_AP.quote();
+						disclaimertext=quotePage_AP.getDisclaimerText();
+						asst.assertEquals(disclaimertext, "Disclaimer: THIS IS NOT AN OFFER OF INSURANCE AND DOES NOT BIND COVERAGE.\n" + 
+								"Premium and coverages shown is an estimate based upon information provided to us and is subject to change. Further details regarding insurance values and exposures may be required or dependent on additional underwriting documentation and approval. A completed Application is necessary to bind and issue a policy.\n" + 
+								"Please carefully review the quote proposal for all coverage and exclusion forms included in this quote.");
+						quotePage_AP.quote();
+						underwritingQuestionsPage_AP.navigatetoQuotePage();
+						disclaimertext=quotePage_AP.getDisclaimerText();
+						//underwritingQuestionsPage_AP.glNonEplQuestions();
+						break;
+					}
+				}
+			}
+		}
+		return disclaimertext;
+	}
+	
 
 	@AfterTest
 	public void afterTest() throws IOException {

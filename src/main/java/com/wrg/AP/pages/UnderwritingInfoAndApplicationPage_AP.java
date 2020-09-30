@@ -153,6 +153,24 @@ public class UnderwritingInfoAndApplicationPage_AP extends AbstractTest {
 		driver.switchTo().window(tabs.get(0));
 
 	}
+	
+	public void navigatetoQuotePage() {
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		waitForPageLoaded();
+		if (isWebElementPresentAfterWait("previousbtn") == true) {
+			clickUsingJS("previousbtn");
+		}
+		waitForPageLoaded();
+		String mainwindow = driver.getWindowHandle(); // get parent(current) window name
+		for (String popup : driver.getWindowHandles()) // iterating on child windows
+		{
+			driver.switchTo().window(popup);
+			clickUsingJS("okButton");
+		}
+		driver.switchTo().window(mainwindow);
+		
+		
+	}
 
 	public void glNonEplQuestions() {
 		wait = new WebDriverWait(driver, 20);
