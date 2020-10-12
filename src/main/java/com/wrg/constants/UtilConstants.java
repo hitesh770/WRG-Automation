@@ -15,6 +15,11 @@ public class UtilConstants {
 	public static final String TEST_ENV_FILE_LOCATION = "./environment.xml";
 	public static final String TEST_REPORT = "./test-output";
 	public static final int MAX_RETRY_COUNT=1;
+	public static final String QUOTE_SUBMIT_CONFIRM_MESSAGE="Your quote has been submitted for underwriting review. Your underwriting team will contact you once their review is final.";
+	public static final String UNDERWRITING_GUIDELINE_WIZARD_MENU_HEADING = "General Liability Quote";
+	public static final String QUOTE_DISCLAIMER_TEXT_STRING="Disclaimer: THIS IS NOT AN OFFER OF INSURANCE AND DOES NOT BIND COVERAGE.\n" + 
+			"Premium and coverages shown is an estimate based upon information provided to us and is subject to change. Further details regarding insurance values and exposures may be required or dependent on additional underwriting documentation and approval. A completed Application is necessary to bind and issue a policy.\n" + 
+			"Please carefully review the quote proposal for all coverage and exclusion forms included in this quote.";
 
 }
 

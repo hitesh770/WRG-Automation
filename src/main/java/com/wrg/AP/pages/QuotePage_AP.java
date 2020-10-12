@@ -46,5 +46,36 @@ public class QuotePage_AP extends AbstractTest {
 		}
 	}
 	
+	//function to verify portal wizard menus 
 	
+	public boolean viewwizardmenusonQuotePageUI() {
+		boolean flag=true;
+		
+		 if(getWebElementColor("portalcurrentwizardmenu", "background-color").equals("#004ebd")) {
+			 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel(getWebElementText("portalcurrentwizardmenu")+ " color is blue ",ExtentColor.BLUE));
+			  flag=true; 
+		 }else {
+			 return flag=false;  
+		 }
+		
+		 
+		 if(getWebElementColor("portalfistwizardmenu", "color").equals("#555555") && getWebElementColor("portalsecondwizardmenu", "color").equals("#555555")) {
+			 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel(getWebElementText("portalfistwizardmenu")+ " and " +getWebElementText("portalsecondwizardmenu")+ " color is dark grey and appear as enabled ",ExtentColor.BLUE)); 
+			  flag=true;
+		 }else {
+			 return flag=false;   
+		 }
+		 
+		
+		 
+		 if(getWebElementColor("portalninewizardmenu", "color").equals("#bbbdbf") && getWebElementColor("portaltenwizardmenu", "color").equals("#bbbdbf")) {
+			 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel(getWebElementText("portalninewizardmenu")+ " and " +getWebElementText("portaltenwizardmenu")+ " color is  grey and appear as disabled ",ExtentColor.BLUE)); 
+			 flag=true;
+		 }else {
+			 return flag=false;   
+		 }
+		 
+		 return flag;
+	}
+
 }

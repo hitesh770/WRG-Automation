@@ -1,6 +1,7 @@
 package com.wrg.AP.pages;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -413,4 +414,50 @@ public class ClassificationsPage_AP extends AbstractTest {
 		}
 		clickUsingJS("delete");
 	}
+	
+	public boolean viewwizardmenusonClassficationnUI() {
+		boolean flag=true;
+		
+		
+		 if(getWebElementColor("portalfistwizardmenu", "color").equals("#555555") && isWebElementDisplayed("portalfistwizardmenu")==true) {
+			 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel(getWebElementText("portalfistwizardmenu")+ " color is dark grey and appear as enabled ",ExtentColor.BLUE)); 
+			 flag=true;
+		 }else {
+			 flag=false;   
+		 }
+		
+		
+		
+		
+		 if(getWebElementColor("portalsecondwizardmenu", "background-color").equals("#004ebd")) {
+			 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel(getWebElementText("portalsecondwizardmenu")+ " color is blue ",ExtentColor.BLUE));
+			 flag=true; 
+		 }else {
+			 flag=false;  
+		 }
+		 
+		 
+		 return flag;
+	}
+	
+	
+	//creating map for storing portal wizard options
+	 
+		public HashMap<Integer, String> getWizardSideMenus() {
+			HashMap<Integer, String> portalmenus=new HashMap<Integer, String>();
+			wait = new WebDriverWait(driver, 20);
+			waitForPageLoaded();
+			List<WebElement> menulist=getWebElements("portalwizardsidemenus");
+			for(int i=0;i<menulist.size();i++) { 
+				portalmenus.put(i+1,menulist.get(i).getText());  
+				ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel("Menu Name is " +menulist.get(i).getText(),ExtentColor.BLUE));
+			}
+			
+			return portalmenus;
+			
+		}
+	
+	
+		
+		
 }

@@ -1,6 +1,7 @@
 package com.wrg.AP.pages;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -19,27 +20,6 @@ import com.wrg.utils.ExtentTestManager;
 public class UnderwritingInfoAndApplicationPage_AP extends AbstractTest {
 	WebDriverWait wait = null;
 
-	
-	public boolean verifyUnderwritingInfoPageElementsPresence() {
-	   if(isWebElementPresent("underwritingeuilabel1") && isWebElementPresent("underwritingeuilabel2") && isWebElementPresent("underwritingeuilabel3") && isWebElementPresent("underwritingeuilabel4") && isWebElementPresent("underwritingeuilabel5")
-			   && isWebElementPresent("underwritingeuilabel6") && isWebElementPresent("underwritingeuilabel7") && isWebElementPresent("underwritingeuilabel8") && isWebElementPresent("underwritingeuilabel9") && isWebElementPresent("underwritingeuilabel10")
-			   && isWebElementPresent("underwritingeuilabel11") && isWebElementPresent("underwritingeuilabel12") && isWebElementPresent("underwritingeuilabel13") && isWebElementPresent("underwritingeuilabel14") && isWebElementPresent("underwritingeuilabel15") && isWebElementPresent("underwritingeuilabel16")
-			   && isWebElementPresent("underwritingeuilabel17")&& isWebElementPresent("underwritingeuilabel18") && isWebElementPresent("underwritinguiinputfield1") && isWebElementPresent("underwritinguiinputfield2") && isWebElementPresent("underwritinguiinputfield3") && isWebElementPresent("underwritinguiinputfield4")
-			   && isWebElementPresent("underwritinguiinputfield5") && isWebElementPresent("underwritinguiinputfield6") && isWebElementPresent("underwritinguiinputfield7") && isWebElementPresent("underwritinguiinputfield8") && isWebElementPresent("underwritinguiinputfield9") && isWebElementPresent("underwritinguiinputfield10")
-			   && isWebElementPresent("underwritinguiinputfield11") && isWebElementPresent("underwritinguiinputfield12") && isWebElementPresent("underwritinguibuttons1") && isWebElementPresent("underwritinguibuttons2")
-			   && isWebElementPresent("underwritinguibuttons3") && isWebElementPresent("underwritinguibuttons4") && isWebElementPresent("underwritinguibuttons5") && isWebElementPresent("underwritinguibuttons6")) 
-	   {
-		   return true; 
-		   
-	   } 
-		
-		
-	return false;
-		
-		}
-		
-		
-	
 	
 	public boolean isWebElementPresentInSupplemental(String element) {
 		driver.manage().timeouts().implicitlyWait(400, TimeUnit.MILLISECONDS);
