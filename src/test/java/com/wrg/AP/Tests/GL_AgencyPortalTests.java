@@ -1690,6 +1690,233 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 		}
 		
 	}
+	
+
+	@Parameters({ "insuredName", "state","state1", "numberOfLocations", "organizationCode","organizationCode1", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+	@Test
+	public void US20643ScheduleRatingTC38129(String insuredName, String state, String state1,String numberOfLocations, String organizationCode, String organizationCode1, String password, String insuranceType, 
+			String businessEntity, String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException, InterruptedException {
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+								+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+								+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+								+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+						ExtentColor.PURPLE));
+		String quoteNumber = null;
+		String applicantName = null;
+		agencyPortalLogin(organizationCode, password);
+		sleep(8000);
+		buildNumber_AP = getAgentPortalBuild();
+		
+		if (buildNumber_AP.contains("R3")) {
+			applicantName = searchQuote(insuredName);
+			ScheduleRating(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,"Yes","25%","-25%");
+		} else if (buildNumber_AP.contains("R2")) {
+			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
+			/*quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
+					percentageOwnerOccupiedValue, numberOfLocations);*/
+			//ClassificationsTooltipValidation(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+
+		}
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> Insured Name: " + insuredName + ", State: " + state1 + ", Organization Code: "
+								+ organizationCode1 + ", Password: " + password + ", Insurance type: " + insuranceType
+								+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+								+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+						ExtentColor.PURPLE));
+	
+		agencyPortalLogin(organizationCode1, password);
+		sleep(8000);
+		buildNumber_AP = getAgentPortalBuild();
+		
+		if (buildNumber_AP.contains("R3")) {
+			applicantName = searchQuote(insuredName);
+			ScheduleRating(state1, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,"Yes","40%","-40%");
+		} else if (buildNumber_AP.contains("R2")) {
+			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
+			/*quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
+					percentageOwnerOccupiedValue, numberOfLocations);*/
+			//ClassificationsTooltipValidation(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+
+		}
+		
+	}
+	@Parameters({ "insuredName", "state","state1", "numberOfLocations", "organizationCode","organizationCode1", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+	@Test
+	public void US20643ScheduleRatingTC38130(String insuredName, String state, String state1,String numberOfLocations, String organizationCode, String organizationCode1, String password, String insuranceType, 
+			String businessEntity, String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException, InterruptedException {
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+								+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+								+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+								+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+						ExtentColor.PURPLE));
+		String quoteNumber = null;
+		String applicantName = null;
+		agencyPortalLogin(organizationCode, password);
+		sleep(8000);
+		buildNumber_AP = getAgentPortalBuild();
+		
+		if (buildNumber_AP.contains("R3")) {
+			applicantName = searchQuote(insuredName);
+			ScheduleRating(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,"Yes","1%","-1%");
+		} else if (buildNumber_AP.contains("R2")) {
+			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
+			/*quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
+					percentageOwnerOccupiedValue, numberOfLocations);*/
+			//ClassificationsTooltipValidation(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+
+		}			
+	}
+	@Parameters({ "insuredName", "state","state1", "numberOfLocations", "organizationCode","organizationCode1", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+	@Test
+	public void US20047UWGuideTC37750(String insuredName, String state, String state1,String numberOfLocations, String organizationCode, String organizationCode1, String password, String insuranceType, 
+			String businessEntity, String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException, InterruptedException {
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+								+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+								+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+								+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+						ExtentColor.PURPLE));
+		String quoteNumber = null;
+		String applicantName = null;
+		agencyPortalLogin(organizationCode, password);
+		sleep(8000);
+		buildNumber_AP = getAgentPortalBuild();
+		
+		if (buildNumber_AP.contains("R3")) {
+			applicantName = searchQuote(insuredName);
+			UWGuides(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,"Yes","1%","-1%");
+		} else if (buildNumber_AP.contains("R2")) {
+			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
+			/*quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
+					percentageOwnerOccupiedValue, numberOfLocations);*/
+			//ClassificationsTooltipValidation(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+
+		}			
+	}
+	@Parameters({ "insuredName", "state","state1", "numberOfLocations", "organizationCode","organizationCode1", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+	@Test
+	public void US20047UWGuideTC37751(String insuredName, String state, String state1,String numberOfLocations, String organizationCode, String organizationCode1, String password, String insuranceType, 
+			String businessEntity, String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException, InterruptedException {
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+								+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+								+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+								+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+						ExtentColor.PURPLE));
+		String quoteNumber = null;
+		String applicantName = null;
+		agencyPortalLogin(organizationCode, password);
+		sleep(8000);
+		buildNumber_AP = getAgentPortalBuild();
+		
+		if (buildNumber_AP.contains("R3")) {
+			applicantName = searchQuote(insuredName);
+			UWGuides(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,"Yes","1%","-1%");
+		} else if (buildNumber_AP.contains("R2")) {
+			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
+			/*quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
+					percentageOwnerOccupiedValue, numberOfLocations);*/
+			//ClassificationsTooltipValidation(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+
+		}			
+	}
+	public void UWGuides(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue, String scheduleRatingUpperLimit, String scheduleRatingLowerLimit) throws InterruptedException {
+		applicantInfoPage_AP = new ApplicantInformationPage_AP();
+		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
+		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();
+		policywideCoveragesPage_AP = new PolicywideCoveragesPage_AP();
+		optionalCoveragesPage_AP = new OptionalCoveragesPage_AP();
+		locationsAndBuildingsPage_AP = new LocationsAndBuildingsPage_AP();
+		quotePage_AP = new QuotePage_AP();
+		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
+		startQuotePage_AP = new StartQuotePage_AP();
+		locationsPage_AP = new LocationsPage_AP();
+		classificationPage_AP = new ClassificationsPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		String quoteNumber = null;
+		if (insuranceType.equalsIgnoreCase("General Liability")) {
+			startQuotePage_AP.addClassificationScreenvalidation();
+			startQuotePage_AP.deleteClassifications();
+			
+		 }
+	}
+	public void ScheduleRating(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue, String scheduleRatingUpperLimit, String scheduleRatingLowerLimit) throws InterruptedException {
+		applicantInfoPage_AP = new ApplicantInformationPage_AP();
+		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
+		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();
+		policywideCoveragesPage_AP = new PolicywideCoveragesPage_AP();
+		optionalCoveragesPage_AP = new OptionalCoveragesPage_AP();
+		locationsAndBuildingsPage_AP = new LocationsAndBuildingsPage_AP();
+		quotePage_AP = new QuotePage_AP();
+		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
+		startQuotePage_AP = new StartQuotePage_AP();
+		locationsPage_AP = new LocationsPage_AP();
+		classificationPage_AP = new ClassificationsPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		String quoteNumber = null;
+		if (insuranceType.equalsIgnoreCase("General Liability")) {
+			quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
+			policywideCoveragesPage_AP.coverages();
+			locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
+			classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
+			optionalCoveragesPage_AP.quote();
+			quotePage_AP.scheduleRatingValidation();
+
+			quotePage_AP.scheduleRating(scheduleRatingUpperLimit);
+			quotePage_AP.scheduleRating(scheduleRatingLowerLimit);
+			quitDriver(driver);
+			
+		 }
+	}
 	public void LocationValidation(String state, String numberOfLocations, String insuranceType, String businessEntity, String classCodeNumber, String formType, String isMailingAddress) {
 		applicantInfoPage_AP = new ApplicantInformationPage_AP();
 		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
