@@ -2,8 +2,11 @@ package com.wrg.PC.pages;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -153,5 +156,22 @@ public class CommercialPropertyLinePage_PC extends AbstractTest {
 		}
 		return result;
 	}
-
+	public void goToNextPage() {
+		sleep(10000);
+		wait = new WebDriverWait(driver, 20);
+		try {
+			wait.until(ExpectedConditions.visibilityOf(getWebElement("commericalPropertyLineHeader")));
+			wait.until(ExpectedConditions.visibilityOf(getWebElement("nextButton")));
+			click("nextButton");
+		} catch (UnhandledAlertException e) {
+			try {
+				Alert alert = driver.switchTo().alert();
+				String alertText = alert.getText();
+				System.out.println("Alert data: " + alertText);
+				alert.dismiss();
+			} catch (NoAlertPresentException f) {
+				f.printStackTrace();
+			}
+		}
+	}
 }
