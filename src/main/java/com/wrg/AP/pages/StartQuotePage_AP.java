@@ -290,11 +290,6 @@ public class StartQuotePage_AP extends AbstractTest {
     					
     				}// outer for loop closes here
     				
-    			
-    				
-    				
-    				// clicking on class code column descending button
-
     				for(WebElement ele1:getWebElements("classcodesearchresultcolumns")) {
     					if(ele1.getText().equalsIgnoreCase("GL Class Code")) {
     						ele1.click();
@@ -417,7 +412,187 @@ public class StartQuotePage_AP extends AbstractTest {
 			driver.switchTo().window(mainwindow);
 		return flag;
 		
+	}			
+    				
+    				
+    				// clicking on class code column descending button
+	public void addClassificationScreenvalidation() {
+		wait = new WebDriverWait(driver, 10);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		waitForPageLoaded();
+		clickUsingJS("previousButton");
+		sleep(2000);
+		if (isWebElementPresentAfterWait("addClassificationButton")) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"Add Classification button is present" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Add Classification button is present" ,
+							ExtentColor.RED));
+		}
+		if (isWebElementPresentAfterWait("glClassCodeLabel")) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"GL Class Code Label is present" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"GL Class Code Label is not present" ,
+							ExtentColor.RED));
+		}
+		if (isWebElementPresentAfterWait("classificationLabel")) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"Classification Label is present" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Classification Label is not present" ,
+							ExtentColor.RED));
+		}
+		if (isWebElementPresentAfterWait("propertyLabel")) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"Property Label is present" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Property Label is not present" ,
+							ExtentColor.RED));
+		}
+		if (isWebElementPresentAfterWait("premopsLabel")) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"Prem Ops Label is present" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Prem ops Label is not present" ,
+							ExtentColor.RED));
+		}
+		if (isWebElementPresentAfterWait("prodscompletedLabel")){
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"Prods Completed Label is present" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Prods Completed Label is not present" ,
+							ExtentColor.RED));
+		}
+		if (isWebElementPresentAfterWait("wcLabel")) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"WC Label is present" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"WC Label is not present" ,
+							ExtentColor.RED));
+		}
+		if (isWebElementPresentAfterWait("autoLabel")) {
+			ExtentTestManager.getTest().log(Status.PASS,
+ 					MarkupHelper.createLabel(
+							"Auto Label is present" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Auto Label is not present" ,
+							ExtentColor.RED));
+		}
+		if (isWebElementPresentAfterWait("generallyAcceptableLabel")) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"Generally Acceptable Label is present" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Generally Acceptable Label is not present" ,
+							ExtentColor.RED));
+		}
+		if(isWebElementPresentAfterWait("generallyUnacceptableLabel")) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"Generally Unacceptable Label is present" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Generally Unacceptable Label is not present" ,
+							ExtentColor.RED));
+		}
+		if (isWebElementPresentAfterWait("notAcceptableLabel")) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"No Acceptable Label is present" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"No Acceptable Label is not present" ,
+							ExtentColor.RED));
+		}
 	}
+	public void deleteClassifications() {
+		wait = new WebDriverWait(driver, 10);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		waitForPageLoaded();
+		int count = 0;
+		count = getWebElements("classificationcount").size();
+		clickUsingJS("deleteClassficationButton");
+		sleep(2000);
+		if(isWebElementPresentAfterWait("removeClassifcationLabel")) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"Remove Classification Label is present" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Remove Classification Label is not present" ,
+							ExtentColor.RED));
+		}
+		clickUsingJS("deleteButton");
+		sleep(2000);
+		if (count>getWebElements("classificationcount").size()) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"Classification is deleted successfully" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Classification is not deleted successfully" ,
+							ExtentColor.RED));
+		}
+		
+	}
+
+    				
 	
 		//function to store Gl class code results
 		 

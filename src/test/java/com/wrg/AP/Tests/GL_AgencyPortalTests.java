@@ -1,7 +1,5 @@
 package com.wrg.AP.Tests;
 
-import static org.testng.Assert.assertNotNull;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
-import org.openqa.selenium.WebElement;
 import org.testng.IAnnotationTransformer;
 import org.testng.IRetryAnalyzer;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -150,6 +147,113 @@ public class GL_AgencyPortalTests extends AbstractTest{
 		}
 	}
 
+		public String newQuote(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
+		applicantInfoPage_AP = new ApplicantInformationPage_AP();
+		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
+		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();
+		policywideCoveragesPage_AP = new PolicywideCoveragesPage_AP();
+		optionalCoveragesPage_AP = new OptionalCoveragesPage_AP();
+		locationsAndBuildingsPage_AP = new LocationsAndBuildingsPage_AP();
+		quotePage_AP = new QuotePage_AP();
+		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
+		startQuotePage_AP = new StartQuotePage_AP();
+		locationsPage_AP = new LocationsPage_AP();
+		classificationPage_AP = new ClassificationsPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		String quoteNumber = null;
+		if (insuranceType.equalsIgnoreCase("Businessowners")) {
+			quoteNumber = underwritingGuidelinesPage.goToPolicyFormSelectionPage();
+			policyFormSelectionPage_AP.policyForm(formType);
+			policywideCoveragesPage_AP.coverages();
+			optionalCoveragesPage_AP.optionalCoverages();
+			locationsAndBuildingsPage_AP.addMultipleLocations(state, percentageOwnerOccupiedValue, numberOfLocations,
+					classCodeNumber);
+			quotePage_AP.quote();
+			underwritingQuestionsPage_AP.answerQuestions();
+		} else if (insuranceType.equalsIgnoreCase("General Liability")) {
+			quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
+			policywideCoveragesPage_AP.coverages();
+			locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
+			classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
+			optionalCoveragesPage_AP.quote();
+
+			List<String> codes = new ArrayList<String>();
+			if (classCodeNumber.contains(",")) {
+				String[] codesArray = classCodeNumber.split(",");
+				for (String code : codesArray) {
+					codes.add(code);
+				}
+				int arraySize = elpClassCodeArray.length;
+				for (int i = 0; i < arraySize; i++) {
+					for (String classCode : codes) {
+						if (elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
+							break;
+						} else if (!elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
+							try {
+								quotePage_AP.quote();
+								underwritingQuestionsPage_AP.glNonEplQuestions();
+								break;
+							} catch (Exception e) {
+								break;
+							}
+						}
+					}
+					break;
+
+				}
+			} else {
+				for (int i = 0; i < elpClassCodeArray.length; i++) {
+					if (elpClassCodeArray[i].equalsIgnoreCase(classCodeNumber)) {
+						break;
+					} else {
+						quotePage_AP.quote();
+						underwritingQuestionsPage_AP.glNonEplQuestions();
+						break;
+					}
+				}
+			}
+		}
+		return quoteNumber;
+	}
+
+	public void agentPortalLogin(String organizationCode, String password) {
+		agencyPortalLogin(organizationCode, password);
+		try {
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} catch (UnhandledAlertException e) {
+			try {
+				Alert alert = driver.switchTo().alert();
+				String alertText = alert.getText();
+				System.out.println("Alert data: " + alertText);
+				alert.accept();
+			} catch (NoAlertPresentException f) {
+				f.printStackTrace();
+			}
+		}
+		waitForPageLoaded();
+	}
+
+	public String searchQuote(String applicantName) {
+		homepage = new WrgHomePage_AP();
+		quoteSearchPage = new QuoteSearchPage_AP();
+		homepage.createNewQuote("Commercial Lines");
+		applicantName = quoteSearchPage.searchQuote(applicantName);
+		return applicantName;
+	}
+	
+	
+	
 	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
 		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue","addressLine1","city","zipcode" })  
 @Test
@@ -1004,110 +1108,11 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 
 	}
 
-	public String newQuote(String state, String numberOfLocations, String insuranceType, String businessEntity,
-			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
-		applicantInfoPage_AP = new ApplicantInformationPage_AP();
-		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
-		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();
-		policywideCoveragesPage_AP = new PolicywideCoveragesPage_AP();
-		optionalCoveragesPage_AP = new OptionalCoveragesPage_AP();
-		locationsAndBuildingsPage_AP = new LocationsAndBuildingsPage_AP();
-		quotePage_AP = new QuotePage_AP();
-		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
-		startQuotePage_AP = new StartQuotePage_AP();
-		locationsPage_AP = new LocationsPage_AP();
-		classificationPage_AP = new ClassificationsPage_AP();
-		applicantInfoPage_AP.enterAddress(state, businessEntity);
-		applicantInfoPage_AP.selectInsuranceType(insuranceType);
-		applicantInfoPage_AP.clickNextButton();
-		sleep(2000);
-		startQuotePage_AP.addClassification(classCodeNumber);
-		String quoteNumber = null;
-		if (insuranceType.equalsIgnoreCase("Businessowners")) {
-			quoteNumber = underwritingGuidelinesPage.goToPolicyFormSelectionPage();
-			policyFormSelectionPage_AP.policyForm(formType);
-			policywideCoveragesPage_AP.coverages();
-			optionalCoveragesPage_AP.optionalCoverages();
-			locationsAndBuildingsPage_AP.addMultipleLocations(state, percentageOwnerOccupiedValue, numberOfLocations,
-					classCodeNumber);
-			quotePage_AP.quote();
-			underwritingQuestionsPage_AP.answerQuestions();
-		} else if (insuranceType.equalsIgnoreCase("General Liability")) {
-			quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
-			policywideCoveragesPage_AP.coverages();
-			locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
-			classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
-			optionalCoveragesPage_AP.quote();
-
-			List<String> codes = new ArrayList<String>();
-			if (classCodeNumber.contains(",")) {
-				String[] codesArray = classCodeNumber.split(",");
-				for (String code : codesArray) {
-					codes.add(code);
-				}
-				int arraySize = elpClassCodeArray.length;
-				for (int i = 0; i < arraySize; i++) {
-					for (String classCode : codes) {
-						if (elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
-							break;
-						} else if (!elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
-							try {
-								quotePage_AP.quote();
-								underwritingQuestionsPage_AP.glNonEplQuestions();
-								break;
-							} catch (Exception e) {
-								break;
-							}
-						}
-					}
-					break;
-
-				}
-			} else {
-				for (int i = 0; i < elpClassCodeArray.length; i++) {
-					if (elpClassCodeArray[i].equalsIgnoreCase(classCodeNumber)) {
-						break;
-					} else {
-						quotePage_AP.quote();
-						underwritingQuestionsPage_AP.glNonEplQuestions();
-						break;
-					}
-				}
-			}
-		}
-		return quoteNumber;
-	}
-
-	public void agentPortalLogin(String organizationCode, String password) {
-		agencyPortalLogin(organizationCode, password);
-		try {
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		} catch (UnhandledAlertException e) {
-			try {
-				Alert alert = driver.switchTo().alert();
-				String alertText = alert.getText();
-				System.out.println("Alert data: " + alertText);
-				alert.accept();
-			} catch (NoAlertPresentException f) {
-				f.printStackTrace();
-			}
-		}
-		waitForPageLoaded();
-	}
-
-	public String searchQuote(String applicantName) {
-		homepage = new WrgHomePage_AP();
-		quoteSearchPage = new QuoteSearchPage_AP();
-		homepage.createNewQuote("Commercial Lines");
-		applicantName = quoteSearchPage.searchQuote(applicantName);
-		return applicantName;
-	}
+	
+	
+	
+	
+	
 	
 	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
 		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
@@ -1396,18 +1401,17 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 			//classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
 			classificationPage_AP.addClassificationsToolTipValidation(classCodeNumber,coverageNumber, tooltipText);
 	}
-}	
-	/*
-	 * @AfterTest public void afterMethod() throws IOException { if
-	 * (browser.equalsIgnoreCase("firefox")) {
-	 * Runtime.getRuntime().exec("taskkill /IM geckodriver.exe /T"); } else if
-	 * (browser.equalsIgnoreCase("ie")) {
-	 * Runtime.getRuntime().exec("taskkill /IM IEDriverServer32.exe /T"); } else if
-	 * (browser.equalsIgnoreCase("chrome")) {
-	 * Runtime.getRuntime().exec("taskkill /IM chromedriver.exe /T"); } }
-	 */
-	
-	
+}
+//	@AfterTest
+//	public void afterTest() throws IOException {
+//		if (browser.equalsIgnoreCase("firefox")) {
+//			Runtime.getRuntime().exec("taskkill /IM geckodriver.exe /T");
+//		} else if (browser.equalsIgnoreCase("ie")) {
+//			Runtime.getRuntime().exec("taskkill /IM IEDriverServer32.exe /T");
+//		} else if (browser.equalsIgnoreCase("chrome")) {
+//			Runtime.getRuntime().exec("taskkill /IM chromedriver.exe /T");
+//		}
+//	}
 	public void OptionalCoveragesTooltipValidation(String state, String numberOfLocations, String insuranceType, String businessEntity, String classCodeNumber, String formType,
 			String coverageNumber, String tooltipText) {
 		applicantInfoPage_AP = new ApplicantInformationPage_AP();
@@ -1691,6 +1695,233 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 		}
 		
 	}
+	
+
+	@Parameters({ "insuredName", "state","state1", "numberOfLocations", "organizationCode","organizationCode1", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+	@Test
+	public void US20643ScheduleRatingTC38129(String insuredName, String state, String state1,String numberOfLocations, String organizationCode, String organizationCode1, String password, String insuranceType, 
+			String businessEntity, String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException, InterruptedException {
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+								+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+								+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+								+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+						ExtentColor.PURPLE));
+		String quoteNumber = null;
+		String applicantName = null;
+		agencyPortalLogin(organizationCode, password);
+		sleep(8000);
+		buildNumber_AP = getAgentPortalBuild();
+		
+		if (buildNumber_AP.contains("R3")) {
+			applicantName = searchQuote(insuredName);
+			ScheduleRating(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,"Yes","25%","-25%");
+		} else if (buildNumber_AP.contains("R2")) {
+			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
+			/*quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
+					percentageOwnerOccupiedValue, numberOfLocations);*/
+			//ClassificationsTooltipValidation(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+
+		}
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> Insured Name: " + insuredName + ", State: " + state1 + ", Organization Code: "
+								+ organizationCode1 + ", Password: " + password + ", Insurance type: " + insuranceType
+								+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+								+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+						ExtentColor.PURPLE));
+	
+		agencyPortalLogin(organizationCode1, password);
+		sleep(8000);
+		buildNumber_AP = getAgentPortalBuild();
+		
+		if (buildNumber_AP.contains("R3")) {
+			applicantName = searchQuote(insuredName);
+			ScheduleRating(state1, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,"Yes","40%","-40%");
+		} else if (buildNumber_AP.contains("R2")) {
+			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
+			/*quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
+					percentageOwnerOccupiedValue, numberOfLocations);*/
+			//ClassificationsTooltipValidation(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+
+		}
+		
+	}
+	@Parameters({ "insuredName", "state","state1", "numberOfLocations", "organizationCode","organizationCode1", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+	@Test
+	public void US20643ScheduleRatingTC38130(String insuredName, String state, String state1,String numberOfLocations, String organizationCode, String organizationCode1, String password, String insuranceType, 
+			String businessEntity, String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException, InterruptedException {
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+								+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+								+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+								+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+						ExtentColor.PURPLE));
+		String quoteNumber = null;
+		String applicantName = null;
+		agencyPortalLogin(organizationCode, password);
+		sleep(8000);
+		buildNumber_AP = getAgentPortalBuild();
+		
+		if (buildNumber_AP.contains("R3")) {
+			applicantName = searchQuote(insuredName);
+			ScheduleRating(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,"Yes","1%","-1%");
+		} else if (buildNumber_AP.contains("R2")) {
+			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
+			/*quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
+					percentageOwnerOccupiedValue, numberOfLocations);*/
+			//ClassificationsTooltipValidation(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+
+		}			
+	}
+	@Parameters({ "insuredName", "state","state1", "numberOfLocations", "organizationCode","organizationCode1", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+	@Test
+	public void US20047UWGuideTC37750(String insuredName, String state, String state1,String numberOfLocations, String organizationCode, String organizationCode1, String password, String insuranceType, 
+			String businessEntity, String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException, InterruptedException {
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+								+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+								+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+								+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+						ExtentColor.PURPLE));
+		String quoteNumber = null;
+		String applicantName = null;
+		agencyPortalLogin(organizationCode, password);
+		sleep(8000);
+		buildNumber_AP = getAgentPortalBuild();
+		
+		if (buildNumber_AP.contains("R3")) {
+			applicantName = searchQuote(insuredName);
+			UWGuides(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,"Yes","1%","-1%");
+		} else if (buildNumber_AP.contains("R2")) {
+			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
+			/*quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
+					percentageOwnerOccupiedValue, numberOfLocations);*/
+			//ClassificationsTooltipValidation(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+
+		}			
+	}
+	@Parameters({ "insuredName", "state","state1", "numberOfLocations", "organizationCode","organizationCode1", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+	@Test
+	public void US20047UWGuideTC37751(String insuredName, String state, String state1,String numberOfLocations, String organizationCode, String organizationCode1, String password, String insuranceType, 
+			String businessEntity, String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException, InterruptedException {
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+								+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+								+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+								+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+						ExtentColor.PURPLE));
+		String quoteNumber = null;
+		String applicantName = null;
+		agencyPortalLogin(organizationCode, password);
+		sleep(8000);
+		buildNumber_AP = getAgentPortalBuild();
+		
+		if (buildNumber_AP.contains("R3")) {
+			applicantName = searchQuote(insuredName);
+			UWGuides(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,"Yes","1%","-1%");
+		} else if (buildNumber_AP.contains("R2")) {
+			applicantName = apTests.searchQuote(insuredName, organizationCode, password);
+			/*quoteNumber = apTests.newQuote(state, businessEntity, classCodeNumber, formType,
+					percentageOwnerOccupiedValue, numberOfLocations);*/
+			//ClassificationsTooltipValidation(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+
+		}			
+	}
+	public void UWGuides(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue, String scheduleRatingUpperLimit, String scheduleRatingLowerLimit) throws InterruptedException {
+		applicantInfoPage_AP = new ApplicantInformationPage_AP();
+		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
+		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();
+		policywideCoveragesPage_AP = new PolicywideCoveragesPage_AP();
+		optionalCoveragesPage_AP = new OptionalCoveragesPage_AP();
+		locationsAndBuildingsPage_AP = new LocationsAndBuildingsPage_AP();
+		quotePage_AP = new QuotePage_AP();
+		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
+		startQuotePage_AP = new StartQuotePage_AP();
+		locationsPage_AP = new LocationsPage_AP();
+		classificationPage_AP = new ClassificationsPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		String quoteNumber = null;
+		if (insuranceType.equalsIgnoreCase("General Liability")) {
+			startQuotePage_AP.addClassificationScreenvalidation();
+			startQuotePage_AP.deleteClassifications();
+			
+		 }
+	}
+	public void ScheduleRating(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue, String scheduleRatingUpperLimit, String scheduleRatingLowerLimit) throws InterruptedException {
+		applicantInfoPage_AP = new ApplicantInformationPage_AP();
+		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
+		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();
+		policywideCoveragesPage_AP = new PolicywideCoveragesPage_AP();
+		optionalCoveragesPage_AP = new OptionalCoveragesPage_AP();
+		locationsAndBuildingsPage_AP = new LocationsAndBuildingsPage_AP();
+		quotePage_AP = new QuotePage_AP();
+		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
+		startQuotePage_AP = new StartQuotePage_AP();
+		locationsPage_AP = new LocationsPage_AP();
+		classificationPage_AP = new ClassificationsPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		String quoteNumber = null;
+		if (insuranceType.equalsIgnoreCase("General Liability")) {
+			quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
+			policywideCoveragesPage_AP.coverages();
+			locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
+			classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
+			optionalCoveragesPage_AP.quote();
+			quotePage_AP.scheduleRatingValidation();
+
+			quotePage_AP.scheduleRating(scheduleRatingUpperLimit);
+			quotePage_AP.scheduleRating(scheduleRatingLowerLimit);
+			quitDriver(driver);
+			
+		 }
+	}
 	public void LocationValidation(String state, String numberOfLocations, String insuranceType, String businessEntity, String classCodeNumber, String formType, String isMailingAddress) {
 		applicantInfoPage_AP = new ApplicantInformationPage_AP();
 		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
@@ -1823,17 +2054,7 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 		}
 	}
 
-//	@AfterTest
-//	public void afterTest() throws IOException {
-//		if (browser.equalsIgnoreCase("firefox")) {
-//			Runtime.getRuntime().exec("taskkill /IM geckodriver.exe /T");
-//		} else if (browser.equalsIgnoreCase("ie")) {
-//			Runtime.getRuntime().exec("taskkill /IM IEDriverServer32.exe /T");
-//		} else if (browser.equalsIgnoreCase("chrome")) {
-//			Runtime.getRuntime().exec("taskkill /IM chromedriver.exe /T");
-//		}
-//	}
-	
+
 	@Parameters({  "organizationCode", "password" ,"pageName"})
 @Test
 public void validateCreateNewQuoteOptionsViaAgentPortalForGL(String organizationCode, String password,String pageName) throws IOException {
@@ -2186,6 +2407,17 @@ public void validateClassCodeSearchviaAgentPortalForGL(String insuredName, Strin
 	}
 	
 	
+//	@AfterTest
+//	public void afterTest() throws IOException {
+//		if (browser.equalsIgnoreCase("firefox")) {
+//			Runtime.getRuntime().exec("taskkill /IM geckodriver.exe /T");
+//		} else if (browser.equalsIgnoreCase("ie")) {
+//			Runtime.getRuntime().exec("taskkill /IM IEDriverServer32.exe /T");
+//		} else if (browser.equalsIgnoreCase("chrome")) {
+//			Runtime.getRuntime().exec("taskkill /IM chromedriver.exe /T");
+//		}
+//	}
+
 
 	@AfterTest
 	public void afterTest() throws IOException {
@@ -2198,5 +2430,5 @@ public void validateClassCodeSearchviaAgentPortalForGL(String insuredName, Strin
 		}
 	}
 
-
 }
+
