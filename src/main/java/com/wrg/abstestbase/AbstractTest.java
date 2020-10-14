@@ -46,6 +46,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -729,7 +730,26 @@ public abstract class AbstractTest extends AbstractTestBase {
 	}
 	
 	
+	// function to get  webElement color 
 	
+	public String getWebElementColor(String locator,String propertyname,boolean... optional) {
+		String color="";
+		try {
+			String locatorFile = getLocatorPath();
+			we = driver.findElement(findBy(locatorFile, locator));
+			color=org.openqa.selenium.support.Color.fromString(getWebElement(locator).getCssValue(propertyname)).asHex();
+			log("field " + getWebElementText(locator) + " color is. " +color);    
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (optional != null && optional[0] != true) {
+				log.info("Locator not found " + locator);
+			} else {
+				throwElementNotPresentException(e, locator, optional[0]);
+			}
+		}
+
+		return color;
+	}
 	
 
 	public String getData(String data) {
@@ -792,7 +812,15 @@ public abstract class AbstractTest extends AbstractTestBase {
 	}
 	
 	
-	
+	// function to check whether list is empty or not
+    public static boolean isEmpty(List<WebElement> elements) {  
+		if(elements.size()==0) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
 	
 	
 	
@@ -1078,7 +1106,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 		return getWebElement(element).isEnabled();
 
 	}
-
+	
 	public boolean isTextPresentInPage(String text2Search) {
 		return driver.getPageSource().contains(text2Search);
 
@@ -1103,7 +1131,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 		}
 
 	}
-
+	
 	public void selectByIndex(WebElement element, int index) {
 
 		try {

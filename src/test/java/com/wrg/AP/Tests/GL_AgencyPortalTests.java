@@ -2,6 +2,7 @@ package com.wrg.AP.Tests;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -47,6 +48,7 @@ import com.wrg.PC.pages.RiskAnalysisPage_PC;
 import com.wrg.PC.pages.SummaryPage_PC;
 import com.wrg.PC.pages.WrgHomePage_PC;
 import com.wrg.abstestbase.AbstractTest;
+import com.wrg.constants.UtilConstants;
 import com.wrg.utils.AnnotationTransformer;
 import com.wrg.utils.ExtentTestManager;
 
@@ -145,6 +147,113 @@ public class GL_AgencyPortalTests extends AbstractTest{
 		}
 	}
 
+		public String newQuote(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
+		applicantInfoPage_AP = new ApplicantInformationPage_AP();
+		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
+		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();
+		policywideCoveragesPage_AP = new PolicywideCoveragesPage_AP();
+		optionalCoveragesPage_AP = new OptionalCoveragesPage_AP();
+		locationsAndBuildingsPage_AP = new LocationsAndBuildingsPage_AP();
+		quotePage_AP = new QuotePage_AP();
+		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
+		startQuotePage_AP = new StartQuotePage_AP();
+		locationsPage_AP = new LocationsPage_AP();
+		classificationPage_AP = new ClassificationsPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		String quoteNumber = null;
+		if (insuranceType.equalsIgnoreCase("Businessowners")) {
+			quoteNumber = underwritingGuidelinesPage.goToPolicyFormSelectionPage();
+			policyFormSelectionPage_AP.policyForm(formType);
+			policywideCoveragesPage_AP.coverages();
+			optionalCoveragesPage_AP.optionalCoverages();
+			locationsAndBuildingsPage_AP.addMultipleLocations(state, percentageOwnerOccupiedValue, numberOfLocations,
+					classCodeNumber);
+			quotePage_AP.quote();
+			underwritingQuestionsPage_AP.answerQuestions();
+		} else if (insuranceType.equalsIgnoreCase("General Liability")) {
+			quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
+			policywideCoveragesPage_AP.coverages();
+			locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
+			classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
+			optionalCoveragesPage_AP.quote();
+
+			List<String> codes = new ArrayList<String>();
+			if (classCodeNumber.contains(",")) {
+				String[] codesArray = classCodeNumber.split(",");
+				for (String code : codesArray) {
+					codes.add(code);
+				}
+				int arraySize = elpClassCodeArray.length;
+				for (int i = 0; i < arraySize; i++) {
+					for (String classCode : codes) {
+						if (elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
+							break;
+						} else if (!elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
+							try {
+								quotePage_AP.quote();
+								underwritingQuestionsPage_AP.glNonEplQuestions();
+								break;
+							} catch (Exception e) {
+								break;
+							}
+						}
+					}
+					break;
+
+				}
+			} else {
+				for (int i = 0; i < elpClassCodeArray.length; i++) {
+					if (elpClassCodeArray[i].equalsIgnoreCase(classCodeNumber)) {
+						break;
+					} else {
+						quotePage_AP.quote();
+						underwritingQuestionsPage_AP.glNonEplQuestions();
+						break;
+					}
+				}
+			}
+		}
+		return quoteNumber;
+	}
+
+	public void agentPortalLogin(String organizationCode, String password) {
+		agencyPortalLogin(organizationCode, password);
+		try {
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} catch (UnhandledAlertException e) {
+			try {
+				Alert alert = driver.switchTo().alert();
+				String alertText = alert.getText();
+				System.out.println("Alert data: " + alertText);
+				alert.accept();
+			} catch (NoAlertPresentException f) {
+				f.printStackTrace();
+			}
+		}
+		waitForPageLoaded();
+	}
+
+	public String searchQuote(String applicantName) {
+		homepage = new WrgHomePage_AP();
+		quoteSearchPage = new QuoteSearchPage_AP();
+		homepage.createNewQuote("Commercial Lines");
+		applicantName = quoteSearchPage.searchQuote(applicantName);
+		return applicantName;
+	}
+	
+	
+	
 	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
 		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue","addressLine1","city","zipcode" })  
 @Test
@@ -173,7 +282,7 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 		applicantName = searchQuote(insuredName);
 		quotepageconfirmmsg = addSeventoNineCoverages(insuredName,state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
 				percentageOwnerOccupiedValue,addressLine1,city,zipcode);
-		asst.assertEquals(quotepageconfirmmsg, "Your quote has been submitted for underwriting review. Your underwriting team will contact you once their review is final."); 
+		asst.assertEquals(quotepageconfirmmsg, UtilConstants.QUOTE_SUBMIT_CONFIRM_MESSAGE); 
 		asst.assertAll();
 	}else if (buildNumber_AP.contains("R2")) {
 			//need to handle for r2 code base
@@ -184,7 +293,7 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 	
 	
 		@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
-		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue","addressLine1","city","zipcode" })
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue"})
 	@Test
 	public void validateFirstThreeOptionalCoveragesViaAgentPortalForGL(String insuredName, String state,
 			String numberOfLocations, String organizationCode, String password, String insuranceType,
@@ -211,8 +320,7 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 			applicantName = searchQuote(insuredName);
 			quotepageconfirmmsg = addFirstThreeCoverages(state, numberOfLocations, insuranceType, businessEntity,
 					classCodeNumber, formType, percentageOwnerOccupiedValue);
-			asst.assertEquals(quotepageconfirmmsg,
-					"Your quote has been submitted for underwriting review. Your underwriting team will contact you once their review is final.");
+			asst.assertEquals(quotepageconfirmmsg,UtilConstants.QUOTE_SUBMIT_CONFIRM_MESSAGE);
 			asst.assertAll();
 		} else if (buildNumber_AP.contains("R2")) {
 			// need to handle for r2 code base
@@ -248,8 +356,7 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 			applicantName = searchQuote(insuredName);
 			quotepageconfirmmsg = addThreetwosixCoverages(state, numberOfLocations, insuranceType, businessEntity,
 					classCodeNumber, formType, percentageOwnerOccupiedValue);
-			asst.assertEquals(quotepageconfirmmsg,
-					"Your quote has been submitted for underwriting review. Your underwriting team will contact you once their review is final.");
+			asst.assertEquals(quotepageconfirmmsg,UtilConstants.QUOTE_SUBMIT_CONFIRM_MESSAGE);
 			asst.assertAll();
 		} else if (buildNumber_AP.contains("R2")) {
 			// need to handle for r2 code base
@@ -289,8 +396,7 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 			quotepageconfirmmsg = addTentoTwelveCoverages(insuredName, state, numberOfLocations, insuranceType,
 					businessEntity, classCodeNumber, formType, percentageOwnerOccupiedValue, addressLine1, city,
 					zipcode);
-			asst.assertEquals(quotepageconfirmmsg,
-					"Your quote has been submitted for underwriting review. Your underwriting team will contact you once their review is final.");
+			asst.assertEquals(quotepageconfirmmsg,UtilConstants.QUOTE_SUBMIT_CONFIRM_MESSAGE);
 			asst.assertAll();
 		} else if (buildNumber_AP.contains("R2")) {
 			// need to handle for r2 code base
@@ -329,8 +435,7 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 			quotepageconfirmmsg = addThirteentoFifteenCoverages(insuredName, state, numberOfLocations, insuranceType,
 					businessEntity, classCodeNumber, formType, percentageOwnerOccupiedValue, addressLine1, city,
 					zipcode);
-			asst.assertEquals(quotepageconfirmmsg,
-					"Your quote has been submitted for underwriting review. Your underwriting team will contact you once their review is final.");
+			asst.assertEquals(quotepageconfirmmsg,UtilConstants.QUOTE_SUBMIT_CONFIRM_MESSAGE);
 			asst.assertAll();
 		} else if (buildNumber_AP.contains("R2")) {
 			// need to handle for r2 code base
@@ -369,8 +474,7 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 			quotepageconfirmmsg = addSixteentoEighteenCoverages(insuredName, state, numberOfLocations, insuranceType,
 					businessEntity, classCodeNumber, formType, percentageOwnerOccupiedValue, addressLine1, city,
 					zipcode);
-			asst.assertEquals(quotepageconfirmmsg,
-					"Your quote has been submitted for underwriting review. Your underwriting team will contact you once their review is final.");
+			asst.assertEquals(quotepageconfirmmsg,UtilConstants.QUOTE_SUBMIT_CONFIRM_MESSAGE);
 			asst.assertAll();
 		} else if (buildNumber_AP.contains("R2")) {
 			// need to handle for r2 code base
@@ -713,8 +817,8 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 		applicantInfoPage_AP.clickNextButton();
 		sleep(2000);
 		startQuotePage_AP.addClassification(classCodeNumber);
-		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
-		totalelements = underwritingQuestionsPage_AP.verifyUnderwritingInfoPageElementsPresence();
+		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
+		totalelements = underwritingGuidelinesPage.verifyUnderwritingInfoPageElementsPresence();
 		return totalelements;
 	}
 
@@ -1004,110 +1108,11 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 
 	}
 
-	public String newQuote(String state, String numberOfLocations, String insuranceType, String businessEntity,
-			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
-		applicantInfoPage_AP = new ApplicantInformationPage_AP();
-		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
-		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();
-		policywideCoveragesPage_AP = new PolicywideCoveragesPage_AP();
-		optionalCoveragesPage_AP = new OptionalCoveragesPage_AP();
-		locationsAndBuildingsPage_AP = new LocationsAndBuildingsPage_AP();
-		quotePage_AP = new QuotePage_AP();
-		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
-		startQuotePage_AP = new StartQuotePage_AP();
-		locationsPage_AP = new LocationsPage_AP();
-		classificationPage_AP = new ClassificationsPage_AP();
-		applicantInfoPage_AP.enterAddress(state, businessEntity);
-		applicantInfoPage_AP.selectInsuranceType(insuranceType);
-		applicantInfoPage_AP.clickNextButton();
-		sleep(2000);
-		startQuotePage_AP.addClassification(classCodeNumber);
-		String quoteNumber = null;
-		if (insuranceType.equalsIgnoreCase("Businessowners")) {
-			quoteNumber = underwritingGuidelinesPage.goToPolicyFormSelectionPage();
-			policyFormSelectionPage_AP.policyForm(formType);
-			policywideCoveragesPage_AP.coverages();
-			optionalCoveragesPage_AP.optionalCoverages();
-			locationsAndBuildingsPage_AP.addMultipleLocations(state, percentageOwnerOccupiedValue, numberOfLocations,
-					classCodeNumber);
-			quotePage_AP.quote();
-			underwritingQuestionsPage_AP.answerQuestions();
-		} else if (insuranceType.equalsIgnoreCase("General Liability")) {
-			quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
-			policywideCoveragesPage_AP.coverages();
-			locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
-			classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
-			optionalCoveragesPage_AP.quote();
-
-			List<String> codes = new ArrayList<String>();
-			if (classCodeNumber.contains(",")) {
-				String[] codesArray = classCodeNumber.split(",");
-				for (String code : codesArray) {
-					codes.add(code);
-				}
-				int arraySize = elpClassCodeArray.length;
-				for (int i = 0; i < arraySize; i++) {
-					for (String classCode : codes) {
-						if (elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
-							break;
-						} else if (!elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
-							try {
-								quotePage_AP.quote();
-								underwritingQuestionsPage_AP.glNonEplQuestions();
-								break;
-							} catch (Exception e) {
-								break;
-							}
-						}
-					}
-					break;
-
-				}
-			} else {
-				for (int i = 0; i < elpClassCodeArray.length; i++) {
-					if (elpClassCodeArray[i].equalsIgnoreCase(classCodeNumber)) {
-						break;
-					} else {
-						quotePage_AP.quote();
-						underwritingQuestionsPage_AP.glNonEplQuestions();
-						break;
-					}
-				}
-			}
-		}
-		return quoteNumber;
-	}
-
-	public void agentPortalLogin(String organizationCode, String password) {
-		agencyPortalLogin(organizationCode, password);
-		try {
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		} catch (UnhandledAlertException e) {
-			try {
-				Alert alert = driver.switchTo().alert();
-				String alertText = alert.getText();
-				System.out.println("Alert data: " + alertText);
-				alert.accept();
-			} catch (NoAlertPresentException f) {
-				f.printStackTrace();
-			}
-		}
-		waitForPageLoaded();
-	}
-
-	public String searchQuote(String applicantName) {
-		homepage = new WrgHomePage_AP();
-		quoteSearchPage = new QuoteSearchPage_AP();
-		homepage.createNewQuote("Commercial Lines");
-		applicantName = quoteSearchPage.searchQuote(applicantName);
-		return applicantName;
-	}
+	
+	
+	
+	
+	
 	
 	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
 		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
@@ -2049,6 +2054,359 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 		}
 	}
 
+
+	@Parameters({  "organizationCode", "password" ,"pageName"})
+@Test
+public void validateCreateNewQuoteOptionsViaAgentPortalForGL(String organizationCode, String password,String pageName) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Organization Code: "
+							+ organizationCode + ", Password: " + password + ", PageName: " +pageName,
+					ExtentColor.PURPLE));
+	
+	agentPortalLogin(organizationCode, password);
+	
+	if (pageName.equalsIgnoreCase("homepage")) { 
+		HashMap<Integer, String> actualmap=getCreateNewQuoteOptions(pageName);
+		asst.assertEquals(actualmap, getCreateNewButtonOptions());  
+		asst.assertAll();
+	} else if (pageName.equalsIgnoreCase("policies")) {
+		HashMap<Integer, String> actualmap=getCreateNewQuoteOptions(pageName);
+		asst.assertEquals(actualmap, getCreateNewButtonOptions());  
+		asst.assertAll();
+	}
+	
+}
+	
+	public HashMap<Integer, String> getCreateNewQuoteOptions(String pageName) {  
+		WrgHomePage_AP wrgHomePage_AP=new WrgHomePage_AP();
+		PolicySearchPage_AP policySeachPage_Ap=new PolicySearchPage_AP();
+		HashMap<Integer, String> optionsmap=null;
+		if(pageName.equalsIgnoreCase("homepage")) {
+		optionsmap=wrgHomePage_AP.getCreateNewButtonOptions();
+		}else if(pageName.equalsIgnoreCase("policies")) {
+			optionsmap=policySeachPage_Ap.getCreateNewButtonOptions();
+		}
+	
+	return optionsmap;
+	
+	}
+	
+	public HashMap<Integer, String> getCreateNewButtonOptions() {
+		HashMap<Integer, String> createquoteMap=new HashMap<Integer, String>();
+		createquoteMap.put(1, "Commercial Lines");
+		createquoteMap.put(2, "Commercial Auto");
+		createquoteMap.put(3, "Dwelling Fire");
+		createquoteMap.put(4, "Farm");
+		createquoteMap.put(5, "WRG Advantage® Auto");
+		createquoteMap.put(6, "WRG Advantage® Homeowners");
+		createquoteMap.put(7, "Farm Umbrella Worksheet (Rating Only - No Upload)");  
+		createquoteMap.put(8, "Personal Lines Umbrella Worksheet (Rating Only - No Upload)");
+		return createquoteMap;
+		  
+	}
+	
+	
+	
+	
+	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+@Test
+public void validateDisclaimerQuoteTextViaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
+		String organizationCode, String password, String insuranceType, String businessEntity,
+		String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+							+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+					ExtentColor.PURPLE));
+	String disclaimertext = null;
+	String applicantName = null;
+	agentPortalLogin(organizationCode, password);
+	buildNumber_AP = getAgentPortalBuild();
+	if (buildNumber_AP.contains("R3")) {
+		applicantName = searchQuote(insuredName);
+		disclaimertext = getQuoteText(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+				percentageOwnerOccupiedValue);
+		asst.assertEquals(disclaimertext, UtilConstants.QUOTE_DISCLAIMER_TEXT_STRING);
+		asst.assertAll();
+	} else if (buildNumber_AP.contains("R2")) {
+		// need to handle for r2 code base
+	}
+	
+}
+	
+	public String getQuoteText(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
+		applicantInfoPage_AP = new ApplicantInformationPage_AP();
+		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
+		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();
+		policywideCoveragesPage_AP = new PolicywideCoveragesPage_AP();
+		optionalCoveragesPage_AP = new OptionalCoveragesPage_AP();
+		locationsAndBuildingsPage_AP = new LocationsAndBuildingsPage_AP();
+		quotePage_AP = new QuotePage_AP();
+		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
+		startQuotePage_AP = new StartQuotePage_AP();
+		locationsPage_AP = new LocationsPage_AP();
+		classificationPage_AP = new ClassificationsPage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		startQuotePage_AP.addClassification(classCodeNumber);
+		String quoteNumber = null;
+		String disclaimertext=null;
+		if (insuranceType.equalsIgnoreCase("Businessowners")) {
+			quoteNumber = underwritingGuidelinesPage.goToPolicyFormSelectionPage();
+			policyFormSelectionPage_AP.policyForm(formType);
+			policywideCoveragesPage_AP.coverages();
+			optionalCoveragesPage_AP.optionalCoverages();
+			locationsAndBuildingsPage_AP.addMultipleLocations(state, percentageOwnerOccupiedValue, numberOfLocations,
+					classCodeNumber);
+			quotePage_AP.quote();
+			underwritingQuestionsPage_AP.answerQuestions();
+		} else if (insuranceType.equalsIgnoreCase("General Liability")) {
+			quoteNumber = underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
+			policywideCoveragesPage_AP.coverages();
+			locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
+			classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
+			optionalCoveragesPage_AP.quote();
+
+			List<String> codes = new ArrayList<String>();
+			if (classCodeNumber.contains(",")) {
+				String[] codesArray = classCodeNumber.split(",");
+				for (String code : codesArray) {
+					codes.add(code);
+				}
+				
+				int arraySize = elpClassCodeArray.length;
+				for (int i = 0; i < arraySize; i++) {
+					for (String classCode : codes) {
+						if (elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
+							break;
+						} else if (!elpClassCodeArray[i].equalsIgnoreCase(classCode)) {
+							try {
+								disclaimertext=quotePage_AP.getDisclaimerText();
+								asst.assertEquals(disclaimertext, "Disclaimer: THIS IS NOT AN OFFER OF INSURANCE AND DOES NOT BIND COVERAGE.\n" + 
+										"Premium and coverages shown is an estimate based upon information provided to us and is subject to change. Further details regarding insurance values and exposures may be required or dependent on additional underwriting documentation and approval. A completed Application is necessary to bind and issue a policy.\n" + 
+										"Please carefully review the quote proposal for all coverage and exclusion forms included in this quote.");
+								quotePage_AP.clickonpreviousbtn();
+								optionalCoveragesPage_AP.quote();
+								disclaimertext=quotePage_AP.getDisclaimerText();
+								asst.assertEquals(disclaimertext, "Disclaimer: THIS IS NOT AN OFFER OF INSURANCE AND DOES NOT BIND COVERAGE.\n" + 
+										"Premium and coverages shown is an estimate based upon information provided to us and is subject to change. Further details regarding insurance values and exposures may be required or dependent on additional underwriting documentation and approval. A completed Application is necessary to bind and issue a policy.\n" + 
+										"Please carefully review the quote proposal for all coverage and exclusion forms included in this quote.");
+								quotePage_AP.quote();
+								underwritingQuestionsPage_AP.navigatetoQuotePage();
+								disclaimertext=quotePage_AP.getDisclaimerText();
+								break;
+							} catch (Exception e) {
+								break;
+							}
+						}
+					}
+					break;
+
+				}
+			} else {
+				for (int i = 0; i < elpClassCodeArray.length; i++) {
+					if (elpClassCodeArray[i].equalsIgnoreCase(classCodeNumber)) {
+						break;
+					} else {
+						disclaimertext=quotePage_AP.getDisclaimerText();
+						asst.assertEquals(disclaimertext, "Disclaimer: THIS IS NOT AN OFFER OF INSURANCE AND DOES NOT BIND COVERAGE.\n" + 
+								"Premium and coverages shown is an estimate based upon information provided to us and is subject to change. Further details regarding insurance values and exposures may be required or dependent on additional underwriting documentation and approval. A completed Application is necessary to bind and issue a policy.\n" + 
+								"Please carefully review the quote proposal for all coverage and exclusion forms included in this quote.");
+						quotePage_AP.clickonpreviousbtn();
+						sleep(2000); 
+						optionalCoveragesPage_AP.quote();
+						disclaimertext=quotePage_AP.getDisclaimerText();
+						asst.assertEquals(disclaimertext, "Disclaimer: THIS IS NOT AN OFFER OF INSURANCE AND DOES NOT BIND COVERAGE.\n" + 
+								"Premium and coverages shown is an estimate based upon information provided to us and is subject to change. Further details regarding insurance values and exposures may be required or dependent on additional underwriting documentation and approval. A completed Application is necessary to bind and issue a policy.\n" + 
+								"Please carefully review the quote proposal for all coverage and exclusion forms included in this quote.");
+						quotePage_AP.quote();
+						underwritingQuestionsPage_AP.navigatetoQuotePage();
+						disclaimertext=quotePage_AP.getDisclaimerText();
+						//underwritingQuestionsPage_AP.glNonEplQuestions();
+						break;
+					}
+				}
+			}
+		}
+		return disclaimertext;
+	}
+	
+	// US20634-TC50305 Test, validate agent portal wizard for GL
+	
+	
+	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+@Test
+public void validateAgentPortalWizardForGL(String insuredName, String state, String numberOfLocations,
+		String organizationCode, String password, String insuranceType, String businessEntity,
+		String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+							+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+					ExtentColor.PURPLE));
+	String quoteNumber = null;
+	String applicantName = null;
+	agentPortalLogin(organizationCode, password);
+	buildNumber_AP = getAgentPortalBuild();
+	if (buildNumber_AP.contains("R3")) {
+		applicantName = searchQuote(insuredName);
+		navigatePortalPages(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+				percentageOwnerOccupiedValue);
+		asst.assertAll();
+	} 
+	/*
+	 * underwritingQuestionsPage_AP.clickBeginSubmissionBtn(); try {
+	 * underwritingQuestionsPage_AP.beginSubmission(); } catch (Exception e) {
+	 * paymentDetailsPage_AP.downPayment(); }
+	 */
+}
+	
+	
+	public void navigatePortalPages(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
+		applicantInfoPage_AP = new ApplicantInformationPage_AP();
+		underwritingGuidelinesPage = new UnderwritingGuidelinesPage_AP();
+		policyFormSelectionPage_AP = new PolicyFormSelectionPage_AP();
+		policywideCoveragesPage_AP = new PolicywideCoveragesPage_AP();
+		optionalCoveragesPage_AP = new OptionalCoveragesPage_AP();
+		locationsAndBuildingsPage_AP = new LocationsAndBuildingsPage_AP();
+		quotePage_AP = new QuotePage_AP();
+		underwritingQuestionsPage_AP = new UnderwritingInfoAndApplicationPage_AP();
+		startQuotePage_AP = new StartQuotePage_AP();
+		locationsPage_AP = new LocationsPage_AP();
+		classificationPage_AP = new ClassificationsPage_AP();
+		asst.assertEquals(applicantInfoPage_AP.getWizardSideMenus(),getBeforeQuoteStartWizardMenusHashMap());  
+		asst.assertEquals(applicantInfoPage_AP.viewwizardmenusonApplicantInformationUI(), true); 
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		asst.assertEquals(classificationPage_AP.getWizardSideMenus(),getBeforeQuoteStartWizardMenusHashMap()); 
+		asst.assertEquals(classificationPage_AP.viewwizardmenusonClassficationnUI(), true);   
+		startQuotePage_AP.checkInsurancetypeButtonState();  
+		startQuotePage_AP.addClassification(classCodeNumber);
+		asst.assertEquals(underwritingGuidelinesPage.getPortalWizardheader(), UtilConstants.UNDERWRITING_GUIDELINE_WIZARD_MENU_HEADING);
+		asst.assertEquals(underwritingGuidelinesPage.getWizardSideMenus(), getAfterQuoteStartWizardMenusHashMap()); 
+		asst.assertEquals(underwritingGuidelinesPage.viewwizardmenusonUnderwritingInfoAndApplicationUI(), true);  
+		asst.assertEquals(underwritingGuidelinesPage.navigatetoVisitedWizardMenus(), true);  
+		asst.assertEquals(underwritingGuidelinesPage.navigatetoUnVisitedWizardMenu(),false);    
+		underwritingGuidelinesPage.goToPolicyWideCoveragesPage(classCodeNumber);
+		asst.assertEquals(policywideCoveragesPage_AP.viewwizardmenusonPolicyWideCoverageUI(), true);  
+		policywideCoveragesPage_AP.coverages();
+		waitForPageLoaded();
+		asst.assertEquals(locationsPage_AP.viewwizardmenusonLocationUI(), true);  
+		locationsPage_AP.goToClassificationsPage(state, numberOfLocations);
+		classificationPage_AP.addClassifications(classCodeNumber, "10000", numberOfLocations);
+		waitForPageLoaded();
+		asst.assertEquals(optionalCoveragesPage_AP.viewwizardmenusonOptionalCoverageUI(), true);  
+		optionalCoveragesPage_AP.quote();
+		asst.assertEquals(quotePage_AP.viewwizardmenusonQuotePageUI(), true);   
+		
+		
+	}
+	
+    
+	public HashMap<Integer, String> getBeforeQuoteStartWizardMenusHashMap() { 
+		HashMap<Integer, String> wizardmenu=new HashMap<Integer, String>();
+		wizardmenu.put(1, "Applicant Information");
+		wizardmenu.put(2, "Start Quote");
+		return wizardmenu;
+		  
+	}
+    
+	
+	public HashMap<Integer, String> getAfterQuoteStartWizardMenusHashMap() { 
+		HashMap<Integer, String> wizardmenu=new HashMap<Integer, String>();
+		wizardmenu.put(1, "Applicant Information");
+		wizardmenu.put(2, "Start Quote");
+		wizardmenu.put(3, "Underwriting Questions");
+		wizardmenu.put(4, "Policywide Coverages");
+		wizardmenu.put(5, "Locations");
+		wizardmenu.put(6, "Classifications");
+		wizardmenu.put(7, "Optional Coverages");
+		wizardmenu.put(8, "Quote");
+		wizardmenu.put(9, "Underwriting Application");
+		wizardmenu.put(10, "Payment Details");
+		return wizardmenu;
+		  
+	}
+	
+	// test for card US20565- TEST CASE TC50304
+	
+	@Parameters({ "insuredName", "state", "numberOfLocations", "organizationCode", "password", "insuranceType",
+		"businessEntity", "classCodeNumber", "formType", "percentageOwnerOccupiedValue" })
+@Test
+public void validateClassCodeSearchviaAgentPortalForGL(String insuredName, String state, String numberOfLocations,
+		String organizationCode, String password, String insuranceType, String businessEntity,
+		String classCodeNumber, String formType, String percentageOwnerOccupiedValue) throws IOException {
+	try {
+		Thread.sleep(10000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> Insured Name: " + insuredName + ", State: " + state + ", Organization Code: "
+							+ organizationCode + ", Password: " + password + ", Insurance type: " + insuranceType
+							+ ", Business Entity: " + businessEntity + ", Class Codes: " + classCodeNumber
+							+ ", FormType: " + formType + ", Percentage Owner: " + percentageOwnerOccupiedValue,
+					ExtentColor.PURPLE));
+	String quoteNumber = null;
+	String applicantName = null;
+	agentPortalLogin(organizationCode, password);
+	buildNumber_AP = getAgentPortalBuild();
+	if (buildNumber_AP.contains("R3")) {
+		applicantName = searchQuote(insuredName);
+		searchclasscodes(state, numberOfLocations, insuranceType, businessEntity, classCodeNumber, formType,
+				percentageOwnerOccupiedValue);
+		asst.assertAll();
+	} 
+	
+}
+	
+	public void searchclasscodes(String state, String numberOfLocations, String insuranceType, String businessEntity,
+			String classCodeNumber, String formType, String percentageOwnerOccupiedValue) {
+		applicantInfoPage_AP = new ApplicantInformationPage_AP();
+		startQuotePage_AP = new StartQuotePage_AP();
+		applicantInfoPage_AP.enterAddress(state, businessEntity);
+		applicantInfoPage_AP.selectInsuranceType(insuranceType);
+		applicantInfoPage_AP.clickNextButton();
+		sleep(2000);
+		asst.assertEquals(startQuotePage_AP.verifyClassCodeSearchResults(classCodeNumber), true);
+		
+		
+	}
+	
+	
 //	@AfterTest
 //	public void afterTest() throws IOException {
 //		if (browser.equalsIgnoreCase("firefox")) {
@@ -2072,5 +2430,5 @@ public void validateSeventoNineOptionalCoveragesViaAgentPortalForGL(String insur
 		}
 	}
 
-
 }
+

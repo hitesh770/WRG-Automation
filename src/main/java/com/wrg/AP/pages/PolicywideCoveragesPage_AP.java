@@ -93,10 +93,8 @@ public class PolicywideCoveragesPage_AP extends AbstractTest {
 
 			return we;
 		}
-
 		
 		
-
 	public void coverages() {
 		wait = new WebDriverWait(driver, 20);
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -170,4 +168,40 @@ public class PolicywideCoveragesPage_AP extends AbstractTest {
 			quitDriver(driver);
 		}
 	}
+	
+	//function to verify portal wizard menus 
+	
+	public boolean viewwizardmenusonPolicyWideCoverageUI() {
+		boolean flag=true;
+		
+		 if(getWebElementColor("portalcurrentwizardmenu", "background-color").equals("#004ebd")) {
+			 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel(getWebElementText("portalcurrentwizardmenu")+ " color is blue ",ExtentColor.BLUE));
+			  flag=true; 
+		 }else {
+			 return flag=false;  
+		 }
+		
+		 
+		 if(getWebElementColor("portalfistwizardmenu", "color").equals("#555555") && getWebElementColor("portalsecondwizardmenu", "color").equals("#555555")) {
+			 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel(getWebElementText("portalfistwizardmenu")+ " and " +getWebElementText("portalsecondwizardmenu")+ " color is dark grey and appear as enabled ",ExtentColor.BLUE)); 
+			  flag=true;
+		 }else {
+			 return flag=false;   
+		 }
+		 
+		
+		 
+		 if(getWebElementColor("portalffithwizardmenu", "color").equals("#bbbdbf") && getWebElementColor("portalsixwizardmenu", "color").equals("#bbbdbf")) {
+			 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel(getWebElementText("portalffithwizardmenu")+ " and " +getWebElementText("portalsixwizardmenu")+ " color is  grey and appear as disabled ",ExtentColor.BLUE)); 
+			 flag=true;
+		 }else {
+			 return flag=false;   
+		 }
+		 
+		 return flag;
+	}
+	
+	
+	
+	
 }

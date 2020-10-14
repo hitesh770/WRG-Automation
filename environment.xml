@@ -18,6 +18,15 @@
 <dbpwd>uioue832jksj</dbpwd> -->	 -->	
 </environment>
 
+<environment id="u3">
+<PCbaseurl>https://u3pc.wrg-ins.com/PolicyCenter.do</PCbaseurl>
+<baseurl>https://u3agency.wrg-ins.com/portal/html/#!/home/</baseurl>
+<BCbaseurl>https://u3bc.wrg-ins.net:8943/BillingCenter.do</BCbaseurl>
+<!-- <dbCon>jdbc:mysql://kasback.chrp5tjafhuc.ap-south-1.rds.amazonaws.com/kasback</dbCon>
+<dbuser>agam</dbuser>
+<dbpwd>uioue832jksj</dbpwd> -->	 -->	
+</environment>
+
 <environment id="r1">
 <PCbaseurl>https://r1pc.wrg-ins.net:8543/PolicyCenter.do</PCbaseurl>
 <baseurl>https://r1agency.wrg-ins.com/portal/html/#!/home/</baseurl>

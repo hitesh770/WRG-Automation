@@ -763,4 +763,39 @@ public class OptionalCoveragesPage_AP extends AbstractTest {
 			quitDriver(driver);
 		}
 	}
+	
+	
+	//function to verify portal wizard menus 
+	
+			public boolean viewwizardmenusonOptionalCoverageUI() {
+				boolean flag=true;
+				 
+				 if(getWebElementColor("portalcurrentwizardmenu", "background-color").equals("#004ebd")) {
+					 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel(getWebElementText("portalcurrentwizardmenu")+ " color is blue ",ExtentColor.BLUE));
+					  flag=true; 
+				 }else {
+					 return flag=false;  
+				 }
+				
+				 
+				 if(getWebElementColor("portalfistwizardmenu", "color").equals("#555555") && getWebElementColor("portalsecondwizardmenu", "color").equals("#555555")) {
+					 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel(getWebElementText("portalfistwizardmenu")+ " and " +getWebElementText("portalsecondwizardmenu")+ " color is dark grey and appear as enabled ",ExtentColor.BLUE)); 
+					  flag=true;
+				 }else {
+					 return flag=false;   
+				 }
+				 
+				
+				 
+				 if(getWebElementColor("portaleightwizardmenu", "color").equals("#bbbdbf") && getWebElementColor("portalninewizardmenu", "color").equals("#bbbdbf")) {
+					 ExtentTestManager.getTest().log(Status.INFO,  MarkupHelper.createLabel(getWebElementText("portaleightwizardmenu")+ " and " +getWebElementText("portalninewizardmenu")+ " color is  grey and appear as disabled ",ExtentColor.BLUE)); 
+					 flag=true;
+				 }else {
+					 return flag=false;   
+				 }
+				 
+				 return flag;
+			}
+		
+	
 }
