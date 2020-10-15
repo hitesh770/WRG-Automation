@@ -255,7 +255,7 @@ public class Property_PolicyCenterTests extends AbstractTest {
 	@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
 			"accountType", "effectiveDate", "formType" })
 	@Test
-	public void US22280BuildingAdditionalCoverages(String pcUsers, String insuredName,
+	public void US22280BuildingAdditionalCoveragesTC43354(String pcUsers, String insuredName,
 			String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
 			String accountType, String effectiveDate, String formType) throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
@@ -289,7 +289,7 @@ public class Property_PolicyCenterTests extends AbstractTest {
 @Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22298BuildingAdditionalCoveragesTC1(String pcUsers, String insuredName,
+public void US22298BuildingAdditionalCoveragesTC44731(String pcUsers, String insuredName,
 		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
@@ -328,7 +328,7 @@ public void US22298BuildingAdditionalCoveragesTC1(String pcUsers, String insured
 @Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22298BuildingAdditionalCoveragesTC2(String pcUsers, String insuredName,
+public void US22298BuildingAdditionalCoveragesTC44736(String pcUsers, String insuredName,
 		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
@@ -372,7 +372,7 @@ public void US22298BuildingAdditionalCoveragesTC2(String pcUsers, String insured
 @Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22298BuildingAdditionalCoveragesTC3(String pcUsers, String insuredName,
+public void US22298BuildingAdditionalCoveragesTC44739(String pcUsers, String insuredName,
 		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
@@ -404,7 +404,7 @@ public void US22298BuildingAdditionalCoveragesTC3(String pcUsers, String insured
 @Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22304BuildingAdditionalCoveragesTC1(String pcUsers, String insuredName,
+public void US22304BuildingAdditionalCoveragesTC45607(String pcUsers, String insuredName,
 		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
@@ -443,7 +443,7 @@ public void US22304BuildingAdditionalCoveragesTC1(String pcUsers, String insured
 @Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22316BuildingAdditionalCoveragesTC1(String pcUsers, String insuredName,
+public void US22316BuildingAdditionalCoveragesTC45024(String pcUsers, String insuredName,
 		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
@@ -482,7 +482,7 @@ public void US22316BuildingAdditionalCoveragesTC1(String pcUsers, String insured
 @Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22322BuildingAdditionalCoveragesTC1(String pcUsers, String insuredName,
+public void US22322BuildingAdditionalCoveragesTC44619(String pcUsers, String insuredName,
 		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
@@ -517,7 +517,7 @@ public void US22322BuildingAdditionalCoveragesTC1(String pcUsers, String insured
 @Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22346BuildingAdditionalCoveragesTC1(String pcUsers, String insuredName,
+public void US22346BuildingAdditionalCoveragesTC45420(String pcUsers, String insuredName,
 		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
@@ -560,7 +560,7 @@ public void US22346BuildingAdditionalCoveragesTC1(String pcUsers, String insured
 @Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22288BuildingAdditionalCoveragesTC1(String pcUsers, String insuredName,
+public void US22288BuildingAdditionalCoveragesTC44695(String pcUsers, String insuredName,
 		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
