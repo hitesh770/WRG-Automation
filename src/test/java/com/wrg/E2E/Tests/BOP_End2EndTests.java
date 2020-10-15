@@ -356,12 +356,12 @@ public class BOP_End2EndTests extends AbstractTest {
 	 * Issues (If Any) Go to Agent Portal and Make the Payment Go to Policy Center
 	 * and Issue the Policy
 	 */
-	@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "password",
+	@Parameters({ "pcUsers", "insuredName", "state","insuranceType", "businessEntity", "organizationCode", "password",
 			"classCodeNumber", "numberOfLocations", "numberOfBuildings", "term", "accountType", "effectiveDate",
 			"formType", "percentageOwnerOccupiedValue" })
 	@Test
 	public void verifyNewPolicyIsCreatedViaPolicyCenter(String pcUsers, String insuredName, String state,
-			String businessEntity, String organizationCode, String password, String classCodeNumber,
+			String insuranceType,String businessEntity, String organizationCode, String password, String classCodeNumber,
 			String numberOfLocations, String numberOfBuildings, String term, String accountType, String effectiveDate,
 			String formType, String percentageOwnerOccupiedValue) throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
@@ -373,7 +373,7 @@ public class BOP_End2EndTests extends AbstractTest {
 						+ ", Account Type: " + accountType + ", Effective Date: " + effectiveDate + ", FormType: "
 						+ formType + ", Percentage Owner Occupied Value: " + percentageOwnerOccupiedValue,
 				ExtentColor.PURPLE));
-		pctest.createAccount(usersList.get(0).toString(), insuredName, state, businessEntity, organizationCode,
+		pctest.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,businessEntity, organizationCode,
 				classCodeNumber, accountType);
 		String quoteNumber = pctest.newCustomTermQuote(term, effectiveDate, formType, classCodeNumber, state,
 				numberOfLocations, numberOfBuildings,insuredName);
