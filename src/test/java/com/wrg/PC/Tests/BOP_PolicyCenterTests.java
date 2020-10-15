@@ -113,11 +113,11 @@ public class BOP_PolicyCenterTests extends AbstractTest {
 	/*
 	 * Create New Account Create New Submission Quote the Submission
 	 */
-	@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber",
+	@Parameters({ "pcUsers", "insuredName", "state","insuranceType", "businessEntity", "organizationCode", "classCodeNumber",
 			"numberOfLocations", "numberOfBuildings", "term", "accountType", "effectiveDate", "formType" })
 	@Test
 	public void verifyNewQuoteIsCreatedViaPolicyCenter(String pcUsers, String insuredName, String state,
-			String businessEntity, String organizationCode, String classCodeNumber, String numberOfLocations,
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String numberOfLocations,
 			String numberOfBuildings, String term, String accountType, String effectiveDate, String formType)
 			throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
@@ -129,18 +129,18 @@ public class BOP_PolicyCenterTests extends AbstractTest {
 								+ ", NUmber of Buildings: " + numberOfBuildings + ", Term: " + term + ", Account Type: "
 								+ accountType + ", Effective Date: " + effectiveDate + ", FormType: " + formType,
 						ExtentColor.PURPLE));
-		createAccount(usersList.get(0).toString(), insuredName, state, businessEntity, organizationCode,
+		createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity, organizationCode,
 				classCodeNumber, accountType);
 		quoteNumber = newCustomTermQuote(term, effectiveDate, formType, classCodeNumber, state, numberOfLocations,
 				numberOfBuildings,insuredName);
 	}
 
 	/* Create New Account */
-	@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber",
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber",
 			"accountType" })
 	@Test
 	public void verifyNewAccountIsCreatedViaPolicyCenter(String pcUsers, String insuredName, String state,
-			String businessEntity, String organizationCode, String classCodeNumber, String accountType)
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String accountType)
 			throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
 		ExtentTestManager.getTest().log(Status.INFO,
@@ -149,11 +149,11 @@ public class BOP_PolicyCenterTests extends AbstractTest {
 								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 						ExtentColor.PURPLE));
-		createAccount(usersList.get(0).toString(), insuredName, state, businessEntity, organizationCode,
+		createAccount(usersList.get(0).toString(), insuredName, state,insuranceType, businessEntity, organizationCode,
 				classCodeNumber, accountType);
 	}
 
-	public String createAccount(String pcUser, String insuredName, String state, String businessEntity,
+	public String createAccount(String pcUser, String insuredName, String state, String insuranceType, String businessEntity,
 			String organizationCode, String classCodeNumber, String accountType) throws IOException {
 		String accountNumber = null;
 		homepage = new WrgHomePage_PC();
@@ -175,11 +175,21 @@ public class BOP_PolicyCenterTests extends AbstractTest {
 			List<String> classCodes = new ArrayList<String>();
 			for (String classCode : spiltClassCodes) {
 				classCodes.add(classCode);
-				classCodeSearchPage_PC.selectClassCode(classCode);
+				if (insuranceType.contains("property")) {
+					classCodeSearchPage_PC.selectClassCode(classCode, "GL");
+				}else {
+					classCodeSearchPage_PC.selectClassCode(classCode);
+				}
+				
 				hazardGradeSelectionPage_PC.selecthazardGrade();
 			}
 		} else {
-			classCodeSearchPage_PC.selectClassCode(classCodeNumber);
+			if (insuranceType.contains("property")) {
+				classCodeSearchPage_PC.selectClassCode(classCodeNumber, "GL");
+			}else {
+				classCodeSearchPage_PC.selectClassCode(classCodeNumber);
+			}
+			
 			hazardGradeSelectionPage_PC.selecthazardGrade();
 		}
 		enterAccountInfoPage.updateAccount();

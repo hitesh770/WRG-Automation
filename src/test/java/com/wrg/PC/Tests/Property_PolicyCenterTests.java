@@ -55,11 +55,11 @@ public class Property_PolicyCenterTests extends AbstractTest {
 	}
 
 	/* Create New Account */
-	@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode", "classCodeNumber", "term",
 			"accountType", "effectiveDate", "formType" })
 	@Test
 	public void checkAllValidationsOnPolicyInfoPage(String pcUsers, String insuredName, String state,
-			String businessEntity, String organizationCode, String classCodeNumber, String term, String accountType,
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term, String accountType,
 			String effectiveDate, String formType) throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
 		ExtentTestManager.getTest().log(Status.INFO,
@@ -68,7 +68,7 @@ public class Property_PolicyCenterTests extends AbstractTest {
 								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 						ExtentColor.PURPLE));
-		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, businessEntity,
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
 				organizationCode, classCodeNumber, accountType);
 		// newCustomTermQuote(term, effectiveDate, formType, classCodeNumber);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -168,7 +168,7 @@ public class Property_PolicyCenterTests extends AbstractTest {
 	 */
 
 	/* Leap Year Test */
-	@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 			"accountType", "effectiveDate", "formType" })
 	@Test
 	public void validateLeapYearScenario(String pcUsers, String insuredName, String state, String businessEntity,
@@ -181,7 +181,7 @@ public class Property_PolicyCenterTests extends AbstractTest {
 								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 						ExtentColor.PURPLE));
-		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, businessEntity,
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, "insuranceType",businessEntity,
 				organizationCode, classCodeNumber, accountType);
 		accountSummaryPage_PC = new AccountSummaryPage_PC();
 		newSubmissionPage_PC = new NewSubmissionPage_PC();
@@ -195,11 +195,11 @@ public class Property_PolicyCenterTests extends AbstractTest {
 	}
 
 	// Commercial Property Line Tests
-	@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
+	@Parameters({ "pcUsers", "insuredName", "state","insuranceType", "businessEntity", "organizationCode", "classCodeNumber", "term",
 			"accountType", "effectiveDate", "formType" })
 	@Test
 	public void validatePolicyLevelAndAdditionalCoveragesCoveragesOnCommercialPropertyLinePage(String pcUsers, String insuredName,
-			String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String state, String insuranceType,String businessEntity, String organizationCode, String classCodeNumber, String term,
 			String accountType, String effectiveDate, String formType) throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
 		ExtentTestManager.getTest().log(Status.INFO,
@@ -208,7 +208,7 @@ public class Property_PolicyCenterTests extends AbstractTest {
 								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 						ExtentColor.PURPLE));
-		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, businessEntity,
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,businessEntity,
 				organizationCode, classCodeNumber, accountType);
 		accountSummaryPage_PC = new AccountSummaryPage_PC();
 		newSubmissionPage_PC = new NewSubmissionPage_PC();
@@ -252,11 +252,11 @@ public class Property_PolicyCenterTests extends AbstractTest {
 //		commercialPropertyLinePage_PC.verifyAdditionalCoverages();
 //	}
 
-	@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
+	@Parameters({ "pcUsers", "insuredName", "state", ",insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 			"accountType", "effectiveDate", "formType" })
 	@Test
 	public void US22280BuildingAdditionalCoveragesTC43354(String pcUsers, String insuredName,
-			String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 			String accountType, String effectiveDate, String formType) throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
 		ExtentTestManager.getTest().log(Status.INFO,
@@ -265,7 +265,7 @@ public class Property_PolicyCenterTests extends AbstractTest {
 								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 						ExtentColor.PURPLE));
-		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, businessEntity,
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
 				organizationCode, classCodeNumber, accountType);
 		accountSummaryPage_PC = new AccountSummaryPage_PC();
 		newSubmissionPage_PC = new NewSubmissionPage_PC();
@@ -286,11 +286,11 @@ public class Property_PolicyCenterTests extends AbstractTest {
 		coveragesPage_PC.validateCoveragesErrorMessage("You must enter at least 1 row of Additional Building Property");
 		coveragesPage_PC.validateCoveragesErrorMessage("Please fill in all required fields.");
 	}
-@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
+@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
 public void US22298BuildingAdditionalCoveragesTC44731(String pcUsers, String insuredName,
-		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
+		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
 	ExtentTestManager.getTest().log(Status.INFO,
@@ -299,7 +299,7 @@ public void US22298BuildingAdditionalCoveragesTC44731(String pcUsers, String ins
 							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, businessEntity,
+	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,businessEntity,
 			organizationCode, classCodeNumber, accountType);
 	accountSummaryPage_PC = new AccountSummaryPage_PC();
 	newSubmissionPage_PC = new NewSubmissionPage_PC();
@@ -325,11 +325,11 @@ public void US22298BuildingAdditionalCoveragesTC44731(String pcUsers, String ins
 	
 }
 	
-@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
+@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
 public void US22298BuildingAdditionalCoveragesTC44736(String pcUsers, String insuredName,
-		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
+		String state, String insuranceType,String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
 	ExtentTestManager.getTest().log(Status.INFO,
@@ -338,7 +338,7 @@ public void US22298BuildingAdditionalCoveragesTC44736(String pcUsers, String ins
 							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, businessEntity,
+	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
 			organizationCode, classCodeNumber, accountType);
 	accountSummaryPage_PC = new AccountSummaryPage_PC();
 	newSubmissionPage_PC = new NewSubmissionPage_PC();
@@ -369,11 +369,11 @@ public void US22298BuildingAdditionalCoveragesTC44736(String pcUsers, String ins
 
 }
 
-@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
+@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
 public void US22298BuildingAdditionalCoveragesTC44739(String pcUsers, String insuredName,
-		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
+		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
 	ExtentTestManager.getTest().log(Status.INFO,
@@ -382,7 +382,7 @@ public void US22298BuildingAdditionalCoveragesTC44739(String pcUsers, String ins
 							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, businessEntity,
+	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
 			organizationCode, classCodeNumber, accountType);
 	accountSummaryPage_PC = new AccountSummaryPage_PC();
 	newSubmissionPage_PC = new NewSubmissionPage_PC();
@@ -401,11 +401,11 @@ public void US22298BuildingAdditionalCoveragesTC44739(String pcUsers, String ins
 }
 
 
-@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
+@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
 public void US22304BuildingAdditionalCoveragesTC45607(String pcUsers, String insuredName,
-		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
+		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
 	ExtentTestManager.getTest().log(Status.INFO,
@@ -414,7 +414,7 @@ public void US22304BuildingAdditionalCoveragesTC45607(String pcUsers, String ins
 							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, businessEntity,
+	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
 			organizationCode, classCodeNumber, accountType);
 	accountSummaryPage_PC = new AccountSummaryPage_PC();
 	newSubmissionPage_PC = new NewSubmissionPage_PC();
@@ -440,11 +440,11 @@ public void US22304BuildingAdditionalCoveragesTC45607(String pcUsers, String ins
 	coveragesPage_PC.addNewCompany(state);
 }
 
-@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
+@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
 public void US22316BuildingAdditionalCoveragesTC45024(String pcUsers, String insuredName,
-		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
+		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
 	ExtentTestManager.getTest().log(Status.INFO,
@@ -453,7 +453,7 @@ public void US22316BuildingAdditionalCoveragesTC45024(String pcUsers, String ins
 							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, businessEntity,
+	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state,insuranceType, businessEntity,
 			organizationCode, classCodeNumber, accountType);
 	accountSummaryPage_PC = new AccountSummaryPage_PC();
 	newSubmissionPage_PC = new NewSubmissionPage_PC();
@@ -479,11 +479,11 @@ public void US22316BuildingAdditionalCoveragesTC45024(String pcUsers, String ins
 	coveragesPage_PC.CP1115Coverages("testcontractor", "testinstallation");
 }
 
-@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
+@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
 public void US22322BuildingAdditionalCoveragesTC44619(String pcUsers, String insuredName,
-		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
+		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
 	ExtentTestManager.getTest().log(Status.INFO,
@@ -492,7 +492,7 @@ public void US22322BuildingAdditionalCoveragesTC44619(String pcUsers, String ins
 							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, businessEntity,
+	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
 			organizationCode, classCodeNumber, accountType);
 	accountSummaryPage_PC = new AccountSummaryPage_PC();
 	newSubmissionPage_PC = new NewSubmissionPage_PC();
@@ -514,11 +514,11 @@ public void US22322BuildingAdditionalCoveragesTC44619(String pcUsers, String ins
 	coveragesPage_PC.validateCoveragesErrorMessage("Theft Limit : Must be no greater than $999,999,999.00");
 }
 
-@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
+@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
 public void US22346BuildingAdditionalCoveragesTC45420(String pcUsers, String insuredName,
-		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
+		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
 	ExtentTestManager.getTest().log(Status.INFO,
@@ -527,7 +527,7 @@ public void US22346BuildingAdditionalCoveragesTC45420(String pcUsers, String ins
 							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, businessEntity,
+	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,businessEntity,
 			organizationCode, classCodeNumber, accountType);
 	accountSummaryPage_PC = new AccountSummaryPage_PC();
 	newSubmissionPage_PC = new NewSubmissionPage_PC();
@@ -557,11 +557,11 @@ public void US22346BuildingAdditionalCoveragesTC45420(String pcUsers, String ins
 }
 
 
-@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
+@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
 public void US22288BuildingAdditionalCoveragesTC44695(String pcUsers, String insuredName,
-		String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
+		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
 	ExtentTestManager.getTest().log(Status.INFO,
@@ -570,7 +570,7 @@ public void US22288BuildingAdditionalCoveragesTC44695(String pcUsers, String ins
 							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, businessEntity,
+	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
 			organizationCode, classCodeNumber, accountType);
 	accountSummaryPage_PC = new AccountSummaryPage_PC();
 	newSubmissionPage_PC = new NewSubmissionPage_PC();
@@ -592,11 +592,11 @@ public void US22288BuildingAdditionalCoveragesTC44695(String pcUsers, String ins
 	//coveragesPage_PC.validateCoveragesErrorMessage("Green Upgrades Limit : Must be no greater than $999,999,999.00");
 	
 }
-	@Parameters({ "pcUsers", "insuredName", "state", "businessEntity", "organizationCode", "classCodeNumber", "term",
+	@Parameters({ "pcUsers", "insuredName", "state","insuranceType", "businessEntity", "organizationCode", "classCodeNumber", "term",
 			"accountType", "effectiveDate", "formType" })
 	@Test
 	public void validateLabelsAndErrorMessagesForElectronicCommerceCoverage(String pcUsers, String insuredName,
-			String state, String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 			String accountType, String effectiveDate, String formType) throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
 		ExtentTestManager.getTest().log(Status.INFO,
@@ -605,7 +605,7 @@ public void US22288BuildingAdditionalCoveragesTC44695(String pcUsers, String ins
 								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 						ExtentColor.PURPLE));
-		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, businessEntity,
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
 				organizationCode, classCodeNumber, accountType);
 		accountSummaryPage_PC = new AccountSummaryPage_PC();
 		newSubmissionPage_PC = new NewSubmissionPage_PC();
