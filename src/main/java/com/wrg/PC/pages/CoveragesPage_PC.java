@@ -52,10 +52,10 @@ public class CoveragesPage_PC extends AbstractTest{
 		//addBuildingClassCode("0844");
 		addBuildingClassCode(classcode);
 		//addBuildingClassCodeDescription("Amusement Centers");
-		if (! classcode.contains("1150")) {
+		/*if (! classcode.contains("1150")) {
 			addBuildingClassCodeDescription(classcodedescription);
-		}
-		
+		}*/
+		addBuildingClassCodeDescription(classcodedescription);
 		addBuildingConstruction(construction);
 		addBuildingNoOfStories("1-3");
 		
@@ -84,7 +84,10 @@ public class CoveragesPage_PC extends AbstractTest{
 	};
 	public void addBuildingClassCodeDescription(String classCodeDescription) {
 		sleep(2000);
-		guidewireDropDownSelection("classCodeDescription", classCodeDescription);
+		if (isWebElementPresentAfterWait("classCodeDescription")) {
+			guidewireDropDownSelection("classCodeDescription", classCodeDescription);
+		}
+		
 	}
 	
 	public void addBuildingClassCode(String classCode) {
@@ -246,6 +249,33 @@ public class CoveragesPage_PC extends AbstractTest{
 			result = true;
 		}		
 		return result;
+	}
+	public void validateCP1070Coverages() {
+		sleep(2000);
+		if (isWebElementPresentAfterWait("CP1070Label")) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"CP1070Label Field is present" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"CP1070Label Field is not present" ,
+							ExtentColor.RED));
+		}
+		if (isWebElementPresentAfterWait("CP1070Construction")) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"CP1070Construction Field is present" ,
+							ExtentColor.GREEN));
+		}
+		else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"CP1070Construction Field is not present" ,
+							ExtentColor.RED));
+		}
 	}
 	public void validateGreenUpgradesCoverages() {
 		sleep(2000);
@@ -736,6 +766,7 @@ public class CoveragesPage_PC extends AbstractTest{
 			type(("companyName"), "testcompanyname");
 			sleep(1000);
 			getWebElement("companyName").sendKeys(Keys.TAB);
+			sleep(1000);
 			type(("address1"), getData("indianaAddress"));
 			sleep(2000);
 			clickUsingJS("state");
@@ -1306,16 +1337,48 @@ public class CoveragesPage_PC extends AbstractTest{
 								"Description of Excluded Stock : Exceeds the maximum length of 255 (263) is not present" ,
 								ExtentColor.RED));
 			}
+		}else if(errorText.contains("Construction : Missing required field \"Construction\"")) {
+			sleep(1000);
+			clickUsingJS("okButton");
+			sleep(2000);
+			if (isWebElementPresentAfterWait("CP1070ErrorMessage")) {
+				ExtentTestManager.getTest().log(Status.PASS,
+						MarkupHelper.createLabel(
+								"Construction : Missing required field \"Construction\" is present" ,
+								ExtentColor.GREEN));
+			}else {
+				ExtentTestManager.getTest().log(Status.FAIL,
+						MarkupHelper.createLabel(
+								"Construction : Missing required field \"Construction\" is not present" ,
+								ExtentColor.RED));
+			}
 		}
 		
 		
+	}
+	public void validatesCoverageMenu(String menuName, String menuLocator) {
+		clickUsingJS("CP1070Construction");
+		sleep(1000);
+		if (isWebElementPresentAfterWait(menuLocator)) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							menuName+" is present" ,
+							ExtentColor.GREEN));
+		}else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							menuName+" is not present" ,
+							ExtentColor.RED));
+		}
+		clickUsingJS("CP1070Construction");
+		sleep(1000);
 	}
 	public void guidewireDropDownSelection(String WebElement, String data) {
 		sleep(2000);
 		//clickUsingJS(WebElement);
 		actionClick(WebElement);
 		sleep(2000);
-		String weblementtext="//li[text()='"+data+"']";
+		String weblementtext="//li[contains(text(),'"+data+"')]";
 		Actions action = new Actions(driver);
 		action.moveToElement(driver.findElement(By.xpath(weblementtext))).click().build().perform();
 		sleep(3000);

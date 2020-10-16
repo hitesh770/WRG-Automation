@@ -252,10 +252,10 @@ public class Property_PolicyCenterTests extends AbstractTest {
 //		commercialPropertyLinePage_PC.verifyAdditionalCoverages();
 //	}
 
-	@Parameters({ "pcUsers", "insuredName", "state", ",insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 			"accountType", "effectiveDate", "formType" })
 	@Test
-	public void US22280BuildingAdditionalCoveragesTC43354(String pcUsers, String insuredName,
+	public void US22280BuildingAdditionalCoverages(String pcUsers, String insuredName,
 			String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 			String accountType, String effectiveDate, String formType) throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
@@ -289,7 +289,7 @@ public class Property_PolicyCenterTests extends AbstractTest {
 @Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22298BuildingAdditionalCoveragesTC44731(String pcUsers, String insuredName,
+public void US22298BuildingAdditionalCoverages2(String pcUsers, String insuredName,
 		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
@@ -328,7 +328,7 @@ public void US22298BuildingAdditionalCoveragesTC44731(String pcUsers, String ins
 @Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22298BuildingAdditionalCoveragesTC44736(String pcUsers, String insuredName,
+public void US22298BuildingAdditionalCoverages3(String pcUsers, String insuredName,
 		String state, String insuranceType,String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
@@ -372,7 +372,7 @@ public void US22298BuildingAdditionalCoveragesTC44736(String pcUsers, String ins
 @Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22298BuildingAdditionalCoveragesTC44739(String pcUsers, String insuredName,
+public void US22298BuildingAdditionalCoverages(String pcUsers, String insuredName,
 		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
@@ -404,7 +404,7 @@ public void US22298BuildingAdditionalCoveragesTC44739(String pcUsers, String ins
 @Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22304BuildingAdditionalCoveragesTC45607(String pcUsers, String insuredName,
+public void US22304BuildingAdditionalCoverages(String pcUsers, String insuredName,
 		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
@@ -443,7 +443,7 @@ public void US22304BuildingAdditionalCoveragesTC45607(String pcUsers, String ins
 @Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22316BuildingAdditionalCoveragesTC45024(String pcUsers, String insuredName,
+public void US22316BuildingAdditionalCoverages(String pcUsers, String insuredName,
 		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
@@ -482,7 +482,7 @@ public void US22316BuildingAdditionalCoveragesTC45024(String pcUsers, String ins
 @Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22322BuildingAdditionalCoveragesTC44619(String pcUsers, String insuredName,
+public void US22322BuildingAdditionalCoverages(String pcUsers, String insuredName,
 		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
@@ -517,7 +517,7 @@ public void US22322BuildingAdditionalCoveragesTC44619(String pcUsers, String ins
 @Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22346BuildingAdditionalCoveragesTC45420(String pcUsers, String insuredName,
+public void US22346BuildingAdditionalCoverages(String pcUsers, String insuredName,
 		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
@@ -560,7 +560,50 @@ public void US22346BuildingAdditionalCoveragesTC45420(String pcUsers, String ins
 @Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 		"accountType", "effectiveDate", "formType" })
 @Test
-public void US22288BuildingAdditionalCoveragesTC44695(String pcUsers, String insuredName,
+public void US22424BuildingAdditionalCoverages(String pcUsers, String insuredName,
+		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
+		String accountType, String effectiveDate, String formType) throws IOException {
+	List<String> usersList = getUsersList(pcUsers);
+	ExtentTestManager.getTest().log(Status.INFO,
+			MarkupHelper.createLabel(
+					"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+					ExtentColor.PURPLE));
+	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,businessEntity,
+			organizationCode, classCodeNumber, accountType);
+	accountSummaryPage_PC = new AccountSummaryPage_PC();
+	newSubmissionPage_PC = new NewSubmissionPage_PC();
+	policyInfoPage_PC = new PolicyInfoPage_PC();
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	accountSummaryPage_PC.createNewSubmission();
+	newSubmissionPage_PC.selectCommercialPropertyClassCode();
+	policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+	policyInfoPage_PC.goToNextPage();
+	commercialPropertyLinePage_PC.goToNextPage();
+	coveragesPage_PC.addBuilding();
+	coveragesPage_PC.addBuildingDetails("Building","Special","55", "2020", "Frame","0844","Amusement Centers","Actual Cash Value");
+	coveragesPage_PC.goToAdditionalCoveragesTab();
+	coveragesPage_PC.verifyAdditionalCoverages("Pier And Wharf Additional Covered Causes Of Loss", 0);
+	coveragesPage_PC.goToDetailsCoveragesTab();
+	coveragesPage_PC.addBuildingDetails("Building","Broad","55", "2020", "Frame","1150","Amusement Centers","Replacement Cost");
+	coveragesPage_PC.goToAdditionalCoveragesTab();
+	coveragesPage_PC.addAdditionalCoverages("Pier And Wharf Additional Covered Causes Of Loss");
+	coveragesPage_PC.validateCP1070Coverages();
+	coveragesPage_PC.validateCoveragesErrorMessage("Construction : Missing required field \"Construction\"");
+	coveragesPage_PC.validatesCoverageMenu("All Other Construction Including Pier Deck and Pier Platform, but Without Superstructure", "CP1070ConstructionMenu1");
+	coveragesPage_PC.validatesCoverageMenu("All Other Construction - Substructure Including Superstructure, All Sides Enclosed", "CP1070ConstructionMenu2");
+	coveragesPage_PC.validatesCoverageMenu("Fire Resistive Including Pier Deck and Pier Platform, but Without Superstructure", "CP1070ConstructionMenu3");
+	coveragesPage_PC.validatesCoverageMenu("Fire Resistive - Substructure Including Superstructure, All Sides Enclosed", "CP1070ConstructionMenu4");
+	coveragesPage_PC.validatesCoverageMenu("Non-Combustible and Heavy Timber - Substructure Including Superstructure, All Sides Enclosed", "CP1070ConstructionMenu5");
+	coveragesPage_PC.validatesCoverageMenu("Substructure with Canopy Superstructure, Sides Not Enclosed", "CP1070ConstructionMenu6");
+}
+
+
+@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
+		"accountType", "effectiveDate", "formType" })
+@Test
+public void US22288BuildingAdditionalCoverages(String pcUsers, String insuredName,
 		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
 		String accountType, String effectiveDate, String formType) throws IOException {
 	List<String> usersList = getUsersList(pcUsers);
