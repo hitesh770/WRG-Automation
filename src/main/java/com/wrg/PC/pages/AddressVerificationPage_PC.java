@@ -11,6 +11,7 @@ public class AddressVerificationPage_PC extends AbstractTest{
 	
 	
 	public void addressUpdate() {
+		sleep(2000);
 		wait=new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.visibilityOf(getWebElement("updateButton")));
 		click(getWebElement("updateButton"));
