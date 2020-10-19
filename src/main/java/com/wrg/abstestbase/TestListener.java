@@ -64,9 +64,10 @@ public class TestListener extends AbstractTest implements ITestListener, ITest {
 			// "logger.addScreenCapture" method.
 			String screenshotPath = null;
 			String testCaseID = result.getTestContext().getCurrentXmlTest().getParameter("testCaseID");
+			
 			try {
 				if(testCaseID!=null) {
-					screenshotPath = getScreenshot(testCaseID);
+					screenshotPath = getScreenshot(testCaseID.replace(",", "_"));
 				}else if(testCaseID==null){
 					screenshotPath = getScreenshot(result.getName());
 				}
@@ -83,9 +84,14 @@ public class TestListener extends AbstractTest implements ITestListener, ITest {
 				e.printStackTrace();
 			}
 			if(updateTestResults.equalsIgnoreCase("YES")) {
+				String [] testcaseIDSet= testCaseID.split(",");
 			try {
 				if(testCaseID!=null) {
-				createTestCaseResults("Fail", testCaseID, screenshotPath);
+					
+					for (int test=0; test<testcaseIDSet.length;test++) {
+						System.out.println(testcaseIDSet[test]);
+						createTestCaseResults("Fail", testcaseIDSet[test], screenshotPath);
+					}
 				}
 			} catch (IOException | URISyntaxException e) {
 				// TODO Auto-generated catch block
@@ -157,7 +163,7 @@ public class TestListener extends AbstractTest implements ITestListener, ITest {
 		System.out.println(testCaseID);
 		try {
 			if(testCaseID!=null) {
-				fullImageFile = getScreenshotForSuccessCases(testCaseID);
+				fullImageFile = getScreenshotForSuccessCases(testCaseID.replace(",", "_"));
 			}else {
 				fullImageFile = getScreenshotForSuccessCases(r.getName());
 			}
@@ -166,7 +172,11 @@ public class TestListener extends AbstractTest implements ITestListener, ITest {
 			e1.printStackTrace();
 		}
 		try {
-			createTestCaseResults("Pass", testCaseID, fullImageFile);
+			String [] testcaseIDSet= testCaseID.split(",");
+			for (String test :testcaseIDSet) {
+				createTestCaseResults("Pass", test, fullImageFile);
+			}
+			
 		} catch (IOException | URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -223,7 +233,9 @@ public class TestListener extends AbstractTest implements ITestListener, ITest {
 	}
 
 	public static String getScreenshot(String screenshotName) throws Exception {
-
+		try {
+			
+		
 		String dateName = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(new Date());
 		String fileName=screenshotName + dateName+ ".png";
 		String fileNameWithPath = System.getProperty("user.dir") + "/FailedTestsScreenshots/"+fileName;
@@ -232,6 +244,10 @@ public class TestListener extends AbstractTest implements ITestListener, ITest {
 		File finalDestination = new File(fileNameWithPath);
 		FileUtils.copyFile(source, finalDestination);
 		return fileNameWithPath;
+		} catch(Exception e) {
+			System.out.print(e);
+			return "";
+		}
 	}
 
 	public static String getScreenshotForSuccessCases(String screenshotName) throws Exception {
