@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.maven.surefire.shade.org.apache.maven.shared.utils.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -84,14 +87,16 @@ public class TestListener extends AbstractTest implements ITestListener, ITest {
 				e.printStackTrace();
 			}
 			if(updateTestResults.equalsIgnoreCase("YES")) {
-				String [] testcaseIDSet= testCaseID.split(",");
+				//String [] testcaseIDSet= testCaseID.split(",");
+				Set<String> testcaseIDSet = new HashSet<String>(Arrays.asList(testCaseID.split(",")));
 			try {
 				if(testCaseID!=null) {
 					
-					for (int test=0; test<testcaseIDSet.length;test++) {
-						System.out.println(testcaseIDSet[test]);
-						createTestCaseResults("Fail", testcaseIDSet[test], screenshotPath);
+					for (String testcase : testcaseIDSet) {
+						System.out.println(testcase);
+						createTestCaseResults("Fail", testcase, screenshotPath);
 					}
+
 				}
 			} catch (IOException | URISyntaxException e) {
 				// TODO Auto-generated catch block
@@ -172,9 +177,9 @@ public class TestListener extends AbstractTest implements ITestListener, ITest {
 			e1.printStackTrace();
 		}
 		try {
-			String [] testcaseIDSet= testCaseID.split(",");
-			for (String test :testcaseIDSet) {
-				createTestCaseResults("Pass", test, fullImageFile);
+			Set<String> testcaseIDSet = new HashSet<String>(Arrays.asList(testCaseID.split(",")));
+			for (String testcase :testcaseIDSet) {
+				createTestCaseResults("Pass", testcase, fullImageFile);
 			}
 			
 		} catch (IOException | URISyntaxException e) {
