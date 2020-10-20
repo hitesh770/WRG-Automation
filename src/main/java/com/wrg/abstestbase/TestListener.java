@@ -5,10 +5,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.apache.maven.surefire.shade.org.apache.maven.shared.utils.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -67,10 +64,9 @@ public class TestListener extends AbstractTest implements ITestListener, ITest {
 			// "logger.addScreenCapture" method.
 			String screenshotPath = null;
 			String testCaseID = result.getTestContext().getCurrentXmlTest().getParameter("testCaseID");
-			
 			try {
 				if(testCaseID!=null) {
-					screenshotPath = getScreenshot(testCaseID.replace(",", "_"));
+					screenshotPath = getScreenshot(testCaseID);
 				}else if(testCaseID==null){
 					screenshotPath = getScreenshot(result.getName());
 				}
@@ -87,16 +83,9 @@ public class TestListener extends AbstractTest implements ITestListener, ITest {
 				e.printStackTrace();
 			}
 			if(updateTestResults.equalsIgnoreCase("YES")) {
-				//String [] testcaseIDSet= testCaseID.split(",");
-				Set<String> testcaseIDSet = new HashSet<String>(Arrays.asList(testCaseID.split(",")));
 			try {
 				if(testCaseID!=null) {
-					
-					for (String testcase : testcaseIDSet) {
-						System.out.println(testcase);
-						createTestCaseResults("Fail", testcase, screenshotPath);
-					}
-
+				createTestCaseResults("Fail", testCaseID, screenshotPath);
 				}
 			} catch (IOException | URISyntaxException e) {
 				// TODO Auto-generated catch block
@@ -168,7 +157,7 @@ public class TestListener extends AbstractTest implements ITestListener, ITest {
 		System.out.println(testCaseID);
 		try {
 			if(testCaseID!=null) {
-				fullImageFile = getScreenshotForSuccessCases(testCaseID.replace(",", "_"));
+				fullImageFile = getScreenshotForSuccessCases(testCaseID);
 			}else {
 				fullImageFile = getScreenshotForSuccessCases(r.getName());
 			}
@@ -177,11 +166,7 @@ public class TestListener extends AbstractTest implements ITestListener, ITest {
 			e1.printStackTrace();
 		}
 		try {
-			Set<String> testcaseIDSet = new HashSet<String>(Arrays.asList(testCaseID.split(",")));
-			for (String testcase :testcaseIDSet) {
-				createTestCaseResults("Pass", testcase, fullImageFile);
-			}
-			
+			createTestCaseResults("Pass", testCaseID, fullImageFile);
 		} catch (IOException | URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -238,9 +223,7 @@ public class TestListener extends AbstractTest implements ITestListener, ITest {
 	}
 
 	public static String getScreenshot(String screenshotName) throws Exception {
-		try {
-			
-		
+
 		String dateName = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(new Date());
 		String fileName=screenshotName + dateName+ ".png";
 		String fileNameWithPath = System.getProperty("user.dir") + "/FailedTestsScreenshots/"+fileName;
@@ -249,10 +232,6 @@ public class TestListener extends AbstractTest implements ITestListener, ITest {
 		File finalDestination = new File(fileNameWithPath);
 		FileUtils.copyFile(source, finalDestination);
 		return fileNameWithPath;
-		} catch(Exception e) {
-			System.out.print(e);
-			return "";
-		}
 	}
 
 	public static String getScreenshotForSuccessCases(String screenshotName) throws Exception {
