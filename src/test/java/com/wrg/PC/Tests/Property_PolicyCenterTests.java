@@ -473,9 +473,9 @@ public void US22316BuildingAdditionalCoverages(String pcUsers, String insuredNam
 	coveragesPage_PC.goToAdditionalCoveragesTab();
 	coveragesPage_PC.addAdditionalCoverages("Builders Risk - Separate Or Sub-Contractors Coverage");
 	coveragesPage_PC.validateCP1115Coverages();
-	coveragesPage_PC.validateCoveragesErrorMessage("You must enter at least 1 row of Builders Risk - Separate Or Sub-Contractors Coverage");
-	coveragesPage_PC.validateCoveragesErrorMessage("Contractor : Missing required field \"Contractor\"");
-	coveragesPage_PC.validateCoveragesErrorMessage("Contractor : Exceeds the maximum length of 255 (344)");
+	coveragesPage_PC.validatesCP1115ErrorMessages("You must enter at least 1 row of Builders Risk - Separate Or Sub-Contractors Coverage");
+	coveragesPage_PC.validatesCP1115ErrorMessages("Contractor : Missing required field \"Contractor\"");
+	coveragesPage_PC.validatesCP1115ErrorMessages("Contractor : Exceeds the maximum length of 255 (344)");
 	coveragesPage_PC.CP1115Coverages("testcontractor", "testinstallation");
 }
 
@@ -508,10 +508,10 @@ public void US22322BuildingAdditionalCoverages(String pcUsers, String insuredNam
 	coveragesPage_PC.goToAdditionalCoveragesTab();
 	coveragesPage_PC.addAdditionalCoverages("Builders Risk - Theft Of Building Materials, Fixtures, Machinery, Equipment");
 	coveragesPage_PC.validateCP1121Coverages();
-	coveragesPage_PC.validateCoveragesErrorMessage("Theft Limit : Missing required field \"Theft Limit\"");
-	coveragesPage_PC.validateCoveragesErrorMessage("Theft Limit : Must not be less than $1.00");
-	coveragesPage_PC.validateCoveragesErrorMessage("Theft Limit : Must be a numeric value");
-	coveragesPage_PC.validateCoveragesErrorMessage("Theft Limit : Must be no greater than $999,999,999.00");
+	coveragesPage_PC.validatesCP1121CovergaesErrorMessages("Theft Limit : Missing required field \"Theft Limit\"");
+	coveragesPage_PC.validatesCP1121CovergaesErrorMessages("Theft Limit : Must not be less than $1.00");
+	coveragesPage_PC.validatesCP1121CovergaesErrorMessages("Theft Limit : Must be a numeric value");
+	coveragesPage_PC.validatesCP1121CovergaesErrorMessages("Theft Limit : Must be no greater than $999,999,999.00");
 }
 
 @Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
@@ -547,13 +547,13 @@ public void US22346BuildingAdditionalCoverages(String pcUsers, String insuredNam
 	coveragesPage_PC.goToAdditionalCoveragesTab();
 	coveragesPage_PC.addAdditionalCoverages("Increased Cost Of Loss And Related Expenses For Green Upgrades");
 	coveragesPage_PC.validateGreenUpgradesCoverages();
-	coveragesPage_PC.validateCoveragesErrorMessage("Increased Cost Of Loss Percentage : Missing required field \"Increased Cost Of Loss Percentage\"");
-	coveragesPage_PC.validateCoveragesErrorMessage("Green Upgrades Limit : Must not be less than $1.00");
-	coveragesPage_PC.validateCoveragesErrorMessage("Green Upgrades Limit : Must be a numeric value");
-	coveragesPage_PC.validateCoveragesErrorMessage("Green Upgrades Limit : Must be no greater than $999,999,999.00");
-	coveragesPage_PC.validateCoveragesErrorMessage("Description : Exceeds the maximum length of 255 (363)");
-	coveragesPage_PC.validateCoveragesErrorMessage("Related Expenses Limit : Must not be less than $0.00");
-	coveragesPage_PC.validateCoveragesErrorMessage("Related Expenses Limit : Must be no greater than $999,999,999.00");
+	coveragesPage_PC.validatesGreenCoveragesErrorMessages("Increased Cost Of Loss Percentage : Missing required field \"Increased Cost Of Loss Percentage\"");
+	coveragesPage_PC.validatesGreenCoveragesErrorMessages("Green Upgrades Limit : Must not be less than $1.00");
+	coveragesPage_PC.validatesGreenCoveragesErrorMessages("Green Upgrades Limit : Must be a numeric value");
+	coveragesPage_PC.validatesGreenCoveragesErrorMessages("Green Upgrades Limit : Must be no greater than $999,999,999.00");
+	coveragesPage_PC.validatesGreenCoveragesErrorMessages("Description : Exceeds the maximum length of 255 (363)");
+	coveragesPage_PC.validatesGreenCoveragesErrorMessages("Related Expenses Limit : Must not be less than $0.00");
+	coveragesPage_PC.validatesGreenCoveragesErrorMessages("Related Expenses Limit : Must be no greater than $999,999,999.00");
 }
 
 
@@ -590,7 +590,8 @@ public void US22424BuildingAdditionalCoverages(String pcUsers, String insuredNam
 	coveragesPage_PC.goToAdditionalCoveragesTab();
 	coveragesPage_PC.addAdditionalCoverages("Pier And Wharf Additional Covered Causes Of Loss");
 	coveragesPage_PC.validateCP1070Coverages();
-	coveragesPage_PC.validateCoveragesErrorMessage("Construction : Missing required field \"Construction\"");
+	coveragesPage_PC.validatesCP1070CoveragesErrorMessages("Construction : Missing required field \"Construction\"");
+	//coveragesPage_PC.validateCoveragesErrorMessage("Construction : Missing required field \"Construction\"");
 	coveragesPage_PC.validatesCoverageMenu("All Other Construction Including Pier Deck and Pier Platform, but Without Superstructure", "CP1070ConstructionMenu1");
 	coveragesPage_PC.validatesCoverageMenu("All Other Construction - Substructure Including Superstructure, All Sides Enclosed", "CP1070ConstructionMenu2");
 	coveragesPage_PC.validatesCoverageMenu("Fire Resistive Including Pier Deck and Pier Platform, but Without Superstructure", "CP1070ConstructionMenu3");

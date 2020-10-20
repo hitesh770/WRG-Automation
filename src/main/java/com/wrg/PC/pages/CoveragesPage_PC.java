@@ -941,89 +941,87 @@ public class CoveragesPage_PC extends AbstractTest{
 								"Builders Risk Renovations : Cannot have same Loss Payee more than once error is not present" ,
 								ExtentColor.RED));
 			}
-		}else if (errorText.contains("You must enter at least 1 row of Builders Risk - Separate Or Sub-Contractors Coverage")) {
+		}	
+	}
+	public void validatesCP1115ErrorMessages(String errorText) {
+
+		if (errorText.contains("You must enter at least 1 row of Builders Risk - Separate Or Sub-Contractors Coverage")) {
 			clickUsingJS("okButton");
-			sleep(3000);
+			sleep(2000);
 			if (isWebElementPresentAfterWait("CP1115Error1")) {
 				ExtentTestManager.getTest().log(Status.PASS,
 						MarkupHelper.createLabel(
-								"You must enter at least 1 row of Builders Risk - Separate Or Sub-Contractors Coverage error is present" ,
+								"You must enter at least 1 row of Builders Risk - Separate Or Sub-Contractors Coverage is present" ,
 								ExtentColor.GREEN));
-			}
-			else {
+			}else {
 				ExtentTestManager.getTest().log(Status.FAIL,
 						MarkupHelper.createLabel(
-								"You must enter at least 1 row of Builders Risk - Separate Or Sub-Contractors Coverage error is not present" ,
+								"You must enter at least 1 row of Builders Risk - Separate Or Sub-Contractors Coverage is not present" ,
 								ExtentColor.RED));
 			}
-			
-		}else if (errorText.contains("Contractor : Missing required field \"Contractor\"")) {
+		}
+		else if (errorText.contains("Contractor : Missing required field \"Contractor\"")){
 			clickUsingJS("editButton");
-			sleep(3000);
+			sleep(1000);
 			clickUsingJS("okButton");
-			sleep(3000);
+			sleep(2000);
 			if (isWebElementPresentAfterWait("CP1115Error2")) {
 				ExtentTestManager.getTest().log(Status.PASS,
 						MarkupHelper.createLabel(
 								"Contractor : Missing required field \"Contractor\" is present" ,
 								ExtentColor.GREEN));
-			}
-			else {
+			}else {
 				ExtentTestManager.getTest().log(Status.FAIL,
 						MarkupHelper.createLabel(
-								"Contractor : Missing required field \"Contractor\" error is not present" ,
+								"Contractor : Missing required field \"Contractor\" is not present" ,
 								ExtentColor.RED));
 			}
 			if (isWebElementPresentAfterWait("CP1115Error3")) {
 				ExtentTestManager.getTest().log(Status.PASS,
 						MarkupHelper.createLabel(
-								"Installation : Missing required field \"Installation\" error is present" ,
+								"Installation : Missing required field \"Installation\" is present" ,
 								ExtentColor.GREEN));
-			}
-			else {
+			}else {
 				ExtentTestManager.getTest().log(Status.FAIL,
 						MarkupHelper.createLabel(
-								"Installation : Missing required field \"Installation\" error is not present" ,
+								"Installation : Missing required field \"Installation\" is not present" ,
 								ExtentColor.RED));
 			}
-		}else if (errorText.contains("Contractor : Exceeds the maximum length of 255 (344)")) {
-			
-			
-			String data ="11111111111111111113555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555244444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444";
-			type("CP1115Contractor", data);
+		}else if(errorText.contains("Contractor : Exceeds the maximum length of 255 (344)")) {
+			type("CP1115Contractor", getData("largeString2"));
 			getWebElement("CP1115Contractor").sendKeys(Keys.TAB);
 			sleep(1000);
-			type("CP1115Installation", data);
+			type("CP1115Installation", getData("largeString2"));
 			getWebElement("CP1115Installation").sendKeys(Keys.TAB);
 			sleep(1000);
 			clickUsingJS("okButton");
-			sleep(3000);
+			sleep(2000);
 			if (isWebElementPresentAfterWait("CP1115Error4")) {
 				ExtentTestManager.getTest().log(Status.PASS,
 						MarkupHelper.createLabel(
-								"Contractor : Exceeds the maximum length of 255 (344) is present" ,
+								"Installation : Missing required field \"Installation\" is present" ,
 								ExtentColor.GREEN));
-			}
-			else {
+			}else {
 				ExtentTestManager.getTest().log(Status.FAIL,
 						MarkupHelper.createLabel(
-								"Contractor : Exceeds the maximum length of 255 (344) error is not present" ,
+								"Installation : Missing required field \"Installation\" is not present" ,
 								ExtentColor.RED));
 			}
 			if (isWebElementPresentAfterWait("CP1115Error5")) {
 				ExtentTestManager.getTest().log(Status.PASS,
 						MarkupHelper.createLabel(
-								"Installation : Exceeds the maximum length of 255 (344) is present" ,
+								"Installation : Missing required field \"Installation\" is present" ,
 								ExtentColor.GREEN));
-			}
-			else {
+			}else {
 				ExtentTestManager.getTest().log(Status.FAIL,
 						MarkupHelper.createLabel(
-								"Installation : Exceeds the maximum length of 255 (344) error is not present" ,
+								"Installation : Missing required field \"Installation\" is not present" ,
 								ExtentColor.RED));
 			}
-			
-		}else if (errorText.contains("Theft Limit : Missing required field \"Theft Limit\"")) {
+		}
+	}
+	public void validatesCP1121CovergaesErrorMessages(String errorText) {
+		if (errorText.contains("Theft Limit : Missing required field \"Theft Limit\"")) {
 			clickUsingJS("okButton");
 			sleep(3000);
 			if (isWebElementPresentAfterWait("CP1121Error1")) {
@@ -1049,11 +1047,11 @@ public class CoveragesPage_PC extends AbstractTest{
 								ExtentColor.RED));
 			}
 		}else if(errorText.contains("Theft Limit : Must not be less than $1.00")) {
-			String data = "0";
-			type("CP1121TheftLimit", data);
+			//String data = "0";
+			type("CP1121TheftLimit", getData("zeroValue"));
 			getWebElement("CP1121TheftLimit").sendKeys(Keys.TAB);
 			sleep(1000);
-			type("CP1121TheftDeductible", data);
+			type("CP1121TheftDeductible", getData("zeroValue"));
 			getWebElement("CP1121TheftDeductible").sendKeys(Keys.TAB);
 			sleep(1000);
 			clickUsingJS("okButton");
@@ -1081,15 +1079,15 @@ public class CoveragesPage_PC extends AbstractTest{
 								ExtentColor.RED));
 			}
 		}else if(errorText.contains("Theft Limit : Must be a numeric value")) {
-			String data = "abc";
+			//String data = "abc";
 			clear("CP1121TheftLimit");
 			sleep(1000);
 			clear("CP1121TheftDeductible");
 			sleep(1000);
-			type("CP1121TheftLimit", data);
+			type("CP1121TheftLimit", getData("alphaNumericValue"));
 			getWebElement("CP1121TheftLimit").sendKeys(Keys.TAB);
 			sleep(1000);
-			type("CP1121TheftDeductible", data);
+			type("CP1121TheftDeductible", getData("alphaNumericValue"));
 			getWebElement("CP1121TheftDeductible").sendKeys(Keys.TAB);
 			sleep(1000);
 			clickUsingJS("okButton");
@@ -1117,15 +1115,15 @@ public class CoveragesPage_PC extends AbstractTest{
 								ExtentColor.RED));
 			}
 		}else if(errorText.contains("Theft Limit : Must be no greater than $999,999,999.00")) {
-			String data = "999999999999";
+			//String data = "999999999999";
 			clear("CP1121TheftLimit");
 			sleep(1000);
 			clear("CP1121TheftDeductible");
 			sleep(1000);
-			type("CP1121TheftLimit", data);
+			type("CP1121TheftLimit", getData("numberData"));
 			getWebElement("CP1121TheftLimit").sendKeys(Keys.TAB);
 			sleep(1000);
-			type("CP1121TheftDeductible", data);
+			type("CP1121TheftDeductible", getData("numberData"));
 			getWebElement("CP1121TheftDeductible").sendKeys(Keys.TAB);
 			sleep(1000);
 			clickUsingJS("okButton");
@@ -1152,7 +1150,11 @@ public class CoveragesPage_PC extends AbstractTest{
 								"Theft Deductible : Must be no greater than $99,999.00 is not present" ,
 								ExtentColor.RED));
 			}
-		}else if (errorText.contains("Increased Cost Of Loss Percentage : Missing required field \"Increased Cost Of Loss Percentage\"")) {
+		}
+	}
+	public void validatesGreenCoveragesErrorMessages(String errorText) {
+		
+		if (errorText.contains("Increased Cost Of Loss Percentage : Missing required field \"Increased Cost Of Loss Percentage\"")) {
 			clickUsingJS("okButton");
 			sleep(3000);
 			if (isWebElementPresentAfterWait("GreenUpgradeError1")) {
@@ -1178,10 +1180,9 @@ public class CoveragesPage_PC extends AbstractTest{
 								ExtentColor.RED));
 			}
 		}else if (errorText.contains("Green Upgrades Limit : Must not be less than $1.00")) {
-			String data = "0";
 			clear("greenUpgradeslimit");
 			sleep(1000);
-			type("greenUpgradeslimit", data);
+			type("greenUpgradeslimit", getData("zeroValue"));
 			getWebElement("greenUpgradeslimit").sendKeys(Keys.TAB);
 			sleep(1000);
 			clickUsingJS("okButton");
@@ -1198,10 +1199,9 @@ public class CoveragesPage_PC extends AbstractTest{
 								ExtentColor.RED));
 			}
 		}else if (errorText.contains("Green Upgrades Limit : Must be a numeric value")) {
-			String data = "abc";
 			clear("greenUpgradeslimit");
 			sleep(1000);
-			type("greenUpgradeslimit", data);
+			type("greenUpgradeslimit", getData("alphaNumericValue"));
 			getWebElement("greenUpgradeslimit").sendKeys(Keys.TAB);
 			sleep(1000);
 			clickUsingJS("okButton");
@@ -1218,10 +1218,9 @@ public class CoveragesPage_PC extends AbstractTest{
 								ExtentColor.RED));
 			}
 		}else if (errorText.contains("Green Upgrades Limit : Must be no greater than $999,999,999.00")) {
-			String data = "9999999999999";
 			clear("greenUpgradeslimit");
 			sleep(1000);
-			type("greenUpgradeslimit", data);
+			type("greenUpgradeslimit", getData("numberData"));
 			getWebElement("greenUpgradeslimit").sendKeys(Keys.TAB);
 			sleep(1000);
 			clickUsingJS("okButton");
@@ -1237,11 +1236,10 @@ public class CoveragesPage_PC extends AbstractTest{
 								"Green Upgrades Limit : Must be no greater than $999,999,999.00 is not present" ,
 								ExtentColor.RED));
 			}
-		}else if (errorText.contains("Description : Exceeds the maximum length of 255 (363)")) {
-			String data = "8777777777777777777777777777777777777777777777777hhhhhhhhhhhhhhhhhhhh7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777";
+		}else if (errorText.contains("Description : Exceeds the maximum length of 255 (363)")) {			
 			clear("descrption");
 			sleep(1000);
-			type("descrption", data);
+			type("descrption", getData("largeString2"));
 			getWebElement("descrption").sendKeys(Keys.TAB);
 			sleep(1000);
 			clickUsingJS("okButton");
@@ -1258,10 +1256,9 @@ public class CoveragesPage_PC extends AbstractTest{
 								ExtentColor.RED));
 			}
 		}else if (errorText.contains("Related Expenses Limit : Must not be less than $0.00")) {
-			String data = "-1";
 			clear("relatedExpensesLimit");
 			sleep(1000);
-			type("relatedExpensesLimit", data);
+			type("relatedExpensesLimit", getData("negativeValue"));
 			getWebElement("relatedExpensesLimit").sendKeys(Keys.TAB);
 			sleep(1000);
 			clickUsingJS("okButton");
@@ -1278,10 +1275,9 @@ public class CoveragesPage_PC extends AbstractTest{
 								ExtentColor.RED));
 			}
 		}else if (errorText.contains("Related Expenses Limit : Must be no greater than $999,999,999.00")) {
-			String data = "999999999999";
 			clear("relatedExpensesLimit");
 			sleep(1000);
-			type("relatedExpensesLimit", data);
+			type("relatedExpensesLimit", getData("numberData"));
 			getWebElement("relatedExpensesLimit").sendKeys(Keys.TAB);
 			sleep(1000);
 			clickUsingJS("okButton");
@@ -1298,10 +1294,9 @@ public class CoveragesPage_PC extends AbstractTest{
 								ExtentColor.RED));
 			}
 		}else if (errorText.contains("Performed by : Exceeds the maximum length of 255 (263)")) {
-			String data = "152627727dd8hh8dh8d8h3h8hdhdhddhdjjj88j8j8j88f888f886858556ibyctdrycxrtxrctctt9765423579098765431234689utreweryuiosdfhjkkjhxcvmmnbvcxcvczafghjkloiuytrewqpiuytrewqweruiooi97654340987654321450865432134578ytreqwetyuoppllkjhgfdsasfgjkkkkllkjjhgfdsazxcvcvbnmlkkjhgfdsa";
 			clear("additionalPropertyYesField7");
 			sleep(1000);
-			type("additionalPropertyYesField7", data);
+			type("additionalPropertyYesField7", getData("largeString"));
 			getWebElement("additionalPropertyYesField7").sendKeys(Keys.TAB);
 			sleep(1000);
 			clickUsingJS("okButton");
@@ -1318,10 +1313,10 @@ public class CoveragesPage_PC extends AbstractTest{
 								ExtentColor.RED));
 			}
 		}else if (errorText.contains("Description of Excluded Stock : Exceeds the maximum length of 255 (263)")) {
-			String data = "152627727dd8hh8dh8d8h3h8hdhdhddhdjjj88j8j8j88f888f886858556ibyctdrycxrtxrctctt9765423579098765431234689utreweryuiosdfhjkkjhxcvmmnbvcxcvczafghjkloiuytrewqpiuytrewqweruiooi97654340987654321450865432134578ytreqwetyuoppllkjhgfdsasfgjkkkkllkjjhgfdsazxcvcvbnmlkkjhgfdsa";
+			
 			clear("additionalPropertyYesField19");
 			sleep(1000);
-			type("additionalPropertyYesField19", data);
+			type("additionalPropertyYesField19", getData("largeString"));
 			getWebElement("additionalPropertyYesField19").sendKeys(Keys.TAB);
 			sleep(1000);
 			clickUsingJS("okButton");
@@ -1337,24 +1332,23 @@ public class CoveragesPage_PC extends AbstractTest{
 								"Description of Excluded Stock : Exceeds the maximum length of 255 (263) is not present" ,
 								ExtentColor.RED));
 			}
-		}else if(errorText.contains("Construction : Missing required field \"Construction\"")) {
-			sleep(1000);
-			clickUsingJS("okButton");
-			sleep(2000);
-			if (isWebElementPresentAfterWait("CP1070ErrorMessage")) {
-				ExtentTestManager.getTest().log(Status.PASS,
-						MarkupHelper.createLabel(
-								"Construction : Missing required field \"Construction\" is present" ,
-								ExtentColor.GREEN));
-			}else {
-				ExtentTestManager.getTest().log(Status.FAIL,
-						MarkupHelper.createLabel(
-								"Construction : Missing required field \"Construction\" is not present" ,
-								ExtentColor.RED));
-			}
+		}	
+	}
+	public void validatesCP1070CoveragesErrorMessages(String errorText) {
+		sleep(1000);
+		clickUsingJS("okButton");
+		sleep(2000);
+		if (isWebElementPresentAfterWait("CP1070ErrorMessage")) {
+			ExtentTestManager.getTest().log(Status.PASS,
+					MarkupHelper.createLabel(
+							"Construction : Missing required field \"Construction\" is present" ,
+							ExtentColor.GREEN));
+		}else {
+			ExtentTestManager.getTest().log(Status.FAIL,
+					MarkupHelper.createLabel(
+							"Construction : Missing required field \"Construction\" is not present" ,
+							ExtentColor.RED));
 		}
-		
-		
 	}
 	public void validatesCoverageMenu(String menuName, String menuLocator) {
 		clickUsingJS("CP1070Construction");
