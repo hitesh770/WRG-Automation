@@ -25,6 +25,7 @@ public class PolicyInfoPage_PC extends AbstractTest {
 	public void goToNextPage() {
 		wait = new WebDriverWait(driver, 20);
 		try {
+			waitForPageLoaded();
 			wait.until(ExpectedConditions.visibilityOf(getWebElement("nextButton")));
 			click("nextButton");
 		} catch (UnhandledAlertException e) {

@@ -147,22 +147,6 @@ public abstract class AbstractTest extends AbstractTestBase {
 			log.info("before env inside" + env);
 		}
 		loadEnv(env);
-
-//		pgutil = new PostgresqlUtil(environment.get("dbCon"), environment.get("dbuser"), environment.get("dbpwd"));
-//		if (pgutil == null) {
-//			log.info("DB Connection failed first attempt");
-//			pgutil = new PostgresqlUtil(environment.get("dbCon"), environment.get("dbuser"), environment.get("dbpwd"));
-//			if (pgutil == null) {
-//				log.info("DB Connection failed second attempt");
-//				pgutil = new PostgresqlUtil(environment.get("dbCon"), environment.get("dbuser"),
-//						environment.get("dbpwd"));
-//				if (pgutil == null) {
-//					log.info("DB Connection failed Third attempt Aborting test....");
-//					Assert.fail("Aborting test due to db connection failed ...");
-//				}
-//			}
-//
-//		}
 		AbstractTest.browser = browser;
 	}
 
@@ -334,16 +318,16 @@ public abstract class AbstractTest extends AbstractTestBase {
 		try {
 			if (browser.equalsIgnoreCase("firefox")) {
 				String command = System.getProperty("user.dir") + "\\"
-						+ "src\\test\\resources\\AutoIT_Scripts\\firefox\\" + "FirefoxAuthentication.exe"+" "
+						+ "src\\test\\resources\\AutoIT_Scripts\\firefox\\" + "FirefoxAuthentication.exe" + " "
 						+ organizationCode + " " + password + "";
 				Runtime.getRuntime().exec(command);
 			} else if (browser.equalsIgnoreCase("ie") || browser.equalsIgnoreCase("edge")) {
 				String command = System.getProperty("user.dir") + "\\" + "src\\test\\resources\\AutoIT_Scripts\\ie\\"
-						+ "IEAuthentication.exe" +" "+ organizationCode + " " + password + "";
+						+ "IEAuthentication.exe" + " " + organizationCode + " " + password + "";
 				Runtime.getRuntime().exec(command);
 			} else if (browser.equalsIgnoreCase("chrome")) {
 				String command = System.getProperty("user.dir") + "\\"
-						+ "src\\test\\resources\\AutoIT_Scripts\\chrome\\" + "india.exe" + " "+organizationCode + " "
+						+ "src\\test\\resources\\AutoIT_Scripts\\chrome\\" + "india.exe" + " " + organizationCode + " "
 						+ password + "";
 				Runtime.getRuntime().exec(command);
 			}
@@ -353,7 +337,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 		}
 		return driver;
 	}
-	
+
 	public String getAgentPortalBuild() {
 		buildNumberAP = driver.findElement(By.xpath("//p[contains(@class,'wrg-build-number')]")).getText().substring(7);
 		ExtentTestManager.getTest().log(Status.INFO,
@@ -494,14 +478,30 @@ public abstract class AbstractTest extends AbstractTestBase {
 			Assert.fail("Timeout waiting for Page Load Request to complete.");
 		}
 	}
-	
+
+	public void waitForJqueryToComplete() {
+		int count = 0;
+		if ((Boolean) ((JavascriptExecutor) driver).executeScript("return window.jQuery != undefined")) {
+			while (!(Boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active == 0")) {
+				try {
+					Thread.sleep(4000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if (count > 4)
+					break;
+				count++;
+			}
+		}
+	}
+
 	public void waitForAjaxControls() throws InterruptedException {
-		while(true) {
-			boolean ajaxIsComplete = (boolean) ((JavascriptExecutor)driver).executeScript("return jQuery.active==0");
-			if(ajaxIsComplete) {
+		while (true) {
+			boolean ajaxIsComplete = (boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active==0");
+			if (ajaxIsComplete) {
 				break;
 			}
-			Thread.sleep(100);
 		}
 	}
 
@@ -879,7 +879,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 		}
 
 	}
-	
+
 	public void actionClick(String locator) {
 		Actions action = new Actions(driver);
 		action.moveToElement(getWebElement(locator)).click().build().perform();
@@ -1072,6 +1072,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 	public boolean isWebElementPresentAfterWait(String element) {
 		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
 		if (getWebElements(element).size() > 0) {
+			ExtentTestManager.getTest().log(Status.INFO, element + " is present on page");
 			return true;
 		} else {
 			ExtentTestManager.getTest().log(Status.INFO, element + " not present on page");
@@ -1098,8 +1099,10 @@ public abstract class AbstractTest extends AbstractTestBase {
 	
 	
 	public boolean isWebElementDisplayed(String element) {
+		if(getWebElement(element).isDisplayed()==true) {
+			ExtentTestManager.getTest().log(Status.INFO, element + " is present on page");
+		}
 		return getWebElement(element).isDisplayed();
-
 	}
 
 	public boolean isWebElementEnabled(String element) {
@@ -1194,7 +1197,7 @@ public abstract class AbstractTest extends AbstractTestBase {
 			reportFail("error while type in text field " + e.getMessage());
 		}
 	}
-	
+
 	public void typeUsingJS(String locator, String data) {
 
 		try {
@@ -1209,15 +1212,13 @@ public abstract class AbstractTest extends AbstractTestBase {
 			reportFail("error while type in text field " + e.getMessage());
 		}
 	}
-	
-	
-	
+
 	public void typeUsingJS(String locator, int data) {
 
 		try {
 			// highlightElement(element);
-			JavascriptExecutor js = (JavascriptExecutor)driver;
-			js.executeScript("arguments[0].value="+data+";",getWebElement(locator));
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].value=" + data + ";", getWebElement(locator));
 			ExtentTestManager.getTest().log(Status.INFO, "Typed value " + data + " in " + locator);
 			log("type " + data + " in input field.");
 		} catch (Exception e) {
