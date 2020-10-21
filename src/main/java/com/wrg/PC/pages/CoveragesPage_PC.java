@@ -40,6 +40,7 @@ public class CoveragesPage_PC extends AbstractTest{
 			}
 		}
 	}
+
 	public void addBuilding() {
 		wait = new WebDriverWait(driver, 5);
 		waitForPageLoaded();
@@ -751,12 +752,11 @@ public class CoveragesPage_PC extends AbstractTest{
 			type(("zipCode"), getData("ohioPincodeValue"));
 			getWebElement("zipCode").sendKeys(Keys.TAB);
 			sleep(1000);
-
 		}
-		clickUsingJS("okButton");
-		sleep(2000);
-		clickUsingJS("updateButton");
-		sleep(2000);
+	}
+	
+	public void clickAddBuilding() {
+		clickUsingJS("addBuildingButton");
 	}
 	public void addNewCompany(String state) {
 		actionClick("addPersonButton");

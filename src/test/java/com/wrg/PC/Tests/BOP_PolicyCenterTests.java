@@ -113,13 +113,14 @@ public class BOP_PolicyCenterTests extends AbstractTest {
 	/*
 	 * Create New Account Create New Submission Quote the Submission
 	 */
-	@Parameters({ "pcUsers", "insuredName", "state","insuranceType", "businessEntity", "organizationCode", "classCodeNumber",
-			"numberOfLocations", "numberOfBuildings", "term", "accountType", "effectiveDate", "formType" })
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "numberOfLocations", "numberOfBuildings", "term", "accountType", "effectiveDate",
+			"formType" })
 	@Test
 	public void verifyNewQuoteIsCreatedViaPolicyCenter(String pcUsers, String insuredName, String state,
-			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String numberOfLocations,
-			String numberOfBuildings, String term, String accountType, String effectiveDate, String formType)
-			throws IOException {
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber,
+			String numberOfLocations, String numberOfBuildings, String term, String accountType, String effectiveDate,
+			String formType) throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
 		ExtentTestManager.getTest().log(Status.INFO,
 				MarkupHelper.createLabel(
@@ -132,16 +133,16 @@ public class BOP_PolicyCenterTests extends AbstractTest {
 		createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity, organizationCode,
 				classCodeNumber, accountType);
 		quoteNumber = newCustomTermQuote(term, effectiveDate, formType, classCodeNumber, state, numberOfLocations,
-				numberOfBuildings,insuredName);
+				numberOfBuildings, insuredName);
 	}
 
 	/* Create New Account */
-	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber",
-			"accountType" })
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "accountType" })
 	@Test
 	public void verifyNewAccountIsCreatedViaPolicyCenter(String pcUsers, String insuredName, String state,
-			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String accountType)
-			throws IOException {
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber,
+			String accountType) throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
 		ExtentTestManager.getTest().log(Status.INFO,
 				MarkupHelper.createLabel(
@@ -149,12 +150,13 @@ public class BOP_PolicyCenterTests extends AbstractTest {
 								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 						ExtentColor.PURPLE));
-		createAccount(usersList.get(0).toString(), insuredName, state,insuranceType, businessEntity, organizationCode,
+		createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity, organizationCode,
 				classCodeNumber, accountType);
 	}
 
-	public String createAccount(String pcUser, String insuredName, String state, String insuranceType, String businessEntity,
-			String organizationCode, String classCodeNumber, String accountType) throws IOException {
+	public String createAccount(String pcUser, String insuredName, String state, String insuranceType,
+			String businessEntity, String organizationCode, String classCodeNumber, String accountType)
+			throws IOException {
 		String accountNumber = null;
 		homepage = new WrgHomePage_PC();
 		enterAccountInfoPage = new EnterAccountInformationPage_PC();
@@ -177,21 +179,29 @@ public class BOP_PolicyCenterTests extends AbstractTest {
 				classCodes.add(classCode);
 				if (insuranceType.contains("property")) {
 					classCodeSearchPage_PC.selectClassCode(classCode, "GL");
-				}else {
+					
+				} else {
 					classCodeSearchPage_PC.selectClassCode(classCode);
+					hazardGradeSelectionPage_PC.selecthazardGrade();
 				}
-				
-				hazardGradeSelectionPage_PC.selecthazardGrade();
+//				classCodeSearchPage_PC.clickHazardCodeButton();
+//				classCodeSearchPage_PC.selectClassCode(classCode);
+//				hazardGradeSelectionPage_PC.selecthazardGrade();
+
 			}
 		} else {
 			if (insuranceType.contains("property")) {
 				classCodeSearchPage_PC.selectClassCode(classCodeNumber, "GL");
-			}else {
+			} else {
 				classCodeSearchPage_PC.selectClassCode(classCodeNumber);
+				hazardGradeSelectionPage_PC.selecthazardGrade();
 			}
+			//classCodeSearchPage_PC.clickHazardCodeButton();
+			//classCodeSearchPage_PC.selectClassCode(classCodeNumber);
+
 			
-			hazardGradeSelectionPage_PC.selecthazardGrade();
 		}
+
 		enterAccountInfoPage.updateAccount();
 		addressVerificationPage_PC.addressUpdate();
 		accountNumber = accountSummaryPage_PC.getAccountNumber();
@@ -227,7 +237,7 @@ public class BOP_PolicyCenterTests extends AbstractTest {
 //	}
 
 	public String newCustomTermQuote(String days, String effectiveDate, String formType, String classCodeNumber,
-			String state, String numberOfLocations, String numberOfBuildings,String insuredName) throws IOException {
+			String state, String numberOfLocations, String numberOfBuildings, String insuredName) throws IOException {
 		accountSummaryPage_PC = new AccountSummaryPage_PC();
 		newSubmissionPage_PC = new NewSubmissionPage_PC();
 		offeringsPage_PC = new OfferingsPage_PC();
@@ -247,12 +257,12 @@ public class BOP_PolicyCenterTests extends AbstractTest {
 		policyInfoPage.setCustomTerm(days, effectiveDate);
 		policyInfoPage.goToNextPage();
 		businessOwnersLinePage_PC.goToLocationsPage();
-		if(Integer.parseInt(numberOfLocations)>1) {
-		locationsPage_PC.addNewLocation(state, numberOfLocations);
+		if (Integer.parseInt(numberOfLocations) > 1) {
+			locationsPage_PC.addNewLocation(state, numberOfLocations);
 		}
 		sleep(2000);
 		locationsPage_PC.goToNextPage();
-		buildingsAndClassificationspage.addBuilding(classCodeNumber, state, numberOfBuildings,insuredName);
+		buildingsAndClassificationspage.addBuilding(classCodeNumber, state, numberOfBuildings, insuredName);
 		buildingsAndClassificationspage.goToBlanketsPage();
 		blanketsPage_PC.goToSupplementalPage();
 		supplementalPage.generalQuestions();

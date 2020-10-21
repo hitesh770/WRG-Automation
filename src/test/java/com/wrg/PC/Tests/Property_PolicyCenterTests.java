@@ -17,8 +17,11 @@ import com.wrg.PC.pages.AccountSummaryPage_PC;
 import com.wrg.PC.pages.BlanketsPage_PC;
 import com.wrg.PC.pages.BuildingsAndClassificationsPage_PC;
 import com.wrg.PC.pages.BusinessOwnersLinePage_PC;
+import com.wrg.PC.pages.ClassCodeSearchPage_PC;
 import com.wrg.PC.pages.CommercialPropertyLinePage_PC;
+import com.wrg.PC.pages.CoveragesPage_PC;
 import com.wrg.PC.pages.LocationsPage_PC;
+import com.wrg.PC.pages.NewBuildingPage_PC;
 import com.wrg.PC.pages.NewSubmissionPage_PC;
 import com.wrg.PC.pages.OfferingsPage_PC;
 import com.wrg.PC.pages.PolicyInfoPage_PC;
@@ -37,7 +40,9 @@ public class Property_PolicyCenterTests extends AbstractTest {
 	OfferingsPage_PC offeringsPage_PC = null;
 	PolicyInfoPage_PC policyInfoPage_PC = null;
 	CommercialPropertyLinePage_PC commercialPropertyLinePage_PC = null;
-	CoveragesPage_PC coveragesPage_PC=null;
+	CoveragesPage_PC coveragesPage_PC = null;
+	NewBuildingPage_PC newBuildingPage_PC = null;
+	ClassCodeSearchPage_PC classCodeSearchPage_PC = null;
 	String policyNumber = null;
 	String quoteNumber = null;
 	String accountNumber = null;
@@ -49,18 +54,21 @@ public class Property_PolicyCenterTests extends AbstractTest {
 		offeringsPage_PC = new OfferingsPage_PC();
 		policyInfoPage_PC = new PolicyInfoPage_PC();
 		commercialPropertyLinePage_PC = new CommercialPropertyLinePage_PC();
+		coveragesPage_PC = new CoveragesPage_PC();
+		newBuildingPage_PC = new NewBuildingPage_PC();
+		classCodeSearchPage_PC = new ClassCodeSearchPage_PC();
 		bop_PCTests = new BOP_PolicyCenterTests();
 		coveragesPage_PC = new CoveragesPage_PC();
 
 	}
 
 	/* Create New Account */
-	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode", "classCodeNumber", "term",
-			"accountType", "effectiveDate", "formType" })
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "term", "accountType", "effectiveDate", "formType" })
 	@Test
 	public void checkAllValidationsOnPolicyInfoPage(String pcUsers, String insuredName, String state,
-			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term, String accountType,
-			String effectiveDate, String formType) throws IOException {
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String accountType, String effectiveDate, String formType) throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
 		ExtentTestManager.getTest().log(Status.INFO,
 				MarkupHelper.createLabel(
@@ -68,8 +76,8 @@ public class Property_PolicyCenterTests extends AbstractTest {
 								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 						ExtentColor.PURPLE));
-		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
-				organizationCode, classCodeNumber, accountType);
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,
+				businessEntity, organizationCode, classCodeNumber, accountType);
 		// newCustomTermQuote(term, effectiveDate, formType, classCodeNumber);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		accountSummaryPage_PC.createNewSubmission();
@@ -168,8 +176,8 @@ public class Property_PolicyCenterTests extends AbstractTest {
 	 */
 
 	/* Leap Year Test */
-	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
-			"accountType", "effectiveDate", "formType" })
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "term", "accountType", "effectiveDate", "formType" })
 	@Test
 	public void validateLeapYearScenario(String pcUsers, String insuredName, String state, String businessEntity,
 			String organizationCode, String classCodeNumber, String term, String accountType, String effectiveDate,
@@ -181,8 +189,8 @@ public class Property_PolicyCenterTests extends AbstractTest {
 								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 						ExtentColor.PURPLE));
-		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, "insuranceType",businessEntity,
-				organizationCode, classCodeNumber, accountType);
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, "insuranceType",
+				businessEntity, organizationCode, classCodeNumber, accountType);
 		accountSummaryPage_PC = new AccountSummaryPage_PC();
 		newSubmissionPage_PC = new NewSubmissionPage_PC();
 		// offeringsPage_PC = new OfferingsPage_PC();
@@ -195,12 +203,13 @@ public class Property_PolicyCenterTests extends AbstractTest {
 	}
 
 	// Commercial Property Line Tests
-	@Parameters({ "pcUsers", "insuredName", "state","insuranceType", "businessEntity", "organizationCode", "classCodeNumber", "term",
-			"accountType", "effectiveDate", "formType" })
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "term", "accountType", "effectiveDate", "formType" })
 	@Test
-	public void validatePolicyLevelAndAdditionalCoveragesCoveragesOnCommercialPropertyLinePage(String pcUsers, String insuredName,
-			String state, String insuranceType,String businessEntity, String organizationCode, String classCodeNumber, String term,
-			String accountType, String effectiveDate, String formType) throws IOException {
+	public void validatePolicyLevelAndAdditionalCoveragesCoveragesOnCommercialPropertyLinePage(String pcUsers,
+			String insuredName, String state, String insuranceType, String businessEntity, String organizationCode,
+			String classCodeNumber, String term, String accountType, String effectiveDate, String formType)
+			throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
 		ExtentTestManager.getTest().log(Status.INFO,
 				MarkupHelper.createLabel(
@@ -208,8 +217,8 @@ public class Property_PolicyCenterTests extends AbstractTest {
 								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 						ExtentColor.PURPLE));
-		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,businessEntity,
-				organizationCode, classCodeNumber, accountType);
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,
+				businessEntity, organizationCode, classCodeNumber, accountType);
 		accountSummaryPage_PC = new AccountSummaryPage_PC();
 		newSubmissionPage_PC = new NewSubmissionPage_PC();
 		policyInfoPage_PC = new PolicyInfoPage_PC();
@@ -252,12 +261,466 @@ public class Property_PolicyCenterTests extends AbstractTest {
 //		commercialPropertyLinePage_PC.verifyAdditionalCoverages();
 //	}
 
-	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "term", "accountType", "effectiveDate", "formType" })
+	@Test
+	public void US22280BuildingAdditionalCoverages(String pcUsers, String insuredName, String state,
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,
+				businessEntity, organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.addBuilding();
+		coveragesPage_PC.addBuildingDetails("Builders Risk", "Broad", "55", "2020", "Frame", "0844",
+				"Amusement Centers", "Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.addAdditionalCoverages("CP 14 15");
+		Assert.assertTrue(coveragesPage_PC.validateCP1415Coverages(), "Labels are missing");
+		coveragesPage_PC.CP1415Coverages("test");
+		coveragesPage_PC.removeItems("CP 14 15");
+		coveragesPage_PC.validateCoveragesErrorMessage("You must enter at least 1 row of Additional Building Property");
+		coveragesPage_PC.validateCoveragesErrorMessage("Please fill in all required fields.");
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "term", "accountType", "effectiveDate", "formType" })
+	@Test
+	public void US22298BuildingAdditionalCoverages2(String pcUsers, String insuredName, String state,
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,
+				businessEntity, organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.addBuilding();
+		coveragesPage_PC.addBuildingDetails("Leasehold Interest", "Special", "55", "2020", "Frame", "0844",
+				"Amusement Centers", "Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
+		coveragesPage_PC.goToDetailsCoveragesTab();
+		coveragesPage_PC.addBuildingDetails("Building", "Broad", "55", "2020", "Frame", "0844", "Amusement Centers",
+				"Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
+		coveragesPage_PC.goToDetailsCoveragesTab();
+		coveragesPage_PC.addBuildingDetails("Building", "Basic", "55", "2020", "Frame", "0844", "Amusement Centers",
+				"Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
+
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "term", "accountType", "effectiveDate", "formType" })
+	@Test
+	public void US22298BuildingAdditionalCoverages3(String pcUsers, String insuredName, String state,
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,
+				businessEntity, organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.addBuilding();
+		coveragesPage_PC.addBuildingDetails("Condominium Association", "Basic", "55", "2020", "Frame", "0844",
+				"Amusement Centers", "Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
+		coveragesPage_PC.goToDetailsCoveragesTab();
+		coveragesPage_PC.addBuildingDetails("Improvements and Betterments", "Special", "55", "2020", "Frame", "0844",
+				"Amusement Centers", "Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
+		coveragesPage_PC.goToDetailsCoveragesTab();
+		coveragesPage_PC.addBuildingDetails("Legal Liability", "Special", "55", "2020", "Frame", "0844",
+				"Amusement Centers", "Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
+		coveragesPage_PC.goToDetailsCoveragesTab();
+		coveragesPage_PC.addBuildingDetails("Tenant Glass", "Special", "55", "2020", "Frame", "0844",
+				"Amusement Centers", "Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
+		coveragesPage_PC.goToDetailsCoveragesTab();
+
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "term", "accountType", "effectiveDate", "formType" })
+	@Test
+	public void US22298BuildingAdditionalCoverages(String pcUsers, String insuredName, String state,
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,
+				businessEntity, organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.addBuilding();
+		coveragesPage_PC.addBuildingDetails("Builders Risk", "Special", "55", "2020", "Frame", "0844",
+				"Amusement Centers", "Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.addAdditionalCoverages("Builders Risk - Collapse During Construction");
+		coveragesPage_PC.validateCP1120Coverages();
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "term", "accountType", "effectiveDate", "formType" })
+	@Test
+	public void US22304BuildingAdditionalCoverages(String pcUsers, String insuredName, String state,
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,
+				businessEntity, organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.addBuilding();
+		coveragesPage_PC.addBuildingDetails("Tenant Glass", "Special", "55", "2020", "Frame", "0844",
+				"Amusement Centers", "Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.verifyAdditionalCoverages("Builders Risk Renovations", 0);
+		coveragesPage_PC.goToDetailsCoveragesTab();
+		coveragesPage_PC.addBuildingDetails("Builders Risk", "Special", "55", "2020", "Frame", "0844",
+				"Amusement Centers", "Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.addAdditionalCoverages("Builders Risk Renovations");
+		coveragesPage_PC.validateCP1113Coverages(state);
+		coveragesPage_PC.addNewPerson(state);
+		coveragesPage_PC.addNewPerson(state);
+		coveragesPage_PC.validateCoveragesErrorMessage(
+				"Builders Risk Renovations : Cannot have same Loss Payee more than once");
+		coveragesPage_PC.addNewCompany(state);
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "term", "accountType", "effectiveDate", "formType" })
+	@Test
+	public void US22316BuildingAdditionalCoverages(String pcUsers, String insuredName, String state,
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,
+				businessEntity, organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.addBuilding();
+		coveragesPage_PC.addBuildingDetails("Tenant Glass", "Special", "55", "2020", "Frame", "0844",
+				"Amusement Centers", "Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Separate Or Sub-Contractors Coverage", 0);
+		coveragesPage_PC.goToDetailsCoveragesTab();
+		coveragesPage_PC.addBuildingDetails("Builders Risk", "Special", "55", "2020", "Frame", "0844",
+				"Amusement Centers", "Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.addAdditionalCoverages("Builders Risk - Separate Or Sub-Contractors Coverage");
+		coveragesPage_PC.validateCP1115Coverages();
+		coveragesPage_PC.validateCoveragesErrorMessage(
+				"You must enter at least 1 row of Builders Risk - Separate Or Sub-Contractors Coverage");
+		coveragesPage_PC.validateCoveragesErrorMessage("Contractor : Missing required field \"Contractor\"");
+		coveragesPage_PC.validateCoveragesErrorMessage("Contractor : Exceeds the maximum length of 255 (344)");
+		coveragesPage_PC.CP1115Coverages("testcontractor", "testinstallation");
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "term", "accountType", "effectiveDate", "formType" })
+	@Test
+	public void US22322BuildingAdditionalCoverages(String pcUsers, String insuredName, String state,
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,
+				businessEntity, organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.addBuilding();
+		coveragesPage_PC.addBuildingDetails("Builders Risk", "Special", "55", "2020", "Frame", "1150",
+				"Amusement Centers", "Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC
+				.addAdditionalCoverages("Builders Risk - Theft Of Building Materials, Fixtures, Machinery, Equipment");
+		coveragesPage_PC.validateCP1121Coverages();
+		coveragesPage_PC.validateCoveragesErrorMessage("Theft Limit : Missing required field \"Theft Limit\"");
+		coveragesPage_PC.validateCoveragesErrorMessage("Theft Limit : Must not be less than $1.00");
+		coveragesPage_PC.validateCoveragesErrorMessage("Theft Limit : Must be a numeric value");
+		coveragesPage_PC.validateCoveragesErrorMessage("Theft Limit : Must be no greater than $999,999,999.00");
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "term", "accountType", "effectiveDate", "formType" })
+	@Test
+	public void US22346BuildingAdditionalCoverages(String pcUsers, String insuredName, String state,
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,
+				businessEntity, organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.addBuilding();
+		coveragesPage_PC.addBuildingDetails("Building", "Special", "55", "2020", "Frame", "0844", "Amusement Centers",
+				"Actual Cash Value");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
+		coveragesPage_PC.goToDetailsCoveragesTab();
+		coveragesPage_PC.addBuildingDetails("Building", "Special", "55", "2020", "Frame", "1150", "Amusement Centers",
+				"Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.addAdditionalCoverages("Increased Cost Of Loss And Related Expenses For Green Upgrades");
+		coveragesPage_PC.validateGreenUpgradesCoverages();
+		coveragesPage_PC.validateCoveragesErrorMessage(
+				"Increased Cost Of Loss Percentage : Missing required field \"Increased Cost Of Loss Percentage\"");
+		coveragesPage_PC.validateCoveragesErrorMessage("Green Upgrades Limit : Must not be less than $1.00");
+		coveragesPage_PC.validateCoveragesErrorMessage("Green Upgrades Limit : Must be a numeric value");
+		coveragesPage_PC
+				.validateCoveragesErrorMessage("Green Upgrades Limit : Must be no greater than $999,999,999.00");
+		coveragesPage_PC.validateCoveragesErrorMessage("Description : Exceeds the maximum length of 255 (363)");
+		coveragesPage_PC.validateCoveragesErrorMessage("Related Expenses Limit : Must not be less than $0.00");
+		coveragesPage_PC
+				.validateCoveragesErrorMessage("Related Expenses Limit : Must be no greater than $999,999,999.00");
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "term", "accountType", "effectiveDate", "formType" })
+	@Test
+	public void US22424BuildingAdditionalCoverages(String pcUsers, String insuredName, String state,
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,
+				businessEntity, organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.addBuilding();
+		coveragesPage_PC.addBuildingDetails("Building", "Special", "55", "2020", "Frame", "0844", "Amusement Centers",
+				"Actual Cash Value");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.verifyAdditionalCoverages("Pier And Wharf Additional Covered Causes Of Loss", 0);
+		coveragesPage_PC.goToDetailsCoveragesTab();
+		coveragesPage_PC.addBuildingDetails("Building", "Broad", "55", "2020", "Frame", "1150", "Amusement Centers",
+				"Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.addAdditionalCoverages("Pier And Wharf Additional Covered Causes Of Loss");
+		coveragesPage_PC.validateCP1070Coverages();
+		coveragesPage_PC.validateCoveragesErrorMessage("Construction : Missing required field \"Construction\"");
+		coveragesPage_PC.validatesCoverageMenu(
+				"All Other Construction Including Pier Deck and Pier Platform, but Without Superstructure",
+				"CP1070ConstructionMenu1");
+		coveragesPage_PC.validatesCoverageMenu(
+				"All Other Construction - Substructure Including Superstructure, All Sides Enclosed",
+				"CP1070ConstructionMenu2");
+		coveragesPage_PC.validatesCoverageMenu(
+				"Fire Resistive Including Pier Deck and Pier Platform, but Without Superstructure",
+				"CP1070ConstructionMenu3");
+		coveragesPage_PC.validatesCoverageMenu(
+				"Fire Resistive - Substructure Including Superstructure, All Sides Enclosed",
+				"CP1070ConstructionMenu4");
+		coveragesPage_PC.validatesCoverageMenu(
+				"Non-Combustible and Heavy Timber - Substructure Including Superstructure, All Sides Enclosed",
+				"CP1070ConstructionMenu5");
+		coveragesPage_PC.validatesCoverageMenu("Substructure with Canopy Superstructure, Sides Not Enclosed",
+				"CP1070ConstructionMenu6");
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "term", "accountType", "effectiveDate", "formType" })
+	@Test
+	public void US22288BuildingAdditionalCoverages(String pcUsers, String insuredName, String state,
+			String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,
+				businessEntity, organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.addBuilding();
+		coveragesPage_PC.addBuildingDetails("Building", "Special", "55", "2020", "Frame", "1150", "Amusement Centers",
+				"Replacement Cost");
+		coveragesPage_PC.goToAdditionalCoveragesTab();
+		coveragesPage_PC.addAdditionalCoverages("Additional Property NOT Covered");
+		coveragesPage_PC.additionalPropertyNotCoveredCoverages();
+		coveragesPage_PC.validateCoveragesErrorMessage("Performed by : Exceeds the maximum length of 255 (263)");
+		coveragesPage_PC.validateCoveragesErrorMessage(
+				"Description of Excluded Stock : Exceeds the maximum length of 255 (263)");
+		// coveragesPage_PC.validateCoveragesErrorMessage("Green Upgrades Limit : Must
+		// be a numeric value");
+		// coveragesPage_PC.validateCoveragesErrorMessage("Green Upgrades Limit : Must
+		// be no greater than $999,999,999.00");
+
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode",
+			"classCodeNumber", "term", "accountType", "effectiveDate", "formType" })
+	@Test
+
+	public void US22018ValidateLabelsAndErrorMessagesForElectronicCommerceCoverage(String pcUsers, String insuredName,
+			String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber,
+			String term, String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,
+				businessEntity, organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToAdditionalCoveragesTab();
+		// commercialPropertyLinePage_PC.verifyAdditionalCoverages();
+		commercialPropertyLinePage_PC.clickOnAddCoveragesButton();
+		commercialPropertyLinePage_PC.addElectronicCommerceCoverage();
+		sleep(2000);
+		Assert.assertTrue(commercialPropertyLinePage_PC.validateElectronicCommerceLabels(), "Labels are missing");
+		commercialPropertyLinePage_PC.validateErrorMessagesForElectronicCommerceCoverage();
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state","insuranceType", "businessEntity", "organizationCode", "classCodeNumber", "term",
 			"accountType", "effectiveDate", "formType" })
 	@Test
-	public void US22280BuildingAdditionalCoverages(String pcUsers, String insuredName,
-			String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
-			String accountType, String effectiveDate, String formType) throws IOException {
+	public void US22354ValidateDebrisRemovalAdditionalInsuranceLabelsAndErrorMessages(String pcUsers,
+			String insuredName, String state, String insuranceType,String businessEntity, String organizationCode, String classCodeNumber,
+			String term, String accountType, String effectiveDate, String formType) throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
 		ExtentTestManager.getTest().log(Status.INFO,
 				MarkupHelper.createLabel(
@@ -276,372 +739,32 @@ public class Property_PolicyCenterTests extends AbstractTest {
 		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
 		policyInfoPage_PC.goToNextPage();
 		commercialPropertyLinePage_PC.goToNextPage();
-		coveragesPage_PC.addBuilding();
-		coveragesPage_PC.addBuildingDetails("Builders Risk","Broad","55", "2020", "Frame","0844","Amusement Centers","Replacement Cost");
-		coveragesPage_PC.goToAdditionalCoveragesTab();
-		coveragesPage_PC.addAdditionalCoverages("CP 14 15");
-		Assert.assertTrue(coveragesPage_PC.validateCP1415Coverages(), "Labels are missing");
-		coveragesPage_PC.CP1415Coverages("test");
-		coveragesPage_PC.removeItems("CP 14 15");
-		coveragesPage_PC.validateCoveragesErrorMessage("You must enter at least 1 row of Additional Building Property");
-		coveragesPage_PC.validateCoveragesErrorMessage("Please fill in all required fields.");
+		coveragesPage_PC.clickAddBuilding();
+		sleep(2000);
+		newBuildingPage_PC.addBuildingDetails();
+		newBuildingPage_PC.clickClassCodeSearchButton();
+		classCodeSearchPage_PC.selectClassCode("0567","GL");
+		newBuildingPage_PC.goToAdditionalCoveragesTab();
+		newBuildingPage_PC.clickAddCoveragesButton();
+		newBuildingPage_PC.selectCoverage("Debris Removal Additional Insurance");
+		newBuildingPage_PC.validateLimitFieldInDebrisRemovalAdditionalInsuranceCoverage();
+		/*
+		 * newBuildingPage_PC.clickAddCoveragesButton(); newBuildingPage_PC.
+		 * validateCoverageIsPresent("Outdoor Trees, Shrubs And Plants");
+		 * newBuildingPage_PC.selectCoverage("Outdoor Trees, Shrubs And Plants");
+		 */
+//		newBuildingPage_PC.addBuildingDetails();
+//		newBuildingPage_PC.clickClassCodeSearchButton();
+//		classCodeSearchPage_PC.selectClassCode("0567");
+//		newBuildingPage_PC.clickOkButton();
 	}
-@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode", "classCodeNumber", "term",
-		"accountType", "effectiveDate", "formType" })
-@Test
-public void US22298BuildingAdditionalCoverages2(String pcUsers, String insuredName,
-		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
-		String accountType, String effectiveDate, String formType) throws IOException {
-	List<String> usersList = getUsersList(pcUsers);
-	ExtentTestManager.getTest().log(Status.INFO,
-			MarkupHelper.createLabel(
-					"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
-							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
-							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
-					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,businessEntity,
-			organizationCode, classCodeNumber, accountType);
-	accountSummaryPage_PC = new AccountSummaryPage_PC();
-	newSubmissionPage_PC = new NewSubmissionPage_PC();
-	policyInfoPage_PC = new PolicyInfoPage_PC();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	accountSummaryPage_PC.createNewSubmission();
-	newSubmissionPage_PC.selectCommercialPropertyClassCode();
-	policyInfoPage_PC.setCustomTerm(term, effectiveDate);
-	policyInfoPage_PC.goToNextPage();
-	commercialPropertyLinePage_PC.goToNextPage();
-	coveragesPage_PC.addBuilding();
-	coveragesPage_PC.addBuildingDetails("Leasehold Interest","Special","55", "2020", "Frame","0844","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
-	coveragesPage_PC.goToDetailsCoveragesTab();
-	coveragesPage_PC.addBuildingDetails("Building","Broad","55", "2020", "Frame","0844","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
-	coveragesPage_PC.goToDetailsCoveragesTab();
-	coveragesPage_PC.addBuildingDetails("Building","Basic","55", "2020", "Frame","0844","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
-	
-}
-	
-@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
-		"accountType", "effectiveDate", "formType" })
-@Test
-public void US22298BuildingAdditionalCoverages3(String pcUsers, String insuredName,
-		String state, String insuranceType,String businessEntity, String organizationCode, String classCodeNumber, String term,
-		String accountType, String effectiveDate, String formType) throws IOException {
-	List<String> usersList = getUsersList(pcUsers);
-	ExtentTestManager.getTest().log(Status.INFO,
-			MarkupHelper.createLabel(
-					"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
-							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
-							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
-					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
-			organizationCode, classCodeNumber, accountType);
-	accountSummaryPage_PC = new AccountSummaryPage_PC();
-	newSubmissionPage_PC = new NewSubmissionPage_PC();
-	policyInfoPage_PC = new PolicyInfoPage_PC();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	accountSummaryPage_PC.createNewSubmission();
-	newSubmissionPage_PC.selectCommercialPropertyClassCode();
-	policyInfoPage_PC.setCustomTerm(term, effectiveDate);
-	policyInfoPage_PC.goToNextPage();
-	commercialPropertyLinePage_PC.goToNextPage();
-	coveragesPage_PC.addBuilding();
-	coveragesPage_PC.addBuildingDetails("Condominium Association","Basic","55", "2020", "Frame","0844","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
-	coveragesPage_PC.goToDetailsCoveragesTab();
-	coveragesPage_PC.addBuildingDetails("Improvements and Betterments","Special","55", "2020", "Frame","0844","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
-	coveragesPage_PC.goToDetailsCoveragesTab();
-	coveragesPage_PC.addBuildingDetails("Legal Liability","Special","55", "2020", "Frame","0844","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
-	coveragesPage_PC.goToDetailsCoveragesTab();
-	coveragesPage_PC.addBuildingDetails("Tenant Glass","Special","55", "2020", "Frame","0844","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
-	coveragesPage_PC.goToDetailsCoveragesTab();
 
-}
-
-@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
-		"accountType", "effectiveDate", "formType" })
-@Test
-public void US22298BuildingAdditionalCoverages(String pcUsers, String insuredName,
-		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
-		String accountType, String effectiveDate, String formType) throws IOException {
-	List<String> usersList = getUsersList(pcUsers);
-	ExtentTestManager.getTest().log(Status.INFO,
-			MarkupHelper.createLabel(
-					"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
-							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
-							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
-					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
-			organizationCode, classCodeNumber, accountType);
-	accountSummaryPage_PC = new AccountSummaryPage_PC();
-	newSubmissionPage_PC = new NewSubmissionPage_PC();
-	policyInfoPage_PC = new PolicyInfoPage_PC();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	accountSummaryPage_PC.createNewSubmission();
-	newSubmissionPage_PC.selectCommercialPropertyClassCode();
-	policyInfoPage_PC.setCustomTerm(term, effectiveDate);
-	policyInfoPage_PC.goToNextPage();
-	commercialPropertyLinePage_PC.goToNextPage();
-	coveragesPage_PC.addBuilding();
-	coveragesPage_PC.addBuildingDetails("Builders Risk","Special","55", "2020", "Frame","0844","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.addAdditionalCoverages("Builders Risk - Collapse During Construction");
-	coveragesPage_PC.validateCP1120Coverages();
-}
-
-
-@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
-		"accountType", "effectiveDate", "formType" })
-@Test
-public void US22304BuildingAdditionalCoverages(String pcUsers, String insuredName,
-		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
-		String accountType, String effectiveDate, String formType) throws IOException {
-	List<String> usersList = getUsersList(pcUsers);
-	ExtentTestManager.getTest().log(Status.INFO,
-			MarkupHelper.createLabel(
-					"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
-							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
-							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
-					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
-			organizationCode, classCodeNumber, accountType);
-	accountSummaryPage_PC = new AccountSummaryPage_PC();
-	newSubmissionPage_PC = new NewSubmissionPage_PC();
-	policyInfoPage_PC = new PolicyInfoPage_PC();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	accountSummaryPage_PC.createNewSubmission();
-	newSubmissionPage_PC.selectCommercialPropertyClassCode();
-	policyInfoPage_PC.setCustomTerm(term, effectiveDate);
-	policyInfoPage_PC.goToNextPage();
-	commercialPropertyLinePage_PC.goToNextPage();
-	coveragesPage_PC.addBuilding();
-	coveragesPage_PC.addBuildingDetails("Tenant Glass","Special","55", "2020", "Frame","0844","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.verifyAdditionalCoverages("Builders Risk Renovations", 0);
-	coveragesPage_PC.goToDetailsCoveragesTab();
-	coveragesPage_PC.addBuildingDetails("Builders Risk","Special","55", "2020", "Frame","0844","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.addAdditionalCoverages("Builders Risk Renovations");
-	coveragesPage_PC.validateCP1113Coverages(state);
-	coveragesPage_PC.addNewPerson(state);
-	coveragesPage_PC.addNewPerson(state);
-	coveragesPage_PC.validateCoveragesErrorMessage("Builders Risk Renovations : Cannot have same Loss Payee more than once");
-	coveragesPage_PC.addNewCompany(state);
-}
-
-@Parameters({ "pcUsers", "insuredName", "state", "insuranceType", "businessEntity", "organizationCode", "classCodeNumber", "term",
-		"accountType", "effectiveDate", "formType" })
-@Test
-public void US22316BuildingAdditionalCoverages(String pcUsers, String insuredName,
-		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
-		String accountType, String effectiveDate, String formType) throws IOException {
-	List<String> usersList = getUsersList(pcUsers);
-	ExtentTestManager.getTest().log(Status.INFO,
-			MarkupHelper.createLabel(
-					"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
-							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
-							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
-					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state,insuranceType, businessEntity,
-			organizationCode, classCodeNumber, accountType);
-	accountSummaryPage_PC = new AccountSummaryPage_PC();
-	newSubmissionPage_PC = new NewSubmissionPage_PC();
-	policyInfoPage_PC = new PolicyInfoPage_PC();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	accountSummaryPage_PC.createNewSubmission();
-	newSubmissionPage_PC.selectCommercialPropertyClassCode();
-	policyInfoPage_PC.setCustomTerm(term, effectiveDate);
-	policyInfoPage_PC.goToNextPage();
-	commercialPropertyLinePage_PC.goToNextPage();
-	coveragesPage_PC.addBuilding();
-	coveragesPage_PC.addBuildingDetails("Tenant Glass","Special","55", "2020", "Frame","0844","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Separate Or Sub-Contractors Coverage", 0);
-	coveragesPage_PC.goToDetailsCoveragesTab();
-	coveragesPage_PC.addBuildingDetails("Builders Risk","Special","55", "2020", "Frame","0844","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.addAdditionalCoverages("Builders Risk - Separate Or Sub-Contractors Coverage");
-	coveragesPage_PC.validateCP1115Coverages();
-	coveragesPage_PC.validatesCP1115ErrorMessages("You must enter at least 1 row of Builders Risk - Separate Or Sub-Contractors Coverage");
-	coveragesPage_PC.validatesCP1115ErrorMessages("Contractor : Missing required field \"Contractor\"");
-	coveragesPage_PC.validatesCP1115ErrorMessages("Contractor : Exceeds the maximum length of 255 (344)");
-	coveragesPage_PC.CP1115Coverages("testcontractor", "testinstallation");
-}
-
-@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
-		"accountType", "effectiveDate", "formType" })
-@Test
-public void US22322BuildingAdditionalCoverages(String pcUsers, String insuredName,
-		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
-		String accountType, String effectiveDate, String formType) throws IOException {
-	List<String> usersList = getUsersList(pcUsers);
-	ExtentTestManager.getTest().log(Status.INFO,
-			MarkupHelper.createLabel(
-					"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
-							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
-							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
-					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
-			organizationCode, classCodeNumber, accountType);
-	accountSummaryPage_PC = new AccountSummaryPage_PC();
-	newSubmissionPage_PC = new NewSubmissionPage_PC();
-	policyInfoPage_PC = new PolicyInfoPage_PC();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	accountSummaryPage_PC.createNewSubmission();
-	newSubmissionPage_PC.selectCommercialPropertyClassCode();
-	policyInfoPage_PC.setCustomTerm(term, effectiveDate);
-	policyInfoPage_PC.goToNextPage();
-	commercialPropertyLinePage_PC.goToNextPage();
-	coveragesPage_PC.addBuilding();
-	coveragesPage_PC.addBuildingDetails("Builders Risk","Special","55", "2020", "Frame","1150","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.addAdditionalCoverages("Builders Risk - Theft Of Building Materials, Fixtures, Machinery, Equipment");
-	coveragesPage_PC.validateCP1121Coverages();
-	coveragesPage_PC.validatesCP1121CovergaesErrorMessages("Theft Limit : Missing required field \"Theft Limit\"");
-	coveragesPage_PC.validatesCP1121CovergaesErrorMessages("Theft Limit : Must not be less than $1.00");
-	coveragesPage_PC.validatesCP1121CovergaesErrorMessages("Theft Limit : Must be a numeric value");
-	coveragesPage_PC.validatesCP1121CovergaesErrorMessages("Theft Limit : Must be no greater than $999,999,999.00");
-}
-
-@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
-		"accountType", "effectiveDate", "formType" })
-@Test
-public void US22346BuildingAdditionalCoverages(String pcUsers, String insuredName,
-		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
-		String accountType, String effectiveDate, String formType) throws IOException {
-	List<String> usersList = getUsersList(pcUsers);
-	ExtentTestManager.getTest().log(Status.INFO,
-			MarkupHelper.createLabel(
-					"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
-							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
-							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
-					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,businessEntity,
-			organizationCode, classCodeNumber, accountType);
-	accountSummaryPage_PC = new AccountSummaryPage_PC();
-	newSubmissionPage_PC = new NewSubmissionPage_PC();
-	policyInfoPage_PC = new PolicyInfoPage_PC();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	accountSummaryPage_PC.createNewSubmission();
-	newSubmissionPage_PC.selectCommercialPropertyClassCode();
-	policyInfoPage_PC.setCustomTerm(term, effectiveDate);
-	policyInfoPage_PC.goToNextPage();
-	commercialPropertyLinePage_PC.goToNextPage();
-	coveragesPage_PC.addBuilding();
-	coveragesPage_PC.addBuildingDetails("Building","Special","55", "2020", "Frame","0844","Amusement Centers","Actual Cash Value");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.verifyAdditionalCoverages("Builders Risk - Collapse During Construction", 0);
-	coveragesPage_PC.goToDetailsCoveragesTab();
-	coveragesPage_PC.addBuildingDetails("Building","Special","55", "2020", "Frame","1150","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.addAdditionalCoverages("Increased Cost Of Loss And Related Expenses For Green Upgrades");
-	coveragesPage_PC.validateGreenUpgradesCoverages();
-	coveragesPage_PC.validatesGreenCoveragesErrorMessages("Increased Cost Of Loss Percentage : Missing required field \"Increased Cost Of Loss Percentage\"");
-	coveragesPage_PC.validatesGreenCoveragesErrorMessages("Green Upgrades Limit : Must not be less than $1.00");
-	coveragesPage_PC.validatesGreenCoveragesErrorMessages("Green Upgrades Limit : Must be a numeric value");
-	coveragesPage_PC.validatesGreenCoveragesErrorMessages("Green Upgrades Limit : Must be no greater than $999,999,999.00");
-	coveragesPage_PC.validatesGreenCoveragesErrorMessages("Description : Exceeds the maximum length of 255 (363)");
-	coveragesPage_PC.validatesGreenCoveragesErrorMessages("Related Expenses Limit : Must not be less than $0.00");
-	coveragesPage_PC.validatesGreenCoveragesErrorMessages("Related Expenses Limit : Must be no greater than $999,999,999.00");
-}
-
-
-@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
-		"accountType", "effectiveDate", "formType" })
-@Test
-public void US22424BuildingAdditionalCoverages(String pcUsers, String insuredName,
-		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
-		String accountType, String effectiveDate, String formType) throws IOException {
-	List<String> usersList = getUsersList(pcUsers);
-	ExtentTestManager.getTest().log(Status.INFO,
-			MarkupHelper.createLabel(
-					"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
-							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
-							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
-					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,businessEntity,
-			organizationCode, classCodeNumber, accountType);
-	accountSummaryPage_PC = new AccountSummaryPage_PC();
-	newSubmissionPage_PC = new NewSubmissionPage_PC();
-	policyInfoPage_PC = new PolicyInfoPage_PC();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	accountSummaryPage_PC.createNewSubmission();
-	newSubmissionPage_PC.selectCommercialPropertyClassCode();
-	policyInfoPage_PC.setCustomTerm(term, effectiveDate);
-	policyInfoPage_PC.goToNextPage();
-	commercialPropertyLinePage_PC.goToNextPage();
-	coveragesPage_PC.addBuilding();
-	coveragesPage_PC.addBuildingDetails("Building","Special","55", "2020", "Frame","0844","Amusement Centers","Actual Cash Value");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.verifyAdditionalCoverages("Pier And Wharf Additional Covered Causes Of Loss", 0);
-	coveragesPage_PC.goToDetailsCoveragesTab();
-	coveragesPage_PC.addBuildingDetails("Building","Broad","55", "2020", "Frame","1150","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.addAdditionalCoverages("Pier And Wharf Additional Covered Causes Of Loss");
-	coveragesPage_PC.validateCP1070Coverages();
-	coveragesPage_PC.validatesCP1070CoveragesErrorMessages("Construction : Missing required field \"Construction\"");
-	//coveragesPage_PC.validateCoveragesErrorMessage("Construction : Missing required field \"Construction\"");
-	coveragesPage_PC.validatesCoverageMenu("All Other Construction Including Pier Deck and Pier Platform, but Without Superstructure", "CP1070ConstructionMenu1");
-	coveragesPage_PC.validatesCoverageMenu("All Other Construction - Substructure Including Superstructure, All Sides Enclosed", "CP1070ConstructionMenu2");
-	coveragesPage_PC.validatesCoverageMenu("Fire Resistive Including Pier Deck and Pier Platform, but Without Superstructure", "CP1070ConstructionMenu3");
-	coveragesPage_PC.validatesCoverageMenu("Fire Resistive - Substructure Including Superstructure, All Sides Enclosed", "CP1070ConstructionMenu4");
-	coveragesPage_PC.validatesCoverageMenu("Non-Combustible and Heavy Timber - Substructure Including Superstructure, All Sides Enclosed", "CP1070ConstructionMenu5");
-	coveragesPage_PC.validatesCoverageMenu("Substructure with Canopy Superstructure, Sides Not Enclosed", "CP1070ConstructionMenu6");
-}
-
-
-@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
-		"accountType", "effectiveDate", "formType" })
-@Test
-public void US22288BuildingAdditionalCoverages(String pcUsers, String insuredName,
-		String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
-		String accountType, String effectiveDate, String formType) throws IOException {
-	List<String> usersList = getUsersList(pcUsers);
-	ExtentTestManager.getTest().log(Status.INFO,
-			MarkupHelper.createLabel(
-					"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
-							+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
-							+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
-					ExtentColor.PURPLE));
-	accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
-			organizationCode, classCodeNumber, accountType);
-	accountSummaryPage_PC = new AccountSummaryPage_PC();
-	newSubmissionPage_PC = new NewSubmissionPage_PC();
-	policyInfoPage_PC = new PolicyInfoPage_PC();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	accountSummaryPage_PC.createNewSubmission();
-	newSubmissionPage_PC.selectCommercialPropertyClassCode();
-	policyInfoPage_PC.setCustomTerm(term, effectiveDate);
-	policyInfoPage_PC.goToNextPage();
-	commercialPropertyLinePage_PC.goToNextPage();
-	coveragesPage_PC.addBuilding();
-	coveragesPage_PC.addBuildingDetails("Building","Special","55", "2020", "Frame","1150","Amusement Centers","Replacement Cost");
-	coveragesPage_PC.goToAdditionalCoveragesTab();
-	coveragesPage_PC.addAdditionalCoverages("Additional Property NOT Covered");
-	coveragesPage_PC.additionalPropertyNotCoveredCoverages();
-	coveragesPage_PC.validateCoveragesErrorMessage("Performed by : Exceeds the maximum length of 255 (263)");
-	coveragesPage_PC.validateCoveragesErrorMessage("Description of Excluded Stock : Exceeds the maximum length of 255 (263)");
-	//coveragesPage_PC.validateCoveragesErrorMessage("Green Upgrades Limit : Must be a numeric value");
-	//coveragesPage_PC.validateCoveragesErrorMessage("Green Upgrades Limit : Must be no greater than $999,999,999.00");
-	
-}
-	@Parameters({ "pcUsers", "insuredName", "state","insuranceType", "businessEntity", "organizationCode", "classCodeNumber", "term",
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
 			"accountType", "effectiveDate", "formType" })
 	@Test
-	public void validateLabelsAndErrorMessagesForElectronicCommerceCoverage(String pcUsers, String insuredName,
-			String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber, String term,
-			String accountType, String effectiveDate, String formType) throws IOException {
+	public void US22360ValidateFieldsLabelsAndErrorMessagesForDischargeFromSewerDrainOrSump(String pcUsers,
+			String insuredName, String state,String insuranceType, String businessEntity, String organizationCode, String classCodeNumber,
+			String term, String accountType, String effectiveDate, String formType) throws IOException {
 		List<String> usersList = getUsersList(pcUsers);
 		ExtentTestManager.getTest().log(Status.INFO,
 				MarkupHelper.createLabel(
@@ -649,7 +772,7 @@ public void US22288BuildingAdditionalCoverages(String pcUsers, String insuredNam
 								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
 								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
 						ExtentColor.PURPLE));
-		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType, businessEntity,
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state,insuranceType, businessEntity,
 				organizationCode, classCodeNumber, accountType);
 		accountSummaryPage_PC = new AccountSummaryPage_PC();
 		newSubmissionPage_PC = new NewSubmissionPage_PC();
@@ -659,12 +782,199 @@ public void US22288BuildingAdditionalCoverages(String pcUsers, String insuredNam
 		newSubmissionPage_PC.selectCommercialPropertyClassCode();
 		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
 		policyInfoPage_PC.goToNextPage();
-		commercialPropertyLinePage_PC.goToAdditionalCoveragesTab();
-		// commercialPropertyLinePage_PC.verifyAdditionalCoverages();
-		commercialPropertyLinePage_PC.clickOnAddCoveragesButton();
-		commercialPropertyLinePage_PC.addElectronicCommerceCoverage();
-		Assert.assertTrue(commercialPropertyLinePage_PC.validateElectronicCommerceLabels(), "Labels are missing");
-		commercialPropertyLinePage_PC.validateErrorMessagesForElectronicCommerceCoverage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.clickAddBuilding();
+		sleep(2000);
+		newBuildingPage_PC.goToAdditionalCoveragesTab();
+		newBuildingPage_PC.clickAddCoveragesButton();
+		newBuildingPage_PC.validateCoverageIsPresent("Discharge From Sewer, Drain Or Sump (Not Flood-Related)");
+		newBuildingPage_PC.selectCoverage("Discharge From Sewer, Drain Or Sump (Not Flood-Related)");
+		newBuildingPage_PC.validateErrorMessagesForDischargeFromSewerDrainOrSumpAdditionalInsuranceCoverage();
+		newBuildingPage_PC.validateFieldsForDischargeFromSewerDrainOrSumpAdditionalInsuranceCoverage();
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
+			"accountType", "effectiveDate", "formType" })
+	@Test
+	public void US22390ValidateFieldsLabelsAndErrorMessagesForNewlyAcquiredOrConstructedProperty(String pcUsers,
+			String insuredName, String state, String insuranceType,String businessEntity, String organizationCode, String classCodeNumber,
+			String term, String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,businessEntity,
+				organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.clickAddBuilding();
+		sleep(2000);
+		newBuildingPage_PC.addBuildingDetails();
+		newBuildingPage_PC.clickClassCodeSearchButton();
+		classCodeSearchPage_PC.selectClassCode("0567","GL");
+		newBuildingPage_PC.goToAdditionalCoveragesTab();
+		newBuildingPage_PC.clickAddCoveragesButton();
+		newBuildingPage_PC.validateCoverageIsPresent("Newly Acquired Or Constructed Property - Increased Limit");
+		newBuildingPage_PC.selectCoverage("Newly Acquired Or Constructed Property - Increased Limit");
+		newBuildingPage_PC.validateFieldsForNewlyAcquiredOrConstructedProperty();
+		newBuildingPage_PC.validateErrorMessagesForNewlyAcquiredOrConstructedPropert();
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
+			"accountType", "effectiveDate", "formType", "buildingAdditionalCoverage" })
+	@Test
+	public void US22366ValidatePresenceOfAdditionalCoverageAgainstTypesOfBuildingCoverages(String pcUsers,
+			String insuredName, String state, String insuranceType,String businessEntity, String organizationCode, String classCodeNumber,
+			String term, String accountType, String effectiveDate, String formType, String buildingAdditionalCoverage)
+			throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,businessEntity,
+				organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.clickAddBuilding();
+		sleep(2000);
+		String[] coverages = { "Builders Risk", "Building", "Condominium Association", "Improvements and Betterments",
+				"Legal Liability", "Tenant Glass" };
+		newBuildingPage_PC.presenceOfAdditionalCoverageAtBuildingLevel(coverages, buildingAdditionalCoverage);
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
+			"accountType", "effectiveDate", "formType" })
+	@Test
+	public void US22354ValidateErrorMessageWhileAddingDebrisRemovalAndOutdoorPlantsCovrages(String pcUsers,
+			String insuredName, String state, String insuranceType, String businessEntity, String organizationCode, String classCodeNumber,
+			String term, String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state,insuranceType, businessEntity,
+				organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.clickAddBuilding();
+		sleep(2000);
+		newBuildingPage_PC.addBuildingDetails();
+		newBuildingPage_PC.clickClassCodeSearchButton();
+		classCodeSearchPage_PC.selectClassCode("0567","GL");
+		newBuildingPage_PC.goToAdditionalCoveragesTab();
+		newBuildingPage_PC.clickAddCoveragesButton();
+		newBuildingPage_PC.validateCoverageIsPresent("Outdoor Trees, Shrubs And Plants");
+		newBuildingPage_PC.selectCoverage("Outdoor Trees, Shrubs And Plants");
+		newBuildingPage_PC.clickAddCoveragesButton();
+		newBuildingPage_PC.selectCoverage("Debris Removal Additional Insurance");
+		newBuildingPage_PC.addValuesForDebrisRemovalAdditionalInsuranceCoverage();
+		sleep(1000);
+		newBuildingPage_PC.addValuesForOutdoorTreesShrubsAndPlantsCoverage();
+		newBuildingPage_PC.clickOkButton();
+		sleep(1000);
+		newBuildingPage_PC.getErrorMessage();
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
+			"accountType", "effectiveDate", "formType" })
+	@Test
+	public void US22408ValidateOutdoorTreesShrubsAndPlantsLabelsAndErrorMessages(String pcUsers, String insuredName,
+			String state, String insuranceType,String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state, insuranceType,businessEntity,
+				organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.clickAddBuilding();
+		sleep(2000);
+		newBuildingPage_PC.goToAdditionalCoveragesTab();
+		newBuildingPage_PC.clickAddCoveragesButton();
+		newBuildingPage_PC.selectCoverage("Outdoor Trees, Shrubs And Plants");
+		newBuildingPage_PC.clickAddCoveragesButton();
+		newBuildingPage_PC.selectCoverage("Debris Removal Additional Insurance");
+		newBuildingPage_PC.addValuesForDebrisRemovalAdditionalInsuranceCoverage();
+		sleep(1000);
+		newBuildingPage_PC.validateFieldsForOutdoorTreesShrubsAndPlantsCoverage();
+		newBuildingPage_PC.validateErrorMessagesForOutdoorTreesShrubsAndPlantsCoverage();
+	}
+
+	@Parameters({ "pcUsers", "insuredName", "state", "insuranceType","businessEntity", "organizationCode", "classCodeNumber", "term",
+			"accountType", "effectiveDate", "formType" })
+	@Test
+	public void US22402ValidateOrdinanceOrLawCoverageLabelsAndErrorMessages(String pcUsers, String insuredName,
+			String state, String insuranceType,String businessEntity, String organizationCode, String classCodeNumber, String term,
+			String accountType, String effectiveDate, String formType) throws IOException {
+		List<String> usersList = getUsersList(pcUsers);
+		ExtentTestManager.getTest().log(Status.INFO,
+				MarkupHelper.createLabel(
+						"Parameters are-> PC USers: " + pcUsers + ", Insured Name: " + insuredName + ", State: " + state
+								+ " , Business Entity: " + businessEntity + ", Organization Code: " + organizationCode
+								+ ", Class Codes: " + classCodeNumber + ", Account Type: " + accountType,
+						ExtentColor.PURPLE));
+		accountNumber = bop_PCTests.createAccount(usersList.get(0).toString(), insuredName, state,insuranceType, businessEntity,
+				organizationCode, classCodeNumber, accountType);
+		accountSummaryPage_PC = new AccountSummaryPage_PC();
+		newSubmissionPage_PC = new NewSubmissionPage_PC();
+		policyInfoPage_PC = new PolicyInfoPage_PC();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		accountSummaryPage_PC.createNewSubmission();
+		newSubmissionPage_PC.selectCommercialPropertyClassCode();
+		policyInfoPage_PC.setCustomTerm(term, effectiveDate);
+		policyInfoPage_PC.goToNextPage();
+		commercialPropertyLinePage_PC.goToNextPage();
+		coveragesPage_PC.clickAddBuilding();
+		sleep(2000);
+		newBuildingPage_PC.addBuildingDetails();
+		newBuildingPage_PC.clickClassCodeSearchButton();
+		classCodeSearchPage_PC.selectClassCode("0567","GL");
+		newBuildingPage_PC.goToAdditionalCoveragesTab();
+		newBuildingPage_PC.clickAddCoveragesButton();
+		newBuildingPage_PC.selectCoverage("Ordinance Or Law Coverage");
+		newBuildingPage_PC.validateErrorMessagesForOrdinananceOrLawCoverage();
 	}
 
 	public String newCustomTermQuote(String term, String effectiveDate, String formType, String classCodeNumber)

@@ -18,7 +18,6 @@ import org.testng.xml.XmlClass;
 import org.testng.xml.XmlInclude;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
-import org.testng.xml.XmlSuite.ParallelMode;
 
 import com.wrg.abstestbase.AbstractTest;
 
@@ -142,7 +141,7 @@ public class MyMainClass extends AbstractTest {
 
 		suite.addListener("com.wrg.abstest.SuiteListener");
 		
-	    suite.addListener("com.wrg.utils.AnnotationTransformer");
+		suite.addListener("com.wrg.utils.AnnotationTransformer");
 
 		System.out.println(suite.toXml());
 

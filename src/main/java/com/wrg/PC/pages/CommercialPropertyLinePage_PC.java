@@ -1,7 +1,5 @@
 package com.wrg.PC.pages;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -17,6 +15,27 @@ import com.wrg.utils.ExtentTestManager;
 
 public class CommercialPropertyLinePage_PC extends AbstractTest {
 	WebDriverWait wait = null;
+
+	public void goToNextPage() {
+		wait = new WebDriverWait(driver, 20);
+		try {
+			waitForPageLoaded();
+			sleep(3000);
+			wait.until(ExpectedConditions.visibilityOf(getWebElement("nextButton")));
+			if(isWebElementPresent("nextButton")==true) {
+			click(getWebElement("nextButton"));
+			}
+		} catch (UnhandledAlertException e) {
+			try {
+				Alert alert = driver.switchTo().alert();
+				String alertText = alert.getText();
+				System.out.println("Alert data: " + alertText);
+				alert.dismiss();
+			} catch (NoAlertPresentException f) {
+				f.printStackTrace();
+			}
+		}
+	}
 
 	public void goToAdditionalCoveragesTab() {
 		waitForPageLoaded();
@@ -65,22 +84,52 @@ public class CommercialPropertyLinePage_PC extends AbstractTest {
 	
 	public void validateErrorMessagesForElectronicCommerceCoverage() {
 		wait = new WebDriverWait(driver,10);
-		type("descriptionOfBusinessTextBox","Test");
+		type("descriptionOfBusinessTextBox","Testingqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+		getWebElement("descriptionOfBusinessTextBox").sendKeys(Keys.TAB);
 		sleep(1000);
-		type("annualAggregateLimitOfInsuranceTextBox","Test");
+		type("locationOfBusinessTextBox","Testingqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+		getWebElement("locationOfBusinessTextBox").sendKeys(Keys.TAB);
+		sleep(1000);
+		type("annualAggregateLimitOfInsuranceTextBox","-1");
 		getWebElement("annualAggregateLimitOfInsuranceTextBox").sendKeys(Keys.TAB);
-		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("sectionIDeductibleTextBox")));
 		sleep(1000);
 		type("sectionIDeductibleTextBox","Test");
 		getWebElement("sectionIDeductibleTextBox").sendKeys(Keys.TAB);
-		wait.until(ExpectedConditions.elementToBeClickable(getWebElement("manualPremiumTextBox")));
 		sleep(1000);
 		type("manualPremiumTextBox","Test");
 		getWebElement("manualPremiumTextBox").sendKeys(Keys.TAB);
 		sleep(1000);
-		for(int i=1;i<=3;i++) {
+		for(int i=1;i<=5;i++) {
 			ExtentTestManager.getTest().log(Status.INFO, driver.findElement(By.xpath("(//div[@class='message'])["+i+"]")).getText());
 		}
+		clear("descriptionOfBusinessTextBox");
+		sleep(1000);
+		type("descriptionOfBusinessTextBox",getData("descriptionOfBusinessValue"));
+		getWebElement("descriptionOfBusinessTextBox").sendKeys(Keys.TAB);
+		sleep(1000);
+		clear("locationOfBusinessTextBox");
+		sleep(1000);
+		type("locationOfBusinessTextBox",getData("locationOfBusinessValue"));
+		getWebElement("locationOfBusinessTextBox").sendKeys(Keys.TAB);
+		sleep(1000);
+		clear("annualAggregateLimitOfInsuranceTextBox");
+		sleep(1000);
+		type("annualAggregateLimitOfInsuranceTextBox",getData("annualAggregateLimitOfInsuranceValue"));
+		getWebElement("annualAggregateLimitOfInsuranceTextBox").sendKeys(Keys.TAB);
+		sleep(1000);
+		clear("sectionIDeductibleTextBox");
+		sleep(1000);
+		type("sectionIDeductibleTextBox",getData("sectionIDeductibleValue"));
+		getWebElement("sectionIDeductibleTextBox").sendKeys(Keys.TAB);
+		sleep(1000);
+		clear("manualPremiumTextBox");
+		sleep(1000);
+		type("manualPremiumTextBox",getData("manualPremiumValue"));
+		getWebElement("manualPremiumTextBox").sendKeys(Keys.TAB);
+		sleep(1000);
+		click("nextButton");
+		sleep(1000);
+		ExtentTestManager.getTest().log(Status.INFO, driver.findElement(By.xpath("//div[@class='message']")).getText());
 	}
 
 	public boolean validatePolicyLevelCoveragesPresence() {
@@ -156,22 +205,5 @@ public class CommercialPropertyLinePage_PC extends AbstractTest {
 		}
 		return result;
 	}
-	public void goToNextPage() {
-		sleep(10000);
-		wait = new WebDriverWait(driver, 20);
-		try {
-			wait.until(ExpectedConditions.visibilityOf(getWebElement("commericalPropertyLineHeader")));
-			wait.until(ExpectedConditions.visibilityOf(getWebElement("nextButton")));
-			click("nextButton");
-		} catch (UnhandledAlertException e) {
-			try {
-				Alert alert = driver.switchTo().alert();
-				String alertText = alert.getText();
-				System.out.println("Alert data: " + alertText);
-				alert.dismiss();
-			} catch (NoAlertPresentException f) {
-				f.printStackTrace();
-			}
-		}
-	}
+	
 }
